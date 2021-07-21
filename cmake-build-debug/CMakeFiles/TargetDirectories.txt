@@ -1,0 +1,3 @@
+C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir
+C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
