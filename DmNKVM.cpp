@@ -2,40 +2,35 @@
 
 namespace DmN::KVM {
     ///
-    struct Type_t : Nameble {
-        // Modifier (PUBLIC, ENUM, STRUCT, CLASS)
-        uint8_t modifier : 2;
-        // Extends & extends count
-        uint8_t extendsCount : 6;
-        Type_t** extends;
-        // GC
-        uint8_t ref_count;
-
+    struct Nameble {
+        char* name = nullptr;
+    };
+    ///
+    struct Variable {
+        void* value = nullptr;
+    };
+    ///
+    struct Typeble {
+        Type_t* type = nullptr;
+    };
+    ///
+    struct Extendable {
+        uint8_t extends_size : 5;
+        Type_t** extends = nullptr;
+    };
+    ///
+    struct FieldStorage {
         virtual Field_t** getFields() = NULL;
+    };
+    ///
+    struct MethodStorage {
         virtual Method_t** getMethods() = NULL;
     };
     ///
-    struct Struct_t : Type_t {
-        uint8_t fieldsCount;
-        Field_t** fields;
-
-        Field_t** getFields() override { return fields; };
-    };
-
-    struct Class_t : Struct_t {
-        uint8_t methodsCount;
-        Method_t** methods;
-
-        Method_t** getMethods() override { return methods; }
-    };
+    struct Type_t : Nameble, Extendable { };
     ///
-    struct Field_t : Typeble, Nameble {
-        Type_t* type;
-        Type_t* getType() override { return type; };
-    };
-
-    struct Method_t : Nameble {
-        uint32_t length;
-        int8_t** code;
+    struct Struct_t : Type_t, FieldStorage, MethodStorage {
+        Field_t** fields = nullptr;
+        Method_t** methods = nullptr;
     };
 }

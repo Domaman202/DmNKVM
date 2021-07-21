@@ -2,18 +2,23 @@
 #include <stdint.h>
 
 namespace DmN::KVM {
-    ///
-    struct Nameble { char* name; };
-    ///
-    struct Type_t;
-    ///
-    struct Enum_t;
-    struct Struct_t;
-    struct Class_t;
-    ///
-    struct Typeble { virtual Type_t* getType() = NULL; };
-    ///
-    struct Variable_t : Nameble, Typeble { void* value; };
+    /// То что может иметь имя
+    struct Nameble;
+    /// То что может хранить значение
+    struct Variable;
+    /// То что имеет тип
+    struct Typeble;
+    /// То что наследуеться
+    struct Extendable;
+    /// То что хранит поля/методы
+    struct FieldStorage;
+    struct MethodStorage;
+    /// Поле
     struct Field_t;
+    /// Метод
     struct Method_t;
+    /// Тип
+    struct Type_t;
+    /// Структура
+    struct Struct_t;
 }
