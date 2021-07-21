@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("DmNKVM")
+project ("DmNKVMCore")
 
 # Включите подпроекты.
-add_subdirectory ("DmNKVM")
+add_subdirectory ("DmNKVMCore")
