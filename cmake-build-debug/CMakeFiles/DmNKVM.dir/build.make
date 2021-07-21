@@ -79,17 +79,38 @@ CMakeFiles\DmNKVM.dir\main.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\DmNKVM.dir\main.cpp.s /c C:\Games\DmNKVM\main.cpp
 <<
 
+CMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj: CMakeFiles\DmNKVM.dir\flags.make
+CMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj: ..\DmNKVM.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Games\DmNKVM\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DmNKVM.dir/DmNKVM.cpp.obj"
+	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj /FdCMakeFiles\DmNKVM.dir\ /FS -c C:\Games\DmNKVM\DmNKVM.cpp
+<<
+
+CMakeFiles\DmNKVM.dir\DmNKVM.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVM.dir/DmNKVM.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe > CMakeFiles\DmNKVM.dir\DmNKVM.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Games\DmNKVM\DmNKVM.cpp
+<<
+
+CMakeFiles\DmNKVM.dir\DmNKVM.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVM.dir/DmNKVM.cpp.s"
+	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\DmNKVM.dir\DmNKVM.cpp.s /c C:\Games\DmNKVM\DmNKVM.cpp
+<<
+
 # Object files for target DmNKVM
 DmNKVM_OBJECTS = \
-"CMakeFiles\DmNKVM.dir\main.cpp.obj"
+"CMakeFiles\DmNKVM.dir\main.cpp.obj" \
+"CMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj"
 
 # External object files for target DmNKVM
 DmNKVM_EXTERNAL_OBJECTS =
 
 DmNKVM.exe: CMakeFiles\DmNKVM.dir\main.cpp.obj
+DmNKVM.exe: CMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj
 DmNKVM.exe: CMakeFiles\DmNKVM.dir\build.make
 DmNKVM.exe: CMakeFiles\DmNKVM.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Games\DmNKVM\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable DmNKVM.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Games\DmNKVM\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable DmNKVM.exe"
 	"C:\Games\CLion 2021.1.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\DmNKVM.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x86\mt.exe --manifests -- C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\DmNKVM.dir\objects1.rsp @<<
  /out:DmNKVM.exe /implib:DmNKVM.lib /pdb:C:\Games\DmNKVM\cmake-build-debug\DmNKVM.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

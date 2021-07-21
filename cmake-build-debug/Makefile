@@ -126,6 +126,33 @@ DmNKVM\fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\build
 .PHONY : DmNKVM\fast
 
+DmNKVM.obj: DmNKVM.cpp.obj
+
+.PHONY : DmNKVM.obj
+
+# target to build an object file
+DmNKVM.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj
+.PHONY : DmNKVM.cpp.obj
+
+DmNKVM.i: DmNKVM.cpp.i
+
+.PHONY : DmNKVM.i
+
+# target to preprocess a source file
+DmNKVM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.i
+.PHONY : DmNKVM.cpp.i
+
+DmNKVM.s: DmNKVM.cpp.s
+
+.PHONY : DmNKVM.s
+
+# target to generate assembly for a file
+DmNKVM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.s
+.PHONY : DmNKVM.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -162,6 +189,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DmNKVM
+	@echo ... DmNKVM.obj
+	@echo ... DmNKVM.i
+	@echo ... DmNKVM.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

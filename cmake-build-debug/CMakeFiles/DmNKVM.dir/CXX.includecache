@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
+C:/Games/DmNKVM/DmNKVM.hpp
+
 C:/Games/DmNKVM/main.cpp
-iostream
--
+DmNKVM.hpp
+C:/Games/DmNKVM/DmNKVM.hpp
 
