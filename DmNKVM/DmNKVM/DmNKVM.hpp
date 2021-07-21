@@ -1,4 +1,4 @@
-﻿#include "DmNKVM.hpp"
+﻿#pragma once
 
 namespace DmN {
 	namespace KVM {

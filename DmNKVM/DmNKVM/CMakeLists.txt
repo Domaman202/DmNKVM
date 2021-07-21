@@ -4,6 +4,6 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (DmNKVM "DmNKVM.cpp" "DmNKVM.h")
+add_executable (DmNKVM "DmNKVM.cpp" "DmNKVM.hpp" "main.cpp")
 
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
