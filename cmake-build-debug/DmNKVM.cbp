@@ -88,6 +88,12 @@
 		<Unit filename="C:/Games/DmNKVM/DmNKVM.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="C:/Games/DmNKVM/DmNSTD.cpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="C:/Games/DmNKVM/DmNSTD.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="C:/Games/DmNKVM/main.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>

@@ -153,6 +153,33 @@ DmNKVM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.s
 .PHONY : DmNKVM.cpp.s
 
+DmNSTD.obj: DmNSTD.cpp.obj
+
+.PHONY : DmNSTD.obj
+
+# target to build an object file
+DmNSTD.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNSTD.cpp.obj
+.PHONY : DmNSTD.cpp.obj
+
+DmNSTD.i: DmNSTD.cpp.i
+
+.PHONY : DmNSTD.i
+
+# target to preprocess a source file
+DmNSTD.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNSTD.cpp.i
+.PHONY : DmNSTD.cpp.i
+
+DmNSTD.s: DmNSTD.cpp.s
+
+.PHONY : DmNSTD.s
+
+# target to generate assembly for a file
+DmNSTD.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNSTD.cpp.s
+.PHONY : DmNSTD.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -192,6 +219,9 @@ help:
 	@echo ... DmNKVM.obj
 	@echo ... DmNKVM.i
 	@echo ... DmNKVM.s
+	@echo ... DmNSTD.obj
+	@echo ... DmNSTD.i
+	@echo ... DmNSTD.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
