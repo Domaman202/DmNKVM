@@ -12,5 +12,6 @@ namespace DmN::KVM {
     struct Field_t;
     struct Method_t;
     //
+    /// Global Name Storage
     Name_storage* GNS;
 }
