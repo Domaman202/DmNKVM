@@ -1,4 +1,4 @@
-#include "DmNSTD.hpp"
+#pragma once
 
 namespace DmN::KVM {
     struct Nameble;

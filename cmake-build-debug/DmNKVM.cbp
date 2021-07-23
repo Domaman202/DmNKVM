@@ -24,6 +24,8 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
+					<Add directory="C:/Games/DmNKVM/src"/>
+					<Add directory="C:/Games/DmNKVM/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -46,6 +48,8 @@
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
 				<Compiler>
+					<Add directory="C:/Games/DmNKVM/src"/>
+					<Add directory="C:/Games/DmNKVM/include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\ATLMFC\include"/>
 					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\include"/>
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
@@ -95,9 +99,6 @@
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/src/DmNSTD.cpp">
-			<Option target="DmNKVM"/>
-		</Unit>
-		<Unit filename="C:/Games/DmNKVM/src/Nameble.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/CMakeLists.txt">

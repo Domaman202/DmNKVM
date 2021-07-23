@@ -207,33 +207,6 @@ src\DmNSTD.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.s
 .PHONY : src\DmNSTD.cpp.s
 
-src\Nameble.obj: src\Nameble.cpp.obj
-
-.PHONY : src\Nameble.obj
-
-# target to build an object file
-src\Nameble.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\Nameble.cpp.obj
-.PHONY : src\Nameble.cpp.obj
-
-src\Nameble.i: src\Nameble.cpp.i
-
-.PHONY : src\Nameble.i
-
-# target to preprocess a source file
-src\Nameble.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\Nameble.cpp.i
-.PHONY : src\Nameble.cpp.i
-
-src\Nameble.s: src\Nameble.cpp.s
-
-.PHONY : src\Nameble.s
-
-# target to generate assembly for a file
-src\Nameble.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\Nameble.cpp.s
-.PHONY : src\Nameble.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -252,9 +225,6 @@ help:
 	@echo ... src/DmNSTD.obj
 	@echo ... src/DmNSTD.i
 	@echo ... src/DmNSTD.s
-	@echo ... src/Nameble.obj
-	@echo ... src/Nameble.i
-	@echo ... src/Nameble.s
 .PHONY : help
 
 
