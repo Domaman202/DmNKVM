@@ -126,60 +126,6 @@ DmNKVM\fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\build
 .PHONY : DmNKVM\fast
 
-DmNKVM.obj: DmNKVM.cpp.obj
-
-.PHONY : DmNKVM.obj
-
-# target to build an object file
-DmNKVM.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.obj
-.PHONY : DmNKVM.cpp.obj
-
-DmNKVM.i: DmNKVM.cpp.i
-
-.PHONY : DmNKVM.i
-
-# target to preprocess a source file
-DmNKVM.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.i
-.PHONY : DmNKVM.cpp.i
-
-DmNKVM.s: DmNKVM.cpp.s
-
-.PHONY : DmNKVM.s
-
-# target to generate assembly for a file
-DmNKVM.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNKVM.cpp.s
-.PHONY : DmNKVM.cpp.s
-
-DmNSTD.obj: DmNSTD.cpp.obj
-
-.PHONY : DmNSTD.obj
-
-# target to build an object file
-DmNSTD.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNSTD.cpp.obj
-.PHONY : DmNSTD.cpp.obj
-
-DmNSTD.i: DmNSTD.cpp.i
-
-.PHONY : DmNSTD.i
-
-# target to preprocess a source file
-DmNSTD.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNSTD.cpp.i
-.PHONY : DmNSTD.cpp.i
-
-DmNSTD.s: DmNSTD.cpp.s
-
-.PHONY : DmNSTD.s
-
-# target to generate assembly for a file
-DmNSTD.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\DmNSTD.cpp.s
-.PHONY : DmNSTD.cpp.s
-
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -207,6 +153,87 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\main.cpp.s
 .PHONY : main.cpp.s
 
+src\DmNKVM.obj: src\DmNKVM.cpp.obj
+
+.PHONY : src\DmNKVM.obj
+
+# target to build an object file
+src\DmNKVM.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.obj
+.PHONY : src\DmNKVM.cpp.obj
+
+src\DmNKVM.i: src\DmNKVM.cpp.i
+
+.PHONY : src\DmNKVM.i
+
+# target to preprocess a source file
+src\DmNKVM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.i
+.PHONY : src\DmNKVM.cpp.i
+
+src\DmNKVM.s: src\DmNKVM.cpp.s
+
+.PHONY : src\DmNKVM.s
+
+# target to generate assembly for a file
+src\DmNKVM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.s
+.PHONY : src\DmNKVM.cpp.s
+
+src\DmNSTD.obj: src\DmNSTD.cpp.obj
+
+.PHONY : src\DmNSTD.obj
+
+# target to build an object file
+src\DmNSTD.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.obj
+.PHONY : src\DmNSTD.cpp.obj
+
+src\DmNSTD.i: src\DmNSTD.cpp.i
+
+.PHONY : src\DmNSTD.i
+
+# target to preprocess a source file
+src\DmNSTD.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.i
+.PHONY : src\DmNSTD.cpp.i
+
+src\DmNSTD.s: src\DmNSTD.cpp.s
+
+.PHONY : src\DmNSTD.s
+
+# target to generate assembly for a file
+src\DmNSTD.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.s
+.PHONY : src\DmNSTD.cpp.s
+
+src\Nameble.obj: src\Nameble.cpp.obj
+
+.PHONY : src\Nameble.obj
+
+# target to build an object file
+src\Nameble.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\Nameble.cpp.obj
+.PHONY : src\Nameble.cpp.obj
+
+src\Nameble.i: src\Nameble.cpp.i
+
+.PHONY : src\Nameble.i
+
+# target to preprocess a source file
+src\Nameble.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\Nameble.cpp.i
+.PHONY : src\Nameble.cpp.i
+
+src\Nameble.s: src\Nameble.cpp.s
+
+.PHONY : src\Nameble.s
+
+# target to generate assembly for a file
+src\Nameble.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\Nameble.cpp.s
+.PHONY : src\Nameble.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -216,15 +243,18 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DmNKVM
-	@echo ... DmNKVM.obj
-	@echo ... DmNKVM.i
-	@echo ... DmNKVM.s
-	@echo ... DmNSTD.obj
-	@echo ... DmNSTD.i
-	@echo ... DmNSTD.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/DmNKVM.obj
+	@echo ... src/DmNKVM.i
+	@echo ... src/DmNKVM.s
+	@echo ... src/DmNSTD.obj
+	@echo ... src/DmNSTD.i
+	@echo ... src/DmNSTD.s
+	@echo ... src/Nameble.obj
+	@echo ... src/Nameble.i
+	@echo ... src/Nameble.s
 .PHONY : help
 
 
