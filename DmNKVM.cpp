@@ -24,24 +24,37 @@ namespace DmN::KVM {
     class NameStorage {
         NaI* start_node;
 
+        /// Добавляет новое имя без проверки его существования, возвращает ID добавлянного имени
         uint32_t addNewName(char* name) {
+            // Перебираем ноды
             NaI* last_node = start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
+            // Пихаем новую ноду с новым именем
             last_node->next = new NaI(name, last_node->id++, nullptr);
+            // Возвращаем ID нового имени
             return last_node->next->id;
         }
 
+        /// Добавляет новое имя если оно не существует, возвращает ID этого имени
         uint32_t addName(char* name) {
+            // Перебираем ноды
             NaI* last_node = start_node;
             while (last_node->next != nullptr) {
+                // Проверяем на существование имени
                 if (strcmp(last_node->value, name) == 0)
+                    // Возвращаем ID этого имени
                     return last_node->id;
+                // Перебираем ноды
                 last_node = last_node->next;
             }
+            // Проверяем на существование имени
             if (strcmp(last_node->value, name) == 0)
+                // Возвращаем ID этого имени
                 return last_node->id;
+            // Пихаем новую ноду с новым именем
             last_node->next = new NaI(name, last_node->id++, nullptr);
+            // Возвращаем ID нового имени
             return last_node->next->id;
         }
 
