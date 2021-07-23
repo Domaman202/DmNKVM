@@ -140,8 +140,62 @@ namespace DmN::KVM {
         uint16_t references : 10;
     };
 
-    /// Универсальная основа классов
-    struct Class_base : Nameble {
+    struct LLT {
+        /// (Low Level Type) низкоуровнивый тип обьякта: PUBLIC, ENUM, STRUCT, CLASS
+        uint8_t llt : 3;
+    };
+
+    /// Универсальная основа для Enum-а
+    struct Enum_base : LLT, Nameble {
+        /// Перечисления
+        Variable_t** enums;
+        //
+        const uint8_t llt : 3 = 1;
+    };
+
+    struct Enum_8bit_t : Enum_base {
+        /// Кол-во перечислений
+        uint8_t enums_size;
+    };
+
+    struct Enum_16bit_t : Enum_8bit_t {
+        /// Кол-во перечислений
+        uint16_t enums_size;
+    };
+
+    struct Enum_32bit_t : Enum_16bit_t {
+        /// Кол-во перечислений
+        uint32_t enums_size;
+    };
+
+    struct Struct_base : LLT, Nameble {
+        /// Поля
+        Field_t** fields;
+        /// Предки
+        Struct_base** parents;
+        /// Кол-во предков
+        uint8_t parents_size : 5;
+        //
+        const uint8_t llt : 3 = 2;
+    };
+
+    struct Struct_8bit_t : Struct_base {
+        /// Кол-во полей
+        uint8_t fields_size;
+    };
+
+    struct Struct_16bit_t : Struct_8bit_t {
+        /// Кол-во полей
+        uint16_t fields_size;
+    };
+
+    struct Struct_32bit_t : Struct_16bit_t {
+        /// Кол-во полей
+        uint32_t fields_size;
+    };
+
+    /// Универсальная основа для Class-а
+    struct Class_base : LLT, Nameble {
         /// Массив полей
         Field_t** fields;
         /// Массив методов
@@ -150,45 +204,37 @@ namespace DmN::KVM {
         Class_base** parents;
         /// Кол-во предков
         uint8_t parents_size : 5;
-        /// (Low Level Type) низкоуровнивый тип обьякта: PUBLIC, ENUM, STRUCT, CLASS
-        uint8_t llt : 3;
+        //
+        const uint8_t llt : 3 = 3;
     };
 
-    /// 8-и основа классов
-    struct Class_base_8bit : Class_base {
+    struct Class_8bit_t : Class_base {
         /// Кол-во полей
         uint8_t fields_size;
         /// Кол-во методов
         uint8_t methods_size;
     };
 
-    /// 16-ти битная основа классов
-    struct Class_base_16bit : Class_base_8bit {
+    struct Class_16bit_t : Class_8bit_t {
         /// Кол-во полей
         uint16_t fields_size;
         /// Кол-во методов
         uint16_t methods_size;
     };
 
-    /// 32-х битная основа классов
-    struct Class_base_32bit : Class_base_16bit {
+    struct Class_32bit_t : Class_16bit_t {
         /// Кол-во полей
         uint32_t fields_size;
         /// Кол-во методов
         uint32_t methods_size;
     };
 
-    /// 64-х битная основа классов
-    struct Class_base_64bit : Class_base_32bit {
-        /// Кол-во полей
-        uint64_t fields_size;
-        /// Кол-во методов
-        uint64_t methods_size;
-    };
-
     /// Поле
-    struct Field_t : Nameble {
+    struct Field_t : LLT, Nameble {
+        /// Значение
         Variable_t* value;
+        //
+        const uint8_t llt : 3 = 0;
     };
 
     /// Метод

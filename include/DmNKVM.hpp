@@ -9,17 +9,19 @@ namespace DmN::KVM {
     //
     struct GC_Object;
     //
-    struct Class_base;
-    struct Class_base_8bit;
-    struct Class_base_16bit;
-    struct Class_base_32bit;
+    struct LLT;
     //
+    struct Enum_base;
     struct Enum_8bit_t;
     struct Enum_16bit_t;
     struct Enum_32bit_t;
+    //
+    struct Struct_base;
     struct Struct_8bit_t;
     struct Struct_16bit_t;
     struct Struct_32bit_t;
+    //
+    struct Class_base;
     struct Class_8bit_t;
     struct Class_16bit_t;
     struct Class_32bit_t;
