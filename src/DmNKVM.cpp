@@ -9,39 +9,39 @@ using namespace DmN::std;
 namespace DmN::KVM {
     /// Хрень которая содержит имя
     struct Nameble {
-        uint32_t name_id;
+        uint32_t name;
     };
 
-    /// Name and ID
-    struct NaI : Node<char> {
-        NaI(char* name, uint32_t id, NaI* next) : Node<char>(name, next) {
+    /// String and ID
+    struct SaI : Node<char> {
+        SaI(char* name, uint32_t id, SaI* next) : Node<char>(name, next) {
             this->id = id;
         }
 
         uint32_t id;
-        NaI* next;
+        SaI* next;
     };
 
-    /// Хренилище имён
-    class NameStorage {
-        NaI* start_node;
+    /// Хренилище строк
+    class StringStorage {
+        SaI* start_node;
 
-        /// Добавляет новое имя без проверки его существования, возвращает ID добавлянного имени
+        /// Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
         uint32_t addNewName(char* name) {
             // Перебираем ноды
-            NaI* last_node = start_node;
+            SaI* last_node = start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
-            // Пихаем новую ноду с новым именем
-            last_node->next = new NaI(name, last_node->id++, nullptr);
-            // Возвращаем ID нового имени
+            // Пихаем новую ноду с новой строкой
+            last_node->next = new SaI(name, last_node->id++, nullptr);
+            // Возвращаем ID новой строки
             return last_node->next->id;
         }
 
-        /// Добавляет новое имя если оно не существует, возвращает ID этого имени
+        /// Добавляет новую строку если она не существует, возвращает ID этой строки
         uint32_t addName(char* name) {
             // Перебираем ноды
-            NaI* last_node = start_node;
+            SaI* last_node = start_node;
             while (last_node->next != nullptr) {
                 // Проверяем на существование имени
                 if (strcmp(last_node->value, name) == 0)
@@ -50,34 +50,34 @@ namespace DmN::KVM {
                 // Перебираем ноды
                 last_node = last_node->next;
             }
-            // Проверяем на существование имени
+            // Проверяем на существование строки
             if (strcmp(last_node->value, name) == 0)
-                // Возвращаем ID этого имени
+                // Возвращаем ID этой строки
                 return last_node->id;
-            // Пихаем новую ноду с новым именем
-            last_node->next = new NaI(name, last_node->id++, nullptr);
-            // Возвращаем ID нового имени
+            // Пихаем новую ноду с новой строкой
+            last_node->next = new SaI(name, last_node->id++, nullptr);
+            // Возвращаем ID новой строки
             return last_node->next->id;
         }
 
         /// Получает имя по ID
         char* getName(uint32_t id) {
             // Перебираем ноды
-            NaI* last_node = start_node;
+            SaI* last_node = start_node;
             for (; id > 0; --id)
                 last_node = last_node->next;
-            // Возвращаем имя полученое по ID
+            // Возвращаем строку полученную по ID
             return last_node->value;
         }
 
         /// Получаем ID по имени
         uint32_t getId(char* name) {
             // Перебираем ноды
-            NaI* last_node = start_node;
+            SaI* last_node = start_node;
             while (last_node != nullptr) {
                 // Сравниваем имена
                 if (strcmp(last_node->value, name) == 0)
-                    // Если имена правильны то возвращаем нужный ID
+                    // Если строки совпадают то возвращаем нужный ID
                     return last_node->id;
                 // Перебираем ноды дальше
                 last_node = last_node->next;
@@ -89,30 +89,30 @@ namespace DmN::KVM {
         /// Удаляем имя из списка по ID и возвращает само имя
         char* remove(uint32_t id) {
             // Перебираем ноды
-            NaI* last_node = start_node;
+            SaI* last_node = start_node;
             for (; id > 0; id--)
                 last_node = last_node->next;
-            // Получаем ноду имени для удаления
-            NaI* node_for_remove = last_node->next;
-            // Получаем имя
+            // Получаем ноду строки для удаления
+            SaI* node_for_remove = last_node->next;
+            // Получаем строку
             char* name = node_for_remove->value;
             // Выпиливаем ноду из списка
             last_node->next = node_for_remove->next;
             // Высвобождаем память
             free(node_for_remove->value);
             free(node_for_remove);
-            // Возвращаем имя
+            // Возвращаем строку
             return name;
         }
 
         /// Удаляет имя из списка и возвращает ID
         uint32_t remove(char* name) {
             // Перебираем ноды
-            NaI* last_node = start_node;
+            SaI* last_node = start_node;
             while (last_node != nullptr) {
                 if (strcmp(last_node->next->value, name) == 0) {
-                    // Получаем ноду имени для удаления
-                    NaI* node_for_remove = last_node->next;
+                    // Получаем ноду строки для удаления
+                    SaI* node_for_remove = last_node->next;
                     // Получаем ID
                     uint32_t i = node_for_remove->id;
                     // Выпиливаем ноду из списка
@@ -125,6 +125,7 @@ namespace DmN::KVM {
                 }
                 last_node = last_node->next;
             }
+            // Если что-то пошло по одному месту то возвращаем 0
             return 0;
         }
     };
@@ -191,5 +192,15 @@ namespace DmN::KVM {
         uint8_t type : 4;
         /// Значение переменной
         void* value;
+    };
+
+    /// Лямбда
+    struct Lambda_t : GC_Object {
+        /// ID дескриптора
+        uint32_t descriptor;
+        /// Размер байт-кода
+        uint32_t code_size;
+        /// Байт-код
+        uint8_t* code;
     };
 }

@@ -4,8 +4,8 @@
 
 namespace DmN::KVM {
     struct Nameble;
-    struct NaI;
-    class NameStorage;
+    struct SaI;
+    class StringStorage;
     //
     struct GC_Object;
     //
@@ -22,9 +22,10 @@ namespace DmN::KVM {
     struct Method_t;
     //
     struct Variable_t;
+    struct Lambda_t;
     //
-    /// Global Name Storage
-    NameStorage* GNS;
+    /// Global String Storage
+    StringStorage* GNS;
 }
 
 #endif /* DMNKVM_HPP */
