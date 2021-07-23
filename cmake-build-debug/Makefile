@@ -180,33 +180,6 @@ src\DmNKVM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.s
 .PHONY : src\DmNKVM.cpp.s
 
-src\DmNSTD.obj: src\DmNSTD.cpp.obj
-
-.PHONY : src\DmNSTD.obj
-
-# target to build an object file
-src\DmNSTD.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.obj
-.PHONY : src\DmNSTD.cpp.obj
-
-src\DmNSTD.i: src\DmNSTD.cpp.i
-
-.PHONY : src\DmNSTD.i
-
-# target to preprocess a source file
-src\DmNSTD.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.i
-.PHONY : src\DmNSTD.cpp.i
-
-src\DmNSTD.s: src\DmNSTD.cpp.s
-
-.PHONY : src\DmNSTD.s
-
-# target to generate assembly for a file
-src\DmNSTD.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\DmNSTD.cpp.s
-.PHONY : src\DmNSTD.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -222,9 +195,6 @@ help:
 	@echo ... src/DmNKVM.obj
 	@echo ... src/DmNKVM.i
 	@echo ... src/DmNKVM.s
-	@echo ... src/DmNSTD.obj
-	@echo ... src/DmNSTD.i
-	@echo ... src/DmNSTD.s
 .PHONY : help
 
 
