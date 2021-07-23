@@ -129,6 +129,16 @@ namespace DmN::KVM {
         }
     };
 
+    /// Объект подвергающийся сборке мусора
+    struct GC_Object {
+        /// Собран ли объект?
+        bool is_collected : 1;
+        /// Можно ли собирать объект?
+        bool is_collectable : 1;
+        /// Кол-во ссылок на объект
+        uint16_t references : 10;
+    };
+
     /// Универсальная основа классов
     struct Class_base : Nameble {
         /// Массив полей
