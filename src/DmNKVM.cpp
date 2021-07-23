@@ -186,16 +186,13 @@ namespace DmN::KVM {
         uint64_t methods_size;
     };
 
-    /// Переменная
-    struct Variable_t : Nameble, GC_Object {
-        /// Тип переменной: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11)
-        uint8_t type : 4;
-        /// Значение переменной
-        void* value;
+    /// Поле
+    struct Field_t : Nameble {
+        Variable_t* value;
     };
 
-    /// Лямбда
-    struct Lambda_t : GC_Object {
+    /// Метод
+    struct Method_t : Nameble {
         /// ID дескриптора
         uint32_t descriptor;
         /// Размер байт-кода
@@ -204,7 +201,16 @@ namespace DmN::KVM {
         uint8_t* code;
     };
 
-    struct Method_t : Nameble {
+    /// Переменная
+    struct Variable_t : Nameble, GC_Object {
+        /// Тип переменной: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
+        uint8_t type : 4;
+        /// Значение переменной
+        void* value;
+    };
+
+    /// Лямбда
+    struct Lambda_t : GC_Object {
         /// ID дескриптора
         uint32_t descriptor;
         /// Размер байт-кода
