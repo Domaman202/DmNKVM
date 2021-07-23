@@ -136,6 +136,8 @@ namespace DmN::KVM {
             Method_t** methods;
             /// Предки
             Class_base** parents;
+            /// Кол-во предков
+            uint8_t parents_size : 5;
         };
 
         /// 8-и основа классов
@@ -144,8 +146,6 @@ namespace DmN::KVM {
             uint8_t fields_size;
             /// Кол-во методов
             uint8_t methods_size;
-            /// Кол-во предков
-            uint8_t parents_size : 5;
         };
 
         /// 16-ти битная основа классов
