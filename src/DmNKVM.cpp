@@ -134,7 +134,7 @@ namespace DmN::KVM {
             /// Массив методов
             Method_t** methods;
             /// Предки
-            Class_base_8bit** parents;
+            Class_base** parents;
         };
 
         struct Class_base_8bit : Class_base {
