@@ -203,4 +203,13 @@ namespace DmN::KVM {
         /// Байт-код
         uint8_t* code;
     };
+
+    struct Method_t : Nameble {
+        /// ID дескриптора
+        uint32_t descriptor;
+        /// Размер байт-кода
+        uint32_t code_size;
+        /// Байт-код
+        uint8_t* code;
+    };
 }

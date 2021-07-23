@@ -24,8 +24,10 @@ namespace DmN::KVM {
     struct Variable_t;
     struct Lambda_t;
     //
-    /// Global String Storage
+    /// (Global Name Storage) Глобальное хранилище имён
     StringStorage* GNS;
+    /// (Global Descriptor Storage) Глобальное хранилище дескрипторов
+    StringStorage* GDS;
 }
 
 #endif /* DMNKVM_HPP */
