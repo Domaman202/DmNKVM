@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DMNSTD_HPP
+#define DMNSTD_HPP
 
 namespace DmN::std {
     template<typename T>
@@ -12,3 +14,5 @@ namespace DmN::std {
         Node<T>* next;
     };
 }
+
+#endif /* DMNSTD_HPP */

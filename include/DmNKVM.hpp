@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DMNKVM_HPP
+#define DMNKVM_HPP
 
 namespace DmN::KVM {
     struct Nameble;
@@ -15,3 +17,5 @@ namespace DmN::KVM {
     /// Global Name Storage
     NameStorage* GNS;
 }
+
+#endif /* DMNKVM_HPP */
