@@ -3,4 +3,4 @@ project(DmNKVM)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(DmNKVM main.cpp DmNKVM.hpp DmNKVM.cpp DmNSTD.hpp DmNSTD.cpp)
+add_executable(DmNKVM main.cpp include/DmNKVM.hpp src/DmNKVM.cpp include/DmNSTD.hpp src/DmNSTD.cpp)
