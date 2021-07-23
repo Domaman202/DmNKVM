@@ -128,6 +128,7 @@ namespace DmN::KVM {
             return 0;
         }
 
+        /// Универсальная основа классов
         struct Class_base : Nameble {
             /// Массив полей
             Field_t** fields;
@@ -137,6 +138,7 @@ namespace DmN::KVM {
             Class_base** parents;
         };
 
+        /// 8-и основа классов
         struct Class_base_8bit : Class_base {
             /// Кол-во полей
             uint8_t fields_size;
@@ -146,6 +148,7 @@ namespace DmN::KVM {
             uint8_t parents_size : 5;
         };
 
+        /// 16-ти битная основа классов
         struct Class_base_16bit : Class_base_8bit {
             /// Кол-во полей
             uint16_t fields_size;
@@ -153,9 +156,18 @@ namespace DmN::KVM {
             uint16_t methods_size;
         };
 
+        /// 32-х битная основа классов
         struct Class_base_32bit : Class_base_16bit {
             /// Кол-во полей
             uint32_t fields_size;
+            /// Кол-во методов
+            uint32_t methods_size;
+        };
+
+        /// 64-х битная основа классов
+        struct Class_base_64bit : Class_base_32bit {
+            /// Кол-во полей
+            uint64_t fields_size;
             /// Кол-во методов
             uint64_t methods_size;
         };
