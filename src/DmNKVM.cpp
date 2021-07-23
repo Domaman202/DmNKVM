@@ -138,6 +138,8 @@ namespace DmN::KVM {
             Class_base** parents;
             /// Кол-во предков
             uint8_t parents_size : 5;
+            /// (Low Level Type) низкоуровнивый тип обьякта: PUBLIC, ENUM, STRUCT, CLASS
+            uint8_t llt : 3;
         };
 
         /// 8-и основа классов
