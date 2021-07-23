@@ -184,4 +184,12 @@ namespace DmN::KVM {
         /// Кол-во методов
         uint64_t methods_size;
     };
+
+    /// Переменная
+    struct Variable_t : Nameble, GC_Object {
+        /// Тип переменной: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11)
+        uint8_t type : 4;
+        /// Значение переменной
+        void* value;
+    };
 }
