@@ -6,9 +6,23 @@
 
 #IncludeRegexTransform: 
 
-C:/Games/DmNKVM/DmNKVM.hpp
+../include/DmNKVM.hpp
+
+../include/DmNSTD.hpp
 
 C:/Games/DmNKVM/main.cpp
+DmNSTD.hpp
+-
+
+C:/Games/DmNKVM/src/DmNKVM.cpp
 DmNKVM.hpp
-C:/Games/DmNKVM/DmNKVM.hpp
+-
+DmNSTD.hpp
+-
+cstdint
+-
+cstring
+-
+malloc.h
+-
 

@@ -7,6 +7,11 @@ namespace DmN::KVM {
     struct NaI;
     class NameStorage;
     //
+    struct Class_base;
+    struct Class_base_8bit;
+    struct Class_base_16bit;
+    struct Class_base_32bit;
+    //
     struct Enum_t;
     struct Struct_t;
     struct Class_t;

@@ -1,3 +1,4 @@
+#include <DmNKVM.hpp>
 #include <DmNSTD.hpp>
 #include <cstdint>
 #include <cstring>
@@ -10,6 +11,7 @@ namespace DmN::KVM {
     struct Nameble {
         uint32_t name_id;
     };
+
     /// Name and ID
     struct NaI : Node<char> {
         NaI(char* name, uint32_t id, NaI* next) : Node<char>(name, next) {
@@ -19,6 +21,7 @@ namespace DmN::KVM {
         uint32_t id;
         NaI* next;
     };
+
     /// Хренилище имён
     class NameStorage {
         NaI* start_node;
@@ -124,5 +127,37 @@ namespace DmN::KVM {
             }
             return 0;
         }
+
+        struct Class_base : Nameble {
+            /// Массив полей
+            Field_t** fields;
+            /// Массив методов
+            Method_t** methods;
+            /// Предки
+            Class_base_8bit** parents;
+        };
+
+        struct Class_base_8bit : Class_base {
+            /// Кол-во полей
+            uint8_t fields_size;
+            /// Кол-во методов
+            uint8_t methods_size;
+            /// Кол-во предков
+            uint8_t parents_size : 5;
+        };
+
+        struct Class_base_16bit : Class_base_8bit {
+            /// Кол-во полей
+            uint16_t fields_size;
+            /// Кол-во методов
+            uint16_t methods_size;
+        };
+
+        struct Class_base_32bit : Class_base_16bit {
+            /// Кол-во полей
+            uint32_t fields_size;
+            /// Кол-во методов
+            uint64_t methods_size;
+        };
     };
 }
