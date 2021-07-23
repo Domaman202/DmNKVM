@@ -14,9 +14,15 @@ namespace DmN::KVM {
     struct Class_base_16bit;
     struct Class_base_32bit;
     //
-    struct Enum_t;
-    struct Struct_t;
-    struct Class_t;
+    struct Enum_8bit_t;
+    struct Enum_16bit_t;
+    struct Enum_32bit_t;
+    struct Struct_8bit_t;
+    struct Struct_16bit_t;
+    struct Struct_32bit_t;
+    struct Class_8bit_t;
+    struct Class_16bit_t;
+    struct Class_32bit_t;
     //
     struct Field_t;
     struct Method_t;
