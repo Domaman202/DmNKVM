@@ -1,6 +1,7 @@
 #include "DmNKVM.hpp"
 #include "DmNSTD.cpp"
-#include <stdint.h>
+#include <cstdint>
+#include <cstring>
 
 using namespace DmN::std;
 
@@ -20,15 +21,15 @@ namespace DmN::KVM {
         char* name;
     };
     /// Хренилище имён
-    class Name_storage {
-        Node<NaI>* start_name;
+    class NameStorage {
+        Node<NaI>* start_node;
 
         uint32_t addNewName(char* name) {
-            Node<NaI>* last_name = start_name;
-            while (last_name->next != nullptr)
-                last_name = last_name->next;
-            last_name->next = new Node<NaI>(new NaI(name, last_name->value->id++), nullptr);
-            return last_name->value->id;
+            Node<NaI>* last_node = start_node;
+            while (last_node->next != nullptr)
+                last_node = last_node->next;
+            last_node->next = new Node<NaI>(new NaI(name, last_node->value->id++), nullptr);
+            return last_node->value->id;
         }
 
         uint32_t addName(char* name) {
@@ -36,27 +37,42 @@ namespace DmN::KVM {
         }
 
         char* getName(uint32_t id) {
-            Node<NaI>* last_name = start_name;
+            Node<NaI>* last_node = start_node;
             for (; id > 0; --id)
-                last_name = last_name->next;
-            return last_name->value->name;
+                last_node = last_node->next;
+            return last_node->value->name;
         }
 
         uint32_t getId(char* name) {
-            // TODO: нужно сделать, это возвращает ID имени
+            Node<NaI>* last_node = start_node;
+            while (last_node->next != nullptr) {
+                if (strcmp(last_node->value->name, name) == 0)
+                    return last_node->value->id;
+                last_node = last_node->next;
+            }
+            return 0;
         }
 
         char* remove(uint32_t id) {
-            Node<NaI>* last_name = start_name;
+            Node<NaI>* last_node = start_node;
             for (; id > 0; id--)
-                last_name = last_name->next;
-            char* name = last_name->next->value->name;
-            last_name->next = last_name->next->next;
+                last_node = last_node->next;
+            char* name = last_node->next->value->name;
+            last_node->next = last_node->next->next;
             return name;
         }
 
         uint32_t remove(char* name) {
-            // TODO: нужно сделать, это удаляет имя из списка и возвращает его ID
+            Node<NaI>* last_node = start_node;
+            while (last_node->next != nullptr) {
+                if (strcmp(last_node->next->value->name, name) == 0) {
+                    uint32_t i = last_node->next->value->id;
+                    last_node->next = last_node->next->next;
+                    return i;
+                }
+                last_node = last_node->next;
+            }
+            return 0;
         }
     };
 }

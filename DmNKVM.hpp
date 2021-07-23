@@ -3,7 +3,7 @@
 namespace DmN::KVM {
     struct Nameble;
     struct NaI;
-    class Name_storage;
+    class NameStorage;
     //
     struct Enum_t;
     struct Struct_t;
@@ -13,5 +13,5 @@ namespace DmN::KVM {
     struct Method_t;
     //
     /// Global Name Storage
-    Name_storage* GNS;
+    NameStorage* GNS;
 }
