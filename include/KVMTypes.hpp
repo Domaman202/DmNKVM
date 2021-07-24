@@ -29,38 +29,36 @@ namespace DmN::KVM {
         SaI* next;
     };
 
-    /// Хренилище строк
+    /// Абстрактное хранилище строк
     class StringStorage {
-        /// Первая нода (всегда пуста)
-        SaI* start_node;
-
+    public:
         /*!
          * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        uint32_t addNewName(char* name);
+        virtual uint32_t addNewName(char* name) = NULL;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        uint32_t addName(char* name);
+        virtual uint32_t addName(char* name) = NULL;
 
         /*!
          * Получает имя по ID
          * \param id - ID по которому мы получаем имя
          * \return Имя полученное по ID
          */
-        char* getName(uint32_t id);
+        virtual char* getName(uint32_t id) = NULL;
 
         /*!
          * Получаем ID по имени
          * \param name - имя ID которого нужно получить
          * \return ID этого имени
          */
-        uint32_t getId(char* name);
+        virtual uint32_t getId(char* name) = NULL;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -68,7 +66,7 @@ namespace DmN::KVM {
          * \param id ID которое нужно удалить
          * \return имя которое было удалено
          */
-        char* free(uint32_t id);
+        virtual char* free(uint32_t id) = NULL;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -76,7 +74,7 @@ namespace DmN::KVM {
          * \param name - имя для удаления
          * \return ID удалённого имени
          */
-        uint32_t free(const char* name);
+        virtual uint32_t free(const char* name) = NULL;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -84,7 +82,7 @@ namespace DmN::KVM {
          * \param id ID которое нужно удалить
          * \return имя которое было удалено
          */
-        char* remove(uint32_t id);
+        virtual char* remove(uint32_t id) = NULL;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -92,12 +90,29 @@ namespace DmN::KVM {
          * \param name - имя для удаления
          * \return ID удалённого имени
          */
-        uint32_t remove(const char* name);
+        virtual uint32_t remove(const char* name) = NULL;
 
         /*!
          * Очищает данные
          */
-         void clear();
+        virtual void clear() = NULL;
+    };
+
+    /// Хренилище строк
+    class DynamicStringStorage : StringStorage {
+    public:
+        /// Первая нода (всегда пуста)
+        SaI* start_node = new SaI(nullptr, 0, nullptr);
+
+        uint32_t addNewName(char* name) override;
+        uint32_t addName(char* name) override;
+        char * getName(uint32_t id) override;
+        uint32_t getId(char *name) override;
+        char * free(uint32_t id) override;
+        uint32_t free(const char *name) override;
+        char * remove(uint32_t id) override;
+        uint32_t remove(const char *name) override;
+        void clear() override;
     };
 
     /// Объект подвергающийся сборке мусора
@@ -247,11 +262,6 @@ namespace DmN::KVM {
         /// Кол-во методов
         uint32_t methods_size;
     };
-
-    /// (Global Name Storage) Глобальное хранилище имён
-    StringStorage* GNS;
-    /// (Global Descriptor Storage) Глобальное хранилище дескрипторов
-    StringStorage* GDS;
 }
 
 #endif /* DMNKVM_KVMTYPES_HPP */

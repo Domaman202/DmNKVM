@@ -87,6 +87,9 @@
 		<Unit filename="C:/Games/DmNKVM/include/DmNSTD.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="C:/Games/DmNKVM/include/KVM.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="C:/Games/DmNKVM/include/KVMConstructors.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
@@ -94,6 +97,9 @@
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/main.cpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="C:/Games/DmNKVM/src/KVMConstructors.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/src/KVMTypes.cpp">

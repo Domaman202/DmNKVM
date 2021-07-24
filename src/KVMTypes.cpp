@@ -7,7 +7,7 @@
 using namespace DmN::std;
 
 namespace DmN::KVM {
-    uint32_t StringStorage::addNewName(char* name) {
+    uint32_t DynamicStringStorage::addNewName(char* name) {
         // Перебираем ноды
         SaI* last_node = start_node;
         while (last_node->next != nullptr)
@@ -18,7 +18,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    uint32_t StringStorage::addName(char* name) {
+    uint32_t DynamicStringStorage::addName(char* name) {
         // Переменная для пустой ноды
         SaI* free_node = start_node;
         // Перебираем ноды
@@ -51,7 +51,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    char* StringStorage::getName(uint32_t id) {
+    char* DynamicStringStorage::getName(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = start_node;
         for (; id > 0; --id)
@@ -60,7 +60,7 @@ namespace DmN::KVM {
         return last_node->value;
     }
 
-    uint32_t StringStorage::getId(char* name) {
+    uint32_t DynamicStringStorage::getId(char* name) {
         // Перебираем ноды
         SaI* last_node = start_node;
         while (last_node != nullptr) {
@@ -75,7 +75,7 @@ namespace DmN::KVM {
         return 0;
     }
 
-    char* StringStorage::free(uint32_t id) {
+    char* DynamicStringStorage::free(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = start_node;
         for (; id > 0; id--)
@@ -90,7 +90,7 @@ namespace DmN::KVM {
         return name;
     }
 
-    uint32_t StringStorage::free(const char* name) {
+    uint32_t DynamicStringStorage::free(const char* name) {
         // Перебираем ноды
         SaI* last_node = start_node;
         while (last_node != nullptr) {
@@ -111,7 +111,7 @@ namespace DmN::KVM {
         return 0;
     }
 
-    char* StringStorage::remove(uint32_t id) {
+    char* DynamicStringStorage::remove(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = start_node;
         for (; id > 0; id--)
@@ -128,7 +128,7 @@ namespace DmN::KVM {
         return name;
     }
 
-    uint32_t StringStorage::remove(const char* name) {
+    uint32_t DynamicStringStorage::remove(const char* name) {
         // Перебираем ноды
         SaI* last_node = start_node;
         while (last_node != nullptr) {
@@ -151,7 +151,7 @@ namespace DmN::KVM {
         return 0;
     }
 
-    void StringStorage::clear() {
+    void DynamicStringStorage::clear() {
         // Перебираем ноды
         SaI* last_node = start_node;
         while (last_node != nullptr) {

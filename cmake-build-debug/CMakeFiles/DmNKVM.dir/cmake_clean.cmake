@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DmNKVM.dir/main.cpp.obj"
+  "CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.obj"
   "CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.obj"
   "DmNKVM.exe"
   "DmNKVM.exe.manifest"

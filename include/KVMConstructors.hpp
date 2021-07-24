@@ -6,9 +6,12 @@
 #include <cstdint>
 
 namespace DmN::KVM {
-    StringStorage* allocateStringStorage(char*[] names) {
-        return new StringStorage;
-    }
+    /*!
+     * Создаёт новое хранилище строк
+     * @param names - строки которые нужно добавить при создании
+     * @return Новое хранилище строк
+     */
+    DynamicStringStorage* allocate_DynamicStringStorage(char* names[], size_t size);
 
     /*!
      * Пытаеться собрать объект
