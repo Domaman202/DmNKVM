@@ -153,32 +153,32 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\main.cpp.s
 .PHONY : main.cpp.s
 
-src\types.obj: src\types.cpp.obj
+src\KVMTypes.obj: src\KVMTypes.cpp.obj
 
-.PHONY : src\types.obj
+.PHONY : src\KVMTypes.obj
 
 # target to build an object file
-src\types.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\types.cpp.obj
-.PHONY : src\types.cpp.obj
+src\KVMTypes.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.obj
+.PHONY : src\KVMTypes.cpp.obj
 
-src\types.i: src\types.cpp.i
+src\KVMTypes.i: src\KVMTypes.cpp.i
 
-.PHONY : src\types.i
+.PHONY : src\KVMTypes.i
 
 # target to preprocess a source file
-src\types.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\types.cpp.i
-.PHONY : src\types.cpp.i
+src\KVMTypes.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.i
+.PHONY : src\KVMTypes.cpp.i
 
-src\types.s: src\types.cpp.s
+src\KVMTypes.s: src\KVMTypes.cpp.s
 
-.PHONY : src\types.s
+.PHONY : src\KVMTypes.s
 
 # target to generate assembly for a file
-src\types.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\types.cpp.s
-.PHONY : src\types.cpp.s
+src\KVMTypes.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DmNKVM.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.s
+.PHONY : src\KVMTypes.cpp.s
 
 # Help Target
 help:
@@ -192,9 +192,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... src/types.obj
-	@echo ... src/types.i
-	@echo ... src/types.s
+	@echo ... src/KVMTypes.obj
+	@echo ... src/KVMTypes.i
+	@echo ... src/KVMTypes.s
 .PHONY : help
 
 

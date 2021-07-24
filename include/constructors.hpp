@@ -2,7 +2,7 @@
 #ifndef DMNKVM_CONSTRUCTORS_HPP
 #define DMNKVM_CONSTRUCTORS_HPP
 
-#include <types.hpp>
+#include <KVMTypes.hpp>
 #include <cstdint>
 
 namespace DmN::KVM {

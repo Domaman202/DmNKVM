@@ -79,35 +79,35 @@ CMakeFiles\DmNKVM.dir\main.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\DmNKVM.dir\main.cpp.s /c C:\Games\DmNKVM\main.cpp
 <<
 
-CMakeFiles\DmNKVM.dir\src\types.cpp.obj: CMakeFiles\DmNKVM.dir\flags.make
-CMakeFiles\DmNKVM.dir\src\types.cpp.obj: ..\src\types.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Games\DmNKVM\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DmNKVM.dir/src/types.cpp.obj"
+CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.obj: CMakeFiles\DmNKVM.dir\flags.make
+CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.obj: ..\src\KVMTypes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Games\DmNKVM\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.obj"
 	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\DmNKVM.dir\src\types.cpp.obj /FdCMakeFiles\DmNKVM.dir\ /FS -c C:\Games\DmNKVM\src\types.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.obj /FdCMakeFiles\DmNKVM.dir\ /FS -c C:\Games\DmNKVM\src\KVMTypes.cpp
 <<
 
-CMakeFiles\DmNKVM.dir\src\types.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVM.dir/src/types.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe > CMakeFiles\DmNKVM.dir\src\types.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Games\DmNKVM\src\types.cpp
+CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.i"
+	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe > CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Games\DmNKVM\src\KVMTypes.cpp
 <<
 
-CMakeFiles\DmNKVM.dir\src\types.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVM.dir/src/types.cpp.s"
+CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.s"
 	C:\PROGRA~2\MICROS~2\2019\ENTERP~1\VC\Tools\MSVC\1429~1.300\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\DmNKVM.dir\src\types.cpp.s /c C:\Games\DmNKVM\src\types.cpp
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.s /c C:\Games\DmNKVM\src\KVMTypes.cpp
 <<
 
 # Object files for target DmNKVM
 DmNKVM_OBJECTS = \
 "CMakeFiles\DmNKVM.dir\main.cpp.obj" \
-"CMakeFiles\DmNKVM.dir\src\types.cpp.obj"
+"CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.obj"
 
 # External object files for target DmNKVM
 DmNKVM_EXTERNAL_OBJECTS =
 
 DmNKVM.exe: CMakeFiles\DmNKVM.dir\main.cpp.obj
-DmNKVM.exe: CMakeFiles\DmNKVM.dir\src\types.cpp.obj
+DmNKVM.exe: CMakeFiles\DmNKVM.dir\src\KVMTypes.cpp.obj
 DmNKVM.exe: CMakeFiles\DmNKVM.dir\build.make
 DmNKVM.exe: CMakeFiles\DmNKVM.dir\objects1.rsp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Games\DmNKVM\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable DmNKVM.exe"

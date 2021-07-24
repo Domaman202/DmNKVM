@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Games/DmNKVM/main.cpp" "C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/main.cpp.obj"
-  "C:/Games/DmNKVM/src/types.cpp" "C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/types.cpp.obj"
+  "C:/Games/DmNKVM/src/KVMTypes.cpp" "C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")
 

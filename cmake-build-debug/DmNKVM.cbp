@@ -87,16 +87,16 @@
 		<Unit filename="C:/Games/DmNKVM/include/DmNSTD.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/include/constructors.hpp">
+		<Unit filename="C:/Games/DmNKVM/include/KVMTypes.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/include/types.hpp">
+		<Unit filename="C:/Games/DmNKVM/include/constructors.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/main.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/src/types.cpp">
+		<Unit filename="C:/Games/DmNKVM/src/KVMTypes.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/CMakeLists.txt">
