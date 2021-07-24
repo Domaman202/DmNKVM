@@ -3,7 +3,10 @@
 #define DMNKVM_KVMCONSTRUCTORS_HPP
 
 #include <KVMTypes.hpp>
+#include <KVMError.hpp>
 #include <cstdint>
+
+using namespace DmN::KVM::ERROR;
 
 namespace DmN::KVM {
     /*!
@@ -18,21 +21,13 @@ namespace DmN::KVM {
      * \param obj - объект для сборки
      * \return возвращает значение из DmN::KVM::ERROR::Collect_Result
     */
-    uint8_t try_collect(GC_Object* obj);
+    Collect_Result try_collect(GC_Object* obj);
 
     /*!
      * Насильно собирает объект
      * \param obj - объект для сборки
      */
-    void collect(GC_Object* obj);
-
-    namespace ERROR {
-        enum Collect_Result {
-            SUCCESS = 0,
-            OBJECT_NO_COLLECTABLE = 1,
-            OBJECT_REFERENCE_NOT_NULL = 2
-        };
-    }
+    inline void collect(GC_Object* obj);
 }
 
 #endif /* DMNKVM_KVMCONSTRUCTORS_HPP */

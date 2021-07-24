@@ -93,6 +93,9 @@
 		<Unit filename="C:/Games/DmNKVM/include/KVMConstructors.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="C:/Games/DmNKVM/include/KVMError.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="C:/Games/DmNKVM/include/KVMTypes.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
