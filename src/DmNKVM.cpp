@@ -9,6 +9,11 @@ using namespace DmN::std;
 namespace DmN::KVM {
     /// Хрень которая содержит имя
     struct Nameble {
+        explicit Nameble(uint32_t name) {
+            this->name = name;
+        }
+
+        /// ID имени объекта
         uint32_t name;
     };
 
@@ -16,9 +21,12 @@ namespace DmN::KVM {
     struct SaI : Node<char> {
         SaI(char* name, uint32_t id, SaI* next) : Node<char>(name, next) {
             this->id = id;
+            this->next = next;
         }
 
+        /// ID
         uint32_t id;
+        /// Следующий объект
         SaI* next;
     };
 
@@ -141,6 +149,9 @@ namespace DmN::KVM {
     };
 
     struct LLT {
+        explicit LLT(uint8_t llt) {
+            this->llt = llt;
+        }
         /// (Low Level Type) низкоуровнивый тип обьякта: PUBLIC, ENUM, STRUCT, CLASS
         uint8_t llt : 3;
     };
@@ -231,10 +242,11 @@ namespace DmN::KVM {
 
     /// Поле
     struct Field_t : LLT, Nameble {
+        Field_t(Value_t* value, uint32_t name) : LLT(0), Nameble(name) {
+            this->value = value;
+        }
         /// Значение
-        Variable_t* value;
-        //
-        const uint8_t llt : 3 = 0;
+        Value_t* value;
     };
 
     /// Метод
@@ -247,8 +259,16 @@ namespace DmN::KVM {
         uint8_t* code;
     };
 
+    /// Значение
+    struct Value_t : GC_Object {
+        /// Тип значения: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
+        uint8_t type : 4;
+        /// Значение
+        void* value;
+    };
+
     /// Переменная
-    struct Variable_t : Nameble, GC_Object {
+    struct Variable_t : Value_t, Nameble {
         /// Тип переменной: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
         uint8_t type : 4;
         /// Значение переменной

@@ -29,6 +29,7 @@ namespace DmN::KVM {
     struct Field_t;
     struct Method_t;
     //
+    struct Value_t;
     struct Variable_t;
     struct Lambda_t;
     //
