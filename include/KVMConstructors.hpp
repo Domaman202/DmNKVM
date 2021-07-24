@@ -6,6 +6,10 @@
 #include <cstdint>
 
 namespace DmN::KVM {
+    StringStorage* allocateStringStorage(char*[] names) {
+        return new StringStorage;
+    }
+
     /*!
      * Пытаеться собрать объект
      * \param obj - объект для сборки

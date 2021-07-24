@@ -87,10 +87,10 @@
 		<Unit filename="C:/Games/DmNKVM/include/DmNSTD.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/include/KVMTypes.hpp">
+		<Unit filename="C:/Games/DmNKVM/include/KVMConstructors.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/include/constructors.hpp">
+		<Unit filename="C:/Games/DmNKVM/include/KVMTypes.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/main.cpp">
