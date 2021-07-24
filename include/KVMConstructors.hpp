@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DMNKVM_CONSTRUCTORS_HPP
-#define DMNKVM_CONSTRUCTORS_HPP
+#ifndef DMNKVM_KVMCONSTRUCTORS_HPP
+#define DMNKVM_KVMCONSTRUCTORS_HPP
 
 #include <KVMTypes.hpp>
 #include <cstdint>
@@ -28,4 +28,4 @@ namespace DmN::KVM {
     }
 }
 
-#endif /* DMNKVM_CONSTRUCTORS_HPP */
+#endif /* DMNKVM_KVMCONSTRUCTORS_HPP */
