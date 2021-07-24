@@ -4,7 +4,7 @@
 CMakeFiles\DmNKVM.dir\main.cpp.obj: ..\include\DmNSTD.hpp
 CMakeFiles\DmNKVM.dir\main.cpp.obj: ..\main.cpp
 
-CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.obj: ..\include\DmNKVM.hpp
-CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.obj: ..\include\DmNSTD.hpp
-CMakeFiles\DmNKVM.dir\src\DmNKVM.cpp.obj: ..\src\DmNKVM.cpp
+CMakeFiles\DmNKVM.dir\src\types.cpp.obj: ..\include\DmNSTD.hpp
+CMakeFiles\DmNKVM.dir\src\types.cpp.obj: ..\include\types.hpp
+CMakeFiles\DmNKVM.dir\src\types.cpp.obj: ..\src\types.cpp
 

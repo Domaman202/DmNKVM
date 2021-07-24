@@ -6,12 +6,16 @@
 
 #IncludeRegexTransform: 
 
-../include/DmNKVM.hpp
-
 ../include/DmNSTD.hpp
 
-C:/Games/DmNKVM/src/DmNKVM.cpp
-DmNKVM.hpp
+../include/types.hpp
+
+C:/Games/DmNKVM/main.cpp
+DmNSTD.hpp
+-
+
+C:/Games/DmNKVM/src/types.cpp
+types.hpp
 -
 DmNSTD.hpp
 -
