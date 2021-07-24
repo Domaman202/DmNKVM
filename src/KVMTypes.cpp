@@ -75,7 +75,7 @@ namespace DmN::KVM {
         return 0;
     }
 
-    char* StringStorage::remove(uint32_t id) {
+    char* StringStorage::free(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = start_node;
         for (; id > 0; id--)
@@ -90,7 +90,7 @@ namespace DmN::KVM {
         return name;
     }
 
-    uint32_t StringStorage::remove(const char* name) {
+    uint32_t StringStorage::free(const char* name) {
         // Перебираем ноды
         SaI* last_node = start_node;
         while (last_node != nullptr) {
@@ -98,10 +98,52 @@ namespace DmN::KVM {
                 // Получаем ноду строки для удаления
                 SaI* node_for_remove = last_node->next;
                 // Высвобождаем ноду от старых данных
-                free(node_for_remove->value);
+                // Высвобождаем указатель на старую строку
+                delete node_for_remove->value;
+                // Зануляем ссылку на старую строку
                 node_for_remove->value = nullptr;
                 // Возвращаем ID
                 return node_for_remove->id;
+            }
+            last_node = last_node->next;
+        }
+        // Если что-то пошло по одному месту то возвращаем 0
+        return 0;
+    }
+
+    char* StringStorage::remove(uint32_t id) {
+        // Перебираем ноды
+        SaI* last_node = start_node;
+        for (; id > 0; id--)
+            last_node = last_node->next;
+        // Получаем ноду строки для удаления
+        SaI* node_for_remove = last_node->next;
+        // Получаем строку
+        char* name = node_for_remove->value;
+        // Выпиливаем ноду из списка
+        last_node->next = node_for_remove->next;
+        // Высвобождаем память
+        delete node_for_remove;
+        // Возвращаем строку
+        return name;
+    }
+
+    uint32_t StringStorage::remove(const char* name) {
+        // Перебираем ноды
+        SaI* last_node = start_node;
+        while (last_node != nullptr) {
+            if (strcmp(last_node->next->value, name) == 0) {
+                // Получаем ноду строки для удаления
+                SaI* node_for_remove = last_node->next;
+                // Получаем ID
+                uint32_t i = node_for_remove->id;
+                // Выпиливаем ноду из списка
+                last_node->next = node_for_remove->next;
+                // Высвобождаем память
+                delete node_for_remove->value;
+                delete node_for_remove;
+                // Возвращаем ID
+                return i;
             }
             last_node = last_node->next;
         }
