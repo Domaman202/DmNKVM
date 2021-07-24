@@ -13,7 +13,7 @@ namespace DmN::KVM {
             this->name = name;
         }
 
-        /// ID имени объекта
+        /// ID имени
         uint32_t name;
     };
 
@@ -32,9 +32,14 @@ namespace DmN::KVM {
 
     /// Хренилище строк
     class StringStorage {
+        /// Первая нода (всегда пуста)
         SaI* start_node;
 
-        /// Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
+        /*!
+         * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
+         * \param name - имя которое нужно добавить
+         * \return ID которое принадлежит имени
+         */
         uint32_t addNewName(char* name) {
             // Перебираем ноды
             SaI* last_node = start_node;
@@ -46,7 +51,11 @@ namespace DmN::KVM {
             return last_node->next->id;
         }
 
-        /// Добавляет новую строку если она не существует, возвращает ID этой строки
+        /*!
+         * Добавляет новую строку если она не существует, возвращает ID этой строки
+         * \param name - имя которое нужно добавить
+         * \return ID которое принадлежит имени
+         */
         uint32_t addName(char* name) {
             // Перебираем ноды
             SaI* last_node = start_node;
@@ -68,7 +77,11 @@ namespace DmN::KVM {
             return last_node->next->id;
         }
 
-        /// Получает имя по ID
+        /*!
+         * Получает имя по ID
+         * \param id - ID по которому мы получаем имя
+         * \return Имя полученное по ID
+         */
         char* getName(uint32_t id) {
             // Перебираем ноды
             SaI* last_node = start_node;
@@ -78,7 +91,11 @@ namespace DmN::KVM {
             return last_node->value;
         }
 
-        /// Получаем ID по имени
+        /*!
+         * Получаем ID по имени
+         * \param name - имя ID которого нужно получить
+         * \return ID этого имени
+         */
         uint32_t getId(char* name) {
             // Перебираем ноды
             SaI* last_node = start_node;
@@ -94,7 +111,11 @@ namespace DmN::KVM {
             return 0;
         }
 
-        /// Удаляем имя из списка по ID и возвращает само имя
+        /*!
+         * Удаляем имя из списка по ID и возвращает само имя
+         * \param id ID которое нужно удалить
+         * \return имя которое было удалено
+         */
         char* remove(uint32_t id) {
             // Перебираем ноды
             SaI* last_node = start_node;
@@ -107,13 +128,16 @@ namespace DmN::KVM {
             // Выпиливаем ноду из списка
             last_node->next = node_for_remove->next;
             // Высвобождаем память
-            free(node_for_remove->value);
             free(node_for_remove);
             // Возвращаем строку
             return name;
         }
 
-        /// Удаляет имя из списка и возвращает ID
+        /*!
+         * Удаляет имя из списка и возвращает ID
+         * \param name - имя для удаления
+         * \return ID удалённого имени
+         */
         uint32_t remove(char* name) {
             // Перебираем ноды
             SaI* last_node = start_node;

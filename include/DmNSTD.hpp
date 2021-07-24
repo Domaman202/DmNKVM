@@ -1,8 +1,9 @@
 #pragma once
-#ifndef DMNSTD_HPP
-#define DMNSTD_HPP
+#ifndef DMNKVM_DMNSTD_HPP
+#define DMNKVM_DMNSTD_HPP
 
 namespace DmN::std {
+    /// Нода
     template<typename T>
     struct Node {
         Node(T* value, Node<T>* next) {
@@ -10,9 +11,11 @@ namespace DmN::std {
             this->next = next;
         }
 
+        /// Значение ноды
         T* value;
+        /// Следующая нода
         Node<T>* next;
     };
 }
 
-#endif /* DMNSTD_HPP */
+#endif /* DMNKVM_DMNSTD_HPP */
