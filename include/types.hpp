@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DMNKVM_HPP
-#define DMNKVM_HPP
+#ifndef DMNKVM_TYPES_HPP
+#define DMNKVM_TYPES_HPP
 
 namespace DmN::KVM {
     struct Nameble;
@@ -39,4 +39,4 @@ namespace DmN::KVM {
     StringStorage* GDS;
 }
 
-#endif /* DMNKVM_HPP */
+#endif /* DMNKVM_TYPES_HPP */

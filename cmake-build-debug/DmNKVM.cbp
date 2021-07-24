@@ -84,16 +84,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Games/DmNKVM/include/DmNKVM.hpp">
+		<Unit filename="C:/Games/DmNKVM/include/DmNSTD.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/include/DmNSTD.hpp">
+		<Unit filename="C:/Games/DmNKVM/include/constructors.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="C:/Games/DmNKVM/include/types.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/main.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="C:/Games/DmNKVM/src/DmNKVM.cpp">
+		<Unit filename="C:/Games/DmNKVM/src/types.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="C:/Games/DmNKVM/CMakeLists.txt">

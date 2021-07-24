@@ -3,8 +3,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(DmNKVM)
 
-set(SOURCE src/DmNKVM.cpp)
-set(HEADER include/DmNKVM.hpp include/DmNSTD.hpp)
+set(SOURCE src/types.cpp)
+set(HEADER include/types.hpp include/DmNSTD.hpp include/constructors.hpp)
 
 include_directories(include)
 
