@@ -93,6 +93,11 @@ namespace DmN::KVM {
          * \return ID удалённого имени
          */
         uint32_t remove(const char* name);
+
+        /*!
+         * Очищает данные
+         */
+         void clear();
     };
 
     /// Объект подвергающийся сборке мусора

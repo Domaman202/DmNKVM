@@ -150,4 +150,18 @@ namespace DmN::KVM {
         // Если что-то пошло по одному месту то возвращаем 0
         return 0;
     }
+
+    void StringStorage::clear() {
+        // Перебираем ноды
+        SaI* last_node = start_node;
+        while (last_node != nullptr) {
+            // Высвобождаем память из под строки
+            delete last_node->value;
+            // Перебираем ноды
+            SaI* old_node = last_node;
+            last_node = last_node->next;
+            // Высвобождаем память занятую нодой
+            delete old_node;
+        }
+    }
 }
