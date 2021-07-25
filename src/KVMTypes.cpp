@@ -1,28 +1,102 @@
 #include <KVMTypes.hpp>
-#include <DmNSTD.hpp>
 #include <cstdint>
 #include <cstring>
-#include <malloc.h>
 
 using namespace DmN::std;
 
 namespace DmN::KVM {
-    uint32_t DynamicStringStorage::addNewName(char* name) {
+    uint32_t StaticStringStorage::addNewName(const char* name) {
+        // Сохраняем имя в массив и инкрементируем текущий индекс
+        this->data[++this->last_index] = name;
+        // Возвращаем индекс имени
+        return this->last_index - 1;
+    }
+
+    uint32_t StaticStringStorage::addName(const char* name) {
+        // Перебираем имена
+        for (size_t i = 0; i < this->size; i++)
+            // Сравниваем имена
+            if (strcmp(this->data[i], name) == 0)
+                // Если имена одинаковы то возвращаем ID имени
+                return i;
+        // Добавляем новое имя если его нет
+        return this->addNewName(name);
+    }
+
+    inline const char* StaticStringStorage::getName(uint32_t id) {
+        // Получаем имя по ID
+        return this->data[id];
+    }
+
+    uint32_t StaticStringStorage::getId(const char* name) {
+        // Перебираем имена
+        for (size_t i = 0; i < this->size; i++)
+            // Сравниваем имена
+            if (strcmp(this->data[i], name) == 0)
+                // Если имена одинаковы то возвращаем ID имени
+                return i;
+        // Если мы нихрена не нашли то возвращаем -1
+        return -1;
+    }
+
+    const char* StaticStringStorage::free(uint32_t id) {
+        // Проверяем можем ли мы высвободить ячейку массива от имени
+        if ((this->last_index - 1) == id) {
+            // Если да то высвобождаем ячейку массива от имени
+            // Получаем имя
+            const char* name = this->data[id];
+            // Стираем имя из массива
+            this->data[--this->last_index] = nullptr;
+            // Возвращае имя
+            return name;
+        }
+        // Иначе просто возвращаем имя
+        return this->getName(id);
+    }
+
+    uint32_t StaticStringStorage::free(const char* name) {
+        // Получаем ID
+        uint32_t id = this->getId(name);
+        // Проверяем можем ли мы высвободить ячейку массива от имени
+        if ((this->last_index - 1) == id)
+            // Высвобождаем ячейку массива от имени
+            this->data[--this->last_index] = nullptr;
+        // Возвращаем ID
+        return id;
+    }
+
+    inline const char* StaticStringStorage::remove(uint32_t id) {
+        // Ссылаемся на функцию free
+        return this->free(id);
+    }
+
+    inline uint32_t StaticStringStorage::remove(const char* name) {
+        // Ссылаемся на функцию free
+        return this->free(name);
+    }
+
+    void StaticStringStorage::clear() {
+        this->last_index = 0;
+        for (size_t i = 0; i < this->size; i++)
+            delete this->data[i];
+    }
+
+    uint32_t DynamicStringStorage::addNewName(const char* name) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         while (last_node->next != nullptr)
             last_node = last_node->next;
         // Пихаем новую ноду с новой строкой
-        last_node->next = new SaI(name, last_node->id++, nullptr);
+        last_node->next = new SaI(const_cast<char*>(name), last_node->id++, nullptr);
         // Возвращаем ID новой строки
         return last_node->next->id;
     }
 
-    uint32_t DynamicStringStorage::addName(char* name) {
+    uint32_t DynamicStringStorage::addName(const char* name) {
         // Переменная для пустой ноды
-        SaI* free_node = start_node;
+        SaI* free_node = this->start_node;
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         while (last_node->next != nullptr) {
             // Проверяем на существование имени
             if (strcmp(last_node->value, name) == 0)
@@ -31,7 +105,7 @@ namespace DmN::KVM {
             // Перебираем ноды
             last_node = last_node->next;
             // Если нода пуста то сохраняем её
-            if (free_node == start_node && last_node->value == nullptr)
+            if (free_node == this->start_node && last_node->value == nullptr)
                 free_node = last_node;
         }
         // Проверяем на существование строки
@@ -41,28 +115,28 @@ namespace DmN::KVM {
         // Пихаем новую ноду с новой строкой
         if (free_node == last_node) {
             // Если у нас нет свободной ноды то создаём новую и пихаем туда значение
-            last_node->next = new SaI(name, last_node->id++, nullptr);
+            last_node->next = new SaI(const_cast<char*>(name), last_node->id++, nullptr);
             // Возвращаем ID новой строки
             return last_node->next->id;
         }
         // Иначе пихаем значение в свободную ноду
-        free_node->value = name;
+        free_node->value = const_cast<char*>(name);
         // Возвращаем ID новой строки
         return last_node->next->id;
     }
 
-    char* DynamicStringStorage::getName(uint32_t id) {
+    const char* DynamicStringStorage::getName(uint32_t id) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         for (; id > 0; --id)
             last_node = last_node->next;
         // Возвращаем строку полученную по ID
         return last_node->value;
     }
 
-    uint32_t DynamicStringStorage::getId(char* name) {
+    uint32_t DynamicStringStorage::getId(const char* name) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         while (last_node != nullptr) {
             // Сравниваем имена
             if (strcmp(last_node->value, name) == 0)
@@ -71,13 +145,13 @@ namespace DmN::KVM {
             // Перебираем ноды дальше
             last_node = last_node->next;
         }
-        // Если нихрена не нашли то возвращаем 0
-        return 0;
+        // Если нихрена не нашли то возвращаем -1
+        return -1;
     }
 
-    char* DynamicStringStorage::free(uint32_t id) {
+    const char* DynamicStringStorage::free(uint32_t id) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         for (; id > 0; id--)
             last_node = last_node->next;
         // Получаем ноду строки для удаления
@@ -92,7 +166,7 @@ namespace DmN::KVM {
 
     uint32_t DynamicStringStorage::free(const char* name) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         while (last_node != nullptr) {
             if (strcmp(last_node->next->value, name) == 0) {
                 // Получаем ноду строки для удаления
@@ -111,9 +185,9 @@ namespace DmN::KVM {
         return 0;
     }
 
-    char* DynamicStringStorage::remove(uint32_t id) {
+    const char* DynamicStringStorage::remove(uint32_t id) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         for (; id > 0; id--)
             last_node = last_node->next;
         // Получаем ноду строки для удаления
@@ -130,7 +204,7 @@ namespace DmN::KVM {
 
     uint32_t DynamicStringStorage::remove(const char* name) {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         while (last_node != nullptr) {
             if (strcmp(last_node->next->value, name) == 0) {
                 // Получаем ноду строки для удаления
@@ -153,7 +227,7 @@ namespace DmN::KVM {
 
     void DynamicStringStorage::clear() {
         // Перебираем ноды
-        SaI* last_node = start_node;
+        SaI* last_node = this->start_node;
         while (last_node != nullptr) {
             // Высвобождаем память из под строки
             delete last_node->value;

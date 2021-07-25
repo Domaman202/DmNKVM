@@ -3,6 +3,7 @@
 #define DMNKVM_KVMTYPES_HPP
 
 #include <DmNSTD.hpp>
+#include <malloc.h>
 #include <cstdint>
 
 namespace DmN::KVM {
@@ -30,35 +31,35 @@ namespace DmN::KVM {
     };
 
     /// Абстрактное хранилище строк
-    class StringStorage {
+    struct StringStorage {
     public:
         /*!
          * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        virtual uint32_t addNewName(char* name) = NULL;
+        virtual uint32_t addNewName(const char* name) = NULL;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        virtual uint32_t addName(char* name) = NULL;
+        virtual uint32_t addName(const char* name) = NULL;
 
         /*!
          * Получает имя по ID
          * \param id - ID по которому мы получаем имя
          * \return Имя полученное по ID
          */
-        virtual char* getName(uint32_t id) = NULL;
+        virtual const char* getName(uint32_t id) = NULL;
 
         /*!
          * Получаем ID по имени
          * \param name - имя ID которого нужно получить
          * \return ID этого имени
          */
-        virtual uint32_t getId(char* name) = NULL;
+        virtual uint32_t getId(const char* name) = NULL;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -66,7 +67,7 @@ namespace DmN::KVM {
          * \param id ID которое нужно удалить
          * \return имя которое было удалено
          */
-        virtual char* free(uint32_t id) = NULL;
+        virtual const char* free(uint32_t id) = NULL;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -82,7 +83,7 @@ namespace DmN::KVM {
          * \param id ID которое нужно удалить
          * \return имя которое было удалено
          */
-        virtual char* remove(uint32_t id) = NULL;
+        virtual const char* remove(uint32_t id) = NULL;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -98,19 +99,45 @@ namespace DmN::KVM {
         virtual void clear() = NULL;
     };
 
-    /// Хренилище строк
-    class DynamicStringStorage : StringStorage {
+    /// Статическое хранилище строк
+    class StaticStringStorage : StringStorage {
+    protected:
+        /// Массив ID и строк
+        const char** data;
+        /// Размер
+        size_t size;
+        /// Текущий индекс
+        size_t last_index = 0;
     public:
+        explicit StaticStringStorage(size_t size) {
+            this->data = static_cast<const char**>(calloc(size, sizeof(char*)));
+            this->size = size;
+        }
+
+        uint32_t addNewName(const char* name) override;
+        uint32_t addName(const char* name) override;
+        const char* getName(uint32_t id) override;
+        uint32_t getId(const char *name) override;
+        const char* free(uint32_t id) override;
+        uint32_t free(const char *name) override;
+        const char* remove(uint32_t id) override;
+        uint32_t remove(const char *name) override;
+        void clear() override;
+    };
+
+    /// Динамическое хранилище строк
+    class DynamicStringStorage : StringStorage {
+    protected:
         /// Первая нода (всегда пуста)
         SaI* start_node = new SaI(nullptr, 0, nullptr);
-
-        uint32_t addNewName(char* name) override;
-        uint32_t addName(char* name) override;
-        char * getName(uint32_t id) override;
-        uint32_t getId(char *name) override;
-        char * free(uint32_t id) override;
+    public:
+        uint32_t addNewName(const char* name) override;
+        uint32_t addName(const char* name) override;
+        const char * getName(uint32_t id) override;
+        uint32_t getId(const char *name) override;
+        const char * free(uint32_t id) override;
         uint32_t free(const char *name) override;
-        char * remove(uint32_t id) override;
+        const char * remove(uint32_t id) override;
         uint32_t remove(const char *name) override;
         void clear() override;
     };

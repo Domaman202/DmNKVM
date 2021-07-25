@@ -6,17 +6,3 @@
 
 #IncludeRegexTransform: 
 
-C:/Games/DmNKVM/test_class.cpp
-test_class.h
-C:/Games/DmNKVM/test_class.h
-
-C:/Games/DmNKVM/test_class.h
-stdbool.h
--
-stdio.h
--
-stdint.h
--
-stdlib.h
--
-
