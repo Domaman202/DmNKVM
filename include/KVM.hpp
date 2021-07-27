@@ -6,9 +6,9 @@
 
 namespace DmN::KVM {
     /// (Global Name Storage) Глобальное хранилище имён
-    StringStorage* GNS = new DynamicStringStorage;
+    constinit StringStorage* GNS = new DynamicStringStorage;
     /// (Global Descriptor Storage) Глобальное хранилище дескрипторов
-    StringStorage* GDS = new DynamicStringStorage;
+    constinit StringStorage* GDS = new DynamicStringStorage;
 }
 
 #endif /* DMNKVM_KVM_HPP */
