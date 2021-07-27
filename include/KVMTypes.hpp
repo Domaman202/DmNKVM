@@ -5,6 +5,7 @@
 #include <DmNSTD.hpp>
 #include <malloc.h>
 #include <cstdint>
+#include <utility>
 
 namespace DmN::KVM {
     /// Хрень которая содержит имя
@@ -157,7 +158,7 @@ namespace DmN::KVM {
         explicit LLT(uint8_t llt) {
             this->llt = llt;
         }
-        /// (Low Level Type) низкоуровневый тип обьякта: PUBLIC, ENUM, STRUCT, CLASS
+        /// (Low Level Type) низкоуровневый тип обьякта: PUBLIC, STATIC, ENUM, STRUCT, CLASS
         uint8_t llt : 3;
     };
 
@@ -210,84 +211,94 @@ namespace DmN::KVM {
     struct Enum_base : LLT, Nameble {
         /// Перечисления
         Variable_t** enums;
+        /// Кол-во перечислений
+        uint32_t enums_size : 8;
         //
         const uint8_t llt : 3 = 1;
     };
 
-    struct Enum_8bit_t : Enum_base {
-        /// Кол-во перечислений
-        uint8_t enums_size;
-    };
-
-    struct Enum_16bit_t : Enum_8bit_t {
-        /// Кол-во перечислений
-        uint16_t enums_size;
-    };
-
-    struct Enum_32bit_t : Enum_16bit_t {
-        /// Кол-во перечислений
-        uint32_t enums_size;
-    };
+    struct Enum_8bit_t : Enum_base { uint8_t enums_size; };
+    struct Enum_16bit_t : Enum_8bit_t { uint16_t enums_size; };
+    struct Enum_32bit_t : Enum_16bit_t { uint32_t enums_size; };
 
     struct Struct_base : LLT, Nameble {
         /// Поля
         Field_t** fields;
-        /// Предки
-        Struct_base** parents;
+        /// Кол-во полей
+        uint32_t fields_size : 8;
+        /// Предки (ID предков)
+        uint32_t* parents;
         /// Кол-во предков
         uint8_t parents_size : 5;
         //
         const uint8_t llt : 3 = 2;
     };
 
-    struct Struct_8bit_t : Struct_base {
-        /// Кол-во полей
-        uint8_t fields_size;
-    };
-
-    struct Struct_16bit_t : Struct_8bit_t {
-        /// Кол-во полей
-        uint16_t fields_size;
-    };
-
-    struct Struct_32bit_t : Struct_16bit_t {
-        /// Кол-во полей
-        uint32_t fields_size;
-    };
+    struct Struct_8bit_t : Struct_base { uint8_t fields_size; };
+    struct Struct_16bit_t : Struct_8bit_t { uint16_t fields_size; };
+    struct Struct_32bit_t : Struct_16bit_t { uint32_t fields_size; };
 
     /// Универсальная основа для Class-а
     struct Class_base : LLT, Nameble {
         /// Массив полей
         Field_t** fields;
+        /// Кол-во полей
+        uint32_t fields_size : 8;
         /// Массив методов
         Method_t** methods;
-        /// Предки
-        Class_base** parents;
+        /// Кол-во методов
+        uint32_t methods_size : 8;
+        /// Предки (ID предков)
+        uint32_t* parents;
         /// Кол-во предков
         uint8_t parents_size : 5;
         //
         const uint8_t llt : 3 = 3;
     };
 
-    struct Class_8bit_t : Class_base {
-        /// Кол-во полей
-        uint8_t fields_size;
-        /// Кол-во методов
-        uint8_t methods_size;
+    struct Class_8bit_t : Class_base { uint8_t fields_size; uint8_t methods_size; };
+    struct Class_16bit_t : Class_8bit_t { uint16_t fields_size; uint16_t methods_size; };
+    struct Class_32bit_t : Class_16bit_t { uint32_t fields_size; uint32_t methods_size; };
+
+    /// Абстрактная куча
+    struct Heap {
+        virtual uint32_t addNewClass(Class_base* clazz) = NULL;
+        virtual uint32_t addClass(Class_base* clazz) = NULL;
+        virtual void replaceClass(Class_base* clazz, uint32_t id) = NULL;
+        virtual void removeClass(Class_base* clazz) = NULL;
+        virtual void removeClass(uint32_t id) = NULL;
+        virtual uint32_t getClassId(Class_base* clazz) = NULL;
+        virtual Class_base* getClass(uint32_t id) = NULL;
+        //
+        virtual ::std::pair<Class_base**, size_t> getClassParents(Class_base* clazz) = NULL;
+        virtual ::std::pair<Class_base**, size_t> getClassParents(uint32_t clazz) = NULL;
     };
 
-    struct Class_16bit_t : Class_8bit_t {
-        /// Кол-во полей
-        uint16_t fields_size;
-        /// Кол-во методов
-        uint16_t methods_size;
-    };
-
-    struct Class_32bit_t : Class_16bit_t {
-        /// Кол-во полей
-        uint32_t fields_size;
-        /// Кол-во методов
-        uint32_t methods_size;
+    /// Абстрактный загрузчик объектов
+    struct ClassLoader {
+        /* JVM */
+        virtual Class_base* defineJVMClass(int8_t* bytes, size_t off, size_t len) = NULL;
+        /* .NET */
+        // TODO: нужно реализовать
+        /* KVM */
+        virtual Class_base* defineKVMClass(int8_t* bytes, size_t off, size_t len) = NULL;
+        virtual Struct_base* defineKVMStruct(int8_t* bytes, size_t off, size_t len) = NULL;
+        virtual Enum_base* defineKVMEnum(int8_t* bytes, size_t off, size_t len) = NULL;
+        virtual Method_t* defineKVMMethod(int8_t* bytes, size_t off, size_t len) = NULL;
+        virtual Field_t* defineKVMField(int8_t* bytes, size_t off, size_t len) = NULL;
+        /* Low Level Operations */
+        // Создание класса
+        virtual Class_base* createClass(Field_t** fields, uint8_t fields_size, Method_t** methods, uint8_t methods_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Class_base* createClass(Field_t** fields, uint16_t fields_size, Method_t** methods, uint16_t methods_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Class_base* createClass(Field_t** fields, uint32_t fields_size, Method_t** methods, uint32_t methods_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        // Создание структуры
+        virtual Struct_base* createStruct(Field_t** fields, uint8_t fields_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Struct_base* createStruct(Field_t** fields, uint16_t fields_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Struct_base* createStruct(Field_t** fields, uint32_t fields_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        // Создание Enum-а
+        virtual Enum_base* createEnum(Variable_t** enums, uint8_t enums_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Enum_base* createEnum(Variable_t** enums, uint16_t enums_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Enum_base* createEnum(Variable_t** enums, uint32_t enums_size, uint32_t* parents, uint8_t parents_size) = NULL;
     };
 }
 
