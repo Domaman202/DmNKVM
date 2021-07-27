@@ -2,6 +2,10 @@
 #ifndef DMNKVM_DMNSTD_HPP
 #define DMNKVM_DMNSTD_HPP
 
+#ifndef __null
+#define __null 0
+#endif
+
 namespace DmN::std {
     /// Нода
     template<typename T>

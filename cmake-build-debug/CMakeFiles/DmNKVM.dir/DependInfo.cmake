@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Games/DmNKVM/main.cpp" "C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/main.cpp.obj"
-  "C:/Games/DmNKVM/src/KVMConstructors.cpp" "C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.obj"
-  "C:/Games/DmNKVM/src/KVMTypes.cpp" "C:/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.obj"
+  "/cygdrive/c/Games/DmNKVM/main.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/main.cpp.o"
+  "/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o"
+  "/cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

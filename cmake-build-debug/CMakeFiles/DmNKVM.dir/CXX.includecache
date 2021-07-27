@@ -6,17 +6,39 @@
 
 #IncludeRegexTransform: 
 
-C:/Games/DmNKVM/test_class.cpp
-test_class.h
-C:/Games/DmNKVM/test_class.h
+../include/DmNSTD.hpp
 
-C:/Games/DmNKVM/test_class.h
-stdbool.h
+../include/KVMConstructors.hpp
+KVMTypes.hpp
 -
-stdio.h
+KVMError.hpp
 -
-stdint.h
+cstdint
 -
-stdlib.h
+
+../include/KVMError.hpp
+
+../include/KVMTypes.hpp
+DmNSTD.hpp
+-
+malloc.h
+-
+cstdint
+-
+utility
+-
+
+/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
+KVMConstructors.hpp
+-
+KVMTypes.hpp
+-
+
+/cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp
+KVMTypes.hpp
+-
+cstdint
+-
+cstring
 -
 

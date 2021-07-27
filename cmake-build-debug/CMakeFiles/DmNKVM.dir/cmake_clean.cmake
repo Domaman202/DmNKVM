@@ -1,11 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DmNKVM.dir/main.cpp.obj"
-  "CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.obj"
-  "CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.obj"
+  "CMakeFiles/DmNKVM.dir/main.cpp.o"
+  "CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o"
+  "CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o"
   "DmNKVM.exe"
-  "DmNKVM.exe.manifest"
-  "DmNKVM.lib"
   "DmNKVM.pdb"
+  "libDmNKVM.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
