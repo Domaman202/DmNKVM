@@ -8,17 +8,13 @@
 
 ../include/DmNSTD.hpp
 
-../include/KVMConstructors.hpp
-KVMTypes.hpp
--
-KVMError.hpp
--
+../include/KVMConfig.h
 cstdint
 -
 
-../include/KVMError.hpp
-
 ../include/KVMTypes.hpp
+KVMConfig.h
+-
 DmNSTD.hpp
 -
 malloc.h
@@ -29,20 +25,6 @@ utility
 -
 
 /cygdrive/c/Games/DmNKVM/main.cpp
-functional
--
-
-/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
-KVMConstructors.hpp
--
 KVMTypes.hpp
--
-
-/cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp
-KVMTypes.hpp
--
-cstdint
--
-cstring
 -
 

@@ -2,6 +2,7 @@
 #ifndef DMNKVM_KVMTYPES_HPP
 #define DMNKVM_KVMTYPES_HPP
 
+#include <KVMConfig.h>
 #include <DmNSTD.hpp>
 #include <malloc.h>
 #include <cstdint>
@@ -10,23 +11,23 @@
 namespace DmN::KVM {
     /// Хрень которая содержит имя
     struct Nameble {
-        explicit Nameble(uint32_t name) {
+        explicit Nameble(SI_t name) {
             this->name = name;
         }
 
         /// ID имени
-        uint32_t name;
+        SI_t name;
     };
 
     /// String and ID
     struct SaI : std::Node<char> {
-        SaI(char* name, uint32_t id, SaI* next) : Node<char>(name, next) {
+        SaI(char* name, SI_t id, SaI* next) : Node<char>(name, next) {
             this->id = id;
             this->next = next;
         }
 
         /// ID
-        uint32_t id;
+        SI_t id;
         /// Следующий объект
         SaI* next;
     };
@@ -39,28 +40,28 @@ namespace DmN::KVM {
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        virtual uint32_t addNewName(const char* name) = NULL;
+        virtual SI_t addNewName(const char* name) = NULL;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        virtual uint32_t addName(const char* name) = NULL;
+        virtual SI_t addName(const char* name) = NULL;
 
         /*!
          * Получает имя по ID
          * \param id - ID по которому мы получаем имя
          * \return Имя полученное по ID
          */
-        virtual const char* getName(uint32_t id) = NULL;
+        virtual const char* getName(SI_t id) = NULL;
 
         /*!
          * Получаем ID по имени
          * \param name - имя ID которого нужно получить
          * \return ID этого имени
          */
-        virtual uint32_t getId(const char* name) = NULL;
+        virtual SI_t getId(const char* name) = NULL;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -68,7 +69,7 @@ namespace DmN::KVM {
          * \param id ID которое нужно удалить
          * \return имя которое было удалено
          */
-        virtual const char* free(uint32_t id) = NULL;
+        virtual const char* free(SI_t id) = NULL;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -76,7 +77,7 @@ namespace DmN::KVM {
          * \param name - имя для удаления
          * \return ID удалённого имени
          */
-        virtual uint32_t free(const char* name) = NULL;
+        virtual SI_t free(const char* name) = NULL;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -84,7 +85,7 @@ namespace DmN::KVM {
          * \param id ID которое нужно удалить
          * \return имя которое было удалено
          */
-        virtual const char* remove(uint32_t id) = NULL;
+        virtual const char* remove(SI_t id) = NULL;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -92,7 +93,7 @@ namespace DmN::KVM {
          * \param name - имя для удаления
          * \return ID удалённого имени
          */
-        virtual uint32_t remove(const char* name) = NULL;
+        virtual SI_t remove(const char* name) = NULL;
 
         /*!
          * Очищает данные
@@ -115,14 +116,14 @@ namespace DmN::KVM {
             this->size = size;
         }
 
-        uint32_t addNewName(const char* name) override;
-        uint32_t addName(const char* name) override;
-        const char* getName(uint32_t id) override;
-        uint32_t getId(const char *name) override;
-        const char* free(uint32_t id) override;
-        uint32_t free(const char *name) override;
-        const char* remove(uint32_t id) override;
-        uint32_t remove(const char *name) override;
+        SI_t addNewName(const char* name) override;
+        SI_t addName(const char* name) override;
+        const char* getName(SI_t id) override;
+        SI_t getId(const char *name) override;
+        const char* free(SI_t id) override;
+        SI_t free(const char *name) override;
+        const char* remove(SI_t id) override;
+        SI_t remove(const char *name) override;
         void clear() override;
     };
 
@@ -132,14 +133,14 @@ namespace DmN::KVM {
         /// Первая нода (всегда пуста)
         SaI* start_node = new SaI(nullptr, 0, nullptr);
     public:
-        uint32_t addNewName(const char* name) override;
-        uint32_t addName(const char* name) override;
-        const char * getName(uint32_t id) override;
-        uint32_t getId(const char *name) override;
-        const char * free(uint32_t id) override;
-        uint32_t free(const char *name) override;
-        const char * remove(uint32_t id) override;
-        uint32_t remove(const char *name) override;
+        SI_t addNewName(const char* name) override;
+        SI_t addName(const char* name) override;
+        const char * getName(SI_t id) override;
+        SI_t getId(const char *name) override;
+        const char * free(SI_t id) override;
+        SI_t free(const char *name) override;
+        const char * remove(SI_t id) override;
+        SI_t remove(const char *name) override;
         void clear() override;
     };
 
@@ -181,7 +182,7 @@ namespace DmN::KVM {
     /// Лямбда
     struct Lambda_t : GC_Object {
         /// ID дескриптора
-        uint32_t descriptor;
+        SI_t descriptor;
         /// Размер байт-кода
         uint32_t code_size;
         /// Байт-код
@@ -190,7 +191,7 @@ namespace DmN::KVM {
 
     /// Поле
     struct Field_t : LLT, Nameble {
-        Field_t(Value_t* value, uint32_t name) : LLT(0), Nameble(name) {
+        Field_t(Value_t* value, SI_t name) : LLT(0), Nameble(name) {
             this->value = value;
         }
         /// Значение
@@ -200,7 +201,7 @@ namespace DmN::KVM {
     /// Метод
     struct Method_t : Nameble {
         /// ID дескриптора
-        uint32_t descriptor;
+        SI_t descriptor;
         /// Размер байт-кода
         uint32_t code_size;
         /// Байт-код
@@ -227,7 +228,7 @@ namespace DmN::KVM {
         /// Кол-во полей
         uint32_t fields_size : 8;
         /// Предки (ID предков)
-        uint32_t* parents;
+        CI_t* parents;
         /// Кол-во предков
         uint8_t parents_size : 5;
         //
@@ -249,7 +250,7 @@ namespace DmN::KVM {
         /// Кол-во методов
         uint32_t methods_size : 8;
         /// Предки (ID предков)
-        uint32_t* parents;
+        CI_t* parents;
         /// Кол-во предков
         uint8_t parents_size : 5;
         //
@@ -262,16 +263,16 @@ namespace DmN::KVM {
 
     /// Абстрактная куча
     struct Heap {
-        virtual uint32_t addNewClass(Class_base* clazz) = NULL;
-        virtual uint32_t addClass(Class_base* clazz) = NULL;
-        virtual void replaceClass(Class_base* clazz, uint32_t id) = NULL;
+        virtual CI_t addNewClass(Class_base* clazz) = NULL;
+        virtual CI_t addClass(Class_base* clazz) = NULL;
+        virtual void replaceClass(Class_base* clazz, CI_t id) = NULL;
         virtual void removeClass(Class_base* clazz) = NULL;
-        virtual void removeClass(uint32_t id) = NULL;
-        virtual uint32_t getClassId(Class_base* clazz) = NULL;
-        virtual Class_base* getClass(uint32_t id) = NULL;
+        virtual void removeClass(CI_t id) = NULL;
+        virtual CI_t getClassId(Class_base* clazz) = NULL;
+        virtual Class_base* getClass(CI_t id) = NULL;
         //
         virtual ::std::pair<Class_base**, size_t> getClassParents(Class_base* clazz) = NULL;
-        virtual ::std::pair<Class_base**, size_t> getClassParents(uint32_t clazz) = NULL;
+        virtual ::std::pair<Class_base**, size_t> getClassParents(CI_t clazz) = NULL;
     };
 
     /// Абстрактный загрузчик объектов
@@ -288,17 +289,17 @@ namespace DmN::KVM {
         virtual Field_t* defineKVMField(int8_t* bytes, size_t off, size_t len) = NULL;
         /* Low Level Operations */
         // Создание класса
-        virtual Class_base* createClass(Field_t** fields, uint8_t fields_size, Method_t** methods, uint8_t methods_size, uint32_t* parents, uint8_t parents_size) = NULL;
-        virtual Class_base* createClass(Field_t** fields, uint16_t fields_size, Method_t** methods, uint16_t methods_size, uint32_t* parents, uint8_t parents_size) = NULL;
-        virtual Class_base* createClass(Field_t** fields, uint32_t fields_size, Method_t** methods, uint32_t methods_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Class_base* createClass(Field_t** fields, uint8_t fields_size, Method_t** methods, uint8_t methods_size, CI_t* parents, uint8_t parents_size) = NULL;
+        virtual Class_base* createClass(Field_t** fields, uint16_t fields_size, Method_t** methods, uint16_t methods_size, CI_t* parents, uint8_t parents_size) = NULL;
+        virtual Class_base* createClass(Field_t** fields, uint32_t fields_size, Method_t** methods, uint32_t methods_size, CI_t* parents, uint8_t parents_size) = NULL;
         // Создание структуры
-        virtual Struct_base* createStruct(Field_t** fields, uint8_t fields_size, uint32_t* parents, uint8_t parents_size) = NULL;
-        virtual Struct_base* createStruct(Field_t** fields, uint16_t fields_size, uint32_t* parents, uint8_t parents_size) = NULL;
-        virtual Struct_base* createStruct(Field_t** fields, uint32_t fields_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Struct_base* createStruct(Field_t** fields, uint8_t fields_size, CI_t* parents, uint8_t parents_size) = NULL;
+        virtual Struct_base* createStruct(Field_t** fields, uint16_t fields_size, CI_t* parents, uint8_t parents_size) = NULL;
+        virtual Struct_base* createStruct(Field_t** fields, uint32_t fields_size, CI_t* parents, uint8_t parents_size) = NULL;
         // Создание Enum-а
-        virtual Enum_base* createEnum(Variable_t** enums, uint8_t enums_size, uint32_t* parents, uint8_t parents_size) = NULL;
-        virtual Enum_base* createEnum(Variable_t** enums, uint16_t enums_size, uint32_t* parents, uint8_t parents_size) = NULL;
-        virtual Enum_base* createEnum(Variable_t** enums, uint32_t enums_size, uint32_t* parents, uint8_t parents_size) = NULL;
+        virtual Enum_base* createEnum(Variable_t** enums, uint8_t enums_size) = NULL;
+        virtual Enum_base* createEnum(Variable_t** enums, uint16_t enums_size) = NULL;
+        virtual Enum_base* createEnum(Variable_t** enums, uint32_t enums_size) = NULL;
     };
 }
 
