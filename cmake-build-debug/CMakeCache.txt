@@ -244,6 +244,12 @@ DmNKVM_BINARY_DIR:STATIC=/cygdrive/c/Games/DmNKVM/cmake-build-debug
 //Value Computed by CMake
 DmNKVM_SOURCE_DIR:STATIC=/cygdrive/c/Games/DmNKVM
 
+//Value Computed by CMake
+JavaParser_BINARY_DIR:STATIC=/cygdrive/c/Games/DmNKVM/cmake-build-debug/JavaParser
+
+//Value Computed by CMake
+JavaParser_SOURCE_DIR:STATIC=/cygdrive/c/Games/DmNKVM/JavaParser
+
 //Path to a program.
 ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc.exe
 

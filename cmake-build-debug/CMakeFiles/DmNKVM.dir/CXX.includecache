@@ -6,25 +6,11 @@
 
 #IncludeRegexTransform: 
 
-../include/DmNSTD.hpp
-
-../include/KVMConfig.h
-cstdint
--
-
-../include/KVMTypes.hpp
-KVMConfig.h
--
-DmNSTD.hpp
--
-malloc.h
--
-cstdint
--
-utility
+../include/JavaParser.hpp
+cstdio
 -
 
 /cygdrive/c/Games/DmNKVM/main.cpp
-KVMTypes.hpp
+JavaParser.hpp
 -
 

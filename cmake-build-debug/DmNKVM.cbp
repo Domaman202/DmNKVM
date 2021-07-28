@@ -85,6 +85,9 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/DmNSTD.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/JavaParser.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVM.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
@@ -101,6 +104,12 @@
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/main.cpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/src/JavaParser.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp">

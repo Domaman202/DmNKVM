@@ -169,6 +169,60 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/DmNSTD.o: src/DmNSTD.cpp.o
+
+.PHONY : src/DmNSTD.o
+
+# target to build an object file
+src/DmNSTD.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o
+.PHONY : src/DmNSTD.cpp.o
+
+src/DmNSTD.i: src/DmNSTD.cpp.i
+
+.PHONY : src/DmNSTD.i
+
+# target to preprocess a source file
+src/DmNSTD.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.i
+.PHONY : src/DmNSTD.cpp.i
+
+src/DmNSTD.s: src/DmNSTD.cpp.s
+
+.PHONY : src/DmNSTD.s
+
+# target to generate assembly for a file
+src/DmNSTD.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.s
+.PHONY : src/DmNSTD.cpp.s
+
+src/JavaParser.o: src/JavaParser.cpp.o
+
+.PHONY : src/JavaParser.o
+
+# target to build an object file
+src/JavaParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.o
+.PHONY : src/JavaParser.cpp.o
+
+src/JavaParser.i: src/JavaParser.cpp.i
+
+.PHONY : src/JavaParser.i
+
+# target to preprocess a source file
+src/JavaParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.i
+.PHONY : src/JavaParser.cpp.i
+
+src/JavaParser.s: src/JavaParser.cpp.s
+
+.PHONY : src/JavaParser.s
+
+# target to generate assembly for a file
+src/JavaParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.s
+.PHONY : src/JavaParser.cpp.s
+
 src/KVMConstructors.o: src/KVMConstructors.cpp.o
 
 .PHONY : src/KVMConstructors.o
@@ -235,6 +289,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/DmNSTD.o"
+	@echo "... src/DmNSTD.i"
+	@echo "... src/DmNSTD.s"
+	@echo "... src/JavaParser.o"
+	@echo "... src/JavaParser.i"
+	@echo "... src/JavaParser.s"
 	@echo "... src/KVMConstructors.o"
 	@echo "... src/KVMConstructors.i"
 	@echo "... src/KVMConstructors.s"
