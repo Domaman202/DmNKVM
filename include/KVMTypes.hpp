@@ -157,8 +157,6 @@ namespace DmN::KVM {
         CI_t* parents;
         /// Кол-во предков
         uint8_t parentsCount : 5;
-        //
-        const uint8_t llt : 3 = 3;
     };
 
     struct Class_8bit_t : ClassBase { uint8_t fieldsCount; uint8_t methodsCount; };
