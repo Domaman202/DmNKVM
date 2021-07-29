@@ -18,7 +18,7 @@ namespace DmN::KVM {
         explicit LLT(uint8_t llt) {
             this->llt = llt;
         }
-        /// (Low Level Type) низкоуровневый тип обьякта: PUBLIC, STATIC, ENUM, STRUCT, Java_class
+        /// (Low Level Type) низкоуровневый тип обьякта: PUBLIC, STATIC, ENUM, STRUCT, CLASS
         uint8_t llt : 3;
     };
 
