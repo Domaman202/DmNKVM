@@ -103,6 +103,9 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNameble.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNamespace.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMTypes.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>

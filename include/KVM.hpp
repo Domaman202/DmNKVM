@@ -9,9 +9,9 @@
 namespace DmN::KVM {
 #ifdef DMN_KVM_USE_GLOBAL_NAME_STORAGES
     /// (Global Name Storage) Глобальное хранилище имён
-    constinit StringStorage* GNS = new DynamicStringStorage;
+    constinit SS* GNS = new DSS;
     /// (Global Descriptor Storage) Глобальное хранилище дескрипторов
-    constinit StringStorage* GDS = new DynamicStringStorage;
+    constinit SS* GDS = new DSS;
 #endif
 }
 

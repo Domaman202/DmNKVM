@@ -5,14 +5,14 @@
 #include <cstring>
 
 namespace DmN::KVM {
-    uint32_t StaticStringStorage::addNewName(const char* name) {
+    uint32_t SSS::addNewName(const char* name) {
         // Сохраняем имя в массив и инкрементируем текущий индекс
         this->data[++this->last_index] = name;
         // Возвращаем индекс имени
         return this->last_index - 1;
     }
 
-    uint32_t StaticStringStorage::addName(const char* name) {
+    uint32_t SSS::addName(const char* name) {
         // Перебираем имена
         for (size_t i = 0; i < this->size; i++)
             // Сравниваем имена
@@ -23,12 +23,12 @@ namespace DmN::KVM {
         return this->addNewName(name);
     }
 
-    inline const char* StaticStringStorage::getName(uint32_t id) {
+    inline const char* SSS::getName(uint32_t id) {
         // Получаем имя по ID
         return this->data[id];
     }
 
-    uint32_t StaticStringStorage::getId(const char* name) {
+    uint32_t SSS::getId(const char* name) {
         // Перебираем имена
         for (size_t i = 0; i < this->size; i++)
             // Сравниваем имена
@@ -39,7 +39,7 @@ namespace DmN::KVM {
         return -1;
     }
 
-    const char* StaticStringStorage::free(uint32_t id) {
+    const char* SSS::free(uint32_t id) {
         // Проверяем можем ли мы высвободить ячейку массива от имени
         if ((this->last_index - 1) == id) {
             // Если да то высвобождаем ячейку массива от имени
@@ -54,7 +54,7 @@ namespace DmN::KVM {
         return this->getName(id);
     }
 
-    uint32_t StaticStringStorage::free(const char* name) {
+    uint32_t SSS::free(const char* name) {
         // Получаем ID
         uint32_t id = this->getId(name);
         // Проверяем можем ли мы высвободить ячейку массива от имени
@@ -65,23 +65,23 @@ namespace DmN::KVM {
         return id;
     }
 
-    inline const char* StaticStringStorage::remove(uint32_t id) {
+    inline const char* SSS::remove(uint32_t id) {
         // Ссылаемся на функцию free
         return this->free(id);
     }
 
-    inline uint32_t StaticStringStorage::remove(const char* name) {
+    inline uint32_t SSS::remove(const char* name) {
         // Ссылаемся на функцию free
         return this->free(name);
     }
 
-    void StaticStringStorage::clear() {
+    void SSS::clear() {
         this->last_index = 0;
         for (size_t i = 0; i < this->size; i++)
             delete this->data[i];
     }
 
-    uint32_t DynamicStringStorage::addNewName(const char* name) {
+    uint32_t DSS::addNewName(const char* name) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node->next != nullptr)
@@ -92,7 +92,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    uint32_t DynamicStringStorage::addName(const char* name) {
+    uint32_t DSS::addName(const char* name) {
         // Переменная для пустой ноды
         SaI* free_node = this->start_node;
         // Перебираем ноды
@@ -125,7 +125,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    const char* DynamicStringStorage::getName(uint32_t id) {
+    const char* DSS::getName(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         for (; id > 0; --id)
@@ -134,7 +134,7 @@ namespace DmN::KVM {
         return last_node->value;
     }
 
-    uint32_t DynamicStringStorage::getId(const char* name) {
+    uint32_t DSS::getId(const char* name) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node != nullptr) {
@@ -149,7 +149,7 @@ namespace DmN::KVM {
         return -1;
     }
 
-    const char* DynamicStringStorage::free(uint32_t id) {
+    const char* DSS::free(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         for (; id > 0; id--)
@@ -164,7 +164,7 @@ namespace DmN::KVM {
         return name;
     }
 
-    uint32_t DynamicStringStorage::free(const char* name) {
+    uint32_t DSS::free(const char* name) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node != nullptr) {
@@ -185,7 +185,7 @@ namespace DmN::KVM {
         return 0;
     }
 
-    const char* DynamicStringStorage::remove(uint32_t id) {
+    const char* DSS::remove(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         for (; id > 0; id--)
@@ -202,7 +202,7 @@ namespace DmN::KVM {
         return name;
     }
 
-    uint32_t DynamicStringStorage::remove(const char* name) {
+    uint32_t DSS::remove(const char* name) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node != nullptr) {
@@ -225,7 +225,7 @@ namespace DmN::KVM {
         return 0;
     }
 
-    void DynamicStringStorage::clear() {
+    void DSS::clear() {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node != nullptr) {

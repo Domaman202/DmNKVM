@@ -23,7 +23,7 @@ namespace DmN::KVM {
     };
 
     /// Абстрактное хранилище строк
-    struct StringStorage {
+    struct SS {
     public:
         /*!
          * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
@@ -91,8 +91,8 @@ namespace DmN::KVM {
         virtual void clear() = 0;
     };
 
-    /// Статическое хранилище строк
-    class StaticStringStorage : StringStorage {
+    /// (Static String Storage) Статическое хранилище строк
+    class SSS : SS {
     protected:
         /// Массив ID и строк
         const char** data;
@@ -101,7 +101,7 @@ namespace DmN::KVM {
         /// Текущий индекс
         size_t last_index = 0;
     public:
-        explicit StaticStringStorage(size_t size) {
+        explicit SSS(size_t size) {
             this->data = static_cast<const char**>(calloc(size, sizeof(char*)));
             this->size = size;
         }
@@ -117,8 +117,8 @@ namespace DmN::KVM {
         void clear() override;
     };
 
-    /// Динамическое хранилище строк
-    class DynamicStringStorage : StringStorage {
+    /// (Dynamic String Storage) Динамическое хранилище строк
+    class DSS : SS {
     protected:
         /// Первая нода (всегда пуста)
         SaI* start_node = new SaI(nullptr, 0, nullptr);

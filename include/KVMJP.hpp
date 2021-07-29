@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DMNKVM_JAVAPARSER_HPP
-#define DMNKVM_JAVAPARSER_HPP
+#ifndef DMNKVM_KVMJP_HPP
+#define DMNKVM_KVMJP_HPP
 
 #include <cstdio>
 
@@ -201,4 +201,4 @@ namespace DmN::KVM::JP {
     u8 swap_u8(u8 x);
 }
 
-#endif /* DMNKVM_JAVAPARSER_HPP */
+#endif /* DMNKVM_KVMJP_HPP */

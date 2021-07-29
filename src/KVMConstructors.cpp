@@ -4,9 +4,9 @@
 using namespace DmN::KVM::ERROR;
 
 namespace DmN::KVM {
-    DynamicStringStorage* allocate_DynamicStringStorage(char* names[], size_t size) {
+    DSS* allocDSS(char **names, size_t size) {
         // Создаём хранилище строк
-        auto* storage = new DynamicStringStorage;
+        auto* storage = new DSS;
         // Пихаем имена
         size--;
         for (; size != 0; size--)
@@ -15,7 +15,7 @@ namespace DmN::KVM {
         return storage;
     }
 
-    Collect_Result try_collect(GC_Object* obj) {
+    CR tryCollect(GC_Object* obj) {
         // Проверяем можно ли собрать объект
         if (obj->is_collectable) {
             // Если объект собираеться проверяем кол-во ссылок
@@ -23,13 +23,13 @@ namespace DmN::KVM {
                 // Высвобождаем память
                 delete obj;
                 // Выводим код успешного выполнения
-                return Collect_Result::SUCCESS;
+                return CR::SUCCESS;
             }
             // Иначе выводим код ошибки
-            return Collect_Result::OBJECT_REFERENCE_NOT_NULL;
+            return CR::OBJECT_REFERENCE_NOT_NULL;
         }
         // Иначе выводим код ошибки
-        return Collect_Result::OBJECT_NO_COLLECTABLE;
+        return CR::OBJECT_NO_COLLECTABLE;
     }
 
     inline void collect(GC_Object* obj) {

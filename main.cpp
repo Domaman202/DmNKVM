@@ -1,5 +1,5 @@
 #include <iostream>
-#include <JavaParser.hpp>
+#include <KVMJP.hpp>
 
 using namespace std;
 using namespace DmN::KVM::JP;

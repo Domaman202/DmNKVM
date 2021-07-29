@@ -2,10 +2,11 @@
 #ifndef DMNKVM_KVMTYPES_HPP
 #define DMNKVM_KVMTYPES_HPP
 
+#include <KVMNamespace.hpp>
 #include <KVMNameble.hpp>
 #include <KVMConfig.hpp>
+#include <KVMJP.hpp>
 #include <DmNSTD.hpp>
-#include <JavaParser.hpp>
 
 #include <malloc.h>
 #include <cstdint>
@@ -31,10 +32,7 @@ namespace DmN::KVM {
         uint16_t references : 10;
     };
 
-    /// Объект который подчинаеться прастранству имён
-    struct NS_Object {
-        uint32_t namespace_id;
-    };
+
 
     /// Значение
     struct Value_t : GC_Object {
@@ -45,7 +43,7 @@ namespace DmN::KVM {
     };
 
     /// Переменная
-    struct Variable_t : Value_t, Nameble, NS_Object {
+    struct Variable_t : Value_t, Nameble, NSObject {
         /// Тип переменной: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
         uint8_t type : 4;
         /// Значение переменной
@@ -69,7 +67,7 @@ namespace DmN::KVM {
     };
 
     /// Метод
-    struct Method_t : Nameble, NS_Object {
+    struct Method_t : Nameble, NSObject {
         /// ID дескриптора
         SI_t descriptor;
         /// Размер байт-кода
@@ -79,7 +77,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Enum-а
-    struct Enum_base : LLT, Nameble, NS_Object {
+    struct Enum_base : LLT, Nameble, NSObject {
         /// Перечисления
         Variable_t** enums;
         /// Кол-во перечислений
@@ -92,7 +90,7 @@ namespace DmN::KVM {
     struct Enum_16bit_t : Enum_8bit_t { uint16_t enums_size; };
     struct Enum_32bit_t : Enum_16bit_t { uint32_t enums_size; };
 
-    struct Struct_base : LLT, Nameble, NS_Object {
+    struct Struct_base : LLT, Nameble, NSObject {
         /// Поля
         Field_t** fields;
         /// Кол-во полей
@@ -110,7 +108,7 @@ namespace DmN::KVM {
     struct Struct_32bit_t : Struct_16bit_t { uint32_t fields_size; };
 
     /// Универсальная основа для Class-а
-    struct Class_base : LLT, Nameble, NS_Object {
+    struct Class_base : LLT, Nameble, NSObject {
         /// Массив полей
         Field_t** fields;
         /// Кол-во полей
@@ -133,44 +131,44 @@ namespace DmN::KVM {
 
     /// Абстрактная куча
     struct Heap {
-        virtual CI_t addNewClass(Class_base* clazz) = NULL;
-        virtual CI_t addClass(Class_base* clazz) = NULL;
-        virtual void replaceClass(Class_base* clazz, CI_t id) = NULL;
-        virtual void removeClass(Class_base* clazz) = NULL;
-        virtual void removeClass(CI_t id) = NULL;
-        virtual CI_t getClassId(Class_base* clazz) = NULL;
-        virtual Class_base* getClass(CI_t id) = NULL;
+        virtual CI_t addNewClass(Class_base* clazz) = 0;
+        virtual CI_t addClass(Class_base* clazz) = 0;
+        virtual void replaceClass(Class_base* clazz, CI_t id) = 0;
+        virtual void removeClass(Class_base* clazz) = 0;
+        virtual void removeClass(CI_t id) = 0;
+        virtual CI_t getClassId(Class_base* clazz) = 0;
+        virtual Class_base* getClass(CI_t id) = 0;
         //
-        virtual ::std::pair<Class_base**, size_t> getClassParents(Class_base* clazz) = NULL;
-        virtual ::std::pair<Class_base**, size_t> getClassParents(CI_t clazz) = NULL;
+        virtual ::std::pair<Class_base**, size_t> getClassParents(Class_base* clazz) = 0;
+        virtual ::std::pair<Class_base**, size_t> getClassParents(CI_t clazz) = 0;
     };
 
     /// Абстрактный загрузчик объектов
     struct ClassLoader {
         /* JVM */
-        virtual Class_base* defineJVMClass(int8_t* bytes, size_t off, size_t len) = NULL;
-        virtual Class_base* defineJVMClass(JP::Java_class_file* file) = NULL;
+        virtual Class_base* defineJVMClass(int8_t* bytes, size_t off, size_t len) = 0;
+        virtual Class_base* defineJVMClass(JP::Java_class_file* file) = 0;
         /* .NET */
         // TODO: нужно реализовать
         /* KVM */
-        virtual Class_base* defineKVMClass(int8_t* bytes, size_t off, size_t len) = NULL;
-        virtual Struct_base* defineKVMStruct(int8_t* bytes, size_t off, size_t len) = NULL;
-        virtual Enum_base* defineKVMEnum(int8_t* bytes, size_t off, size_t len) = NULL;
-        virtual Method_t* defineKVMMethod(int8_t* bytes, size_t off, size_t len) = NULL;
-        virtual Field_t* defineKVMField(int8_t* bytes, size_t off, size_t len) = NULL;
+        virtual Class_base* defineKVMClass(int8_t* bytes, size_t off, size_t len) = 0;
+        virtual Struct_base* defineKVMStruct(int8_t* bytes, size_t off, size_t len) = 0;
+        virtual Enum_base* defineKVMEnum(int8_t* bytes, size_t off, size_t len) = 0;
+        virtual Method_t* defineKVMMethod(int8_t* bytes, size_t off, size_t len) = 0;
+        virtual Field_t* defineKVMField(int8_t* bytes, size_t off, size_t len) = 0;
         /* Low Level Operations */
         // Создание класса
-        virtual Class_base* createClass(Field_t** fields, uint8_t fields_size, Method_t** methods, uint8_t methods_size, CI_t* parents, uint8_t parents_size) = NULL;
-        virtual Class_base* createClass(Field_t** fields, uint16_t fields_size, Method_t** methods, uint16_t methods_size, CI_t* parents, uint8_t parents_size) = NULL;
-        virtual Class_base* createClass(Field_t** fields, uint32_t fields_size, Method_t** methods, uint32_t methods_size, CI_t* parents, uint8_t parents_size) = NULL;
+        virtual Class_base* createClass(Field_t** fields, uint8_t fields_size, Method_t** methods, uint8_t methods_size, CI_t* parents, uint8_t parents_size) = 0;
+        virtual Class_base* createClass(Field_t** fields, uint16_t fields_size, Method_t** methods, uint16_t methods_size, CI_t* parents, uint8_t parents_size) = 0;
+        virtual Class_base* createClass(Field_t** fields, uint32_t fields_size, Method_t** methods, uint32_t methods_size, CI_t* parents, uint8_t parents_size) = 0;
         // Создание структуры
-        virtual Struct_base* createStruct(Field_t** fields, uint8_t fields_size, CI_t* parents, uint8_t parents_size) = NULL;
-        virtual Struct_base* createStruct(Field_t** fields, uint16_t fields_size, CI_t* parents, uint8_t parents_size) = NULL;
-        virtual Struct_base* createStruct(Field_t** fields, uint32_t fields_size, CI_t* parents, uint8_t parents_size) = NULL;
+        virtual Struct_base* createStruct(Field_t** fields, uint8_t fields_size, CI_t* parents, uint8_t parents_size) = 0;
+        virtual Struct_base* createStruct(Field_t** fields, uint16_t fields_size, CI_t* parents, uint8_t parents_size) = 0;
+        virtual Struct_base* createStruct(Field_t** fields, uint32_t fields_size, CI_t* parents, uint8_t parents_size) = 0;
         // Создание Enum-а
-        virtual Enum_base* createEnum(Variable_t** enums, uint8_t enums_size) = NULL;
-        virtual Enum_base* createEnum(Variable_t** enums, uint16_t enums_size) = NULL;
-        virtual Enum_base* createEnum(Variable_t** enums, uint32_t enums_size) = NULL;
+        virtual Enum_base* createEnum(Variable_t** enums, uint8_t enums_size) = 0;
+        virtual Enum_base* createEnum(Variable_t** enums, uint16_t enums_size) = 0;
+        virtual Enum_base* createEnum(Variable_t** enums, uint32_t enums_size) = 0;
     };
 }
 

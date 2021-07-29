@@ -3,8 +3,8 @@
 #define DMNKVM_KVMERROR_HPP
 
 namespace DmN::KVM::ERROR {
-    /// Результат сборки памяти
-    enum Collect_Result {
+    /// (Collect Result) Результат сборки памяти
+    enum CR {
         /// Память освобождена успешно
         SUCCESS = 0,
         /// Объект нельзя собрать
