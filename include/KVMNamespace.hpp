@@ -66,8 +66,11 @@ namespace DmN::KVM {
 
     /// (Namespace Object) Объект который подчинаеться пространству имён
     struct NSObject {
-        /// ID пространства имён
-        NSI_t namespace_id;
+        explicit NSObject(NSI_t ns) {
+            this->ns = ns;
+        }
+        /// (Namespace ID) ID пространства имён
+        NSI_t ns;
     };
 }
 

@@ -17,7 +17,7 @@ namespace DmN::KVM {
 
     CR tryCollect(GC_Object* obj) {
         // Проверяем можно ли собрать объект
-        if (obj->is_collectable) {
+        if (obj->isCollectable) {
             // Если объект собираеться проверяем кол-во ссылок
             if (obj->references == 0) {
                 // Высвобождаем память
