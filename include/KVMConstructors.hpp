@@ -4,6 +4,7 @@
 
 #include <KVMTypes.hpp>
 #include <KVMError.hpp>
+
 #include <cstdint>
 
 using namespace DmN::KVM::ERROR;

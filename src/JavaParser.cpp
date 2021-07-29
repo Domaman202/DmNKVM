@@ -1,5 +1,6 @@
 #include <JavaParser.hpp>
-#include <malloc.h>
+
+#include <cstdlib>
 #include <cstring>
 
 namespace DmN::KVM::JP {
@@ -36,7 +37,7 @@ namespace DmN::KVM::JP {
             printf("NO_MEMORY!");
             return CP_NO_MEM;
         }
-//    data[file_len]='\0';
+
         fread(data, file_len, 1, classfile->fp);
         fclose(classfile->fp);
         classfile->aClass = (Java_class *) malloc(sizeof(Java_class));

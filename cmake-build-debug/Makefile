@@ -250,6 +250,33 @@ src/KVMConstructors.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.s
 .PHONY : src/KVMConstructors.cpp.s
 
+src/KVMNameble.o: src/KVMNameble.cpp.o
+
+.PHONY : src/KVMNameble.o
+
+# target to build an object file
+src/KVMNameble.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.o
+.PHONY : src/KVMNameble.cpp.o
+
+src/KVMNameble.i: src/KVMNameble.cpp.i
+
+.PHONY : src/KVMNameble.i
+
+# target to preprocess a source file
+src/KVMNameble.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.i
+.PHONY : src/KVMNameble.cpp.i
+
+src/KVMNameble.s: src/KVMNameble.cpp.s
+
+.PHONY : src/KVMNameble.s
+
+# target to generate assembly for a file
+src/KVMNameble.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s
+.PHONY : src/KVMNameble.cpp.s
+
 src/KVMTypes.o: src/KVMTypes.cpp.o
 
 .PHONY : src/KVMTypes.o
@@ -298,6 +325,9 @@ help:
 	@echo "... src/KVMConstructors.o"
 	@echo "... src/KVMConstructors.i"
 	@echo "... src/KVMConstructors.s"
+	@echo "... src/KVMNameble.o"
+	@echo "... src/KVMNameble.i"
+	@echo "... src/KVMNameble.s"
 	@echo "... src/KVMTypes.o"
 	@echo "... src/KVMTypes.i"
 	@echo "... src/KVMTypes.s"

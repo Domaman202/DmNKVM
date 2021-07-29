@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DMNKVM_KVMCONFIG_H
-#define DMNKVM_KVMCONFIG_H
+#ifndef DMNKVM_KVMCONFIG_HPP
+#define DMNKVM_KVMCONFIG_HPP
 
 #include <cstdint>
 
@@ -34,4 +34,4 @@ namespace DmN::KVM {
 //
 #endif
 
-#endif /* DMNKVM_KVMCONFIG_H */
+#endif /* DMNKVM_KVMCONFIG_HPP */
