@@ -10,16 +10,6 @@
 #include <utility>
 
 namespace DmN::KVM {
-    /// Хрень которая содержит имя
-    struct Nameble {
-        explicit Nameble(SI_t name) {
-            this->name = name;
-        }
-
-        /// ID имени
-        SI_t name;
-    };
-
     /// String and ID
     struct SaI : std::Node<char> {
         SaI(char* name, SI_t id, SaI* next) : Node<char>(name, next) {
@@ -145,14 +135,14 @@ namespace DmN::KVM {
         void clear() override;
     };
 
-    /// Объект подвергающийся сборке мусора
-    struct GC_Object {
-        /// Собран ли объект?
-        bool is_collected : 1;
-        /// Можно ли собирать объект?
-        bool is_collectable : 1;
-        /// Кол-во ссылок на объект
-        uint16_t references : 10;
+    /// Хрень которая содержит имя
+    struct Nameble {
+        explicit Nameble(SI_t name) {
+            this->name = name;
+        }
+
+        /// ID имени
+        SI_t name;
     };
 
     /// Хрень которая имеет низкоуровневый тип объекта
@@ -164,6 +154,21 @@ namespace DmN::KVM {
         uint8_t llt : 3;
     };
 
+    /// Объект подвергающийся сборке мусора
+    struct GC_Object {
+        /// Собран ли объект?
+        bool is_collected : 1;
+        /// Можно ли собирать объект?
+        bool is_collectable : 1;
+        /// Кол-во ссылок на объект
+        uint16_t references : 10;
+    };
+
+    /// Объект который подчинаеться прастранству имён
+    struct NS_Object {
+        uint32_t namespace_id;
+    };
+
     /// Значение
     struct Value_t : GC_Object {
         /// Тип значения: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
@@ -173,7 +178,7 @@ namespace DmN::KVM {
     };
 
     /// Переменная
-    struct Variable_t : Value_t, Nameble {
+    struct Variable_t : Value_t, Nameble, NS_Object {
         /// Тип переменной: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
         uint8_t type : 4;
         /// Значение переменной
@@ -192,15 +197,12 @@ namespace DmN::KVM {
 
     /// Поле
     struct Field_t : LLT, Nameble {
-        Field_t(Value_t* value, SI_t name) : LLT(0), Nameble(name) {
-            this->value = value;
-        }
         /// Значение
         Value_t* value;
     };
 
     /// Метод
-    struct Method_t : Nameble {
+    struct Method_t : Nameble, NS_Object {
         /// ID дескриптора
         SI_t descriptor;
         /// Размер байт-кода
@@ -210,7 +212,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Enum-а
-    struct Enum_base : LLT, Nameble {
+    struct Enum_base : LLT, Nameble, NS_Object {
         /// Перечисления
         Variable_t** enums;
         /// Кол-во перечислений
@@ -223,7 +225,7 @@ namespace DmN::KVM {
     struct Enum_16bit_t : Enum_8bit_t { uint16_t enums_size; };
     struct Enum_32bit_t : Enum_16bit_t { uint32_t enums_size; };
 
-    struct Struct_base : LLT, Nameble {
+    struct Struct_base : LLT, Nameble, NS_Object {
         /// Поля
         Field_t** fields;
         /// Кол-во полей
@@ -241,7 +243,7 @@ namespace DmN::KVM {
     struct Struct_32bit_t : Struct_16bit_t { uint32_t fields_size; };
 
     /// Универсальная основа для Class-а
-    struct Class_base : LLT, Nameble {
+    struct Class_base : LLT, Nameble, NS_Object {
         /// Массив полей
         Field_t** fields;
         /// Кол-во полей
