@@ -4,6 +4,7 @@
 
 #include <KVMConfig.h>
 #include <DmNSTD.hpp>
+#include <JavaParser.hpp>
 #include <malloc.h>
 #include <cstdint>
 #include <utility>
@@ -159,7 +160,7 @@ namespace DmN::KVM {
         explicit LLT(uint8_t llt) {
             this->llt = llt;
         }
-        /// (Low Level Type) низкоуровневый тип обьякта: PUBLIC, STATIC, ENUM, STRUCT, CLASS
+        /// (Low Level Type) низкоуровневый тип обьякта: PUBLIC, STATIC, ENUM, STRUCT, Java_class
         uint8_t llt : 3;
     };
 
@@ -279,6 +280,7 @@ namespace DmN::KVM {
     struct ClassLoader {
         /* JVM */
         virtual Class_base* defineJVMClass(int8_t* bytes, size_t off, size_t len) = NULL;
+        virtual Class_base* defineJVMClass(JP::Java_class_file* file) = NULL;
         /* .NET */
         // TODO: нужно реализовать
         /* KVM */

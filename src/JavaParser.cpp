@@ -3,9 +3,9 @@
 #include <cstring>
 
 namespace DmN::KVM::JP {
-    CLASSFILE *class_open(const char *path) {
-        CLASSFILE *classfile;
-        classfile = (CLASSFILE *) malloc(sizeof(CLASSFILE));
+    Java_class_file *class_open(const char *path) {
+        Java_class_file *classfile;
+        classfile = (Java_class_file *) malloc(sizeof(Java_class_file));
         if (nullptr == classfile) {
             printf("申请内存空间出错!\n");
             return nullptr;
@@ -22,7 +22,7 @@ namespace DmN::KVM::JP {
         return classfile;
     }
 
-    int class_parse(CLASSFILE *classfile) {
+    int class_parse(Java_class_file *classfile) {
         unsigned char *data; // class文件内容
         long file_len; // class文件长度
         int res_code;
@@ -39,7 +39,7 @@ namespace DmN::KVM::JP {
 //    data[file_len]='\0';
         fread(data, file_len, 1, classfile->fp);
         fclose(classfile->fp);
-        classfile->aClass = (CLASS *) malloc(sizeof(CLASS));
+        classfile->aClass = (Java_class *) malloc(sizeof(Java_class));
         if (nullptr == classfile->aClass) {
             printf("CP_NO_MEM");
             return CP_NO_MEM;
@@ -50,7 +50,7 @@ namespace DmN::KVM::JP {
     }
 
 
-    int do_parse(CLASSFILE *classfile, unsigned char *data) {
+    int do_parse(Java_class_file *classfile, unsigned char *data) {
         //结果值
         int rescode = CP_OK;
         // 魔数
@@ -268,7 +268,7 @@ namespace DmN::KVM::JP {
 
         // 解析字段
         if (classfile->aClass->fields_count > 0) {
-            classfile->aClass->fields = (field_info *) malloc(sizeof(field_info) * classfile->aClass->fields_count);
+            classfile->aClass->fields = (Field_info *) malloc(sizeof(Field_info) * classfile->aClass->fields_count);
             for (int i = 0; i < classfile->aClass->fields_count; i++) {
                 classfile->aClass->fields[i].access_flags = swap_u2(*(u2 *) data);
                 data += sizeof(u2);
@@ -279,8 +279,8 @@ namespace DmN::KVM::JP {
                 classfile->aClass->fields[i].attributes_count = swap_u2(*(u2 *) data);
                 data += sizeof(u2);
                 if (classfile->aClass->fields[i].attributes_count > 0) {
-                    classfile->aClass->fields[i].attributes = (attribute_info *) malloc(
-                            sizeof(attribute_info) * classfile->aClass->fields[i].attributes_count);
+                    classfile->aClass->fields[i].attributes = (Attribute_info *) malloc(
+                            sizeof(Attribute_info) * classfile->aClass->fields[i].attributes_count);
                     for (int m = 0; m < classfile->aClass->fields[i].attributes_count; m++) {
                         classfile->aClass->fields[i].attributes[m].attribute_name_index = swap_u2(*(u2 *) data);
                         data += sizeof(u2);
@@ -304,7 +304,7 @@ namespace DmN::KVM::JP {
 
         // parse methods
         if (classfile->aClass->methods_count > 0) {
-            classfile->aClass->methods = (method_info *) malloc(sizeof(method_info) * classfile->aClass->methods_count);
+            classfile->aClass->methods = (Method_info *) malloc(sizeof(Method_info) * classfile->aClass->methods_count);
             for (int i = 0; i < classfile->aClass->methods_count; i++) {
                 classfile->aClass->methods[i].access_flags = swap_u2(*(u2 *) data);
                 data += sizeof(u2);
@@ -315,8 +315,8 @@ namespace DmN::KVM::JP {
                 classfile->aClass->methods[i].attributes_count = swap_u2(*(u2 *) data);
                 data += sizeof(u2);
                 if (classfile->aClass->methods[i].attributes_count > 0) {
-                    classfile->aClass->methods[i].attributes = (attribute_info *) malloc(
-                            sizeof(attribute_info) * classfile->aClass->methods[i].attributes_count);
+                    classfile->aClass->methods[i].attributes = (Attribute_info *) malloc(
+                            sizeof(Attribute_info) * classfile->aClass->methods[i].attributes_count);
                     for (int m = 0; m < classfile->aClass->methods[i].attributes_count; m++) {
                         classfile->aClass->methods[i].attributes[m].attribute_name_index = swap_u2(*(u2 *) data);
                         data += sizeof(u2);
@@ -339,8 +339,8 @@ namespace DmN::KVM::JP {
         data += sizeof(u2);
         // parse attributes
         if (classfile->aClass->attributes_count > 0) {
-            classfile->aClass->attributes = (attribute_info *) malloc(
-                    sizeof(attribute_info) * classfile->aClass->attributes_count);
+            classfile->aClass->attributes = (Attribute_info *) malloc(
+                    sizeof(Attribute_info) * classfile->aClass->attributes_count);
             for (int m = 0; m < classfile->aClass->attributes_count; m++) {
                 classfile->aClass->attributes->attribute_name_index = swap_u2(*(u2 *) data);
                 data += sizeof(u2);

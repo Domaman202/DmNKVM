@@ -145,15 +145,15 @@ namespace DmN::KVM::JP {
         u2 attribute_name_index;
         u4 attribute_length;
         u1 *info;//info[attribute_length]
-    } attribute_info;
+    } Attribute_info;
 
     typedef struct {
         u2 access_flags;
         u2 name_index;
         u2 descriptor_index;
         u2 attributes_count;
-        attribute_info *attributes;
-    } method_info;
+        Attribute_info *attributes;
+    } Method_info;
 
 
     typedef struct {
@@ -161,8 +161,8 @@ namespace DmN::KVM::JP {
         u2 name_index;
         u2 descriptor_index;
         u2 attributes_count;
-        attribute_info *attributes;
-    } field_info;
+        Attribute_info *attributes;
+    } Field_info;
 
     typedef struct {
         u4 magic;
@@ -176,25 +176,25 @@ namespace DmN::KVM::JP {
         u2 interfaces_count;
         u2 *interfaces;
         u2 fields_count;
-        field_info *fields;
+        Field_info *fields;
         u2 methods_count;
-        method_info *methods;
+        Method_info *methods;
         u2 attributes_count;
-        attribute_info *attributes;
-    } CLASS;
+        Attribute_info *attributes;
+    } Java_class;
 
     typedef struct {
         FILE *fp;
         size_t len;
         size_t size;
-        CLASS *aClass;
-    } CLASSFILE;
+        Java_class *aClass;
+    } Java_class_file;
 
 
-    //打开并初始化，path为class文件的路经，CLASSFILE
-    CLASSFILE *class_open(const char *path);
-    int class_parse(CLASSFILE *classfile);
-    int do_parse(CLASSFILE *classfile, unsigned char *data);
+    //打开并初始化，path为class文件的路经，Java_class_file
+    Java_class_file *class_open(const char *path);
+    int class_parse(Java_class_file *classfile);
+    int do_parse(Java_class_file *classfile, unsigned char *data);
 
     u2 swap_u2(u2 x);
     u4 swap_u4(u4 x);
