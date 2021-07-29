@@ -11,6 +11,7 @@ CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.o: ../include/JavaParser.hpp
 CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.o: ../src/JavaParser.cpp
 
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/DmNSTD.hpp
+CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/JavaParser.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMConfig.h
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMConstructors.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMError.hpp
@@ -18,6 +19,7 @@ CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMTypes.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../src/KVMConstructors.cpp
 
 CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o: ../include/DmNSTD.hpp
+CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o: ../include/JavaParser.hpp
 CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o: ../include/KVMConfig.h
 CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o: ../include/KVMTypes.hpp
 CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o: ../src/KVMTypes.cpp

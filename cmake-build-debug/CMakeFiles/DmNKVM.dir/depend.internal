@@ -12,6 +12,7 @@ CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.o
  /cygdrive/c/Games/DmNKVM/src/JavaParser.cpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o
  ../include/DmNSTD.hpp
+ ../include/JavaParser.hpp
  ../include/KVMConfig.h
  ../include/KVMConstructors.hpp
  ../include/KVMError.hpp
@@ -19,6 +20,7 @@ CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o
  /cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
 CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o
  ../include/DmNSTD.hpp
+ ../include/JavaParser.hpp
  ../include/KVMConfig.h
  ../include/KVMTypes.hpp
  /cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp
