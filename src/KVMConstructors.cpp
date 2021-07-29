@@ -10,7 +10,7 @@ namespace DmN::KVM {
         // Пихаем имена
         size--;
         for (; size != 0; size--)
-            storage->addNewName(names[size]);
+            storage->addNew(names[size]);
         // Возвращаем хранилище строк
         return storage;
     }

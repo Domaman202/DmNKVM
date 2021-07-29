@@ -30,28 +30,28 @@ namespace DmN::KVM {
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        virtual SI_t addNewName(const char* name) = 0;
+        virtual SI_t addNew(const char* name) = 0;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
          * \param name - имя которое нужно добавить
          * \return ID которое принадлежит имени
          */
-        virtual SI_t addName(const char* name) = 0;
+        virtual SI_t add(const char* name) = 0;
 
         /*!
          * Получает имя по ID
          * \param id - ID по которому мы получаем имя
          * \return Имя полученное по ID
          */
-        virtual const char* getName(SI_t id) = 0;
+        virtual const char* get(SI_t id) = 0;
 
         /*!
          * Получаем ID по имени
          * \param name - имя ID которого нужно получить
          * \return ID этого имени
          */
-        virtual SI_t getId(const char* name) = 0;
+        virtual SI_t get(const char* name) = 0;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -106,14 +106,14 @@ namespace DmN::KVM {
             this->size = size;
         }
 
-        SI_t addNewName(const char* name) override;
-        SI_t addName(const char* name) override;
-        const char* getName(SI_t id) override;
-        SI_t getId(const char *name) override;
-        const char* free(SI_t id) override;
+        SI_t addNew(const char* name) override;
+        SI_t add(const char* name) override;
+        SI_t get(const char *name) override;
         SI_t free(const char *name) override;
-        const char* remove(SI_t id) override;
         SI_t remove(const char *name) override;
+        const char* get(SI_t id) override;
+        const char* free(SI_t id) override;
+        const char* remove(SI_t id) override;
         void clear() override;
     };
 
@@ -123,14 +123,14 @@ namespace DmN::KVM {
         /// Первая нода (всегда пуста)
         SaI* start_node = new SaI(nullptr, 0, nullptr);
     public:
-        SI_t addNewName(const char* name) override;
-        SI_t addName(const char* name) override;
-        const char * getName(SI_t id) override;
-        SI_t getId(const char *name) override;
-        const char * free(SI_t id) override;
+        SI_t addNew(const char* name) override;
+        SI_t add(const char* name) override;
+        SI_t get(const char *name) override;
         SI_t free(const char *name) override;
-        const char * remove(SI_t id) override;
         SI_t remove(const char *name) override;
+        const char * get(SI_t id) override;
+        const char * remove(SI_t id) override;
+        const char * free(SI_t id) override;
         void clear() override;
     };
 

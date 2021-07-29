@@ -85,9 +85,6 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/DmNSTD.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/include/JavaParser.hpp">
-			<Option target="DmNKVM"/>
-		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVM.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
@@ -98,6 +95,9 @@
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMError.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMJP.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNameble.hpp">
@@ -115,16 +115,13 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/src/JavaParser.cpp">
-			<Option target="DmNKVM"/>
-		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp">
+		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMJP.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp">
+		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/CMakeLists.txt">

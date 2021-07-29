@@ -5,14 +5,14 @@
 #include <cstring>
 
 namespace DmN::KVM {
-    uint32_t SSS::addNewName(const char* name) {
+    uint32_t SSS::addNew(const char* name) {
         // Сохраняем имя в массив и инкрементируем текущий индекс
         this->data[++this->last_index] = name;
         // Возвращаем индекс имени
         return this->last_index - 1;
     }
 
-    uint32_t SSS::addName(const char* name) {
+    uint32_t SSS::add(const char* name) {
         // Перебираем имена
         for (size_t i = 0; i < this->size; i++)
             // Сравниваем имена
@@ -20,15 +20,15 @@ namespace DmN::KVM {
                 // Если имена одинаковы то возвращаем ID имени
                 return i;
         // Добавляем новое имя если его нет
-        return this->addNewName(name);
+        return this->addNew(name);
     }
 
-    inline const char* SSS::getName(uint32_t id) {
+    inline const char* SSS::get(uint32_t id) {
         // Получаем имя по ID
         return this->data[id];
     }
 
-    uint32_t SSS::getId(const char* name) {
+    uint32_t SSS::get(const char* name) {
         // Перебираем имена
         for (size_t i = 0; i < this->size; i++)
             // Сравниваем имена
@@ -51,12 +51,12 @@ namespace DmN::KVM {
             return name;
         }
         // Иначе просто возвращаем имя
-        return this->getName(id);
+        return this->get(id);
     }
 
     uint32_t SSS::free(const char* name) {
         // Получаем ID
-        uint32_t id = this->getId(name);
+        uint32_t id = this->get(name);
         // Проверяем можем ли мы высвободить ячейку массива от имени
         if ((this->last_index - 1) == id)
             // Высвобождаем ячейку массива от имени
@@ -81,7 +81,7 @@ namespace DmN::KVM {
             delete this->data[i];
     }
 
-    uint32_t DSS::addNewName(const char* name) {
+    uint32_t DSS::addNew(const char* name) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node->next != nullptr)
@@ -92,7 +92,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    uint32_t DSS::addName(const char* name) {
+    uint32_t DSS::add(const char* name) {
         // Переменная для пустой ноды
         SaI* free_node = this->start_node;
         // Перебираем ноды
@@ -125,7 +125,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    const char* DSS::getName(uint32_t id) {
+    const char* DSS::get(uint32_t id) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         for (; id > 0; --id)
@@ -134,7 +134,7 @@ namespace DmN::KVM {
         return last_node->value;
     }
 
-    uint32_t DSS::getId(const char* name) {
+    uint32_t DSS::get(const char* name) {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node != nullptr) {

@@ -6,10 +6,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/cygdrive/c/Games/DmNKVM/main.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/main.cpp.o"
   "/cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o"
-  "/cygdrive/c/Games/DmNKVM/src/JavaParser.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.o"
   "/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o"
+  "/cygdrive/c/Games/DmNKVM/src/KVMJP.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o"
   "/cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.o"
-  "/cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp" "/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

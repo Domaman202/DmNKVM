@@ -30,6 +30,13 @@ namespace DmN::KVM {
     typedef uint32_t CI_t;
 #endif
     //
+#ifdef DMN_KVM_USE_8BIT_NAMESPACE_ID
+    typedef uint8_t NSI_t;
+#elseif DMN_KVM_USE_16BIT_NAMESPACE_ID
+    typedef uint16_t NSI_t;
+#else
+    typedef uint32_t NSI_t;
+#endif
 }
 //
 #endif

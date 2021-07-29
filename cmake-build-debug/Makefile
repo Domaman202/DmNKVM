@@ -196,33 +196,6 @@ src/DmNSTD.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.s
 .PHONY : src/DmNSTD.cpp.s
 
-src/JavaParser.o: src/JavaParser.cpp.o
-
-.PHONY : src/JavaParser.o
-
-# target to build an object file
-src/JavaParser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.o
-.PHONY : src/JavaParser.cpp.o
-
-src/JavaParser.i: src/JavaParser.cpp.i
-
-.PHONY : src/JavaParser.i
-
-# target to preprocess a source file
-src/JavaParser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.i
-.PHONY : src/JavaParser.cpp.i
-
-src/JavaParser.s: src/JavaParser.cpp.s
-
-.PHONY : src/JavaParser.s
-
-# target to generate assembly for a file
-src/JavaParser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/JavaParser.cpp.s
-.PHONY : src/JavaParser.cpp.s
-
 src/KVMConstructors.o: src/KVMConstructors.cpp.o
 
 .PHONY : src/KVMConstructors.o
@@ -249,6 +222,33 @@ src/KVMConstructors.s: src/KVMConstructors.cpp.s
 src/KVMConstructors.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.s
 .PHONY : src/KVMConstructors.cpp.s
+
+src/KVMJP.o: src/KVMJP.cpp.o
+
+.PHONY : src/KVMJP.o
+
+# target to build an object file
+src/KVMJP.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o
+.PHONY : src/KVMJP.cpp.o
+
+src/KVMJP.i: src/KVMJP.cpp.i
+
+.PHONY : src/KVMJP.i
+
+# target to preprocess a source file
+src/KVMJP.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.i
+.PHONY : src/KVMJP.cpp.i
+
+src/KVMJP.s: src/KVMJP.cpp.s
+
+.PHONY : src/KVMJP.s
+
+# target to generate assembly for a file
+src/KVMJP.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.s
+.PHONY : src/KVMJP.cpp.s
 
 src/KVMNameble.o: src/KVMNameble.cpp.o
 
@@ -277,33 +277,6 @@ src/KVMNameble.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s
 .PHONY : src/KVMNameble.cpp.s
 
-src/KVMTypes.o: src/KVMTypes.cpp.o
-
-.PHONY : src/KVMTypes.o
-
-# target to build an object file
-src/KVMTypes.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o
-.PHONY : src/KVMTypes.cpp.o
-
-src/KVMTypes.i: src/KVMTypes.cpp.i
-
-.PHONY : src/KVMTypes.i
-
-# target to preprocess a source file
-src/KVMTypes.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.i
-.PHONY : src/KVMTypes.cpp.i
-
-src/KVMTypes.s: src/KVMTypes.cpp.s
-
-.PHONY : src/KVMTypes.s
-
-# target to generate assembly for a file
-src/KVMTypes.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.s
-.PHONY : src/KVMTypes.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -319,18 +292,15 @@ help:
 	@echo "... src/DmNSTD.o"
 	@echo "... src/DmNSTD.i"
 	@echo "... src/DmNSTD.s"
-	@echo "... src/JavaParser.o"
-	@echo "... src/JavaParser.i"
-	@echo "... src/JavaParser.s"
 	@echo "... src/KVMConstructors.o"
 	@echo "... src/KVMConstructors.i"
 	@echo "... src/KVMConstructors.s"
+	@echo "... src/KVMJP.o"
+	@echo "... src/KVMJP.i"
+	@echo "... src/KVMJP.s"
 	@echo "... src/KVMNameble.o"
 	@echo "... src/KVMNameble.i"
 	@echo "... src/KVMNameble.s"
-	@echo "... src/KVMTypes.o"
-	@echo "... src/KVMTypes.i"
-	@echo "... src/KVMTypes.s"
 .PHONY : help
 
 
