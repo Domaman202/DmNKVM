@@ -2,7 +2,7 @@
 #include <iostream>
 #include <KVMJP.hpp>
 
-using namespace std;
+using namespace SDL;
 using namespace DmN::KVM::JP;
 
 int main(int argc, char *argv[]) {

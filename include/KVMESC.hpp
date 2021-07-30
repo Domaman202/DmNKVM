@@ -3,6 +3,7 @@
 #define DMNKVM_KVMESC_HPP
 
 #include <KVMConfig.hpp>
+#include <KVMNM.hpp>
 #include <KVMTypes.hpp>
 #include <KVMLLT.hpp>
 

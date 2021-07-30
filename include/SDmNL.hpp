@@ -1,12 +1,12 @@
 #pragma once
-#ifndef DMNKVM_DMNSTD_HPP
-#define DMNKVM_DMNSTD_HPP
+#ifndef DMNKVM_SDMNL_HPP
+#define DMNKVM_SDMNL_HPP
 
 #include <KVMConfig.hpp>
 
 #include <cstdint>
 
-namespace DmN::std {
+namespace DmN::SDL {
     /// Нода
     template<typename T>
     exStruct(Node) {
@@ -30,4 +30,4 @@ namespace DmN::std {
     int get_utf_8_width(unsigned char byte);
 }
 
-#endif /* DMNKVM_DMNSTD_HPP */
+#endif /* DMNKVM_SDMNL_HPP */

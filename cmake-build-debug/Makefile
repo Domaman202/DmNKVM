@@ -169,33 +169,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/DmNSTD.o: src/DmNSTD.cpp.o
-
-.PHONY : src/DmNSTD.o
-
-# target to build an object file
-src/DmNSTD.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o
-.PHONY : src/DmNSTD.cpp.o
-
-src/DmNSTD.i: src/DmNSTD.cpp.i
-
-.PHONY : src/DmNSTD.i
-
-# target to preprocess a source file
-src/DmNSTD.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.i
-.PHONY : src/DmNSTD.cpp.i
-
-src/DmNSTD.s: src/DmNSTD.cpp.s
-
-.PHONY : src/DmNSTD.s
-
-# target to generate assembly for a file
-src/DmNSTD.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.s
-.PHONY : src/DmNSTD.cpp.s
-
 src/KVMConstructors.o: src/KVMConstructors.cpp.o
 
 .PHONY : src/KVMConstructors.o
@@ -277,6 +250,33 @@ src/KVMNameble.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s
 .PHONY : src/KVMNameble.cpp.s
 
+src/SDmNL.o: src/SDmNL.cpp.o
+
+.PHONY : src/SDmNL.o
+
+# target to build an object file
+src/SDmNL.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o
+.PHONY : src/SDmNL.cpp.o
+
+src/SDmNL.i: src/SDmNL.cpp.i
+
+.PHONY : src/SDmNL.i
+
+# target to preprocess a source file
+src/SDmNL.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.i
+.PHONY : src/SDmNL.cpp.i
+
+src/SDmNL.s: src/SDmNL.cpp.s
+
+.PHONY : src/SDmNL.s
+
+# target to generate assembly for a file
+src/SDmNL.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.s
+.PHONY : src/SDmNL.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -289,9 +289,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/DmNSTD.o"
-	@echo "... src/DmNSTD.i"
-	@echo "... src/DmNSTD.s"
 	@echo "... src/KVMConstructors.o"
 	@echo "... src/KVMConstructors.i"
 	@echo "... src/KVMConstructors.s"
@@ -301,6 +298,9 @@ help:
 	@echo "... src/KVMNameble.o"
 	@echo "... src/KVMNameble.i"
 	@echo "... src/KVMNameble.s"
+	@echo "... src/SDmNL.o"
+	@echo "... src/SDmNL.i"
+	@echo "... src/SDmNL.s"
 .PHONY : help
 
 

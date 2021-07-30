@@ -1,6 +1,6 @@
-#include <DmNSTD.hpp>
+#include <SDmNL.hpp>
 
-namespace DmN::std {
+namespace DmN::SDL {
     inline unsigned int trans_two_byte(const unsigned char* bytes) {
         return ((bytes[0] & 0x1f) << 6) + (bytes[1] & 0x3f);
     }

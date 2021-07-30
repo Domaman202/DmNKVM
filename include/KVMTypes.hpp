@@ -2,8 +2,8 @@
 #ifndef DMNKVM_KVMTYPES_HPP
 #define DMNKVM_KVMTYPES_HPP
 
+#include <KVMNM.hpp>
 #include <KVMNameble.hpp>
-#include <KVMModule.hpp>
 #include <KVMLLT.hpp>
 
 #include <cstdlib>
@@ -36,14 +36,9 @@ namespace DmN::KVM {
         void* value;
     };
 
-    /// Локальная переменная
-    exStruct(LocalVariable_t) : LLT, Value_t, Nameble {
-        LocalVariable_t(SI_t name, void* value, uint8_t type, bool isCollectable) : LLT(0), Value_t(value, type, isCollectable), Nameble(name) { }
-    };
-
     /// Переменная
-    exStruct(Variable_t) : LocalVariable_t, NSObject {
-        Variable_t(SI_t name, NSI_t ns, void* value, uint8_t type, bool isCollectable) : LocalVariable_t(name, value, type, isCollectable), NSObject(ns) { }
+    exStruct(Variable_t) : LLT, Value_t, Nameble {
+        Variable_t(SI_t name, void* value, uint8_t type, bool isCollectable) : LLT(0), Value_t(value, type, isCollectable), Nameble(name) { }
     };
 
     /// Лямбда

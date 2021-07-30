@@ -3,15 +3,15 @@
 #define DMNKVM_KVMNAMEBLE_HPP
 
 #include <KVMConfig.hpp>
-#include <DmNSTD.hpp>
+#include <SDmNL.hpp>
 
 #include <cstddef>
 #include <cstdlib>
 
 namespace DmN::KVM {
     /// String and ID
-    exStruct(SaI) : std::Node<char> {
-        SaI(char* name, SI_t id, SaI* next) : std::Node<char>(name, next) {
+    exStruct(SaI) : SDL::Node<char> {
+        SaI(char* name, SI_t id, SaI* next) : SDL::Node<char>(name, next) {
             this->id = id;
             this->next = next;
         }

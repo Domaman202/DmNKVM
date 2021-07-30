@@ -2,6 +2,9 @@
 
 #include <KVMConfig.hpp>
 
-int main(int argc, char* argv[]) {
+#include <cstdio>
+#include <thread>
 
+int main(int argc, char* argv[]) {
+    printf("да -> %lu", sizeof(std::thread));
 }

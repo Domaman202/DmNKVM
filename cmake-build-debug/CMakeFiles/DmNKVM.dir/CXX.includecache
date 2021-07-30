@@ -6,16 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/DmNSTD.hpp
-KVMConfig.hpp
--
-cstdint
--
-
-../include/KVM.hpp
-KVMNameble.hpp
--
-
 ../include/KVMConfig.hpp
 cstdint
 -
@@ -30,8 +20,8 @@ KVMError.hpp
 
 ../include/KVMLLT.hpp
 
-../include/KVMModule.hpp
-KVMConfig.hpp
+../include/KVMNM.hpp
+KVMNameble.hpp
 -
 cstdint
 -
@@ -39,7 +29,7 @@ cstdint
 ../include/KVMNameble.hpp
 KVMConfig.hpp
 -
-DmNSTD.hpp
+SDmNL.hpp
 -
 cstddef
 -
@@ -47,40 +37,22 @@ cstdlib
 -
 
 ../include/KVMTypes.hpp
-KVMNameble.hpp
+KVMNM.hpp
 -
-KVMModule.hpp
+KVMNameble.hpp
 -
 KVMLLT.hpp
 -
 cstdlib
 -
 
-/cygdrive/c/Games/DmNKVM/main.cpp
+../include/SDmNL.hpp
 KVMConfig.hpp
 -
-KVM.hpp
--
-KVMTypes.hpp
--
-
-/cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp
-DmNSTD.hpp
+cstdint
 -
 
 /cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
 KVMConstructors.hpp
--
-KVMTypes.hpp
--
-
-/cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp
-KVMNameble.hpp
--
-cstdint
--
-cstddef
--
-cstring
 -
 

@@ -18,8 +18,8 @@ namespace DmN::KVM {
             virtual CI_t get(ClassBase* clazz) = 0;
             virtual ClassBase* get(CI_t id) = 0;
             //
-            virtual std::pair<ClassBase**, size_t> getParents(ClassBase* clazz) = 0;
-            virtual std::pair<ClassBase**, size_t> getParents(CI_t clazz) = 0;
+            virtual SDL::pair<ClassBase**, size_t> getParents(ClassBase* clazz) = 0;
+            virtual SDL::pair<ClassBase**, size_t> getParents(CI_t clazz) = 0;
     };
 }
 

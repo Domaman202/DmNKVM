@@ -115,18 +115,18 @@ CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp -o CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s
 
-CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o: CMakeFiles/DmNKVM.dir/flags.make
-CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o: ../src/DmNSTD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o -c /cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp
+CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o: CMakeFiles/DmNKVM.dir/flags.make
+CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o: ../src/SDmNL.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o -c /cygdrive/c/Games/DmNKVM/src/SDmNL.cpp
 
-CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp > CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.i
+CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Games/DmNKVM/src/SDmNL.cpp > CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.i
 
-CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/src/DmNSTD.cpp -o CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.s
+CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/src/SDmNL.cpp -o CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.s
 
 CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o: CMakeFiles/DmNKVM.dir/flags.make
 CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o: ../src/KVMJP.cpp
@@ -146,7 +146,7 @@ DmNKVM_OBJECTS = \
 "CMakeFiles/DmNKVM.dir/main.cpp.o" \
 "CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o" \
 "CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.o" \
-"CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o" \
+"CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o" \
 "CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o"
 
 # External object files for target DmNKVM
@@ -155,7 +155,7 @@ DmNKVM_EXTERNAL_OBJECTS =
 DmNKVM.exe: CMakeFiles/DmNKVM.dir/main.cpp.o
 DmNKVM.exe: CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o
 DmNKVM.exe: CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.o
-DmNKVM.exe: CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o
+DmNKVM.exe: CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o
 DmNKVM.exe: CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o
 DmNKVM.exe: CMakeFiles/DmNKVM.dir/build.make
 DmNKVM.exe: CMakeFiles/DmNKVM.dir/link.txt

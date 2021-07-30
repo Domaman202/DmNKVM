@@ -1,8 +1,8 @@
 #pragma once
-#ifndef DMNKVM_KVMMODULE_HPP
-#define DMNKVM_KVMMODULE_HPP
+#ifndef DMNKVM_KVMNM_HPP
+#define DMNKVM_KVMNM_HPP
 
-#include <KVMConfig.hpp>
+#include <KVMNameble.hpp>
 
 #include <cstdint>
 
@@ -15,8 +15,16 @@ namespace DmN::KVM {
 
     /// Модуль
     exStruct(Module) : Namespace {
+        /// Enum-ы
+        SDL::Node<struct EnumBase*>* enums;
+        /// Структуры
+        SDL::Node<struct StructBase*>* structures;
         /// Классы
-
+        SDL::Node<struct ClassBase*>* classes;
+        /// Функции
+        SDL::Node<struct Method_t*>* methods;
+        /// Переменные
+        SDL::Node<struct LocalVariable_t*>* variables;
     };
 
     /// (Namespace Storage) Хранилище пространств имён
@@ -79,4 +87,4 @@ namespace DmN::KVM {
     };
 }
 
-#endif /* DMNKVM_KVMMODULE_HPP */
+#endif /* DMNKVM_KVMNM_HPP */
