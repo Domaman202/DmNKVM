@@ -10,7 +10,7 @@
 
 namespace DmN::KVM {
     /// String and ID
-    struct SaI : std::Node<char> {
+    exStruct(SaI) : std::Node<char> {
         SaI(char* name, SI_t id, SaI* next) : std::Node<char>(name, next) {
             this->id = id;
             this->next = next;
@@ -23,7 +23,7 @@ namespace DmN::KVM {
     };
 
     /// Абстрактное хранилище строк
-    struct SS {
+    exStruct(SS) {
     public:
         /*!
          * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
@@ -92,7 +92,7 @@ namespace DmN::KVM {
     };
 
     /// (Static String Storage) Статическое хранилище строк
-    class SSS : SS {
+    class SSS : public SS {
     protected:
         /// Массив ID и строк
         const char** data;
@@ -118,11 +118,13 @@ namespace DmN::KVM {
     };
 
     /// (Dynamic String Storage) Динамическое хранилище строк
-    class DSS : SS {
+    class DSS : public SS {
     protected:
         /// Первая нода (всегда пуста)
         SaI* start_node = new SaI(nullptr, 0, nullptr);
     public:
+        DSS() : SS() { }
+
         SI_t addNew(const char* name) override;
         SI_t add(const char* name) override;
         SI_t get(const char *name) override;
@@ -135,7 +137,7 @@ namespace DmN::KVM {
     };
 
     /// Хрень которая содержит имя
-    struct Nameble {
+    exStruct(Nameble) {
         explicit Nameble(SI_t name) {
             this->name = name;
         }

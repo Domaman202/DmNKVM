@@ -9,13 +9,13 @@
 
 namespace DmN::KVM {
     /// Пространство имён
-    struct Namespace : Nameble {
+    exStruct(Namespace) : Nameble {
         /// Предок
         Namespace* parent;
     };
 
     /// (Namespace Storage) Хранилище пространств имён
-    struct NSStorage {
+    exStruct(NSStorage) {
         /*!
          * Добавляет новое пространство имён
          * @param ns - пространство имён для добавления
@@ -65,7 +65,7 @@ namespace DmN::KVM {
     };
 
     /// (Namespace Object) Объект который подчинаеться пространству имён
-    struct NSObject {
+    exStruct(NSObject) {
         explicit NSObject(NSI_t ns) {
             this->ns = ns;
         }

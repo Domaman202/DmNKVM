@@ -3,11 +3,12 @@
 #define DMNKVM_DMNSTD_HPP
 
 #include <cstdint>
+#include "KVMConfig.hpp"
 
 namespace DmN::std {
     /// Нода
     template<typename T>
-    struct Node {
+    exStruct(Node) {
         Node(T* value, Node<T>* next) {
             this->value = value;
             this->next = next;

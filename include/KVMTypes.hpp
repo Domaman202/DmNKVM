@@ -14,7 +14,7 @@
 
 namespace DmN::KVM {
     /// Хрень которая имеет низкоуровневый тип объекта
-    struct LLT {
+    exStruct(LLT) {
         explicit LLT(uint8_t llt) {
             this->llt = llt;
         }
@@ -23,7 +23,7 @@ namespace DmN::KVM {
     };
 
     /// Объект подвергающийся сборке мусора
-    struct GC_Object {
+    exStruct(GC_Object) {
         explicit GC_Object(bool isCollectable) {
             this->isCollectable = isCollectable;
             this->isCollected = false;
@@ -38,7 +38,7 @@ namespace DmN::KVM {
     };
 
     /// Значение
-    struct Value_t : GC_Object {
+    exStruct(Value_t) : GC_Object {
         explicit Value_t(void* value, uint8_t type, bool isCollectable) : GC_Object(isCollectable) {
             this->type = type;
             this->value = value;
@@ -50,17 +50,17 @@ namespace DmN::KVM {
     };
 
     /// Локальная переменная
-    struct LocalVariable_t : LLT, Value_t, Nameble {
+    exStruct(LocalVariable_t) : LLT, Value_t, Nameble {
         LocalVariable_t(SI_t name, void* value, uint8_t type, bool isCollectable) : LLT(0), Value_t(value, type, isCollectable), Nameble(name) { }
     };
 
     /// Переменная
-    struct Variable_t : LocalVariable_t, NSObject {
+    exStruct(Variable_t) : LocalVariable_t, NSObject {
         Variable_t(SI_t name, NSI_t ns, void* value, uint8_t type, bool isCollectable) : LocalVariable_t(name, value, type, isCollectable), NSObject(ns) { }
     };
 
     /// Лямбда
-    struct Lambda_t : LLT, GC_Object {
+    exStruct(Lambda_t) : LLT, GC_Object {
         explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t* code) : LLT(3), GC_Object(true) {
             this->descriptor = descriptor;
             this->cs = cs;
@@ -75,7 +75,7 @@ namespace DmN::KVM {
     };
 
     /// Поле
-    struct Field_t : LLT, Nameble {
+    exStruct(Field_t) : LLT, Nameble {
         explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
             this->value = value;
         }
@@ -84,7 +84,7 @@ namespace DmN::KVM {
     };
 
     /// Метод
-    struct Method_t : LLT, Nameble, NSObject {
+    exStruct(Method_t) : LLT, Nameble, NSObject {
         explicit Method_t(SI_t descriptor, NSI_t ns, uint32_t cs, uint8_t* code) : LLT(2), Nameble(descriptor), NSObject(ns) {
             this->name = descriptor;
             this->cs = cs;
@@ -99,7 +99,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Enum-а
-    struct EnumBase : LLT, Nameble, NSObject {
+    exStruct(EnumBase) : LLT, Nameble, NSObject {
         explicit EnumBase(SI_t name, NSI_t ns, Value_t** enums, uint32_t enumsCount) : LLT(4), Nameble(name), NSObject(ns)  {
             this->enums = enums;
             this->enumsCount = enumsCount;
@@ -114,7 +114,7 @@ namespace DmN::KVM {
     struct Enum_16bit_t : Enum_8bit_t { uint16_t enums_size; };
     struct Enum_32bit_t : Enum_16bit_t { uint32_t enums_size; };
 
-    struct StructBase : LLT, Nameble, NSObject {
+    exStruct(StructBase) : LLT, Nameble, NSObject {
         explicit StructBase(SI_t name, NSI_t ns, Field_t** fields, uint32_t fieldsCount, CI_t* parents, uint8_t parentsCount) : LLT(5), Nameble(name), NSObject(ns) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
@@ -136,7 +136,7 @@ namespace DmN::KVM {
     struct Struct_32bit_t : Struct_16bit_t { uint32_t fieldsCount; };
 
     /// Универсальная основа для Class-а
-    struct ClassBase : LLT, Nameble, NSObject {
+    exStruct(ClassBase) : LLT, Nameble, NSObject {
         explicit ClassBase(SI_t name, NSI_t ns, Field_t** fields, uint32_t fieldsCount, Method_t** methods, uint32_t methodsCount, CI_t* parents, uint8_t parentsCount) : LLT(6), Nameble(name), NSObject(ns) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
@@ -164,7 +164,7 @@ namespace DmN::KVM {
     struct Class_32bit_t : Class_16bit_t { uint32_t fieldsCount; uint32_t methodsCount; };
 
     /// Абстрактная куча
-    struct Heap {
+    exStruct(Heap) {
         virtual CI_t addNew(ClassBase* clazz) = 0;
         virtual CI_t add(ClassBase* clazz) = 0;
         virtual void replace(ClassBase* clazz, CI_t id) = 0;
@@ -178,7 +178,7 @@ namespace DmN::KVM {
     };
 
     /// Абстрактный загрузчик объектов
-    struct ClassLoader {
+    exStruct(ClassLoader) {
         /* JVM */
         virtual ClassBase* defineJVMClass(int8_t* bytes, size_t off, size_t len) = 0;
         virtual ClassBase* defineJVMClass(JP::Java_class_file* file) = 0;

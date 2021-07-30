@@ -2,6 +2,7 @@
 #ifndef DMNKVM_KVMCONSTRUCTORS_HPP
 #define DMNKVM_KVMCONSTRUCTORS_HPP
 
+#include <KVMConfig.hpp>
 #include <KVMTypes.hpp>
 #include <KVMError.hpp>
 
@@ -16,20 +17,20 @@ namespace DmN::KVM {
      * @param names - строки которые нужно добавить при создании
      * @return Новое хранилище строк
      */
-    DSS* allocDSS(char **names, size_t size);
+    export DSS* allocDSS(char **names, size_t size);
 
     /*!
      * Пытаеться собрать объект
      * \param obj - объект для сборки
      * \return возвращает значение из DmN::KVM::ERROR::CR
     */
-    CR tryCollect(GC_Object* obj);
+    export CR tryCollect(GC_Object* obj);
 
     /*!
      * Насильно собирает объект
      * \param obj - объект для сборки
      */
-    inline void collect(GC_Object* obj);
+    export inline void collect(GC_Object* obj);
 }
 
 #endif /* DMNKVM_KVMCONSTRUCTORS_HPP */
