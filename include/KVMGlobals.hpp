@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DMNKVM_KVM_HPP
-#define DMNKVM_KVM_HPP
+#ifndef DMNKVM_KVMGLOBALS_HPP
+#define DMNKVM_KVMGLOBALS_HPP
 
 #include <KVMNameble.hpp>
 
@@ -13,4 +13,4 @@ namespace DmN::KVM {
 #endif
 }
 
-#endif /* DMNKVM_KVM_HPP */
+#endif /* DMNKVM_KVMGLOBALS_HPP */
