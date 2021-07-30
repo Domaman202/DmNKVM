@@ -165,16 +165,16 @@ namespace DmN::KVM {
 
     /// Абстрактная куча
     struct Heap {
-        virtual CI_t addNewClass(ClassBase* clazz) = 0;
-        virtual CI_t addClass(ClassBase* clazz) = 0;
-        virtual void replaceClass(ClassBase* clazz, CI_t id) = 0;
-        virtual void removeClass(ClassBase* clazz) = 0;
-        virtual void removeClass(CI_t id) = 0;
-        virtual CI_t getClassId(ClassBase* clazz) = 0;
-        virtual ClassBase* getClass(CI_t id) = 0;
+        virtual CI_t addNew(ClassBase* clazz) = 0;
+        virtual CI_t add(ClassBase* clazz) = 0;
+        virtual void replace(ClassBase* clazz, CI_t id) = 0;
+        virtual void remove(ClassBase* clazz) = 0;
+        virtual void remove(CI_t id) = 0;
+        virtual CI_t get(ClassBase* clazz) = 0;
+        virtual ClassBase* get(CI_t id) = 0;
         //
-        virtual ::std::pair<ClassBase**, size_t> getClassParents(ClassBase* clazz) = 0;
-        virtual ::std::pair<ClassBase**, size_t> getClassParents(CI_t clazz) = 0;
+        virtual ::std::pair<ClassBase**, size_t> getParents(ClassBase* clazz) = 0;
+        virtual ::std::pair<ClassBase**, size_t> getParents(CI_t clazz) = 0;
     };
 
     /// Абстрактный загрузчик объектов
