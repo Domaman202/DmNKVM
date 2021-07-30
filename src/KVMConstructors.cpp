@@ -1,5 +1,4 @@
 #include <KVMConstructors.hpp>
-#include <KVMTypes.hpp>
 
 using namespace DmN::KVM::ERROR;
 

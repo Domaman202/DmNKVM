@@ -1,7 +1,5 @@
 #include <KVMNameble.hpp>
 
-#include <cstdint>
-#include <cstddef>
 #include <cstring>
 
 namespace DmN::KVM {
