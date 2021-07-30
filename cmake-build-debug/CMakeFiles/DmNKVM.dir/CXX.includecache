@@ -7,14 +7,12 @@
 #IncludeRegexTransform: 
 
 ../include/DmNSTD.hpp
+KVMConfig.hpp
+-
 cstdint
 -
-KVMConfig.hpp
-../include/KVMConfig.hpp
 
 ../include/KVM.hpp
-KVMTypes.hpp
--
 KVMNameble.hpp
 -
 
@@ -23,55 +21,39 @@ cstdint
 -
 
 ../include/KVMConstructors.hpp
-KVMConfig.hpp
--
 KVMTypes.hpp
 -
 KVMError.hpp
 -
-cstdint
--
 
 ../include/KVMError.hpp
 
-../include/KVMJP.hpp
-cstdio
+../include/KVMLLT.hpp
+
+../include/KVMModule.hpp
+KVMConfig.hpp
+-
+cstdint
 -
 
 ../include/KVMNameble.hpp
-DmNSTD.hpp
--
 KVMConfig.hpp
+-
+DmNSTD.hpp
 -
 cstddef
 -
 cstdlib
 -
 
-../include/KVMNamespace.hpp
-KVMNameble.hpp
--
-KVMConfig.hpp
--
-cstdint
--
-
 ../include/KVMTypes.hpp
-KVMNamespace.hpp
--
 KVMNameble.hpp
 -
-KVMConfig.hpp
+KVMModule.hpp
 -
-KVMJP.hpp
+KVMLLT.hpp
 -
-DmNSTD.hpp
--
-malloc.h
--
-cstdint
--
-utility
+cstdlib
 -
 
 /cygdrive/c/Games/DmNKVM/main.cpp

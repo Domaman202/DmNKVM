@@ -4,9 +4,9 @@
 CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/DmNSTD.hpp
 CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVM.hpp
 CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMConfig.hpp
-CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMJP.hpp
+CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMLLT.hpp
+CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMModule.hpp
 CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMNameble.hpp
-CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMNamespace.hpp
 CMakeFiles/DmNKVM.dir/main.cpp.o: ../include/KVMTypes.hpp
 CMakeFiles/DmNKVM.dir/main.cpp.o: ../main.cpp
 
@@ -18,9 +18,9 @@ CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/DmNSTD.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMConfig.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMConstructors.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMError.hpp
-CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMJP.hpp
+CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMLLT.hpp
+CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMModule.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMNameble.hpp
-CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMNamespace.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../include/KVMTypes.hpp
 CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o: ../src/KVMConstructors.cpp
 

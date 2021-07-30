@@ -2,8 +2,8 @@
 #ifndef DMNKVM_KVMNAMEBLE_HPP
 #define DMNKVM_KVMNAMEBLE_HPP
 
-#include <DmNSTD.hpp>
 #include <KVMConfig.hpp>
+#include <DmNSTD.hpp>
 
 #include <cstddef>
 #include <cstdlib>

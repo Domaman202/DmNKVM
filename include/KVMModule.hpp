@@ -1,8 +1,7 @@
 #pragma once
-#ifndef DMNKVM_KVMNAMESPACE_HPP
-#define DMNKVM_KVMNAMESPACE_HPP
+#ifndef DMNKVM_KVMMODULE_HPP
+#define DMNKVM_KVMMODULE_HPP
 
-#include <KVMNameble.hpp>
 #include <KVMConfig.hpp>
 
 #include <cstdint>
@@ -12,6 +11,12 @@ namespace DmN::KVM {
     exStruct(Namespace) : Nameble {
         /// Предок
         Namespace* parent;
+    };
+
+    /// Модуль
+    exStruct(Module) : Namespace {
+        /// Классы
+
     };
 
     /// (Namespace Storage) Хранилище пространств имён
@@ -74,4 +79,4 @@ namespace DmN::KVM {
     };
 }
 
-#endif /* DMNKVM_KVMNAMESPACE_HPP */
+#endif /* DMNKVM_KVMMODULE_HPP */

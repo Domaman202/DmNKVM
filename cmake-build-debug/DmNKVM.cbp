@@ -88,22 +88,34 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVM.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMClassLoader.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMConfig.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMConstructors.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMESC.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMError.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMHeap.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMJP.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNameble.hpp">
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMLLT.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNamespace.hpp">
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMModule.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNameble.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMTypes.hpp">

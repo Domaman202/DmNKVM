@@ -5,9 +5,9 @@ CMakeFiles/DmNKVM.dir/main.cpp.o
  ../include/DmNSTD.hpp
  ../include/KVM.hpp
  ../include/KVMConfig.hpp
- ../include/KVMJP.hpp
+ ../include/KVMLLT.hpp
+ ../include/KVMModule.hpp
  ../include/KVMNameble.hpp
- ../include/KVMNamespace.hpp
  ../include/KVMTypes.hpp
  /cygdrive/c/Games/DmNKVM/main.cpp
 CMakeFiles/DmNKVM.dir/src/DmNSTD.cpp.o
@@ -19,9 +19,9 @@ CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o
  ../include/KVMConfig.hpp
  ../include/KVMConstructors.hpp
  ../include/KVMError.hpp
- ../include/KVMJP.hpp
+ ../include/KVMLLT.hpp
+ ../include/KVMModule.hpp
  ../include/KVMNameble.hpp
- ../include/KVMNamespace.hpp
  ../include/KVMTypes.hpp
  /cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
 CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o

@@ -2,7 +2,6 @@
 #ifndef DMNKVM_KVM_HPP
 #define DMNKVM_KVM_HPP
 
-#include <KVMTypes.hpp>
 #include <KVMNameble.hpp>
 
 namespace DmN::KVM {

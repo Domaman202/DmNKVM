@@ -2,11 +2,8 @@
 #ifndef DMNKVM_KVMCONSTRUCTORS_HPP
 #define DMNKVM_KVMCONSTRUCTORS_HPP
 
-#include <KVMConfig.hpp>
 #include <KVMTypes.hpp>
 #include <KVMError.hpp>
-
-#include <cstdint>
 
 using namespace DmN::KVM::ERROR;
 

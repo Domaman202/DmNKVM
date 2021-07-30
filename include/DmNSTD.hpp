@@ -2,8 +2,9 @@
 #ifndef DMNKVM_DMNSTD_HPP
 #define DMNKVM_DMNSTD_HPP
 
+#include <KVMConfig.hpp>
+
 #include <cstdint>
-#include "KVMConfig.hpp"
 
 namespace DmN::std {
     /// Нода
