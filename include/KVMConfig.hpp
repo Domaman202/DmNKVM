@@ -43,16 +43,16 @@ namespace DmN::KVM {
 #endif /* DMN_KVM_USE_CUSTOM_SIZE_CONFIG */
 
 #ifdef USE_WIN32_EXPORT
-#define export __declspec(dllexport)
-#define exEnum(name) enum export name
-#define exStruct(name) struct export name
-#define exClass(name) class export name
+#define DMN_KVM_EXPORT __declspec(dllexport)
+#define exEnum(name) enum DMN_KVM_EXPORT name
+#define exStruct(name) struct DMN_KVM_EXPORT name
+#define exClass(name) class DMN_KVM_EXPORT name
 #elif USE_LINUX_EXPORT
 // TODO: NEED TO REALISE
 #elif USE_MAC_EXPORT
 // TODO: NEED TO REALISE
 #else
-#define export
+#define DMN_KVM_EXPORT
 #define exEnum(name) enum name
 #define exStruct(name) struct name
 #define exClass(name) class name
