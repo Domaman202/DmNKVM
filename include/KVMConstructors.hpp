@@ -21,13 +21,13 @@ namespace DmN::KVM {
      * \param obj - объект для сборки
      * \return возвращает значение из DmN::KVM::ERROR::CR
     */
-    export CR tryCollect(GC_Object* obj);
+    export CR tryCollect(GCObject* obj);
 
     /*!
      * Насильно собирает объект
      * \param obj - объект для сборки
      */
-    export inline void collect(GC_Object* obj);
+    export inline void collect(GCObject* obj);
 }
 
 #endif /* DMNKVM_KVMCONSTRUCTORS_HPP */

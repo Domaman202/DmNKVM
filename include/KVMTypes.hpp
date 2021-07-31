@@ -10,8 +10,8 @@
 
 namespace DmN::KVM {
     /// Объект подвергающийся сборке мусора
-    exStruct(GC_Object) {
-        explicit GC_Object(bool isCollectable) {
+    exStruct(GCObject) {
+        explicit GCObject(bool isCollectable) {
             this->isCollectable = isCollectable;
             this->isCollected = false;
             this->references = 0;
@@ -25,8 +25,8 @@ namespace DmN::KVM {
     };
 
     /// Значение
-    exStruct(Value_t) : GC_Object {
-        explicit Value_t(void* value, uint8_t type, bool isCollectable) : GC_Object(isCollectable) {
+    exStruct(Value_t) : GCObject {
+        explicit Value_t(void* value, uint8_t type, bool isCollectable) : GCObject(isCollectable) {
             this->type = type;
             this->value = value;
         }
@@ -42,8 +42,8 @@ namespace DmN::KVM {
     };
 
     /// Лямбда
-    exStruct(Lambda_t) : LLT, GC_Object {
-        explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t* code) : LLT(3), GC_Object(true) {
+    exStruct(Lambda_t) : LLT, GCObject {
+        explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t* code) : LLT(3), GCObject(true) {
             this->descriptor = descriptor;
             this->cs = cs;
             this->code = code;

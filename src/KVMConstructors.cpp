@@ -14,7 +14,7 @@ namespace DmN::KVM {
         return storage;
     }
 
-    CR tryCollect(GC_Object* obj) {
+    CR tryCollect(GCObject* obj) {
         // Проверяем можно ли собрать объект
         if (obj->isCollectable) {
             // Если объект собираеться проверяем кол-во ссылок
@@ -31,7 +31,7 @@ namespace DmN::KVM {
         return CR::OBJECT_NO_COLLECTABLE;
     }
 
-    inline void collect(GC_Object* obj) {
+    inline void collect(GCObject* obj) {
         // Высвобождаем память
         delete obj;
     }
