@@ -133,6 +133,9 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMTypes.cpp">
+			<Option target="DmNKVM"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/SDmNL.cpp">
 			<Option target="DmNKVM"/>
 		</Unit>

@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o"
   "CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o"
   "CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.o"
+  "CMakeFiles/DmNKVM.dir/src/KVMTypes.cpp.o"
   "CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o"
   "DmNKVM.exe"
   "DmNKVM.pdb"
