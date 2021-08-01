@@ -137,29 +137,103 @@ namespace DmN::KVM {
                                                                                                      parents,
                                                                                                      parentsCount),
                                                                                            NSObject(ns) {}
-    }
+    };
 
     struct Class_8bit_t : ClassBase {
+        explicit Class_8bit_t(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, fields,
+                                                                                                      fieldsCount,
+                                                                                                      methods,
+                                                                                                      methodsCount,
+                                                                                                      parents,
+                                                                                                      parentsCount) {
+            this->fieldsCount = fieldsCount;
+            this->methodsCount = methodsCount;
+        }
+
         uint8_t fieldsCount;
         uint8_t methodsCount;
     };
+
     struct Class_16bit_t : Class_8bit_t {
+        explicit Class_16bit_t(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_8bit_t(name, fields,
+                                                                                                          fieldsCount,
+                                                                                                          methods,
+                                                                                                          methodsCount,
+                                                                                                          parents,
+                                                                                                          parentsCount) {
+            this->fieldsCount = fieldsCount;
+            this->methodsCount = methodsCount;
+        }
+
         uint16_t fieldsCount;
         uint16_t methodsCount;
     };
+
     struct Class_32bit_t : Class_16bit_t {
+        explicit Class_32bit_t(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_16bit_t(name, fields,
+                                                                                                           fieldsCount,
+                                                                                                           methods,
+                                                                                                           methodsCount,
+                                                                                                           parents,
+                                                                                                           parentsCount) {
+            this->fieldsCount = fieldsCount;
+            this->methodsCount = methodsCount;
+        }
+
         uint32_t fieldsCount;
         uint32_t methodsCount;
     };
+
     struct NSClass_8bit_t : NSClassBase {
+        explicit NSClass_8bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                                uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClassBase(name, ns,
+                                                                                                          fields,
+                                                                                                          fieldsCount,
+                                                                                                          methods,
+                                                                                                          methodsCount,
+                                                                                                          parents,
+                                                                                                          parentsCount) {
+            this->fieldsCount = fieldsCount;
+            this->methodsCount = methodsCount;
+        }
+
         uint8_t fieldsCount;
         uint8_t methodsCount;
     };
+
     struct NSClass_16bit_t : NSClass_8bit_t {
+        explicit NSClass_16bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                                 uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClass_8bit_t(name, ns,
+                                                                                                              fields,
+                                                                                                              fieldsCount,
+                                                                                                              methods,
+                                                                                                              methodsCount,
+                                                                                                              parents,
+                                                                                                              parentsCount) {
+            this->fieldsCount = fieldsCount;
+            this->methodsCount = methodsCount;
+        }
+
         uint16_t fieldsCount;
         uint16_t methodsCount;
     };
+
     struct NSClass_32bit_t : NSClass_16bit_t {
+        explicit NSClass_32bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                                 uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClass_16bit_t(name, ns,
+                                                                                                               fields,
+                                                                                                               fieldsCount,
+                                                                                                               methods,
+                                                                                                               methodsCount,
+                                                                                                               parents,
+                                                                                                               parentsCount) {
+            this->fieldsCount = fieldsCount;
+            this->methodsCount = methodsCount;
+        }
+
         uint32_t fieldsCount;
         uint32_t methodsCount;
     };

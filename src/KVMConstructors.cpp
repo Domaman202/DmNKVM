@@ -3,7 +3,31 @@
 using namespace DmN::KVM::ERROR;
 
 namespace DmN::KVM {
-    SSS* allocSSS(char **names, size_t size) {
+    ClassBase* allocClass8B(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
+        return new Class_8bit_t(name, fields, fieldsCount, methods, methodsCount, parents, parentsCount);
+    }
+
+    ClassBase* allocClass16B(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
+        return new Class_16bit_t(name, fields, fieldsCount, methods, methodsCount, parents, parentsCount);
+    }
+
+    ClassBase* allocClass32B(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
+        return new Class_32bit_t(name, fields, fieldsCount, methods, methodsCount, parents, parentsCount);
+    }
+
+    NSClassBase* allocNSClass8B(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
+        return new NSClass_8bit_t(name, ns, fields, fieldsCount, methods, methodsCount, parents, parentsCount);
+    }
+
+    NSClassBase* allocNSClass16B(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
+        return new NSClass_16bit_t(name, ns, fields, fieldsCount, methods, methodsCount, parents, parentsCount);
+    }
+
+    NSClassBase* allocNSClass32B(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
+        return new NSClass_32bit_t(name, ns, fields, fieldsCount, methods, methodsCount, parents, parentsCount);
+    }
+
+    SS* allocSSS(char **names, size_t size) {
         // Создаём хранилище строк
         SSS* storage = new SSS(size);
         // Пихаем имена
@@ -13,7 +37,7 @@ namespace DmN::KVM {
         return storage;
     }
 
-    DSS* allocDSS(char **names, size_t size) {
+    SS* allocDSS(char **names, size_t size) {
         // Создаём хранилище строк
         auto* storage = new DSS;
         // Пихаем имена
