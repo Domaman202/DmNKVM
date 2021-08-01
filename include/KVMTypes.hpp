@@ -10,7 +10,7 @@
 
 namespace DmN::KVM {
     /// Объект подвергающийся сборке мусора
-    exStruct(GCObject) {
+    eStruct(GCObject) {
         explicit GCObject(bool isCollectable) {
             this->isCollectable = isCollectable;
             this->isCollected = false;
@@ -25,7 +25,7 @@ namespace DmN::KVM {
     };
 
     /// Значение
-    exStruct(Value_t) : GCObject {
+    eStruct(Value_t) : GCObject {
         explicit Value_t(void* value, uint8_t type, bool isCollectable) : GCObject(isCollectable) {
             this->type = type;
             this->value = value;
@@ -37,12 +37,12 @@ namespace DmN::KVM {
     };
 
     /// Переменная
-    exStruct(Variable_t) : LLT, Value_t, Nameble {
+    eStruct(Variable_t) : LLT, Value_t, Nameble {
         Variable_t(SI_t name, void* value, uint8_t type, bool isCollectable) : LLT(0), Value_t(value, type, isCollectable), Nameble(name) { }
     };
 
     /// Лямбда
-    exStruct(Lambda_t) : LLT, GCObject {
+    eStruct(Lambda_t) : LLT, GCObject {
         explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t* code) : LLT(3), GCObject(true) {
             this->descriptor = descriptor;
             this->cs = cs;
@@ -57,7 +57,7 @@ namespace DmN::KVM {
     };
 
     /// Поле
-    exStruct(Field_t) : LLT, Nameble {
+    eStruct(Field_t) : LLT, Nameble {
         explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
             this->value = value;
         }
@@ -66,7 +66,7 @@ namespace DmN::KVM {
     };
 
     /// Метод
-    exStruct(Method_t) : LLT, Nameble, NSObject {
+    eStruct(Method_t) : LLT, Nameble, NSObject {
         explicit Method_t(SI_t descriptor, NSI_t ns, uint32_t cs, uint8_t* code) : LLT(2), Nameble(descriptor), NSObject(ns) {
             this->name = descriptor;
             this->cs = cs;

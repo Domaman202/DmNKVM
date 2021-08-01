@@ -7,9 +7,9 @@
 namespace DmN::KVM {
 #ifdef DMN_KVM_USE_GLOBAL_NAME_STORAGES
     /// (Global Name Storage) Глобальное хранилище имён
-    SS* GNS = new DSS();
+    DMN_KVM_EXPORT SS* GNS = new DSS();
     /// (Global Descriptor Storage) Глобальное хранилище дескрипторов
-    SS* GDS = new DSS();
+    DMN_KVM_EXPORT SS* GDS = new DSS();
 #endif
 }
 

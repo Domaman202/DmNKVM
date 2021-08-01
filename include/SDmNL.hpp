@@ -9,7 +9,7 @@
 namespace DmN::SDL {
     /// Нода
     template<typename T>
-    exStruct(Node) {
+    eStruct(Node) {
         Node(T* value, Node<T>* next) {
             this->value = value;
             this->next = next;

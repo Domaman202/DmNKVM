@@ -4,7 +4,7 @@
 
 namespace DmN::KVM::ERROR {
     /// (Collect Result) Результат сборки памяти
-    exEnum(CR) {
+    eEnum(CR) {
         /// Память освобождена успешно
         SUCCESS = 0,
         /// Объект нельзя собрать

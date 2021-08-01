@@ -4,7 +4,7 @@
 
 namespace DmN::KVM {
     /// Хрень которая имеет низкоуровневый тип объекта
-    exStruct(LLT) {
+    eStruct(LLT) {
             explicit LLT(uint8_t llt) {
                 this->llt = llt;
             }

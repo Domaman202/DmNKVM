@@ -8,42 +8,42 @@
 
 namespace DmN::KVM {
     /// Пространство имён
-    exStruct(Namespace) : Nameble {
+    eStruct(Namespace) : Nameble {
         /// Предок
         Namespace *parent;
     };
 
-    exStruct(ESModule) : Namespace {
+    eStruct(ESModule) : Namespace {
         /// Enum-ы
         SDL::Node<struct EnumBase *> *enums;
     };
 
-    exStruct(SSModule) : Namespace {
+    eStruct(SSModule) : Namespace {
         /// Структуры
         SDL::Node<struct StructBase *> *structures;
     };
 
-    exStruct(CSModule) : Namespace {
+    eStruct(CSModule) : Namespace {
         /// Классы
         SDL::Node<struct ClassBase *> *classes;
     };
 
-    exStruct(FSModule) : Namespace {
+    eStruct(FSModule) : Namespace {
         /// Переменные
         SDL::Node<struct LocalVariable_t *> *variables;
     };
 
-    exStruct(MSModule) : Namespace {
+    eStruct(MSModule) : Namespace {
         /// Функции
         SDL::Node<struct Method_t *> *methods;
     };
 
     /// Модуль
-    exStruct(Module) : ESModule, SSModule, CSModule, FSModule, MSModule {
+    eStruct(Module) : ESModule, SSModule, CSModule, FSModule, MSModule {
     };
 
     /// (Namespace Storage) Хранилище пространств имён
-    exStruct(NSStorage) {
+    eStruct(NSStorage) {
         /*!
          * Добавляет новое пространство имён
          * @param ns - пространство имён для добавления
@@ -93,7 +93,7 @@ namespace DmN::KVM {
     };
 
     /// (Namespace Object) Объект который подчинаеться пространству имён
-    exStruct(NSObject) {
+    eStruct(NSObject) {
         explicit NSObject(NSI_t ns) {
             this->ns = ns;
         }

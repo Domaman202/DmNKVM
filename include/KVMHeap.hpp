@@ -9,7 +9,7 @@
 
 namespace DmN::KVM {
     /// Абстрактная куча
-    exStruct(Heap) {
+    eStruct(Heap) {
             virtual CI_t addNew(ClassBase* clazz) = 0;
             virtual CI_t add(ClassBase* clazz) = 0;
             virtual void replace(ClassBase* clazz, CI_t id) = 0;

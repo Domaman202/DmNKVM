@@ -11,7 +11,7 @@
 
 namespace DmN::KVM {
     /// Универсальная основа для Enum-а
-    exStruct(EnumBase) : LLT, Nameble {
+    eStruct(EnumBase) : LLT, Nameble {
         explicit EnumBase(SI_t name,
                           Value_t **enums,
                           uint32_t enumsCount) : LLT(4), Nameble(name) {
@@ -25,7 +25,7 @@ namespace DmN::KVM {
         uint32_t enumsCount: 8;
     };
 
-    exStruct(NSEnumBase) : EnumBase, NSObject {
+    eStruct(NSEnumBase) : EnumBase, NSObject {
         explicit NSEnumBase(SI_t name,
                             NSI_t ns,
                             Value_t **enums,
@@ -51,7 +51,7 @@ namespace DmN::KVM {
         uint32_t enums_size;
     };
 
-    exStruct(StructBase) : LLT, Nameble {
+    eStruct(StructBase) : LLT, Nameble {
         explicit StructBase(SI_t name,
                             Field_t **fields,
                             uint32_t fieldsCount,
@@ -73,7 +73,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    exStruct(NSStructBase) : StructBase, NSObject {
+    eStruct(NSStructBase) : StructBase, NSObject {
         explicit NSStructBase(SI_t name,
                               NSI_t ns,
                               Field_t **fields,
@@ -103,7 +103,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    exStruct(ClassBase) : LLT, Nameble {
+    eStruct(ClassBase) : LLT, Nameble {
         explicit ClassBase(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                            uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLT(6), Nameble(name) {
             this->fields = fields;
@@ -128,7 +128,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    exStruct(NSClassBase) : ClassBase, NSObject {
+    eStruct(NSClassBase) : ClassBase, NSObject {
         explicit NSClassBase(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, fields,
                                                                                                      fieldsCount,
