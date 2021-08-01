@@ -3,13 +3,22 @@
 using namespace DmN::KVM::ERROR;
 
 namespace DmN::KVM {
+    SSS* allocSSS(char **names, size_t size) {
+        // Создаём хранилище строк
+        SSS* storage = new SSS(size);
+        // Пихаем имена
+        while (size != 0)
+            storage->addNew(names[--size]);
+        // Возвращаем хранилище строк
+        return storage;
+    }
+
     DSS* allocDSS(char **names, size_t size) {
         // Создаём хранилище строк
         auto* storage = new DSS;
         // Пихаем имена
-        size--;
-        for (; size != 0; size--)
-            storage->addNew(names[size]);
+        while (size != 0)
+            storage->addNew(names[--size]);
         // Возвращаем хранилище строк
         return storage;
     }
