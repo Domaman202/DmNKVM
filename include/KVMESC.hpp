@@ -30,25 +30,54 @@ namespace DmN::KVM {
                             NSI_t ns,
                             Value_t **enums,
                             uint32_t enumsCount) : EnumBase(name, enums, enumsCount), NSObject(ns) {}
-    }
+    };
 
     struct Enum_8bit_t : EnumBase {
-        uint8_t enums_size;
+        explicit Enum_8bit_t(SI_t name, Value_t **enums, uint32_t enumsCount) : EnumBase(name, enums, enumsCount) {
+            this->enumsCount = enumsCount;
+        }
+
+        uint8_t enumsCount;
     };
+
     struct Enum_16bit_t : Enum_8bit_t {
-        uint16_t enums_size;
+        explicit Enum_16bit_t(SI_t name, Value_t **enums, uint32_t enumsCount) : Enum_8bit_t(name, enums, enumsCount) {
+            this->enumsCount = enumsCount;
+        }
+
+        uint16_t enumsCount;
     };
+
     struct Enum_32bit_t : Enum_16bit_t {
-        uint32_t enums_size;
+        explicit Enum_32bit_t(SI_t name, Value_t **enums, uint32_t enumsCount) : Enum_16bit_t(name, enums, enumsCount) {
+            this->enumsCount = enumsCount;
+        }
+
+        uint32_t enumsCount;
     };
+
     struct NSEnum_8bit_t : NSEnumBase {
-        uint8_t enums_size;
+        explicit NSEnum_8bit_t(SI_t name, NSI_t ns, Value_t **enums, uint32_t enumsCount) : NSEnumBase(name, ns, enums, enumsCount) {
+            this->enumsCount = enumsCount;
+        }
+
+        uint8_t enumsCount;
     };
+
     struct NSEnum_16bit_t : NSEnum_8bit_t {
-        uint16_t enums_size;
+        explicit NSEnum_16bit_t(SI_t name, NSI_t ns, Value_t **enums, uint32_t enumsCount) : NSEnum_8bit_t(name, ns, enums, enumsCount) {
+            this->enumsCount = enumsCount;
+        }
+
+        uint16_t enumsCount;
     };
+
     struct NSEnum_32bit_t : NSEnum_16bit_t {
-        uint32_t enums_size;
+        explicit NSEnum_32bit_t(SI_t name, NSI_t ns, Value_t **enums, uint32_t enumsCount) : NSEnum_16bit_t(name, ns, enums, enumsCount) {
+            this->enumsCount = enumsCount;
+        }
+
+        uint32_t enumsCount;
     };
 
     eStruct(StructBase) : LLT, Nameble {
@@ -84,21 +113,70 @@ namespace DmN::KVM {
     };
 
     struct Struct_8bit_t : StructBase {
+        explicit Struct_8bit_t(SI_t name,
+                               Field_t **fields,
+                               uint32_t fieldsCount,
+                               CI_t *parents,
+                               uint8_t parentsCount) : StructBase(name, fields, fieldsCount, parents, parentsCount) {
+            this->fieldsCount = fieldsCount;
+        }
+
         uint8_t fieldsCount;
     };
+
     struct Struct_16bit_t : Struct_8bit_t {
+        explicit Struct_16bit_t(SI_t name,
+                                Field_t **fields,
+                                uint32_t fieldsCount,
+                                CI_t *parents,
+                                uint8_t parentsCount) : Struct_8bit_t(name, fields, fieldsCount, parents,
+                                                                      parentsCount) {
+            this->fieldsCount = fieldsCount;
+        }
+
         uint16_t fieldsCount;
     };
+
     struct Struct_32bit_t : Struct_16bit_t {
+        explicit Struct_32bit_t(SI_t name,
+                                Field_t **fields,
+                                uint32_t fieldsCount,
+                                CI_t *parents,
+                                uint8_t parentsCount) : Struct_16bit_t(name, fields, fieldsCount, parents,
+                                                                       parentsCount) {
+            this->fieldsCount = fieldsCount;
+        }
+
         uint32_t fieldsCount;
     };
+
     struct NSStruct_8bit_t : NSStructBase {
+        explicit NSStruct_8bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
+                                 uint8_t parentsCount) : NSStructBase(name, ns, fields, fieldsCount, parents,
+                                                                      parentsCount) {
+            this->fieldsCount = fieldsCount;
+        }
+
         uint8_t fieldsCount;
     };
+
     struct NSStruct_16bit_t : NSStruct_8bit_t {
+        explicit NSStruct_16bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
+                                  uint8_t parentsCount) : NSStruct_8bit_t(name, ns, fields, fieldsCount, parents,
+                                                                          parentsCount) {
+            this->fieldsCount = fieldsCount;
+        }
+
         uint16_t fieldsCount;
     };
+
     struct NSStruct_32bit_t : NSStruct_16bit_t {
+        explicit NSStruct_32bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
+                                  uint8_t parentsCount) : NSStruct_16bit_t(name, ns, fields, fieldsCount, parents,
+                                                                           parentsCount) {
+            this->fieldsCount = fieldsCount;
+        }
+
         uint32_t fieldsCount;
     };
 
