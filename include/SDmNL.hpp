@@ -9,7 +9,7 @@
 namespace DmN::SDL {
     /// Нода
     template<typename T>
-    eStruct(Node) {
+    DMN_KVM_ES(Node) {
         Node(T* value, Node<T>* next) {
             this->value = value;
             this->next = next;

@@ -10,7 +10,7 @@
 
 namespace DmN::KVM {
     /// String and ID
-    eStruct(SaI) : SDL::Node<char> {
+    DMN_KVM_ES(SaI) : SDL::Node<char> {
         SaI(char* name, SI_t id, SaI* next) : SDL::Node<char>(name, next) {
             this->id = id;
             this->next = next;
@@ -23,7 +23,7 @@ namespace DmN::KVM {
     };
 
     /// Абстрактное хранилище строк
-    eStruct(SS) {
+    DMN_KVM_ES(SS) {
         /*!
          * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
          * \param name - имя которое нужно добавить
@@ -136,7 +136,7 @@ namespace DmN::KVM {
     };
 
     /// Хрень которая содержит имя
-    eStruct(Nameble) {
+    DMN_KVM_ES(Nameble) {
         explicit Nameble(SI_t name) {
             this->name = name;
         }

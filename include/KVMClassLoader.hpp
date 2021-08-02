@@ -7,7 +7,7 @@
 
 namespace DmN::KVM {
     /// Абстрактный загрузчик объектов
-    eStruct(ClassLoader) {
+    DMN_KVM_ES(ClassLoader) {
             /* JVM */
             virtual ClassBase* defineJVMClass(int8_t* bytes, size_t off, size_t len) = 0;
             virtual ClassBase* defineJVMClass(JP::Java_class_file* file) = 0;

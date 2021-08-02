@@ -11,7 +11,7 @@
 
 namespace DmN::KVM {
     /// Универсальная основа для Enum-а
-    eStruct(EnumBase) : LLT, Nameble {
+    DMN_KVM_ES(EnumBase) : LLT, Nameble {
         explicit EnumBase(SI_t name,
                           Value_t **enums,
                           uint32_t enumsCount) : LLT(4), Nameble(name) {
@@ -25,7 +25,7 @@ namespace DmN::KVM {
         uint32_t enumsCount: 8;
     };
 
-    eStruct(NSEnumBase) : EnumBase, NSObject {
+    DMN_KVM_ES(NSEnumBase) : EnumBase, NSObject {
         explicit NSEnumBase(SI_t name,
                             NSI_t ns,
                             Value_t **enums,
@@ -80,7 +80,7 @@ namespace DmN::KVM {
         uint32_t enumsCount;
     };
 
-    eStruct(StructBase) : LLT, Nameble {
+    DMN_KVM_ES(StructBase) : LLT, Nameble {
         explicit StructBase(SI_t name,
                             Field_t **fields,
                             uint32_t fieldsCount,
@@ -102,7 +102,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    eStruct(NSStructBase) : StructBase, NSObject {
+    DMN_KVM_ES(NSStructBase) : StructBase, NSObject {
         explicit NSStructBase(SI_t name,
                               NSI_t ns,
                               Field_t **fields,
@@ -181,7 +181,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    eStruct(ClassBase) : LLT, Nameble {
+    DMN_KVM_ES(ClassBase) : LLT, Nameble {
         explicit ClassBase(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                            uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLT(6), Nameble(name) {
             this->fields = fields;
@@ -206,7 +206,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    eStruct(NSClassBase) : ClassBase, NSObject {
+    DMN_KVM_ES(NSClassBase) : ClassBase, NSObject {
         explicit NSClassBase(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, fields,
                                                                                                      fieldsCount,
