@@ -1,15 +1,21 @@
+#ifndef DMN_KVM_NO_PRAGMA
 #pragma once
+#endif /* DMN_KVM_NO_USE_PRAGMA*/
 #ifndef DMNKVM_KVMESC_HPP
 #define DMNKVM_KVMESC_HPP
 
 #include <KVMConfig.hpp>
-#include <KVMNM.hpp>
 #include <KVMTypes.hpp>
 #include <KVMLLT.hpp>
+#include <KVMNM.hpp>
 
 #include <cstdint>
 
 namespace DmN::KVM {
+    DMN_KVM_ES(Instanceble) { // TODO: NEED TO REALIZE
+        virtual struct Object* newInstance() = 0;
+    };
+
     /// Универсальная основа для Enum-а
     DMN_KVM_ES(EnumBase) : LLT, Nameble {
         explicit EnumBase(SI_t name,

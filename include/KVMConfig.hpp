@@ -1,6 +1,10 @@
+#ifndef DMN_KVM_NO_PRAGMA
 #pragma once
+#endif /* DMN_KVM_NO_USE_PRAGMA*/
 #ifndef DMNKVM_KVMCONFIG_HPP
 #define DMNKVM_KVMCONFIG_HPP
+
+#include <DmNPlatformConfig.h>
 
 #include <cstdint>
 
@@ -41,24 +45,5 @@ namespace DmN::KVM {
 }
 
 #endif /* DMN_KVM_USE_CUSTOM_SIZE_CONFIG */
-
-#ifdef USE_WIN32_EXPORT
-#define DMN_KVM_EXPORT __declspec(dllexport)
-#define DMN_KVM_E(type, name) DMN_KVM_EXPORT type name
-#define DMN_KVM_EE(name) DMN_KVM_E(enum, name)
-#define DMN_KVM_ES(name) DMN_KVM_E(struct, name)
-#define DMN_KVM_EC(name) DMN_KVM_E(class, name)
-#elif USE_LINUX_EXPORT
-// TODO: NEED TO REALISE
-#elif USE_MAC_EXPORT
-// TODO: NEED TO REALISE
-#else
-#define DMN_KVM_EXPORT
-#define DMN_KVM_E(type, name) type name
-#define DMN_KVM_EI(type, name, init) type name = init
-#define DMN_KVM_EE(name) enum name
-#define DMN_KVM_ES(name) struct name
-#define DMN_KVM_EC(name) class name
-#endif /* USE_WIN32_EXPORT */
 
 #endif /* DMNKVM_KVMCONFIG_HPP */

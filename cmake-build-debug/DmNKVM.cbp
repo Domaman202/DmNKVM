@@ -45,6 +45,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
@@ -67,6 +68,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
@@ -97,9 +99,6 @@
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMError.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
-		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMGlobals.hpp">
-			<Option target="DmNKVM"/>
-		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMHeap.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
@@ -113,6 +112,9 @@
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNameble.hpp">
+			<Option target="DmNKVM"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMObj.hpp">
 			<Option target="DmNKVM"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMTypes.hpp">

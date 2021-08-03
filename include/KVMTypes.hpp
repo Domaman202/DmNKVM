@@ -1,4 +1,6 @@
+#ifndef DMN_KVM_NO_PRAGMA
 #pragma once
+#endif /* DMN_KVM_NO_USE_PRAGMA*/
 #ifndef DMNKVM_KVMTYPES_HPP
 #define DMNKVM_KVMTYPES_HPP
 
@@ -48,6 +50,7 @@ namespace DmN::KVM {
             this->cs = cs;
             this->code = code;
         }
+
         /// ID дескриптора
         SI_t descriptor;
         /// (Code Size) Размер байт-кода
@@ -61,23 +64,41 @@ namespace DmN::KVM {
         explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
             this->value = value;
         }
+
         /// Значение
         Value_t* value;
     };
 
     /// Метод
     DMN_KVM_ES(Method_t) : LLT, Nameble, NSObject {
-        explicit Method_t(SI_t descriptor, NSI_t ns, uint32_t cs, uint8_t* code) : LLT(2), Nameble(descriptor), NSObject(ns) {
+        explicit Method_t(SI_t descriptor, NSI_t ns) : LLT(2), Nameble(descriptor), NSObject(ns) {
             this->name = descriptor;
+        }
+
+        /// ID дескриптора
+        SI_t name;
+    };
+
+    DMN_KVM_ES(BCMethod) : Method_t {
+        explicit BCMethod(SI_t descriptor, NSI_t ns, uint32_t cs, uint8_t* code) : Method_t(descriptor, ns) {
             this->cs = cs;
             this->code = code;
         }
-        /// ID дескриптора
-        SI_t name;
+
         /// (Code Size) Размер байт-кода
         uint32_t cs;
         /// Байт-код
         uint8_t* code;
+    };
+
+    DMN_KVM_ES(NMethod) : Method_t {
+        explicit NMethod(SI_t descriptor, NSI_t ns) : Method_t(descriptor, ns) { }
+
+        // TODO: NEED TO ADD EXECUTE FUNCTION
+    };
+
+    struct NRMethod : NMethod {
+        // TODO: NEED TO REALIZE
     };
 }
 

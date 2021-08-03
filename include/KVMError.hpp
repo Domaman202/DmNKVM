@@ -1,4 +1,6 @@
+#ifndef DMN_KVM_NO_PRAGMA
 #pragma once
+#endif /* DMN_KVM_NO_USE_PRAGMA*/
 #ifndef DMNKVM_KVMERROR_HPP
 #define DMNKVM_KVMERROR_HPP
 

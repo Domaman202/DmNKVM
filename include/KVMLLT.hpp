@@ -1,4 +1,6 @@
-#pragma
+#ifndef DMN_KVM_NO_PRAGMA
+#pragma once
+#endif /* DMN_KVM_NO_USE_PRAGMA*/
 #ifndef DMNKVM_LLT_H
 #define DMNKVM_LLT_H
 
