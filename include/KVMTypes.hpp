@@ -94,7 +94,8 @@ namespace DmN::KVM {
     DMN_KVM_ES(NMethod) : Method_t {
         explicit NMethod(SI_t descriptor, NSI_t ns) : Method_t(descriptor, ns) { }
 
-        // TODO: NEED TO ADD EXECUTE FUNCTION
+        virtual Value_t* execute(Value_t** args) = 0;
+        virtual Value_t* execute(void* obj, Value_t** args) = 0;
     };
 
     struct NRMethod : NMethod {
