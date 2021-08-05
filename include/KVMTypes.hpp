@@ -98,8 +98,22 @@ namespace DmN::KVM {
         virtual Value_t* execute(void* obj, Value_t** args) = 0;
     };
 
-    struct NRMethod : NMethod {
-        // TODO: NEED TO REALIZE
+    typedef Value_t* (KVMMethod) (void* obj, Value_t** args);
+
+    DMN_KVM_ES(NRMethod) : NMethod {
+        explicit NRMethod(KVMMethod* method, SI_t descriptor, NSI_t ns) : NMethod(descriptor, ns) {
+            this->ref = method;
+        }
+
+        Value_t * execute(Value_t **args) override {
+            return ref(nullptr, args);
+        }
+
+        Value_t * execute(void *obj, Value_t **args) override {
+            return ref(obj, args);
+        }
+
+        KVMMethod* ref;
     };
 }
 
