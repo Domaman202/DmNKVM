@@ -49,5 +49,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/DmNKVM.dir/DependInfo.cmake"
+  "CMakeFiles/DmNKVMExe.dir/DependInfo.cmake"
+  "CMakeFiles/DmNKVMMo.dir/DependInfo.cmake"
+  "CMakeFiles/DmNKVMSh.dir/DependInfo.cmake"
+  "CMakeFiles/DmNKVMSt.dir/DependInfo.cmake"
   )

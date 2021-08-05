@@ -13,4 +13,7 @@ else()
     include_directories(variants/compiler/other)
 endif()
 
-add_executable(DmNKVM main.cpp ${HEADER} ${SOURCE})
+add_library(DmNKVMSt STATIC ${HEADER} ${SOURCE})
+add_library(DmNKVMSh SHARED ${HEADER} ${SOURCE})
+add_library(DmNKVMMo MODULE ${HEADER} ${SOURCE})
+add_executable(DmNKVMExe main.cpp ${HEADER} ${SOURCE})

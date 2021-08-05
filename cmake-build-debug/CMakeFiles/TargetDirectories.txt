@@ -1,3 +1,6 @@
-/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVM.dir
+/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVMExe.dir
+/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVMMo.dir
+/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVMSh.dir
+/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/DmNKVMSt.dir

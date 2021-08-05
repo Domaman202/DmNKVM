@@ -63,7 +63,10 @@ CMAKE_BINARY_DIR = /cygdrive/c/Games/DmNKVM/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/DmNKVM.dir/all
+all: CMakeFiles/DmNKVMExe.dir/all
+all: CMakeFiles/DmNKVMMo.dir/all
+all: CMakeFiles/DmNKVMSh.dir/all
+all: CMakeFiles/DmNKVMSt.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +74,115 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/DmNKVM.dir/clean
+clean: CMakeFiles/DmNKVMExe.dir/clean
+clean: CMakeFiles/DmNKVMMo.dir/clean
+clean: CMakeFiles/DmNKVMSh.dir/clean
+clean: CMakeFiles/DmNKVMSt.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/DmNKVM.dir
+# Target rules for target CMakeFiles/DmNKVMExe.dir
 
 # All Build rule for target.
-CMakeFiles/DmNKVM.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target DmNKVM"
-.PHONY : CMakeFiles/DmNKVM.dir/all
+CMakeFiles/DmNKVMExe.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target DmNKVMExe"
+.PHONY : CMakeFiles/DmNKVMExe.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/DmNKVM.dir/rule: cmake_check_build_system
+CMakeFiles/DmNKVMExe.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DmNKVM.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DmNKVMExe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/DmNKVM.dir/rule
+.PHONY : CMakeFiles/DmNKVMExe.dir/rule
 
 # Convenience name for target.
-DmNKVM: CMakeFiles/DmNKVM.dir/rule
-.PHONY : DmNKVM
+DmNKVMExe: CMakeFiles/DmNKVMExe.dir/rule
+.PHONY : DmNKVMExe
 
 # clean rule for target.
-CMakeFiles/DmNKVM.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/clean
-.PHONY : CMakeFiles/DmNKVM.dir/clean
+CMakeFiles/DmNKVMExe.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/clean
+.PHONY : CMakeFiles/DmNKVMExe.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/DmNKVMMo.dir
+
+# All Build rule for target.
+CMakeFiles/DmNKVMMo.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=7,8,9,10,11 "Built target DmNKVMMo"
+.PHONY : CMakeFiles/DmNKVMMo.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/DmNKVMMo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DmNKVMMo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/DmNKVMMo.dir/rule
+
+# Convenience name for target.
+DmNKVMMo: CMakeFiles/DmNKVMMo.dir/rule
+.PHONY : DmNKVMMo
+
+# clean rule for target.
+CMakeFiles/DmNKVMMo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/clean
+.PHONY : CMakeFiles/DmNKVMMo.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/DmNKVMSh.dir
+
+# All Build rule for target.
+CMakeFiles/DmNKVMSh.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=12,13,14,15,16 "Built target DmNKVMSh"
+.PHONY : CMakeFiles/DmNKVMSh.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/DmNKVMSh.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DmNKVMSh.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/DmNKVMSh.dir/rule
+
+# Convenience name for target.
+DmNKVMSh: CMakeFiles/DmNKVMSh.dir/rule
+.PHONY : DmNKVMSh
+
+# clean rule for target.
+CMakeFiles/DmNKVMSh.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/clean
+.PHONY : CMakeFiles/DmNKVMSh.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/DmNKVMSt.dir
+
+# All Build rule for target.
+CMakeFiles/DmNKVMSt.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=17,18,19,20,21 "Built target DmNKVMSt"
+.PHONY : CMakeFiles/DmNKVMSt.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/DmNKVMSt.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/DmNKVMSt.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/DmNKVMSt.dir/rule
+
+# Convenience name for target.
+DmNKVMSt: CMakeFiles/DmNKVMSt.dir/rule
+.PHONY : DmNKVMSt
+
+# clean rule for target.
+CMakeFiles/DmNKVMSt.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/clean
+.PHONY : CMakeFiles/DmNKVMSt.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

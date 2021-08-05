@@ -17,16 +17,6 @@
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
 				<Option type="4"/>
@@ -37,31 +27,18 @@
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="DmNKVM">
-				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/DmNKVM.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="rebuild_cache">
 				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
-					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVM"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
 					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="DmNKVM/fast">
-				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/DmNKVM.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="DmNKVMExe">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/DmNKVMExe.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -77,7 +54,168 @@
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVM/fast"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMExe"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMExe/fast">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/DmNKVMExe.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMExe/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMMo">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/cygDmNKVMMo.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMMo"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMMo/fast">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/cygDmNKVMMo.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMMo/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMSh">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/cygDmNKVMSh.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMSh"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMSh/fast">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/cygDmNKVMSh.dll" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMSh/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMSt">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/libDmNKVMSt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMSt"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DmNKVMSt/fast">
+				<Option output="/cygdrive/c/Games/DmNKVM/cmake-build-debug/libDmNKVMSt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Games/DmNKVM/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/c/Games/DmNKVM/include"/>
+					<Add directory="/cygdrive/c/Games/DmNKVM/variants/compiler/other"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/x86_64-pc-cygwin"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/11/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 DmNKVMSt/fast"/>
 					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Games/DmNKVM/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -85,58 +223,109 @@
 			</Target>
 		</Build>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMClassLoader.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMConfig.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMConstructors.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMESC.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMError.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMHeap.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMJP.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMLLT.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNM.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMNameble.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMObj.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMTypes.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/SDmNL.hpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/main.cpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMJP.cpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/src/SDmNL.cpp">
-			<Option target="DmNKVM"/>
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

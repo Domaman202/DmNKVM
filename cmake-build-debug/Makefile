@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /cygdrive/c/Games/DmNKVM/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/cygdrive/c/Users/vipdo/AppData/Local/JetBrains/CLion2021.2/cygwin_cmake/bin/cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -84,6 +74,16 @@ edit_cache:
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/cygdrive/c/Users/vipdo/AppData/Local/JetBrains/CLion2021.2/cygwin_cmake/bin/cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -117,24 +117,63 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named DmNKVM
+# Target rules for targets named DmNKVMExe
 
 # Build rule for target.
-DmNKVM: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DmNKVM
-.PHONY : DmNKVM
+DmNKVMExe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DmNKVMExe
+.PHONY : DmNKVMExe
 
 # fast build rule for target.
-DmNKVM/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/build
-.PHONY : DmNKVM/fast
+DmNKVMExe/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/build
+.PHONY : DmNKVMExe/fast
+
+#=============================================================================
+# Target rules for targets named DmNKVMMo
+
+# Build rule for target.
+DmNKVMMo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DmNKVMMo
+.PHONY : DmNKVMMo
+
+# fast build rule for target.
+DmNKVMMo/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/build
+.PHONY : DmNKVMMo/fast
+
+#=============================================================================
+# Target rules for targets named DmNKVMSh
+
+# Build rule for target.
+DmNKVMSh: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DmNKVMSh
+.PHONY : DmNKVMSh
+
+# fast build rule for target.
+DmNKVMSh/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/build
+.PHONY : DmNKVMSh/fast
+
+#=============================================================================
+# Target rules for targets named DmNKVMSt
+
+# Build rule for target.
+DmNKVMSt: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 DmNKVMSt
+.PHONY : DmNKVMSt
+
+# fast build rule for target.
+DmNKVMSt/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/build
+.PHONY : DmNKVMSt/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -142,7 +181,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -150,7 +189,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/KVMConstructors.o: src/KVMConstructors.cpp.o
@@ -158,7 +197,10 @@ src/KVMConstructors.o: src/KVMConstructors.cpp.o
 
 # target to build an object file
 src/KVMConstructors.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMConstructors.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMConstructors.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMConstructors.cpp.o
 .PHONY : src/KVMConstructors.cpp.o
 
 src/KVMConstructors.i: src/KVMConstructors.cpp.i
@@ -166,7 +208,10 @@ src/KVMConstructors.i: src/KVMConstructors.cpp.i
 
 # target to preprocess a source file
 src/KVMConstructors.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMConstructors.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMConstructors.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMConstructors.cpp.i
 .PHONY : src/KVMConstructors.cpp.i
 
 src/KVMConstructors.s: src/KVMConstructors.cpp.s
@@ -174,7 +219,10 @@ src/KVMConstructors.s: src/KVMConstructors.cpp.s
 
 # target to generate assembly for a file
 src/KVMConstructors.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMConstructors.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMConstructors.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMConstructors.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMConstructors.cpp.s
 .PHONY : src/KVMConstructors.cpp.s
 
 src/KVMJP.o: src/KVMJP.cpp.o
@@ -182,7 +230,10 @@ src/KVMJP.o: src/KVMJP.cpp.o
 
 # target to build an object file
 src/KVMJP.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMJP.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMJP.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o
 .PHONY : src/KVMJP.cpp.o
 
 src/KVMJP.i: src/KVMJP.cpp.i
@@ -190,7 +241,10 @@ src/KVMJP.i: src/KVMJP.cpp.i
 
 # target to preprocess a source file
 src/KVMJP.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMJP.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMJP.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.i
 .PHONY : src/KVMJP.cpp.i
 
 src/KVMJP.s: src/KVMJP.cpp.s
@@ -198,7 +252,10 @@ src/KVMJP.s: src/KVMJP.cpp.s
 
 # target to generate assembly for a file
 src/KVMJP.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMJP.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMJP.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMJP.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.s
 .PHONY : src/KVMJP.cpp.s
 
 src/KVMNameble.o: src/KVMNameble.cpp.o
@@ -206,7 +263,10 @@ src/KVMNameble.o: src/KVMNameble.cpp.o
 
 # target to build an object file
 src/KVMNameble.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMNameble.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMNameble.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMNameble.cpp.o
 .PHONY : src/KVMNameble.cpp.o
 
 src/KVMNameble.i: src/KVMNameble.cpp.i
@@ -214,7 +274,10 @@ src/KVMNameble.i: src/KVMNameble.cpp.i
 
 # target to preprocess a source file
 src/KVMNameble.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMNameble.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMNameble.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMNameble.cpp.i
 .PHONY : src/KVMNameble.cpp.i
 
 src/KVMNameble.s: src/KVMNameble.cpp.s
@@ -222,7 +285,10 @@ src/KVMNameble.s: src/KVMNameble.cpp.s
 
 # target to generate assembly for a file
 src/KVMNameble.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/KVMNameble.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMNameble.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMNameble.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMNameble.cpp.s
 .PHONY : src/KVMNameble.cpp.s
 
 src/SDmNL.o: src/SDmNL.cpp.o
@@ -230,7 +296,10 @@ src/SDmNL.o: src/SDmNL.cpp.o
 
 # target to build an object file
 src/SDmNL.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/SDmNL.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/SDmNL.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.o
 .PHONY : src/SDmNL.cpp.o
 
 src/SDmNL.i: src/SDmNL.cpp.i
@@ -238,7 +307,10 @@ src/SDmNL.i: src/SDmNL.cpp.i
 
 # target to preprocess a source file
 src/SDmNL.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/SDmNL.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/SDmNL.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.i
 .PHONY : src/SDmNL.cpp.i
 
 src/SDmNL.s: src/SDmNL.cpp.s
@@ -246,7 +318,10 @@ src/SDmNL.s: src/SDmNL.cpp.s
 
 # target to generate assembly for a file
 src/SDmNL.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVM.dir/build.make CMakeFiles/DmNKVM.dir/src/SDmNL.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/SDmNL.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/SDmNL.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.s
 .PHONY : src/SDmNL.cpp.s
 
 # Help Target
@@ -257,7 +332,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... DmNKVM"
+	@echo "... DmNKVMExe"
+	@echo "... DmNKVMMo"
+	@echo "... DmNKVMSh"
+	@echo "... DmNKVMSt"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
