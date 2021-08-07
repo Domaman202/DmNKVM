@@ -16,31 +16,31 @@
 
 namespace DmN::KVM {
 #ifdef DMN_KVM_USE_8BIT_NAME_ID
-    typedef uint8_t SI_t;
+    using SI_t = uint8_t;
 #elif DMN_KVM_USE_16BIT_NAME_ID
-    typedef uint16_t SI_t;
+    using SI_t = uint16_t;
 #else
-    typedef uint32_t SI_t;
+    using SI_t = uint32_t;
 #endif /* DMN_KVM_USE_8BIT_NAME_ID */
 }
 
 namespace DmN::KVM {
 #ifdef DMN_KVM_USE_8BIT_CLASS_ID
-    typedef uint8_t CI_t;
+    using CI_t = uint8_t;
 #elif DMN_KVM_USE_16BIT_CLASS_ID
-    typedef uint16_t CI_t;
+    using CI_t = uint16_t;
 #else
-    typedef uint32_t CI_t;
+    using CI_t = uint32_t;
 #endif /* DMN_KVM_USE_8BIT_CLASS_ID */
 }
 
 namespace DmN::KVM {
 #ifdef DMN_KVM_USE_8BIT_NAMESPACE_ID
-    typedef uint8_t NSI_t;
+    using NSI_t = uint8_t;
 #elif DMN_KVM_USE_16BIT_NAMESPACE_ID
-    typedef uint16_t NSI_t;
+    using NSI_t = uint16_t;
 #else
-    typedef uint32_t NSI_t;
+    using NSI_t = uint32_t;
 #endif /* DMN_KVM_USE_8BIT_NAMESPACE_ID */
 }
 
