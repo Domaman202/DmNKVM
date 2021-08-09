@@ -222,6 +222,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMAlloc.hpp">
+			<Option target="DmNKVMExe"/>
+			<Option target="DmNKVMMo"/>
+			<Option target="DmNKVMSh"/>
+			<Option target="DmNKVMSt"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Games/DmNKVM/include/KVMClassLoader.hpp">
 			<Option target="DmNKVMExe"/>
 			<Option target="DmNKVMMo"/>

@@ -28,61 +28,61 @@ namespace DmN::KVM {
     DMN_KVM_ES(SS) {
         /*!
          * Добавляет новую строку без проверки её существования, возвращает ID добавлянной строки
-         * \param name - имя которое нужно добавить
-         * \return ID которое принадлежит имени
+         * @param name имя которое нужно добавить
+         * @return ID которое принадлежит имени
          */
         virtual SI_t addNew(const char* name) = 0;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
-         * \param name - имя которое нужно добавить
-         * \return ID которое принадлежит имени
+         * @param name имя которое нужно добавить
+         * @return ID которое принадлежит имени
          */
         virtual SI_t add(const char* name) = 0;
 
         /*!
          * Получает имя по ID
-         * \param id - ID по которому мы получаем имя
-         * \return Имя полученное по ID
+         * @param id ID по которому мы получаем имя
+         * @return Имя полученное по ID
          */
         virtual const char* get(SI_t id) = 0;
 
         /*!
          * Получаем ID по имени
-         * \param name - имя ID которого нужно получить
-         * \return ID этого имени
+         * @param name имя ID которого нужно получить
+         * @return ID этого имени
          */
         virtual SI_t get(const char* name) = 0;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
          * (Сохраняет ноду для переиспользования)
-         * \param id ID которое нужно удалить
-         * \return имя которое было удалено
+         * @param id ID которое нужно удалить
+         * @return имя которое было удалено
          */
         virtual const char* free(SI_t id) = 0;
 
         /*!
          * Удаляет имя из списка и возвращает ID
          * (Удаляет ноду)
-         * \param name - имя для удаления
-         * \return ID удалённого имени
+         * @param name имя для удаления
+         * @return ID удалённого имени
          */
         virtual SI_t free(const char* name) = 0;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
          * (Удаляет ноду)
-         * \param id ID которое нужно удалить
-         * \return имя которое было удалено
+         * @param id ID которое нужно удалить
+         * @return имя которое было удалено
          */
         virtual const char* remove(SI_t id) = 0;
 
         /*!
          * Удаляет имя из списка и возвращает ID
          * (Удаляет ноду)
-         * \param name - имя для удаления
-         * \return ID удалённого имени
+         * @param name имя для удаления
+         * @return ID удалённого имени
          */
         virtual SI_t remove(const char* name) = 0;
 

@@ -8,9 +8,9 @@
 
 #include <cstdint>
 
-#ifndef DMN_KVM_CUSTOM_CONFIG
-#define DMN_KVM_USE_GLOBAL_NAME_STORAGES
-#endif /* DMN_KVM_CUSTOM_CONFIG*/
+#ifdef DMN_KVM_UNSAFE
+#define DMN_KVM_NO_CHECK_NULLPTR
+#endif /* DMN_KVM_UNSAFE */
 
 #ifndef DMN_KVM_USE_CUSTOM_SIZE_CONFIG
 

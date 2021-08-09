@@ -12,48 +12,9 @@ using namespace DmN::KVM::ERROR;
 
 namespace DmN::KVM {
     /*!
-     * Создаёт новый 8-битный класс
-     */
-    DMN_KVM_ET(ClassBase*, allocClass8B)(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                                         uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
-
-    /*!
-    * Создаёт новый 16-битный класс
-    */
-    DMN_KVM_ET(ClassBase*, allocClass16B)(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                                          uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
-
-    /*!
-     * Создаёт новый 32-битный класс
-     */
-    DMN_KVM_ET(ClassBase*, allocClass32B)(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                                          uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
-
-    /*!
-     * Создаёт новый 8-битный класс
-     */
-    DMN_KVM_ET(NSClassBase*, allocNSClass8B)(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount,
-                                             Method_t **methods, uint32_t methodsCount, CI_t *parents,
-                                             uint8_t parentsCount);
-
-    /*!
-    * Создаёт новый 16-битный класс
-    */
-    DMN_KVM_ET(NSClassBase*,
-               allocNSClass16B)(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
-
-    /*!
-     * Создаёт новый 32-битный класс
-     */
-    DMN_KVM_ET(NSClassBase*,
-               allocNSClass32B)(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
-
-    /*!
      * (allocate static string storage)
      * Создаёт новое статическое хранилище строк
-     * @param names - строки которые нужно добавить при создании
+     * @param names строки которые нужно добавить при создании
      * @return Новое хранилище строк
      */
     DMN_KVM_ET(SS*, allocSSS)(char **names, size_t size);
@@ -61,21 +22,21 @@ namespace DmN::KVM {
     /*!
      * (allocate dynamic string storage)
      * Создаёт новое динамическое хранилище строк
-     * @param names - строки которые нужно добавить при создании
+     * @param names строки которые нужно добавить при создании
      * @return Новое хранилище строк
      */
     DMN_KVM_ET(SS*, allocDSS)(char **names, size_t size);
 
     /*!
-     * Пытаеться собрать объект
-     * \param obj - объект для сборки
-     * \return возвращает значение из DmN::KVM::ERROR::CR
+     * Пытается собрать объект
+     * @param obj объект для сборки
+     * @return возвращает значение из DmN::KVM::ERROR::CR
     */
     DMN_KVM_ET(CR, tryCollect)(GCObject *obj);
 
     /*!
      * Насильно собирает объект
-     * \param obj - объект для сборки
+     * @param obj объект для сборки
      */
     DMN_KVM_ET(inline void, collect)(GCObject *obj);
 }
