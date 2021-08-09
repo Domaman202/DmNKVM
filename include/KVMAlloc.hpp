@@ -1,7 +1,8 @@
+#ifndef DMN_KVM_NO_USE_PRAGMA
 #pragma once
-#endif /* DMN_KVM_NO_USE_PRAGMA*/
-#ifndef DMNKVM_KVMCONSTRUCTORS_HPP
-#define DMNKVM_KVMCONSTRUCTORS_HPP
+#endif /* DMN_KVM_NO_USE_PRAGMA */
+#ifndef DMN_KVM_ALLOC_HPP
+#define DMN_KVM_ALLOC_HPP
 
 #include <KVMESC.hpp>
 
@@ -169,4 +170,4 @@ namespace DmN::KVM {
     ClassBase* allocateNSClass64BH(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 }
 
-#endif /* DMNKVM_KVMALLOC_HPP */
+#endif /* DMN_KVM_ALLOC_HPP */

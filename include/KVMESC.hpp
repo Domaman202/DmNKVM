@@ -1,8 +1,8 @@
 #ifndef DMN_KVM_NO_PRAGMA
 #pragma once
-#endif /* DMN_KVM_NO_USE_PRAGMA*/
-#ifndef DMNKVM_KVMESC_HPP
-#define DMNKVM_KVMESC_HPP
+#endif /* DMN_KVM_NO_USE_PRAGMA */
+#ifndef DMN_KVM_ESC_HPP
+#define DMN_KVM_ESC_HPP
 
 #include <KVMConfig.hpp>
 #include <KVMTypes.hpp>
@@ -323,4 +323,4 @@ namespace DmN::KVM {
     };
 }
 
-#endif /* DMNKVM_KVMESC_HPP */
+#endif /* DMN_KVM_ESC_HPP */

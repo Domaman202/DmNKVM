@@ -105,25 +105,11 @@ CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.s"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/src/SDmNL.cpp -o CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.s
 
-CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o: CMakeFiles/DmNKVMSt.dir/flags.make
-CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o: ../src/KVMJP.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o -c /cygdrive/c/Games/DmNKVM/src/KVMJP.cpp
-
-CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Games/DmNKVM/src/KVMJP.cpp > CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.i
-
-CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/src/KVMJP.cpp -o CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.s
-
 # Object files for target DmNKVMSt
 DmNKVMSt_OBJECTS = \
 "CMakeFiles/DmNKVMSt.dir/src/KVMConstructors.cpp.o" \
 "CMakeFiles/DmNKVMSt.dir/src/KVMNameble.cpp.o" \
-"CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.o" \
-"CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o"
+"CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.o"
 
 # External object files for target DmNKVMSt
 DmNKVMSt_EXTERNAL_OBJECTS =
@@ -131,10 +117,9 @@ DmNKVMSt_EXTERNAL_OBJECTS =
 libDmNKVMSt.a: CMakeFiles/DmNKVMSt.dir/src/KVMConstructors.cpp.o
 libDmNKVMSt.a: CMakeFiles/DmNKVMSt.dir/src/KVMNameble.cpp.o
 libDmNKVMSt.a: CMakeFiles/DmNKVMSt.dir/src/SDmNL.cpp.o
-libDmNKVMSt.a: CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o
 libDmNKVMSt.a: CMakeFiles/DmNKVMSt.dir/build.make
 libDmNKVMSt.a: CMakeFiles/DmNKVMSt.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libDmNKVMSt.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libDmNKVMSt.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/DmNKVMSt.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DmNKVMSt.dir/link.txt --verbose=$(VERBOSE)
 

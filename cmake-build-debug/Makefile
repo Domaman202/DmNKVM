@@ -225,39 +225,6 @@ src/KVMConstructors.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMConstructors.cpp.s
 .PHONY : src/KVMConstructors.cpp.s
 
-src/KVMJP.o: src/KVMJP.cpp.o
-.PHONY : src/KVMJP.o
-
-# target to build an object file
-src/KVMJP.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMJP.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMJP.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.o
-.PHONY : src/KVMJP.cpp.o
-
-src/KVMJP.i: src/KVMJP.cpp.i
-.PHONY : src/KVMJP.i
-
-# target to preprocess a source file
-src/KVMJP.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMJP.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMJP.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.i
-.PHONY : src/KVMJP.cpp.i
-
-src/KVMJP.s: src/KVMJP.cpp.s
-.PHONY : src/KVMJP.s
-
-# target to generate assembly for a file
-src/KVMJP.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/src/KVMJP.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/src/KVMJP.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/src/KVMJP.cpp.s
-.PHONY : src/KVMJP.cpp.s
-
 src/KVMNameble.o: src/KVMNameble.cpp.o
 .PHONY : src/KVMNameble.o
 
@@ -342,9 +309,6 @@ help:
 	@echo "... src/KVMConstructors.o"
 	@echo "... src/KVMConstructors.i"
 	@echo "... src/KVMConstructors.s"
-	@echo "... src/KVMJP.o"
-	@echo "... src/KVMJP.i"
-	@echo "... src/KVMJP.s"
 	@echo "... src/KVMNameble.o"
 	@echo "... src/KVMNameble.i"
 	@echo "... src/KVMNameble.s"

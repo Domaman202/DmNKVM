@@ -1,8 +1,8 @@
 #ifndef DMN_KVM_NO_PRAGMA
 #pragma once
-#endif /* DMN_KVM_NO_USE_PRAGMA*/
-#ifndef DMNKVM_LLT_H
-#define DMNKVM_LLT_H
+#endif /* DMN_KVM_NO_USE_PRAGMA */
+#ifndef DMN_KVM_LLT_H
+#define DMN_KVM_LLT_H
 
 namespace DmN::KVM {
     /// Хрень которая имеет низкоуровневый тип объекта
@@ -15,4 +15,4 @@ namespace DmN::KVM {
     };
 }
 
-#endif /* DMNKVM_LLT_H */
+#endif /* DMN_KVM_LLT_H */

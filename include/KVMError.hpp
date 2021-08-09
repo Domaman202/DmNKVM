@@ -1,8 +1,8 @@
 #ifndef DMN_KVM_NO_PRAGMA
 #pragma once
-#endif /* DMN_KVM_NO_USE_PRAGMA*/
-#ifndef DMNKVM_KVMERROR_HPP
-#define DMNKVM_KVMERROR_HPP
+#endif /* DMN_KVM_NO_USE_PRAGMA */
+#ifndef DMN_KVM_ERROR_HPP
+#define DMN_KVM_ERROR_HPP
 
 namespace DmN::KVM::ERROR {
     /// (Collect Result) Результат сборки памяти
@@ -17,4 +17,4 @@ namespace DmN::KVM::ERROR {
 }
 
 
-#endif /* DMNKVM_KVMERROR_HPP */
+#endif /* DMN_KVM_ERROR_HPP */

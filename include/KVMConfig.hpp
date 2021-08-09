@@ -1,8 +1,8 @@
 #ifndef DMN_KVM_NO_PRAGMA
 #pragma once
-#endif /* DMN_KVM_NO_USE_PRAGMA*/
-#ifndef DMNKVM_KVMCONFIG_HPP
-#define DMNKVM_KVMCONFIG_HPP
+#endif /* DMN_KVM_NO_USE_PRAGMA */
+#ifndef DMN_KVM_CONFIG_HPP
+#define DMN_KVM_CONFIG_HPP
 
 #include <DmNPlatformConfig.h>
 
@@ -46,4 +46,4 @@ namespace DmN::KVM {
 
 #endif /* DMN_KVM_USE_CUSTOM_SIZE_CONFIG */
 
-#endif /* DMNKVM_KVMCONFIG_HPP */
+#endif /* DMN_KVM_CONFIG_HPP */
