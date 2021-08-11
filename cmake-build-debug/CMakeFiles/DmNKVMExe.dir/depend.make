@@ -15,9 +15,6 @@ CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o: \
  ../include/SDmNL.hpp \
  ../variants/compiler/other/DmNPlatformConfig.h \
  ../src/KVMConstructors.cpp
-CMakeFiles/DmNKVMExe.dir/src/KVMJP.cpp.o: \
- ../include/KVMJP.hpp \
- ../src/KVMJP.cpp
 CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o: \
  ../include/KVMConfig.hpp \
  ../include/KVMNameble.hpp \

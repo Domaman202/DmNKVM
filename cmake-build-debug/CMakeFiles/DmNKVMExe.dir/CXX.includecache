@@ -34,10 +34,6 @@ cstdint
 
 ../include/KVMError.hpp
 
-../include/KVMJP.hpp
-cstdio
--
-
 ../include/KVMLLT.hpp
 
 ../include/KVMNM.hpp
@@ -74,18 +70,8 @@ cstdint
 
 ../variants/compiler/other/DmNPlatformConfig.h
 
-/cygdrive/c/Games/DmNKVM/main.cpp
-
 /cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
 KVMConstructors.hpp
--
-
-/cygdrive/c/Games/DmNKVM/src/KVMJP.cpp
-KVMJP.hpp
--
-cstdlib
--
-cstring
 -
 
 /cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp

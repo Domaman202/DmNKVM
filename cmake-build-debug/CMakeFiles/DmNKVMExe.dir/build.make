@@ -79,9 +79,35 @@ CMakeFiles/DmNKVMExe.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVMExe.dir/main.cpp.s"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/main.cpp -o CMakeFiles/DmNKVMExe.dir/main.cpp.s
 
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o: CMakeFiles/DmNKVMExe.dir/flags.make
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o: CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o -c /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp > CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp -o CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o: CMakeFiles/DmNKVMExe.dir/flags.make
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o: CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o -c /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp > CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+
+CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp -o CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+
 CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o: CMakeFiles/DmNKVMExe.dir/flags.make
 CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o: ../src/KVMConstructors.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o -c /cygdrive/c/Games/DmNKVM/src/KVMConstructors.cpp
 
 CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.i: cmake_force
@@ -94,7 +120,7 @@ CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.s: cmake_force
 
 CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o: CMakeFiles/DmNKVMExe.dir/flags.make
 CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o: ../src/KVMNameble.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o -c /cygdrive/c/Games/DmNKVM/src/KVMNameble.cpp
 
 CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.i: cmake_force
@@ -107,7 +133,7 @@ CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.s: cmake_force
 
 CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o: CMakeFiles/DmNKVMExe.dir/flags.make
 CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o: ../src/SDmNL.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o -c /cygdrive/c/Games/DmNKVM/src/SDmNL.cpp
 
 CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.i: cmake_force
@@ -121,6 +147,8 @@ CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.s: cmake_force
 # Object files for target DmNKVMExe
 DmNKVMExe_OBJECTS = \
 "CMakeFiles/DmNKVMExe.dir/main.cpp.o" \
+"CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o" \
+"CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o" \
 "CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o" \
 "CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o" \
 "CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o"
@@ -129,12 +157,14 @@ DmNKVMExe_OBJECTS = \
 DmNKVMExe_EXTERNAL_OBJECTS =
 
 DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/main.cpp.o
+DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
 DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/src/KVMConstructors.cpp.o
 DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/src/KVMNameble.cpp.o
 DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/src/SDmNL.cpp.o
 DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/build.make
 DmNKVMExe.exe: CMakeFiles/DmNKVMExe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable DmNKVMExe.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/c/Games/DmNKVM/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable DmNKVMExe.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DmNKVMExe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

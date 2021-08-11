@@ -3,14 +3,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(DmNKVM)
 
-set(CORE_SOURCE src/KVMConstructors.cpp src/KVMNameble.cpp src/KVMConstructors.cpp src/SDmNL.cpp)
-
-set(CORE_HEADER include/KVMTypes.hpp include/SDmNL.hpp include/KVMConstructors.hpp include/KVMError.hpp include/KVMConfig.hpp include/KVMNameble.hpp include/KVMNM.hpp include/KVMESC.hpp include/KVMLLT.hpp include/KVMClassLoader.hpp include/KVMHeap.hpp include/KVMObj.hpp include/KVMAlloc.hpp)
-set(JAVA_PARSER_HEADER include/JavaParser/KVMJPComm.h include/JavaParser/KVMJPInstruction.hpp include/JavaParser/KVMJPClass.hpp)
-
-set(SOURCE ${CORE_SOURCE})
-set(HEADER ${CORE_HEADER} ${JAVA_PARSER_HEADER})
-
+file(GLOB_RECURSE SOURCE "*.cpp")
+file(GLOB_RECURSE HEADER "*.hpp")
 
 include_directories(include)
 

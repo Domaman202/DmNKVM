@@ -168,12 +168,81 @@ DmNKVMSt/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/build
 .PHONY : DmNKVMSt/fast
 
+CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.o: CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+.PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.o
+
+# target to build an object file
+CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+.PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+
+CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.i: CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+.PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.i
+
+# target to preprocess a source file
+CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+.PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+
+CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.s: CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+.PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.s
+
+# target to generate assembly for a file
+CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+.PHONY : CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+
+CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.o: CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+.PHONY : CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.o
+
+# target to build an object file
+CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+.PHONY : CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o
+
+CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.i: CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+.PHONY : CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.i
+
+# target to preprocess a source file
+CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+.PHONY : CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.i
+
+CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.s: CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+.PHONY : CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.s
+
+# target to generate assembly for a file
+CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+.PHONY : CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -182,6 +251,9 @@ main.i: main.cpp.i
 # target to preprocess a source file
 main.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -190,6 +262,9 @@ main.s: main.cpp.s
 # target to generate assembly for a file
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMExe.dir/build.make CMakeFiles/DmNKVMExe.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMMo.dir/build.make CMakeFiles/DmNKVMMo.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSh.dir/build.make CMakeFiles/DmNKVMSh.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DmNKVMSt.dir/build.make CMakeFiles/DmNKVMSt.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 src/KVMConstructors.o: src/KVMConstructors.cpp.o
@@ -303,6 +378,12 @@ help:
 	@echo "... DmNKVMMo"
 	@echo "... DmNKVMSh"
 	@echo "... DmNKVMSt"
+	@echo "... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.o"
+	@echo "... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.i"
+	@echo "... CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.s"
+	@echo "... CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.o"
+	@echo "... CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.i"
+	@echo "... CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

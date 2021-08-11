@@ -1,4 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.19.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o"
+  "CMakeFiles/DmNKVMSh.dir/CMakeFiles/3.20.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o"
+  "CMakeFiles/DmNKVMSh.dir/main.cpp.o"
   "CMakeFiles/DmNKVMSh.dir/src/KVMConstructors.cpp.o"
   "CMakeFiles/DmNKVMSh.dir/src/KVMNameble.cpp.o"
   "CMakeFiles/DmNKVMSh.dir/src/SDmNL.cpp.o"
