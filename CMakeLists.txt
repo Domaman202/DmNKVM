@@ -3,8 +3,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(DmNKVM)
 
-file(GLOB SOURCE "*.cpp")
-file(GLOB HEADER "*.hpp")
+file(GLOB_RECURSE SOURCE ./src/*.cpp)
+file(GLOB_RECURSE HEADER ./include/*.hpp)
 
 include_directories(include)
 
