@@ -4,7 +4,6 @@
 #ifndef DMN_KVM_CLASSLOADER_HPP
 #define DMN_KVM_CLASSLOADER_HPP
 
-#include <KVMJP.hpp>
 #include <KVMESC.hpp>
 
 namespace DmN::KVM {
@@ -12,7 +11,7 @@ namespace DmN::KVM {
     DMN_KVM_ES(ClassLoader) {
             /* JVM */
             virtual ClassBase* defineJVMClass(int8_t* bytes, size_t off, size_t len) = 0;
-            virtual ClassBase* defineJVMClass(JP::Java_class_file* file) = 0;
+//            virtual ClassBase* defineJVMClass(JP::Java_class_file* file) = 0; TODO: НЕ РЕАЛИЗОВАНО В СЛЕДСТВИИ ОТСУТСТВИЯ ПАРСЕРА JAVA
             /* .NET */
             // TODO: нужно реализовать
             /* KVM */

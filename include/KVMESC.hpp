@@ -17,10 +17,11 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Enum-а
-    DMN_KVM_ES(EnumBase) : LLT, Nameble {
+    DMN_KVM_ES(EnumBase) : LLT,  Modifiable, Nameble {
         explicit EnumBase(SI_t name,
+                          uint8_t modifier,
                           Value_t **enums,
-                          uint32_t enumsCount) : LLT(4), Nameble(name) {
+                          uint32_t enumsCount) : LLT(4), Modifiable(modifier), Nameble(name) {
             this->enums = enums;
             this->enumsCount = enumsCount;
         }
@@ -34,12 +35,13 @@ namespace DmN::KVM {
     DMN_KVM_ES(NSEnumBase) : EnumBase, NSObject {
         explicit NSEnumBase(SI_t name,
                             NSI_t ns,
+                            uint8_t modifier,
                             Value_t **enums,
-                            uint32_t enumsCount) : EnumBase(name, enums, enumsCount), NSObject(ns) {}
+                            uint32_t enumsCount) : EnumBase(name, modifier, enums, enumsCount), NSObject(ns) {}
     };
 
     struct Enum_8bit_t : EnumBase {
-        explicit Enum_8bit_t(SI_t name, Value_t **enums, uint32_t enumsCount) : EnumBase(name, enums, enumsCount) {
+        explicit Enum_8bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : EnumBase(name, modifier, enums, enumsCount) {
             this->enumsCount = enumsCount;
         }
 
@@ -47,7 +49,7 @@ namespace DmN::KVM {
     };
 
     struct Enum_16bit_t : Enum_8bit_t {
-        explicit Enum_16bit_t(SI_t name, Value_t **enums, uint32_t enumsCount) : Enum_8bit_t(name, enums, enumsCount) {
+        explicit Enum_16bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : Enum_8bit_t(name, modifier, enums, enumsCount) {
             this->enumsCount = enumsCount;
         }
 
@@ -55,7 +57,7 @@ namespace DmN::KVM {
     };
 
     struct Enum_32bit_t : Enum_16bit_t {
-        explicit Enum_32bit_t(SI_t name, Value_t **enums, uint32_t enumsCount) : Enum_16bit_t(name, enums, enumsCount) {
+        explicit Enum_32bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : Enum_16bit_t(name, modifier, enums, enumsCount) {
             this->enumsCount = enumsCount;
         }
 
@@ -63,7 +65,7 @@ namespace DmN::KVM {
     };
 
     struct NSEnum_8bit_t : NSEnumBase {
-        explicit NSEnum_8bit_t(SI_t name, NSI_t ns, Value_t **enums, uint32_t enumsCount) : NSEnumBase(name, ns, enums, enumsCount) {
+        explicit NSEnum_8bit_t(SI_t name, NSI_t ns, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : NSEnumBase(name, ns, modifier, enums, enumsCount) {
             this->enumsCount = enumsCount;
         }
 
@@ -71,7 +73,7 @@ namespace DmN::KVM {
     };
 
     struct NSEnum_16bit_t : NSEnum_8bit_t {
-        explicit NSEnum_16bit_t(SI_t name, NSI_t ns, Value_t **enums, uint32_t enumsCount) : NSEnum_8bit_t(name, ns, enums, enumsCount) {
+        explicit NSEnum_16bit_t(SI_t name, NSI_t ns, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : NSEnum_8bit_t(name, ns, modifier, enums, enumsCount) {
             this->enumsCount = enumsCount;
         }
 
@@ -79,19 +81,21 @@ namespace DmN::KVM {
     };
 
     struct NSEnum_32bit_t : NSEnum_16bit_t {
-        explicit NSEnum_32bit_t(SI_t name, NSI_t ns, Value_t **enums, uint32_t enumsCount) : NSEnum_16bit_t(name, ns, enums, enumsCount) {
+        explicit NSEnum_32bit_t(SI_t name, NSI_t ns, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : NSEnum_16bit_t(name, ns, modifier, enums, enumsCount) {
             this->enumsCount = enumsCount;
         }
 
         uint32_t enumsCount;
     };
 
-    DMN_KVM_ES(StructBase) : LLT, Nameble {
+    /// Универсальная основа для структуры
+    DMN_KVM_ES(StructBase) : LLT, Modifiable, Nameble {
         explicit StructBase(SI_t name,
+                            uint8_t modifier,
                             Field_t **fields,
                             uint32_t fieldsCount,
                             CI_t *parents,
-                            uint8_t parentsCount) : LLT(5), Nameble(name) {
+                            uint8_t parentsCount) : LLT(5), Modifiable(modifier), Nameble(name) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->parents = parents;
@@ -111,19 +115,21 @@ namespace DmN::KVM {
     DMN_KVM_ES(NSStructBase) : StructBase, NSObject {
         explicit NSStructBase(SI_t name,
                               NSI_t ns,
+                              uint8_t modifier,
                               Field_t **fields,
                               uint32_t fieldsCount,
                               CI_t *parents,
-                              uint8_t parentsCount) : StructBase(name, fields, fieldsCount, parents, parentsCount),
-                                                      NSObject(ns) {}
+                              uint8_t parentsCount) : StructBase(name, modifier, fields, fieldsCount, parents, parentsCount),
+                              NSObject(ns) {}
     };
 
     struct Struct_8bit_t : StructBase {
         explicit Struct_8bit_t(SI_t name,
+                               uint8_t modifier,
                                Field_t **fields,
                                uint32_t fieldsCount,
                                CI_t *parents,
-                               uint8_t parentsCount) : StructBase(name, fields, fieldsCount, parents, parentsCount) {
+                               uint8_t parentsCount) : StructBase(name, modifier, fields, fieldsCount, parents, parentsCount) {
             this->fieldsCount = fieldsCount;
         }
 
@@ -132,10 +138,11 @@ namespace DmN::KVM {
 
     struct Struct_16bit_t : Struct_8bit_t {
         explicit Struct_16bit_t(SI_t name,
+                                uint8_t modifier,
                                 Field_t **fields,
                                 uint32_t fieldsCount,
                                 CI_t *parents,
-                                uint8_t parentsCount) : Struct_8bit_t(name, fields, fieldsCount, parents,
+                                uint8_t parentsCount) : Struct_8bit_t(name, modifier, fields, fieldsCount, parents,
                                                                       parentsCount) {
             this->fieldsCount = fieldsCount;
         }
@@ -145,10 +152,11 @@ namespace DmN::KVM {
 
     struct Struct_32bit_t : Struct_16bit_t {
         explicit Struct_32bit_t(SI_t name,
+                                uint8_t modifier,
                                 Field_t **fields,
                                 uint32_t fieldsCount,
                                 CI_t *parents,
-                                uint8_t parentsCount) : Struct_16bit_t(name, fields, fieldsCount, parents,
+                                uint8_t parentsCount) : Struct_16bit_t(name, modifier, fields, fieldsCount, parents,
                                                                        parentsCount) {
             this->fieldsCount = fieldsCount;
         }
@@ -157,8 +165,8 @@ namespace DmN::KVM {
     };
 
     struct NSStruct_8bit_t : NSStructBase {
-        explicit NSStruct_8bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
-                                 uint8_t parentsCount) : NSStructBase(name, ns, fields, fieldsCount, parents,
+        explicit NSStruct_8bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
+                                 uint8_t parentsCount) : NSStructBase(name, ns, modifier, fields, fieldsCount, parents,
                                                                       parentsCount) {
             this->fieldsCount = fieldsCount;
         }
@@ -167,8 +175,8 @@ namespace DmN::KVM {
     };
 
     struct NSStruct_16bit_t : NSStruct_8bit_t {
-        explicit NSStruct_16bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
-                                  uint8_t parentsCount) : NSStruct_8bit_t(name, ns, fields, fieldsCount, parents,
+        explicit NSStruct_16bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
+                                  uint8_t parentsCount) : NSStruct_8bit_t(name, ns, modifier, fields, fieldsCount, parents,
                                                                           parentsCount) {
             this->fieldsCount = fieldsCount;
         }
@@ -177,8 +185,8 @@ namespace DmN::KVM {
     };
 
     struct NSStruct_32bit_t : NSStruct_16bit_t {
-        explicit NSStruct_32bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
-                                  uint8_t parentsCount) : NSStruct_16bit_t(name, ns, fields, fieldsCount, parents,
+        explicit NSStruct_32bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, CI_t *parents,
+                                  uint8_t parentsCount) : NSStruct_16bit_t(name, ns, modifier, fields, fieldsCount, parents,
                                                                            parentsCount) {
             this->fieldsCount = fieldsCount;
         }
@@ -187,9 +195,9 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    DMN_KVM_ES(ClassBase) : LLT, Nameble {
-        explicit ClassBase(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLT(6), Nameble(name) {
+    DMN_KVM_ES(ClassBase) : LLT, Modifiable, Nameble {
+        explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLT(6), Modifiable(modifier), Nameble(name) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->methods = methods;
@@ -213,19 +221,21 @@ namespace DmN::KVM {
     };
 
     DMN_KVM_ES(NSClassBase) : ClassBase, NSObject {
-        explicit NSClassBase(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                             uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, fields,
+        explicit NSClassBase(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                             uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, modifier,
+                                                                                                     fields,
                                                                                                      fieldsCount,
                                                                                                      methods,
                                                                                                      methodsCount,
                                                                                                      parents,
                                                                                                      parentsCount),
-                                                                                           NSObject(ns) {}
+                                                                                                     NSObject(ns) {}
     };
 
     struct Class_8bit_t : ClassBase {
-        explicit Class_8bit_t(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, fields,
+        explicit Class_8bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, modifier,
+                                                                                                      fields,
                                                                                                       fieldsCount,
                                                                                                       methods,
                                                                                                       methodsCount,
@@ -240,8 +250,9 @@ namespace DmN::KVM {
     };
 
     struct Class_16bit_t : Class_8bit_t {
-        explicit Class_16bit_t(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_8bit_t(name, fields,
+        explicit Class_16bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_8bit_t(name, modifier,
+                                                                                                          fields,
                                                                                                           fieldsCount,
                                                                                                           methods,
                                                                                                           methodsCount,
@@ -256,8 +267,9 @@ namespace DmN::KVM {
     };
 
     struct Class_32bit_t : Class_16bit_t {
-        explicit Class_32bit_t(SI_t name, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_16bit_t(name, fields,
+        explicit Class_32bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_16bit_t(name, modifier,
+                                                                                                           fields,
                                                                                                            fieldsCount,
                                                                                                            methods,
                                                                                                            methodsCount,
@@ -272,8 +284,10 @@ namespace DmN::KVM {
     };
 
     struct NSClass_8bit_t : NSClassBase {
-        explicit NSClass_8bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                                uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClassBase(name, ns,
+        explicit NSClass_8bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+                                uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClassBase(name,
+                                                                                                          ns,
+                                                                                                          modifier,
                                                                                                           fields,
                                                                                                           fieldsCount,
                                                                                                           methods,
@@ -289,8 +303,9 @@ namespace DmN::KVM {
     };
 
     struct NSClass_16bit_t : NSClass_8bit_t {
-        explicit NSClass_16bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+        explicit NSClass_16bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                                  uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClass_8bit_t(name, ns,
+                                                                                                              modifier,
                                                                                                               fields,
                                                                                                               fieldsCount,
                                                                                                               methods,
@@ -306,8 +321,9 @@ namespace DmN::KVM {
     };
 
     struct NSClass_32bit_t : NSClass_16bit_t {
-        explicit NSClass_32bit_t(SI_t name, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
+        explicit NSClass_32bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                                  uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClass_16bit_t(name, ns,
+                                                                                                               modifier,
                                                                                                                fields,
                                                                                                                fieldsCount,
                                                                                                                methods,
