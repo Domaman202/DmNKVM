@@ -1,4 +1,4 @@
-#ifndef DMN_KVM_NO_PRAGMA
+#ifndef DMN_KVM_NO_USE_PRAGMA
 #pragma once
 #endif /* DMN_KVM_NO_USE_PRAGMA */
 #ifndef DMN_KVM_LLT_H
@@ -7,7 +7,7 @@
 namespace DmN::KVM {
     /// (Low Level Type) Некий объект который имеет низкоуровневый тип
     DMN_KVM_ES(LLT) {
-            LLT(uint8_t llt) {
+            explicit LLT(uint8_t llt) {
                 this->llt = llt;
             }
             /// (Low Level Type) низкоуровневый тип объекта: VARIABLE (0), FIELD (1), METHOD (2), LAMBDA (3), ENUM (4), STRUCT (5), CLASS (6)
@@ -16,7 +16,7 @@ namespace DmN::KVM {
 
     /// Некий объект который имеет модификаторы
     DMN_KVM_ES(Modifiable) {
-        Modifiable(uint8_t modifier) {
+        explicit Modifiable(uint8_t modifier) {
             this->modifier = modifier;
         }
         /// Модификатор (PUBLIC, STATIC, INTERNAL, INTERNAL STATIC)

@@ -1,1 +1,0 @@
-/usr/bin/c++.exe -g -Wl,--enable-auto-import CMakeFiles/DmNKVMExec.dir/main.cpp.o CMakeFiles/DmNKVMExec.dir/src/KVMConstructors.cpp.o CMakeFiles/DmNKVMExec.dir/src/KVMNameble.cpp.o CMakeFiles/DmNKVMExec.dir/src/SDmNL.cpp.o CMakeFiles/DmNKVMExec.dir/src/KVMJP.cpp.o -o DmNKVMExec.exe -Wl,--out-implib,libDmNKVMExec.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
