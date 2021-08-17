@@ -7,8 +7,19 @@
 #include <KVMConfig.hpp>
 
 #include <cstdint>
+#include <cstdio>
 
 namespace DmN::SDL {
+    namespace Byte {
+        typedef uint8_t u1;
+        typedef uint16_t u2;
+        typedef uint32_t u4;
+
+        u1 u1Read(FILE* file);
+        u2 u2Read(FILE* file);
+        u4 u4Read(FILE* file);
+    }
+
     /// Нода
     template<typename T>
     DMN_KVM_ES(Node) {

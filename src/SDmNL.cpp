@@ -1,6 +1,20 @@
 #include <SDmNL.hpp>
 
 namespace DmN::SDL {
+    namespace Byte {
+        inline u1 u1Read(FILE* file) {
+            return getc(file);
+        }
+
+        inline u2 u2Read(FILE* file) {
+            return (u1Read(file) << 8) | u1Read(file);
+        }
+
+        inline u4 u4Read(FILE* file) {
+            return (u2Read(file) << 8 | u2Read(file));
+        }
+    }
+
     inline unsigned int trans_two_byte(const unsigned char* bytes) {
         return ((bytes[0] & 0x1f) << 6) + (bytes[1] & 0x3f);
     }
