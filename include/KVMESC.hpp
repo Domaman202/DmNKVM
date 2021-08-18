@@ -12,12 +12,12 @@
 #include <cstdint>
 
 namespace DmN::KVM {
-    DMN_KVM_ES(Instanceble) { // TODO: NEED TO REALIZE
+    DMN_KVM_E struct Instanceble { // TODO: NEED TO REALIZE
         virtual struct Object* newInstance() = 0;
     };
 
     /// Универсальная основа для Enum-а
-    DMN_KVM_ES(EnumBase) : LLT,  Modifiable, Nameble {
+    DMN_KVM_E struct EnumBase : LLT,  Modifiable, Nameble {
         explicit EnumBase(SI_t name,
                           uint8_t modifier,
                           Value_t **enums,
@@ -32,7 +32,7 @@ namespace DmN::KVM {
         uint32_t enumsCount: 8;
     };
 
-    DMN_KVM_ES(NSEnumBase) : EnumBase, NSObject {
+    DMN_KVM_E struct NSEnumBase : EnumBase, NSObject {
         explicit NSEnumBase(SI_t name,
                             NSI_t ns,
                             uint8_t modifier,
@@ -89,7 +89,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для структуры
-    DMN_KVM_ES(StructBase) : LLT, Modifiable, Nameble {
+    DMN_KVM_E struct StructBase : LLT, Modifiable, Nameble {
         explicit StructBase(SI_t name,
                             uint8_t modifier,
                             Field_t **fields,
@@ -112,7 +112,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    DMN_KVM_ES(NSStructBase) : StructBase, NSObject {
+    DMN_KVM_E struct NSStructBase : StructBase, NSObject {
         explicit NSStructBase(SI_t name,
                               NSI_t ns,
                               uint8_t modifier,
@@ -195,7 +195,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    DMN_KVM_ES(ClassBase) : LLT, Modifiable, Nameble {
+    DMN_KVM_E struct ClassBase : LLT, Modifiable, Nameble {
         explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                            uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLT(6), Modifiable(modifier), Nameble(name) {
             this->fields = fields;
@@ -220,7 +220,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    DMN_KVM_ES(NSClassBase) : ClassBase, NSObject {
+    DMN_KVM_E struct NSClassBase : ClassBase, NSObject {
         explicit NSClassBase(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, modifier,
                                                                                                      fields,

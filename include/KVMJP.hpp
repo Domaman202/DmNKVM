@@ -1,8 +1,8 @@
 #ifndef DMN_KVM_NO_USE_PRAGMA
 #pragma once
 #endif /* DMN_KVM_NO_USE_PRAGMA */
-#ifndef DMNKVM_KVMJP_HPP
-#define DMNKVM_KVMJP_HPP
+#ifndef DMN_KVM_JP_HPP
+#define DMN_KVM_JP_HPP
 
 #include <KVMConfig.hpp>
 #include <SDmNL.hpp>
@@ -10,7 +10,7 @@
 using namespace DmN::SDL::Byte;
 
 namespace DmN::KVM::JP {
-    DMN_KVM_ES(CPInfo) {
+    DMN_KVM_E struct CPInfo {
         u1 tag;
 
         union {
@@ -48,26 +48,26 @@ namespace DmN::KVM::JP {
         } value;
     };
 
-    DMN_KVM_ES(ExceptionTableType) {
+    DMN_KVM_E struct ExceptionTableType {
         u2 start_pc;
         u2 end_pc;
         u2 handler_pc;
         u2 catch_type;
     };
 
-    DMN_KVM_ES(ClassesType) {
+    DMN_KVM_E struct ClassesType {
         u2 inner_class_info_index;
         u2 outer_class_info_index;
         u2 inner_name_index;
         u2 inner_class_access_flags;
     };
 
-    DMN_KVM_ES(LineNumberTableType) {
+    DMN_KVM_E struct LineNumberTableType {
         u2 start_pc;
         u2 line_number;
     };
 
-    DMN_KVM_ES(LocalVariableTableType) {
+    DMN_KVM_E struct LocalVariableTableType {
         u2 start_pc;
         u2 length;
         u2 name_index;
@@ -75,7 +75,7 @@ namespace DmN::KVM::JP {
         u2 index;
     };
 
-    DMN_KVM_ES(AttributeInfo) {
+    DMN_KVM_E struct AttributeInfo {
         u2 attribute_name_index;
         u4 attribute_length;
 
@@ -125,7 +125,7 @@ namespace DmN::KVM::JP {
         } value;
     };
 
-    DMN_KVM_ES(FieldInfo) {
+    DMN_KVM_E struct FieldInfo {
         u2 access_flags;
         u2 name_index;
         u2 descriptor_index;
@@ -133,7 +133,7 @@ namespace DmN::KVM::JP {
         AttributeInfo* attributes;
     };
 
-    DMN_KVM_ES(MethodInfo) {
+    DMN_KVM_E struct MethodInfo {
         u2 access_flags;
         u2 name_index;
         u2 descriptor_index;
@@ -141,7 +141,7 @@ namespace DmN::KVM::JP {
         AttributeInfo* attributes;
     };
 
-    DMN_KVM_ES(ClassFile) {
+    DMN_KVM_E struct ClassFile {
         u4 magic;
 
         u2 minor_version;
@@ -170,4 +170,4 @@ namespace DmN::KVM::JP {
     };
 }
 
-#endif /* DMNKVM_KVMJP_HPP */
+#endif /* DMN_KVM_JP_HPP */

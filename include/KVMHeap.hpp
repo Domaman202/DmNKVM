@@ -11,7 +11,7 @@
 
 namespace DmN::KVM {
     /// Абстрактная куча
-    DMN_KVM_ES(Heap) {
+    DMN_KVM_E struct Heap {
         /*!
          * Добавляет новый класс в хип
          * @param clazz Класс для добавления

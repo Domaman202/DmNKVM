@@ -10,42 +10,42 @@
 
 namespace DmN::KVM {
     /// Пространство имён
-    DMN_KVM_ES(Namespace) : Nameble {
+    DMN_KVM_E struct Namespace : Nameble {
         /// Предок
         Namespace *parent;
     };
 
-    DMN_KVM_ES(ESModule) : Namespace {
+    DMN_KVM_E struct ESModule : Namespace {
         /// Enum-ы
         SDL::Node<struct EnumBase *> *enums;
     };
 
-    DMN_KVM_ES(SSModule) : Namespace {
+    DMN_KVM_E struct SSModule : Namespace {
         /// Структуры
         SDL::Node<struct StructBase *> *structures;
     };
 
-    DMN_KVM_ES(CSModule) : Namespace {
+    DMN_KVM_E struct CSModule : Namespace {
         /// Классы
         SDL::Node<struct ClassBase *> *classes;
     };
 
-    DMN_KVM_ES(FSModule) : Namespace {
+    DMN_KVM_E struct FSModule : Namespace {
         /// Переменные
         SDL::Node<struct LocalVariable_t *> *variables;
     };
 
-    DMN_KVM_ES(MSModule) : Namespace {
+    DMN_KVM_E struct MSModule : Namespace {
         /// Функции
         SDL::Node<struct Method_t *> *methods;
     };
 
     /// Модуль
-    DMN_KVM_ES(Module) : ESModule, SSModule, CSModule, FSModule, MSModule {
+    DMN_KVM_E struct Module : ESModule, SSModule, CSModule, FSModule, MSModule {
     };
 
     /// (Namespace Storage) Хранилище пространств имён
-    DMN_KVM_ES(NSStorage) {
+    DMN_KVM_E struct NSStorage {
         /*!
          * Добавляет новое пространство имён
          * @param ns пространство имён для добавления
@@ -95,7 +95,7 @@ namespace DmN::KVM {
     };
 
     /// (Namespace Object) Объект который подчинаеться пространству имён
-    DMN_KVM_ES(NSObject) {
+    DMN_KVM_E struct NSObject {
         explicit NSObject(NSI_t ns) {
             this->ns = ns;
         }

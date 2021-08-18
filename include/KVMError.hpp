@@ -6,7 +6,7 @@
 
 namespace DmN::KVM::ERROR {
     /// (Collect Result) Результат сборки памяти
-    DMN_KVM_EE(CR) {
+    enum CR {
         /// Память освобождена успешно
         SUCCESS = 0,
         /// Объект нельзя собрать

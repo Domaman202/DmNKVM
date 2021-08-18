@@ -22,7 +22,7 @@ namespace DmN::SDL {
 
     /// Нода
     template<typename T>
-    DMN_KVM_ES(Node) {
+    DMN_KVM_E struct Node {
         Node(T* value, Node<T>* next) {
             this->value = value;
             this->next = next;

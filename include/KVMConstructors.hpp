@@ -17,7 +17,7 @@ namespace DmN::KVM {
      * @param names строки которые нужно добавить при создании
      * @return Новое хранилище строк
      */
-    DMN_KVM_ET(SS*, allocSSS)(char **names, size_t size);
+    DMN_KVM_EE SS* allocSSS(char **names, size_t size);
 
     /*!
      * (allocate dynamic string storage)
@@ -25,20 +25,20 @@ namespace DmN::KVM {
      * @param names строки которые нужно добавить при создании
      * @return Новое хранилище строк
      */
-    DMN_KVM_ET(SS*, allocDSS)(char **names, size_t size);
+    DMN_KVM_EE SS* allocDSS(char **names, size_t size);
 
     /*!
      * Пытается собрать объект
      * @param obj объект для сборки
      * @return возвращает значение из DmN::KVM::ERROR::CR
     */
-    DMN_KVM_ET(CR, tryCollect)(GCObject *obj);
+    DMN_KVM_EE CR tryCollect(GCObject *obj);
 
     /*!
      * Насильно собирает объект
      * @param obj объект для сборки
      */
-    DMN_KVM_ET(inline void, collect)(GCObject *obj);
+    DMN_KVM_EE  inline void, collect(GCObject *obj);
 }
 
 #endif /* DMN_KVM_CONSTRUCTORS_HPP */
