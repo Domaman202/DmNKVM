@@ -4,11 +4,13 @@
 #ifndef DMN_KVM_SR_HPP
 #define DMN_KVM_SR_HPP
 
-struct Stack {
+#include "KVMConfig.hpp"
+
+DMN_KVM_E struct Stack {
     // TODO:
 };
 
-struct Heap {
+DMN_KVM_E struct Resisters {
     // TODO:
 };
 
