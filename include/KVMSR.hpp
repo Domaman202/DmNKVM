@@ -5,9 +5,15 @@
 #define DMN_KVM_SR_HPP
 
 #include "KVMConfig.hpp"
+#include "SDmNL.hpp"
 
 namespace DmN::KVM {
+    template<typename T>
     DMN_KVM_E struct Stack {
+    protected:
+        /// Стартовая нода
+        DmN::SDL::Node<T> node;
+    public:
         // TODO:
     };
 

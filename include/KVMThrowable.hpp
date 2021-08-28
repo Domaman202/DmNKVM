@@ -5,10 +5,14 @@
 #define DMNKVM_THROWABLE_HPP
 
 #include "KVMConfig.hpp"
+#inlucde "KVMThread.hpp"
 
 namespace DmN::KVM {
     DMN_KVM_E struct Throwable {
-        // TODO:
+        /// Поток из которого было выброшено исключение
+        Thread* thread;
+        /// Сообщение об ошибке
+        char* message;
     };
 }
 
