@@ -13,11 +13,11 @@ namespace DmN::KVM {
         /// Массив потоков
         Thread** threads = nullptr;
         /// Кол-во потоков
-        uint8_t tc : 7 = 0;
+        uint8_t tc = 0;
         /// Куча
         Heap* heap = nullptr;
-        /// Остановлен ли процесс
-        bool isStopped : 1 = true;
+        /// Ошибка
+        Throwable* error = nullptr;
     };
 }
 

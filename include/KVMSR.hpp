@@ -6,12 +6,14 @@
 
 #include "KVMConfig.hpp"
 
-DMN_KVM_E struct Stack {
-    // TODO:
-};
+namespace DmN::KVM {
+    DMN_KVM_E struct Stack {
+        // TODO:
+    };
 
-DMN_KVM_E struct Resisters {
-    // TODO:
-};
+    DMN_KVM_E struct Resisters {
+        // TODO:
+    };
+}
 
 #endif /* DMN_KVM_SR_HPP */
