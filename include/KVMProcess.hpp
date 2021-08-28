@@ -10,9 +10,14 @@
 
 namespace DmN::KVM {
     DMN_KVM_E struct Process {
+        /// Массив потоков
         Thread** threads = nullptr;
-        uint8_t tc = 0;
+        /// Кол-во потоков
+        uint8_t tc : 7 = 0;
+        /// Куча
         Heap* heap = nullptr;
+        /// Остановлен ли процесс
+        bool isStopped : 1 = true;
     };
 }
 
