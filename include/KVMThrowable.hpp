@@ -10,9 +10,9 @@
 namespace DmN::KVM {
     DMN_KVM_E struct Throwable {
         /// Поток из которого было выброшено исключение
-        Thread* thread;
+        Thread* thread = nullptr;
         /// Сообщение об ошибке
-        char* message;
+        char* message = nullptr;
     };
 }
 
