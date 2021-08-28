@@ -1,6 +1,6 @@
-#include <KVMConstructors.hpp>
+#include <KVMUtils.hpp>
 
-using namespace DmN::KVM::ERROR;
+using namespace DmN::KVM::Error;
 
 namespace DmN::KVM {
     ClassBase* allocClass8B(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) {
@@ -50,7 +50,7 @@ namespace DmN::KVM {
     CR tryCollect(GCObject* obj) {
         // Проверяем можно ли собрать объект
         if (obj->isCollectable) {
-            // Если объект собираеться проверяем кол-во ссылок
+            // Если объект собирается проверяем кол-во ссылок
             if (obj->references == 0) {
                 // Высвобождаем память
                 delete obj;

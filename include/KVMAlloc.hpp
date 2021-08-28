@@ -6,7 +6,23 @@
 
 #include "KVMESC.hpp"
 
-namespace DmN::KVM {
+namespace DmN::KVM::Alloc {
+    /*!
+     * (allocate static string storage)
+     * Создаёт новое статическое хранилище строк
+     * @param names строки которые нужно добавить при создании
+     * @return Новое хранилище строк
+     */
+    DMN_KVM_EF SS* allocSSS(char **names, size_t size);
+
+    /*!
+     * (allocate dynamic string storage)
+     * Создаёт новое динамическое хранилище строк
+     * @param names строки которые нужно добавить при создании
+     * @return Новое хранилище строк
+     */
+    DMN_KVM_EF SS* allocDSS(char **names, size_t size);
+
     /*!
      * Создаёт 8и битный класс на стеке
      * @param name Имя класса

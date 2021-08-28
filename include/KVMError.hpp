@@ -6,7 +6,7 @@
 
 #include "KVMConfig.hpp"
 
-namespace DmN::KVM::ERROR {
+namespace DmN::KVM::Error {
     /// (Collect Result) Результат сборки памяти
     DMN_KVM_E enum CR {
         /// Память освобождена успешно

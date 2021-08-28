@@ -7,7 +7,7 @@
 #include "KVMESC.hpp"
 
 namespace DmN::KVM {
-    DMN_KVM_E struct  Object { // TODO: NEED TO REALIZE
+    DMN_KVM_E struct Object { // TODO: NEED TO REALIZE
         Instanceble* type;
     };
 }
