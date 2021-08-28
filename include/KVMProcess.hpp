@@ -5,10 +5,13 @@
 #define DMN_KVM_PROCESS_H
 
 #include "KVMConfig.hpp"
+#include "KVMThread.hpp"
 #include "KVMHeap.hpp"
 
 namespace DmN::KVM {
     DMN_KVM_E struct Process {
+        Thread** threads = nullptr;
+        uint8_t tc = 0;
         Heap* heap = nullptr;
     };
 }
