@@ -8,7 +8,9 @@
 #incldue <KVMHeap.hpp>
 
 namespace DmN::KVM {
-    DMN_KVM_E struct Process { };
+    DMN_KVM_E struct Process {
+        Heap* heap = nullptr;
+    };
 }
 
 #endif /* DMN_KVM_PROCESS_H */

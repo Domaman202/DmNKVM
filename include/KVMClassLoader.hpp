@@ -4,7 +4,6 @@
 #ifndef DMN_KVM_CLASSLOADER_HPP
 #define DMN_KVM_CLASSLOADER_HPP
 
-#inclued <KVMConfig.hpp>
 #include <KVMESC.hpp>
 
 namespace DmN::KVM {
