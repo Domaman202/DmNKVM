@@ -4,7 +4,7 @@
 #ifndef DMNKVM_THROWABLE_HPP
 #define DMNKVM_THROWABLE_HPP
 
-#inlcude "KVMConfig.hpp"
+#include "KVMConfig.hpp"
 
 namespace DmN::KVM {
     DMN_KVM_E struct Throwable {

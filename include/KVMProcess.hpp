@@ -4,7 +4,7 @@
 #ifndef DMN_KVM_PROCESS_H
 #define DMN_KVM_PROCESS_H
 
-#include "KVMConfig.hpp"
+#include "KVMThrowable.hpp"
 #include "KVMThread.hpp"
 #include "KVMHeap.hpp"
 
