@@ -15,9 +15,9 @@ namespace DmN::SDL {
         typedef uint16_t u2;
         typedef uint32_t u4;
 
-        u1 u1Read(FILE* file);
-        u2 u2Read(FILE* file);
-        u4 u4Read(FILE* file);
+        DMN_KVM_EF u1 u1Read(FILE* file);
+        DMN_KVM_EF u2 u2Read(FILE* file);
+        DMN_KVM_EF u4 u4Read(FILE* file);
     }
 
     /// Нода
@@ -34,13 +34,13 @@ namespace DmN::SDL {
         Node<T>* next;
     };
 
-    unsigned int trans_two_byte(const unsigned char* bytes);
-    unsigned int trans_three_byte(const unsigned char* bytes);
-    unsigned int trans_six_bytes(const unsigned char* bytes);
-    wchar_t trans_two_bytes_wchar(uint8_t byte1, uint8_t byte2);
-    wchar_t trans_three_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3);
-    wchar_t trans_six_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, uint8_t byte6);
-    int get_utf_8_width(unsigned char byte);
+    DMN_KVM_EF unsigned int trans_two_byte(const unsigned char* bytes);
+    DMN_KVM_EF unsigned int trans_three_byte(const unsigned char* bytes);
+    DMN_KVM_EF unsigned int trans_six_bytes(const unsigned char* bytes);
+    DMN_KVM_EF wchar_t trans_two_bytes_wchar(uint8_t byte1, uint8_t byte2);
+    DMN_KVM_EF wchar_t trans_three_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3);
+    DMN_KVM_EF wchar_t trans_six_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, uint8_t byte6);
+    DMN_KVM_EF int get_utf_8_width(unsigned char byte);
 }
 
 #endif /* DMN_KVM_SDMNL_HPP */

@@ -19,7 +19,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateClass8BS(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateClass8BS(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 8и битный класс на стеке
@@ -33,7 +33,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateNSClass8BS(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateNSClass8BS(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 8и битный класс в куче
@@ -46,7 +46,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateClass8BH(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateClass8BH(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 8и битный класс в куче
@@ -60,7 +60,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateNSClass8BH(SI_t name, uint8_t modifier, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateNSClass8BH(SI_t name, uint8_t modifier, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 16и битный класс на стеке
@@ -73,7 +73,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateClass16BS(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateClass16BS(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 16и битный класс на стеке
@@ -87,7 +87,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateNSClass16BS(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateNSClass16BS(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 16и битный класс в куче
@@ -100,7 +100,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateClass16BH(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateClass16BH(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 16ми битный класс в куче
@@ -114,7 +114,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateNSClass16BH(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateNSClass16BH(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 64х битный класс на стеке
@@ -127,7 +127,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateClass64BS(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateClass64BS(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 64х битный класс на стеке
@@ -141,7 +141,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateNSClass64BS(SI_t name, uint8_t modifier, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateNSClass64BS(SI_t name, uint8_t modifier, NSI_t ns, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 64х битный класс в куче
@@ -154,7 +154,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateClass64BH(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateClass64BH(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 
     /*!
      * Создаёт 64х битный класс в куче
@@ -168,7 +168,7 @@ namespace DmN::KVM {
      * @param parentsCount Кол-во предков класса
      * @return Созданный класс или nullptr в случае ошибки (создания/выделения памяти под класс)
      */
-    DMN_KVM_EE ClassBase* allocateNSClass64BH(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
+    DMN_KVM_EF ClassBase* allocateNSClass64BH(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods, uint32_t methodsCount, CI_t *parents, uint8_t parentsCount);
 }
 
 #endif /* DMN_KVM_ALLOC_HPP */

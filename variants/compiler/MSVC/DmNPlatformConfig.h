@@ -8,6 +8,7 @@
 #define DMN_KVM_E __declspec(dllimport)
 #endif
 
-#define DMN_KVM_EE DMN_KVM_E extern
+#define DMN_KVM_EE extern
+#define DMN_KVM_EF DMN_KVM_EE DMN_KVM_EE
 
 #endif /* DMNKVM_DMNCONFIG_H */
