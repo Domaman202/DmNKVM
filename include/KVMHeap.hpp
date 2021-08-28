@@ -4,9 +4,7 @@
 #ifndef DMN_KVM_HEAP_HPP
 #define DMN_KVM_HEAP_HPP
 
-#include <KVMConfig.hpp>
-#include <KVMESC.hpp>
-
+#include "KVMESC.hpp"
 #include <utility>
 
 namespace DmN::KVM {

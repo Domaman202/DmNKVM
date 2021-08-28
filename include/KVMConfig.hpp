@@ -5,7 +5,6 @@
 #define DMN_KVM_CONFIG_HPP
 
 #include <DmNPlatformConfig.h>
-
 #include <cstdint>
 
 #ifdef DMN_KVM_UNSAFE

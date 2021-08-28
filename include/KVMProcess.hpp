@@ -4,8 +4,8 @@
 #ifndef DMN_KVM_PROCESS_H
 #define DMN_KVM_PROCESS_H
 
-#include <KVMConfig.hpp>
-#incldue <KVMHeap.hpp>
+#include "KVMConfig.hpp"
+#include "KVMHeap.hpp"
 
 namespace DmN::KVM {
     DMN_KVM_E struct Process {

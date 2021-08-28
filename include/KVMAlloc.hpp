@@ -4,8 +4,7 @@
 #ifndef DMN_KVM_ALLOC_HPP
 #define DMN_KVM_ALLOC_HPP
 
-#inclued <KVMConfig.hpp>
-#include <KVMESC.hpp>
+#include "KVMESC.hpp"
 
 namespace DmN::KVM {
     /*!

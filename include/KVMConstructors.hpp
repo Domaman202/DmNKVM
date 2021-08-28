@@ -4,9 +4,8 @@
 #ifndef DMN_KVM_CONSTRUCTORS_HPP
 #define DMN_KVM_CONSTRUCTORS_HPP
 
-#include <KVMTypes.hpp>
-#include <KVMError.hpp>
-#include <KVMESC.hpp>
+#include "KVMError.hpp"
+#include "KVMESC.hpp"
 
 using namespace DmN::KVM::ERROR;
 

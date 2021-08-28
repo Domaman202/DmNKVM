@@ -4,11 +4,7 @@
 #ifndef DMN_KVM_ESC_HPP
 #define DMN_KVM_ESC_HPP
 
-#include <KVMConfig.hpp>
-#include <KVMTypes.hpp>
-#include <KVMLLT.hpp>
-#include <KVMNM.hpp>
-
+#include "KVMTypes.hpp"
 #include <cstdint>
 
 namespace DmN::KVM {

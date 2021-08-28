@@ -4,7 +4,7 @@
 #ifndef DMN_KVM_CLASSLOADER_HPP
 #define DMN_KVM_CLASSLOADER_HPP
 
-#include <KVMESC.hpp>
+#include "KVMESC.hpp"
 
 namespace DmN::KVM {
     /// Абстрактный загрузчик объектов

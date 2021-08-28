@@ -4,8 +4,8 @@
 #ifndef DMN_KVM_JP_HPP
 #define DMN_KVM_JP_HPP
 
-#include <KVMConfig.hpp>
-#include <SDmNL.hpp>
+#include "KVMConfig.hpp"
+#include "SDmNL.hpp"
 
 using namespace DmN::SDL::Byte;
 

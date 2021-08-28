@@ -4,7 +4,6 @@
 #ifndef DMN_KVM_OBJ_HPP
 #define DMN_KVM_OBJ_HPP
 
-#include <KVMConfig.hpp>
 #include "KVMESC.hpp"
 
 namespace DmN::KVM {
