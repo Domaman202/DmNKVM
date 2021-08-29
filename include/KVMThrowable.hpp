@@ -4,15 +4,17 @@
 #ifndef DMNKVM_THROWABLE_HPP
 #define DMNKVM_THROWABLE_HPP
 
+#include "KVMNameble.hpp"
 #include "KVMConfig.hpp"
 #inlucde "KVMThread.hpp"
 
 namespace DmN::KVM {
-    DMN_KVM_E struct Throwable {
+    DMN_KVM_E struct Throwable : Nameble {
+        Throwable(Thread* thread, SI_t error) : Nameble(error) {
+            this->thread = thread;
+        }
         /// Поток из которого было выброшено исключение
         Thread* thread = nullptr;
-        /// Сообщение об ошибке
-        char* message = nullptr;
     };
 }
 
