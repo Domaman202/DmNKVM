@@ -3,7 +3,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(DmNKVM)
 
-file(GLOB_RECURSE TEMPLATE_SOURCE ./src/*.tpp)
 file(GLOB_RECURSE SOURCE ./src/*.cpp)
 file(GLOB_RECURSE HEADER ./include/*.hpp)
 
