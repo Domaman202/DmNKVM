@@ -14,10 +14,12 @@ namespace DmN::SDL {
         typedef uint8_t u1;
         typedef uint16_t u2;
         typedef uint32_t u4;
+        typedef uint64_t u8;
 
         DMN_KVM_EF u1 u1Read(FILE* file);
         DMN_KVM_EF u2 u2Read(FILE* file);
         DMN_KVM_EF u4 u4Read(FILE* file);
+        DMN_KVM_EF u8 u8Read(FILE* file);
     }
 
     /// Нода

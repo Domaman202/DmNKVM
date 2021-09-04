@@ -89,6 +89,11 @@ namespace DmN::KVM {
          * Очищает данные
          */
         DMN_KVM_E virtual void clear() = 0;
+
+        /*!
+         * Складывает 2 хранилища строк воедино
+         */
+        operator+(SS* strings) = 0; // TODO:
     };
 
     /// (Static String Storage) Статическое хранилище строк

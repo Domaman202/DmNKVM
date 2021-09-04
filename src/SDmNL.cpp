@@ -11,7 +11,11 @@ namespace DmN::SDL {
         }
 
         inline u4 u4Read(FILE* file) {
-            return (u2Read(file) << 8 | u2Read(file));
+            return (u2Read(file) << 16 | u2Read(file));
+        }
+
+        inline u8 u8Read(FILE* file) {
+            return (u4Read(file) << 32 | u4Read(file));
         }
     }
 
