@@ -19,6 +19,65 @@ namespace DmN::SDL {
         }
     }
 
+    template<typename T>
+    void List<T>::add(T value) {
+        if (this->start_node == nullptr) {
+            this->start_node = new Node<T>(value);
+            return;
+        }
+
+        Node<T>* last_node;
+        while (last_node->next != nullptr)
+            last_node = last_node->next;
+        last_node->next = new Node<T>(value);
+    }
+
+    template<typename T>
+    inline T List<T>::addG(T value) {
+        add(value);
+        return value;
+    }
+
+    template<typename T>
+    Node<T>* List<T>::getNode(size_t i) {
+        Node<T>* last_node = this->start_node;
+        while (i != 0) {
+            last_node = last_node->next;
+            i--;
+        }
+        return last_node;
+    }
+
+
+    template<typename T>
+    T List<T>::get(size_t i) {
+        return this->getNode(i)->value;
+    }
+
+    template<typename T>
+    Node<T>* List<T>::removeGN(size_t i) {
+        if (i == 0) {
+            Node<T>* node_for_remove = this->start_node;
+            this->start_node = nullptr;
+            return node_for_remove;
+        }
+
+        Node<T>* prev_node = this->getNode(i - 1);
+        Node<T>* node_for_remove = prev_node->next;
+        prev_node->next = node_for_remove->next;
+        return node_for_remove;
+    }
+
+    template<typename T>
+    inline void List<T>::remove(size_t i) {
+        delete removeGN(i);
+    }
+
+    template<typename T>
+    inline T List<T>::removeG(size_t i) {
+        return removeGN(i)->value;
+    }
+
     inline unsigned int trans_two_byte(const unsigned char* bytes) {
         return ((bytes[0] & 0x1f) << 6) + (bytes[1] & 0x3f);
     }
