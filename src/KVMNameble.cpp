@@ -9,7 +9,7 @@ namespace DmN::KVM {
         auto* mappings = new List<std::pair<SI_t, SI_t>>(nullptr);
         size_t i = strings->size();
         while (i != 0) {
-            mappings->add(std::make_pair(i, this->add(strings->get(i--)))); // TODO:
+            mappings->add(std::make_pair(i, this->add(strings->get(i--))));
         }
         return mappings;
     }
