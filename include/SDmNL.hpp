@@ -5,7 +5,6 @@
 #define DMN_KVM_SDMNL_HPP
 
 #include <KVMConfig.hpp>
-
 #include <cstdint>
 #include <cstdio>
 
@@ -106,5 +105,7 @@ namespace DmN::SDL {
     DMN_KVM_EF wchar_t trans_six_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, uint8_t byte6);
     DMN_KVM_EF int get_utf_8_width(unsigned char byte);
 }
+
+#include <SDmNL.tpp>
 
 #endif /* DMN_KVM_SDMNL_HPP */
