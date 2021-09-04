@@ -1,8 +1,19 @@
 #include <KVMNameble.hpp>
-
+#include <SDmNL.hpp>
 #include <cstring>
 
+using namespace DmN::SDL;
+
 namespace DmN::KVM {
+    List<std::pair<SI_t, SI_t>>* SS::operator+(SS* strings) {
+        auto* mappings = new List<std::pair<SI_t, SI_t>>(nullptr);
+        size_t i = strings->size();
+        while (i != 0) {
+            mappings->add(std::make_pair(i, this->add(strings->get(i--))));
+        }
+        return mappings;
+    }
+
     uint32_t SSS::addNew(const char* name) {
         // Сохраняем имя в массив и инкрементируем текущий индекс
         this->data[++this->last_index] = name;
@@ -12,7 +23,7 @@ namespace DmN::KVM {
 
     uint32_t SSS::add(const char* name) {
         // Перебираем имена
-        for (size_t i = 0; i < this->size; i++)
+        for (size_t i = 0; i < this->_size; i++)
             // Сравниваем имена
             if (strcmp(this->data[i], name) == 0)
                 // Если имена одинаковы то возвращаем ID имени
@@ -28,7 +39,7 @@ namespace DmN::KVM {
 
     uint32_t SSS::get(const char* name) {
         // Перебираем имена
-        for (size_t i = 0; i < this->size; i++)
+        for (size_t i = 0; i < this->_size; i++)
             // Сравниваем имена
             if (strcmp(this->data[i], name) == 0)
                 // Если имена одинаковы то возвращаем ID имени
@@ -75,8 +86,12 @@ namespace DmN::KVM {
 
     void SSS::clear() {
         this->last_index = 0;
-        for (size_t i = 0; i < this->size; i++)
+        for (size_t i = 0; i < this->_size; i++)
             delete this->data[i];
+    }
+
+    inline size_t SSS::size() {
+        return this->_size;
     }
 
     uint32_t DSS::addNew(const char* name) {
@@ -235,5 +250,15 @@ namespace DmN::KVM {
             // Высвобождаем память занятую нодой
             delete old_node;
         }
+    }
+
+    size_t DSS::size() {
+        size_t size = 0;
+        SaI* last_node = this->start_node;
+        while (last_node->next == nullptr) {
+            last_node = last_node->next;
+            size++;
+        }
+        return size;
     }
 }

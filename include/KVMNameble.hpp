@@ -8,11 +8,12 @@
 #include "SDmNL.hpp"
 #include <cstddef>
 #include <cstdlib>
+#include <utility>
 
 namespace DmN::KVM {
     /// String and ID
-    DMN_KVM_E struct SaI : SDL::Node<char> {
-        SaI(char* name, SI_t id, SaI* next) : SDL::Node<char>(name, next) {
+    DMN_KVM_E struct SaI : SDL::Node<char*> {
+        SaI(char* name, SI_t id, SaI* next) : SDL::Node<char*>(name, next) {
             this->id = id;
             this->next = next;
         }
@@ -91,9 +92,14 @@ namespace DmN::KVM {
         DMN_KVM_E virtual void clear() = 0;
 
         /*!
+         * Возвращает размер хранилища
+         */
+         DMN_KVM_E virtual size_t size() = 0;
+
+        /*!
          * Складывает 2 хранилища строк воедино
          */
-        operator+(SS* strings) = 0; // TODO:
+        DmN::SDL::List<std::pair<SI_t, SI_t>>* operator+(SS* strings);
     };
 
     /// (Static String Storage) Статическое хранилище строк
@@ -102,13 +108,13 @@ namespace DmN::KVM {
         /// Массив ID и строк
         const char** data;
         /// Размер
-        size_t size;
+        size_t _size;
         /// Текущий индекс
         size_t last_index = 0;
     public:
         explicit SSS(size_t size) {
             this->data = static_cast<const char**>(calloc(size, sizeof(char*)));
-            this->size = size;
+            this->_size = size;
         }
 
         SI_t addNew(const char* name) override;
@@ -120,6 +126,7 @@ namespace DmN::KVM {
         const char* free(SI_t id) override;
         const char* remove(SI_t id) override;
         void clear() override;
+        size_t size() override;
     };
 
     /// (Dynamic String Storage) Динамическое хранилище строк
@@ -139,6 +146,7 @@ namespace DmN::KVM {
         const char * remove(SI_t id) override;
         const char * free(SI_t id) override;
         void clear() override;
+        size_t size() override;
     };
 
     /// Хрень которая содержит имя

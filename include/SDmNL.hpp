@@ -25,15 +25,114 @@ namespace DmN::SDL {
     /// Нода
     template<typename T>
     DMN_KVM_E struct Node {
-        Node(T* value, Node<T>* next) {
+        Node(T value) {
+            this->value = value;
+        }
+
+        Node(T value, Node<T>* next) {
             this->value = value;
             this->next = next;
         }
 
         /// Значение ноды
-        T* value;
+        T value;
         /// Следующая нода
         Node<T>* next;
+    };
+
+    /// Лист
+    template<typename T>
+    DMN_KVM_E struct List {
+        explicit List(Node<T>* start_node) {
+            this->start_node = start_node;
+        }
+
+        /*!
+         * Добавляет новый элемент в список
+         * @param value элемент для добавления
+         */
+        void add(T value) {
+            if (this->start_node == nullptr) {
+                this->start_node = new Node<T>(value);
+                return;
+            }
+
+            Node<T>* last_node;
+            while (last_node->next != nullptr)
+                last_node = last_node->next;
+            last_node->next = new Node<T>(value);
+        }
+
+        /*!
+         * Добавляет новый элемент и возвращает его
+         * @param value элемент для добавления
+         * @return добавленный элемент
+         */
+        inline T addG(T value) {
+            add(value);
+            return value;
+        }
+
+        /*!
+         * Возвращает ноду по ID
+         * @param i ID ноды
+         * @return нужная нам нода
+         */
+        Node<T>* getNode(size_t i) {
+            Node<T>* last_node = this->start_node;
+            while (i != 0) {
+                last_node = last_node->next;
+                i--;
+            }
+            return last_node;
+        }
+
+        /*!
+         * Получает элемент по ID
+         * @param i ID элемента
+         * @return нужный нам элемент
+         */
+        T get(size_t i) {
+            return this->getNode(i)->value;
+        }
+
+        /*!
+         * Убирает элемент из списка и возвращает его ноду
+         * @param i ID элемента
+         * @return нода элемента
+         */
+        Node<T>* removeGN(size_t i) {
+            if (i == 0) {
+                Node<T>* node_for_remove = this->start_node;
+                this->start_node = nullptr;
+                return node_for_remove;
+            }
+
+            Node<T>* prev_node = this->getNode(i - 1);
+            Node<T>* node_for_remove = prev_node->next;
+            prev_node->next = node_for_remove->next;
+            return node_for_remove;
+        }
+
+        /*!
+         * Удаляет ноду элемента
+         * @param i ID элемента
+         */
+        inline void remove(size_t i) {
+            delete removeGN(i);
+        }
+
+        /*!
+         * Удаляет элемент и возвращает его значение
+         * @param i ID элемента
+         * @return элемент
+         */
+        inline T removeG(size_t i) {
+            return removeGN(i)->value;
+        }
+
+        /// Первая нода
+        Node<T>* start_node;
     };
 
     DMN_KVM_EF unsigned int trans_two_byte(const unsigned char* bytes);

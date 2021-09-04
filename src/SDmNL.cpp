@@ -7,15 +7,15 @@ namespace DmN::SDL {
         }
 
         inline u2 u2Read(FILE* file) {
-            return (u1Read(file) << 8) | u1Read(file);
+            return (u1Read(file) << 4) | u1Read(file);
         }
 
         inline u4 u4Read(FILE* file) {
-            return (u2Read(file) << 16 | u2Read(file));
+            return (u2Read(file) << 8 | u2Read(file));
         }
 
         inline u8 u8Read(FILE* file) {
-            return (u4Read(file) << 32 | u4Read(file));
+            return (u4Read(file) << 16 | u4Read(file));
         }
     }
 
