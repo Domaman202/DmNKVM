@@ -5,7 +5,7 @@
 #include "SDmNL.cpp"
 
 namespace DmN::KVM {
-    SDL::List<std::pair<SI_t, SI_t>>* SS::operator+(SS* strings) {
+    SDL::List<std::pair<SI_t, SI_t>>* SS::add(const SS* strings) {
         auto* mappings = new SDL::List<std::pair<SI_t, SI_t>>(nullptr);
         size_t i = strings->size();
         while (i != 0) {
@@ -32,12 +32,12 @@ namespace DmN::KVM {
         return this->addNew(name);
     }
 
-    inline const char* SSS::get(uint32_t id) {
+    inline const char* SSS::get(uint32_t id) const {
         // Получаем имя по ID
         return this->data[id];
     }
 
-    uint32_t SSS::get(const char* name) {
+    uint32_t SSS::get(const char* name) const {
         // Перебираем имена
         for (size_t i = 0; i < this->_size; i++)
             // Сравниваем имена
@@ -90,7 +90,7 @@ namespace DmN::KVM {
             delete this->data[i];
     }
 
-    inline size_t SSS::size() {
+    inline size_t SSS::size() const {
         return this->_size;
     }
 
@@ -138,7 +138,7 @@ namespace DmN::KVM {
         return last_node->next->id;
     }
 
-    const char* DSS::get(uint32_t id) {
+    const char* DSS::get(uint32_t id) const {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         for (; id > 0; --id)
@@ -147,7 +147,7 @@ namespace DmN::KVM {
         return last_node->value;
     }
 
-    uint32_t DSS::get(const char* name) {
+    uint32_t DSS::get(const char* name) const {
         // Перебираем ноды
         SaI* last_node = this->start_node;
         while (last_node != nullptr) {
@@ -252,7 +252,7 @@ namespace DmN::KVM {
         }
     }
 
-    size_t DSS::size() {
+    size_t DSS::size() const {
         size_t size = 0;
         SaI* last_node = this->start_node;
         while (last_node->next == nullptr) {
