@@ -71,8 +71,6 @@ namespace DmN::KVM {
          */
         virtual ClassBase* get(CI_t id) = 0;
 
-        //\\
-
         /*!
          * Получает предков класса
          * @param clazz Класс предков которого нужно получить

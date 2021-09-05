@@ -31,28 +31,28 @@ namespace DmN::KVM {
          * @param name имя которое нужно добавить
          * @return ID которое принадлежит имени
          */
-        DMN_KVM_E virtual SI_t addNew(const char* name) = 0;
+        virtual SI_t addNew(const char* name) = 0;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
          * @param name имя которое нужно добавить
          * @return ID которое принадлежит имени
          */
-        DMN_KVM_E virtual SI_t add(const char* name) = 0;
+        virtual SI_t add(const char* name) = 0;
 
         /*!
          * Получает имя по ID
          * @param id ID по которому мы получаем имя
          * @return Имя полученное по ID
          */
-        DMN_KVM_E virtual const char* get(SI_t id) = 0;
+        virtual const char* get(SI_t id) = 0;
 
         /*!
          * Получаем ID по имени
          * @param name имя ID которого нужно получить
          * @return ID этого имени
          */
-        DMN_KVM_E virtual SI_t get(const char* name) = 0;
+        virtual SI_t get(const char* name) = 0;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -60,7 +60,7 @@ namespace DmN::KVM {
          * @param id ID которое нужно удалить
          * @return имя которое было удалено
          */
-        DMN_KVM_E virtual const char* free(SI_t id) = 0;
+        virtual const char* free(SI_t id) = 0;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -68,7 +68,7 @@ namespace DmN::KVM {
          * @param name имя для удаления
          * @return ID удалённого имени
          */
-        DMN_KVM_E virtual SI_t free(const char* name) = 0;
+        virtual SI_t free(const char* name) = 0;
 
         /*!
          * Удаляем имя из списка по ID и возвращает само имя
@@ -76,7 +76,7 @@ namespace DmN::KVM {
          * @param id ID которое нужно удалить
          * @return имя которое было удалено
          */
-        DMN_KVM_E virtual const char* remove(SI_t id) = 0;
+        virtual const char* remove(SI_t id) = 0;
 
         /*!
          * Удаляет имя из списка и возвращает ID
@@ -84,22 +84,22 @@ namespace DmN::KVM {
          * @param name имя для удаления
          * @return ID удалённого имени
          */
-        DMN_KVM_E virtual SI_t remove(const char* name) = 0;
+        virtual SI_t remove(const char* name) = 0;
 
         /*!
          * Очищает данные
          */
-        DMN_KVM_E virtual void clear() = 0;
+        virtual void clear() = 0;
 
         /*!
          * Возвращает размер хранилища
          */
-         DMN_KVM_E virtual size_t size() = 0;
+        virtual size_t size() = 0;
 
         /*!
          * Складывает 2 хранилища строк воедино
          */
-        DmN::SDL::List<std::pair<SI_t, SI_t>>* operator+(SS* strings);
+        virtual SDL::List<std::pair<SI_t, SI_t>>* operator+(SS* strings);
     };
 
     /// (Static String Storage) Статическое хранилище строк

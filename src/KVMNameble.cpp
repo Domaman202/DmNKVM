@@ -2,11 +2,11 @@
 #include <SDmNL.hpp>
 #include <cstring>
 
-using namespace DmN::SDL;
+#include "SDmNL.cpp"
 
 namespace DmN::KVM {
-    List<std::pair<SI_t, SI_t>>* SS::operator+(SS* strings) {
-        auto* mappings = new List<std::pair<SI_t, SI_t>>(nullptr);
+    SDL::List<std::pair<SI_t, SI_t>>* SS::operator+(SS* strings) {
+        auto* mappings = new SDL::List<std::pair<SI_t, SI_t>>(nullptr);
         size_t i = strings->size();
         while (i != 0) {
             mappings->add(std::make_pair(i, this->add(strings->get(i--))));
@@ -15,7 +15,7 @@ namespace DmN::KVM {
     }
 
     uint32_t SSS::addNew(const char* name) {
-        // Сохраняем имя в массив и инкрементируем текущий индекс
+        // Сохраняем имя в массив и инкриминируем текущий индекс
         this->data[++this->last_index] = name;
         // Возвращаем индекс имени
         return this->last_index - 1;

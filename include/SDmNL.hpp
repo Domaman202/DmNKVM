@@ -96,16 +96,6 @@ namespace DmN::SDL {
         /// Первая нода
         Node<T>* start_node;
     };
-
-    DMN_KVM_EF unsigned int trans_two_byte(const unsigned char* bytes);
-    DMN_KVM_EF unsigned int trans_three_byte(const unsigned char* bytes);
-    DMN_KVM_EF unsigned int trans_six_bytes(const unsigned char* bytes);
-    DMN_KVM_EF wchar_t trans_two_bytes_wchar(uint8_t byte1, uint8_t byte2);
-    DMN_KVM_EF wchar_t trans_three_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3);
-    DMN_KVM_EF wchar_t trans_six_bytes_wchar(uint8_t byte1, uint8_t byte2, uint8_t byte3, uint8_t byte4, uint8_t byte5, uint8_t byte6);
-    DMN_KVM_EF int get_utf_8_width(unsigned char byte);
 }
-
-#include <SDmNL.tpp>
 
 #endif /* DMN_KVM_SDMNL_HPP */
