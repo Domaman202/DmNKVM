@@ -32,72 +32,42 @@ namespace DmN::KVM {
         virtual CI_t addNew(EnumBase *enum_) = 0;
 
         /*!
-         * Добавляет новый класс в хип, если класс уже был добавлен то просто возвращает его ID
-         * @param clazz Класс для добавления
+         * Добавляет новый объект в хип, если объект уже был добавлен то просто возвращает его ID
+         * @param obj Объект для добавления
          * @return ID добавленного класса
          */
-        virtual CI_t add(ClassBase *clazz) = 0;
+        virtual CI_t add(Nameble *obj) = 0;
 
         /*!
-         * Добавляет новую структуру в хип, если структура уже была добавлена то просто возвращает её ID
-         * @param structure Структура для добавления
-         * @return ID добавленного класса
-         */
-        virtual CI_t add(StructBase *structure) = 0;
-
-        /*!
-         * Добавляет новый enum в хип, если enum уже был добавлен то просто возвращает его ID
-         * @param enum_ Enum для добавления
-         * @return ID добавленного enum-а
-         */
-        virtual CI_t add(EnumBase *enum_) = 0;
-
-        /*!
-         * Заменяет уже существующий класс по ID на новый
-         * @param clazz Класс который будет заменять нужный класс
-         * @param id ID класса который нужно заменить
+         * Заменяет уже существующий объект по ID на новый
+         * @param obj Объект который будет заменять нужный класс
+         * @param id ID объекта который нужно заменить
          * @return Заменённый (оригинальный) класс
          */
-        virtual ClassBase *replace(ClassBase *clazz, CI_t id) = 0;
-
-        /*!
-         * Заменяет уже существующую структуру по ID на новую
-         * @param structure Структура которая будет заменять новую структуру
-         * @param id ID структуры которую нужно заменить
-         * @return Заменённая (оригинальная) структура
-         */
-        virtual StructBase *replace(StructBase *structure, CI_t id) = 0;
-
-        /*!
-         * Заменяет уже существующий enum по ID на новый
-         * @param enum_ Enum который будет заменять нужный enum
-         * @param id ID enum-а который нужно заменить
-         * @return Заменённый (оригинальный) enum
-         */
-        virtual EnumBase *replace(EnumBase *enum_, CI_t id) = 0;
+        virtual Nameble *replace(Namespace *obj, CI_t id) = 0;
 
         /*!
          * Удаляет объект из хипа
-         * @param clazz Класс для удаления
+         * @param obj Объект для удаления
          */
         virtual void remove(LLTNameble *obj) = 0;
 
         /*!
-         * Удаляет (класс/структуру/enum) из хипа
-         * @param id ID (класса/структуры/enum-а) для удаления
-         * @return (Класс/Структуру/Enum) который был удалён
+         * Удаляет объект из хипа
+         * @param id ID объекта для удаления
+         * @return Объект который был удалён
          */
         virtual LLTNameble *remove(CI_t id) = 0;
 
         /*!
-         * Удаляет класс из хипа и высвобождает память из под него
-         * @param clazz Класс для удаления
+         * Удаляет объект из хипа и высвобождает память из под него
+         * @param obj Объект для удаления
          */
-        virtual void collect(ClassBase *clazz) = 0;
+        virtual void collect(GCObject *obj) = 0;
 
         /*!
-         * Удаляет класс из хипа и высвобождает память из под него
-         * @param id ID класса для удаления
+         * Удаляет объект из хипа и высвобождает память из под него
+         * @param id ID объекта для удаления
          */
         virtual void collect(CI_t id) = 0;
 
