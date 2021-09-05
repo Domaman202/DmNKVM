@@ -116,20 +116,6 @@ namespace DmN::KVM {
         virtual LLTNameble *get(CI_t id) = 0;
 
         /*!
-         * Получает предков класса
-         * @param clazz Класс предков которого нужно получить
-         * @return Пара [массив предков, кол-во предков] данного класса
-         */
-        virtual std::pair<ClassBase **, size_t> getParents(const ClassBase *clazz) = 0;
-
-        /*!
-         * Получает предков класса
-         * @param clazz ID класса в хипе предков которого нужно получить
-         * @return Пара [массив предков, кол-во предков] данного класса
-         */
-        virtual std::pair<ClassBase **, size_t> getParents(CI_t clazz) = 0;
-
-        /*!
          * Добавляет объекты в текущий хип из другого
          * @param heap хип из которого мы будет добавлять объекты
          */
