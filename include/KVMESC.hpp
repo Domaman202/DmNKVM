@@ -8,16 +8,20 @@
 #include <cstdint>
 
 namespace DmN::KVM {
+    DMN_KVM_E struct LLTNameble : Nameble, LLT {
+        LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
+    };
+
     DMN_KVM_E struct Instanceble { // TODO: NEED TO REALIZE
         virtual struct Object *newInstance() = 0;
     };
 
     /// Универсальная основа для Enum-а
-    DMN_KVM_E struct EnumBase : LLT, Modifiable, Nameble {
+    DMN_KVM_E struct EnumBase : LLTNameble, Modifiable {
         explicit EnumBase(SI_t name,
                           uint8_t modifier,
                           Value_t **enums,
-                          uint32_t enumsCount) : LLT(4), Modifiable(modifier), Nameble(name) {
+                          uint32_t enumsCount) : LLTNameble(name, 4), Modifiable(modifier) {
             this->enums = enums;
             this->enumsCount = enumsCount;
         }
@@ -97,13 +101,13 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для структуры
-    DMN_KVM_E struct StructBase : LLT, Modifiable, Nameble {
+    DMN_KVM_E struct StructBase : LLTNameble, Modifiable {
         explicit StructBase(SI_t name,
                             uint8_t modifier,
                             Field_t **fields,
                             uint32_t fieldsCount,
                             CI_t *parents,
-                            uint8_t parentsCount) : LLT(5), Modifiable(modifier), Nameble(name) {
+                            uint8_t parentsCount) : LLTNameble(name, 5), Modifiable(modifier) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->parents = parents;
@@ -210,10 +214,9 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    DMN_KVM_E struct ClassBase : LLT, Modifiable, Nameble {
+    DMN_KVM_E struct ClassBase : LLTNameble, Modifiable {
         explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLT(6), Modifiable(modifier),
-                                                                                         Nameble(name) {
+                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, 6), Modifiable(modifier) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->methods = methods;
