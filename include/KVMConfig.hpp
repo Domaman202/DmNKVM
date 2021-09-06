@@ -45,4 +45,10 @@ namespace DmN::KVM {
 
 #endif /* DMN_KVM_USE_CUSTOM_SIZE_CONFIG */
 
+#ifdef WIN32
+#include <WinShock.h>
+#else
+#include <sys/socket.h>
+#endif /* WIN32 */
+
 #endif /* DMN_KVM_CONFIG_HPP */

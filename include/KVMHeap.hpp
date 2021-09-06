@@ -89,7 +89,7 @@ namespace DmN::KVM {
          * Добавляет объекты в текущий хип из другого
          * @param heap хип из которого мы будет добавлять объекты
          */
-        virtual void operator+(const Heap *heap, SS* last_heap_strings,  const SS* strings);
+        virtual void operator+(const Heap *heap, SS* last_heap_strings,  const SS* strings) = 0;
     };
 }
 

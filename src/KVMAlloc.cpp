@@ -55,13 +55,13 @@ namespace DmN::KVM {
                 // Высвобождаем память
                 delete obj;
                 // Выводим код успешного выполнения
-                return CR::SUCCESS;
+                return (CR) Error::SUCCESS;
             }
             // Иначе выводим код ошибки
-            return CR::OBJECT_REFERENCE_NOT_NULL;
+            return Error::OBJECT_REFERENCE_NOT_NULL;
         }
         // Иначе выводим код ошибки
-        return CR::OBJECT_NO_COLLECTABLE;
+        return Error::OBJECT_NO_COLLECTABLE;
     }
 
     inline void collect(GCObject* obj) {
