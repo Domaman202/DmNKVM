@@ -30,7 +30,9 @@ namespace DmN::KVM::Error {
         /// Не удалось конвертировать IP
         IP_CONVERT_ERROR = 3,
         /// Ошибка подключения
-        CONNECT_ERROR = 4
+        CONNECT_ERROR = 4,
+        /// Ошибка бинда сокета
+        SOCKET_BIND_ERROR = 5
     };
 }
 
