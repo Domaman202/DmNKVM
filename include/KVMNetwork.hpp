@@ -12,10 +12,28 @@
 using namespace DmN::KVM::Error;
 
 namespace DmN::KVM::Network {
-    class Server {
-    protected:
-        sockaddr_in addr{};
-        int _socket;
+    DMN_KVM_E struct NetworkObject {
+        sockaddr_in s_addr{};
+        int _socket = 0;
+
+        inline ssize_t sendBuf(void* buf, size_t len) const {
+            return send(_socket, buf, len, 0);
+        }
+
+        inline ssize_t sendMessage(msghdr* msg) const {
+            return sendmsg(_socket, msg, 0);
+        }
+
+        inline ssize_t readBuf(void* buf, size_t len) const {
+            return recv(_socket, buf, len, 0);
+        }
+
+        inline ssize_t readMessage(msghdr* msg) const {
+            return recvmsg(_socket, msg, 0);
+        }
+    };
+
+    DMN_KVM_E class Server : public NetworkObject {
     public:
         Server(uint16_t port, NWR &result, int &error) {
             // Создаём сокет
@@ -68,10 +86,7 @@ namespace DmN::KVM::Network {
         }
     };
 
-    class Client {
-    protected:
-        sockaddr_in s_addr{};
-        int _socket = 0;
+    DMN_KVM_E class Client : public NetworkObject {
     public:
         Client(const std::string &address, bool ipv6, uint16_t port, NWR &result, int &error) {
             // Проверка на ipv6
@@ -101,22 +116,6 @@ namespace DmN::KVM::Network {
             if (connect(_socket, &s_addr, sizeof(s_addr)) < 0) [[unlikely]]
                 return Error::CONNECT_ERROR;
             return (NWR) Error::SUCCESS;
-        }
-
-        inline ssize_t sendBuf(void* buf, size_t len) const {
-            return send(_socket, buf, len, 0);
-        }
-
-        inline ssize_t sendMessage(msghdr* msg) const {
-            return sendmsg(_socket, msg, 0);
-        }
-
-        inline ssize_t readBuf(void* buf, size_t len) const {
-            return recv(_socket, buf, len, 0);
-        }
-
-        inline ssize_t readMessage(msghdr* msg) const {
-            return recvmsg(_socket, msg, 0);
         }
     };
 }
