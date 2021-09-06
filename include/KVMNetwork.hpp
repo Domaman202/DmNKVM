@@ -50,6 +50,22 @@ namespace DmN::KVM::Network {
                 return Error::CONNECT_ERROR;
             return (NWR) Error::SUCCESS;
         }
+
+        inline ssize_t sendBuf(void* buf, size_t len) const {
+            return send(_socket, buf, len, 0);
+        }
+
+        inline ssize_t sendMessage(msghdr* msg) const {
+            return sendmsg(_socket, msg, 0);
+        }
+
+        inline ssize_t readBuf(void* buf, size_t len) const {
+            return recv(_socket, buf, len, 0);
+        }
+
+        inline ssize_t readMessage(msghdr* msg) const {
+            return recvmsg(_socket, msg, 0);
+        }
     };
 }
 
