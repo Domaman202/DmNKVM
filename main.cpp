@@ -36,7 +36,7 @@ void networkTestS() {
     auto server = new Server(__PORT__, nwr, error);
     check(nwr);
     // Запускаем просмотр клиентов
-    check(server->listen_(1, error));
+    check(server->listen(1, error));
     // Подключаемся к клиенту
     auto connection = server->accept(nwr, error);
     check(nwr);
