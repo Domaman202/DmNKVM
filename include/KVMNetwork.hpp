@@ -15,44 +15,6 @@ namespace DmN::KVM::Network {
     DMN_KVM_E struct NetworkObject {
         sockaddr_in addr{};
         int _socket = 0;
-
-        /*!
-         * Отправляет буфер
-         * @param buf буфер для отправки
-         * @param len размер буфера
-         * @return TODO: ЯХЗ
-         */
-        inline ssize_t sendBuf(void* buf, size_t len) const {
-            return send(_socket, buf, len, 0);
-        }
-
-        /*!
-         * Отправляет msghdr
-         * @param msg msghdr для отправки
-         * @return TODO: ЯХЗ
-         */
-        inline ssize_t sendMsg(msghdr* msg) const {
-            return sendmsg(_socket, msg, 0);
-        }
-
-        /*!
-         * Читает входящие в буфер
-         * @param buf буфер в который нужно записать входящие данные
-         * @param len размер данных которые нужно записать
-         * @return TODO: ЯХЗ
-         */
-        inline ssize_t readBuf(void* buf, size_t len) const {
-            return recv(_socket, buf, len, 0);
-        }
-
-        /*!
-         * Читает входящий msghdr
-         * @param msg msghdr в который нужно читать входящие данные
-         * @return TODO: ЯХЗ
-         */
-        inline ssize_t readMsg(msghdr* msg) const {
-            return recvmsg(_socket, msg, 0);
-        }
     };
 
     DMN_KVM_E class Server : public NetworkObject {
@@ -113,8 +75,9 @@ namespace DmN::KVM::Network {
             return (NWR) Error::SUCCESS;
         }
 
-        NWR accept_(int& error) {
-            if ((error = accept(_socket, (sockaddr*) &addr, sizeof(addr))) < 0) [[unlikely]]
+        NWR accept_(int& error) { // TODO: rework with SocketConnexion
+            auto addr_size = sizeof(addr);
+            if ((error = accept(_socket, (sockaddr*) &addr, (socklen_t*) &addr_size)) < 0) [[unlikely]]
                 return (NWR) Error::ACCEPT_ERROR;
             return (NWR) Error::SUCCESS;
         }
@@ -151,6 +114,48 @@ namespace DmN::KVM::Network {
                 return Error::CONNECT_ERROR;
             return (NWR) Error::SUCCESS;
         }
+
+        /*!
+         * Отправляет буфер
+         * @param buf буфер для отправки
+         * @param len размер буфера
+         * @return TODO: ЯХЗ
+         */
+        inline ssize_t sendBuf(void* buf, size_t len) const {
+            return send(_socket, buf, len, 0);
+        }
+
+        /*!
+         * Отправляет msghdr
+         * @param msg msghdr для отправки
+         * @return TODO: ЯХЗ
+         */
+        inline ssize_t sendMsg(msghdr* msg) const {
+            return sendmsg(_socket, msg, 0);
+        }
+
+        /*!
+         * Читает входящие в буфер
+         * @param buf буфер в который нужно записать входящие данные
+         * @param len размер данных которые нужно записать
+         * @return TODO: ЯХЗ
+         */
+        inline ssize_t readBuf(void* buf, size_t len) const {
+            return recv(_socket, buf, len, 0);
+        }
+
+        /*!
+         * Читает входящий msghdr
+         * @param msg msghdr в который нужно читать входящие данные
+         * @return TODO: ЯХЗ
+         */
+        inline ssize_t readMsg(msghdr* msg) const {
+            return recvmsg(_socket, msg, 0);
+        }
+    };
+
+    class SocketConnexion : public NetworkObject {
+        // TODO:
     };
 }
 
