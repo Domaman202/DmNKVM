@@ -33,8 +33,8 @@ namespace DmN::KVM::Error {
         CONNECT_ERROR = 4,
         /// Ошибка бинда сокета
         SOCKET_BIND_ERROR = 5,
-        /// TODO: написать описание
-        ACCEPT_ERROR = 6,
+        /// Ошибка принятия соединения
+        CONNECT_ACCEPT_ERROR = 6,
         /// TODO: написать описание
         LISTEN_ERROR = 7
     };

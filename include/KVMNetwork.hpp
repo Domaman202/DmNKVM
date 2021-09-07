@@ -177,7 +177,7 @@ namespace DmN::KVM::Network {
         SocketConnection* accept(NWR& result, int& error) {
             auto addr_size = sizeof(addr);
             if ((error = ::accept(_socket, (sockaddr*) &addr, (socklen_t*) &addr_size)) < 0) [[unlikely]] {
-                result = (NWR) Error::ACCEPT_ERROR;
+                result = (NWR) Error::CONNECT_ACCEPT_ERROR;
                 return nullptr;
             }
 
