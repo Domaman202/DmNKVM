@@ -32,7 +32,11 @@ namespace DmN::KVM::Error {
         /// Ошибка подключения
         CONNECT_ERROR = 4,
         /// Ошибка бинда сокета
-        SOCKET_BIND_ERROR = 5
+        SOCKET_BIND_ERROR = 5,
+        /// TODO: написать описание
+        ACCEPT_ERROR = 6,
+        /// TODO: написать описание
+        LISTEN_ERROR = 7
     };
 }
 

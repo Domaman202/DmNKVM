@@ -59,7 +59,7 @@ namespace DmN::KVM::Network {
     public:
         Server(uint16_t port, NWR &result, int &error) {
             // Создаём сокет
-            if ((_socket = socket(AF_INET, SOCK_STREAM, PF_UNSPEC)) < 0) {
+            if ((_socket = socket(AF_INET, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {
                 result = Error::SOCKET_CREATE_ERROR;
                 error = _socket;
                 return;
@@ -71,7 +71,7 @@ namespace DmN::KVM::Network {
             addr.sin_port = port;
 
             // Биндим сокет
-            if ((error = bind(_socket, (sockaddr*) &addr, sizeof(addr))) < 0) {
+            if ((error = bind(_socket, (sockaddr*) &addr, sizeof(addr))) < 0) [[unlikely]] {
                 result = Error::SOCKET_BIND_ERROR;
                 return;
             }
@@ -84,7 +84,7 @@ namespace DmN::KVM::Network {
             int ip_protocol = ipv6 ? AF_INET6 : AF_INET;
 
             // Создаём сокет
-            if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) {
+            if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {
                 result = Error::SOCKET_CREATE_ERROR;
                 error = _socket;
                 return;
@@ -93,13 +93,13 @@ namespace DmN::KVM::Network {
             // Выставляет сетевые параметры
             addr.sin_family = ip_protocol;
             addr.sin_port = port;
-            if ((error = inet_pton(ip_protocol, address.c_str(), &(addr.sin_addr))) != 1) {
+            if ((error = inet_pton(ip_protocol, address.c_str(), &(addr.sin_addr))) != 1) [[unlikely]] {
                 result = Error::IP_CONVERT_ERROR;
                 return;
             }
 
             // Биндим сокет
-            if ((error = bind(_socket, (sockaddr*) &addr, sizeof(addr))) < 0) {
+            if ((error = bind(_socket, (sockaddr*) &addr, sizeof(addr))) < 0) [[unlikely]] {
                 result = Error::SOCKET_BIND_ERROR;
                 return;
             }
@@ -107,9 +107,15 @@ namespace DmN::KVM::Network {
             result = (NWR) Error::SUCCESS;
         }
 
-        NWR _listen(int i, int& error) {
-            if ((error = listen(_socket, i)) < 0)
-                return (NWR) Error::UNKNOWN_ERROR;
+        NWR listen_(int i, int& error) {
+            if ((error = listen(_socket, i)) < 0) [[unlikely]]
+                return (NWR) Error::LISTEN_ERROR;
+            return (NWR) Error::SUCCESS;
+        }
+
+        NWR accept_(int& error) {
+            if ((error = accept(_socket, (sockaddr*) &addr, sizeof(addr))) < 0) [[unlikely]]
+                return (NWR) Error::ACCEPT_ERROR;
             return (NWR) Error::SUCCESS;
         }
     };
@@ -121,7 +127,7 @@ namespace DmN::KVM::Network {
             int ip_protocol = ipv6 ? AF_INET6 : AF_INET;
 
             // Создаём сокет
-            if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) {
+            if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {
                 result = Error::SOCKET_CREATE_ERROR;
                 error = _socket;
                 return;
@@ -130,7 +136,7 @@ namespace DmN::KVM::Network {
             // Выставляет сетевые параметры
             addr.sin_family = ip_protocol;
             addr.sin_port = port;
-            if ((error = inet_pton(ip_protocol, address.c_str(), &(addr.sin_addr))) != 1) {
+            if ((error = inet_pton(ip_protocol, address.c_str(), &(addr.sin_addr))) != 1) [[unlikely]] {
                 result = Error::IP_CONVERT_ERROR;
                 return;
             }
