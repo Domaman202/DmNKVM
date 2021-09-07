@@ -31,14 +31,14 @@ namespace DmN::KVM {
          * @param name имя которое нужно добавить
          * @return ID которое принадлежит имени
          */
-        virtual SI_t addNew(const char* name) = 0;
+        [[nodiscard]] virtual SI_t addNew(const char* name) = 0;
 
         /*!
          * Добавляет новую строку если она не существует, возвращает ID этой строки
          * @param name имя которое нужно добавить
          * @return ID которое принадлежит имени
          */
-        virtual SI_t add(const char* name) = 0;
+        [[nodiscard]] virtual SI_t add(const char* name) = 0;
 
         /*!
          * Получает имя по ID
@@ -117,16 +117,16 @@ namespace DmN::KVM {
             this->_size = size;
         }
 
-        SI_t addNew(const char* name) override;
-        SI_t add(const char* name) override;
-        SI_t get(const char *name) const override;
+        [[nodiscard]] SI_t addNew(const char* name) override;
+        [[nodiscard]] SI_t add(const char* name) override;
+        [[nodiscard]] SI_t get(const char *name) const override;
         SI_t free(const char *name) override;
         SI_t remove(const char *name) override;
-        const char* get(SI_t id) const override;
+        [[nodiscard]] const char* get(SI_t id) const override;
         const char* free(SI_t id) override;
         const char* remove(SI_t id) override;
         void clear() override;
-        size_t size() const override;
+        [[nodiscard]] size_t size() const override;
     };
 
     /// (Dynamic String Storage) Динамическое хранилище строк
@@ -137,16 +137,16 @@ namespace DmN::KVM {
     public:
         DSS() : SS() { }
 
-        SI_t addNew(const char* name) override;
-        SI_t add(const char* name) override;
-        SI_t get(const char *name) const override;
+        [[nodiscard]] SI_t addNew(const char* name) override;
+        [[nodiscard]] SI_t add(const char* name) override;
+        [[nodiscard]] SI_t get(const char *name) const override;
         SI_t free(const char *name) override;
         SI_t remove(const char *name) override;
-        const char * get(SI_t id) const override;
+        [[nodiscard]] const char * get(SI_t id) const override;
         const char * remove(SI_t id) override;
         const char * free(SI_t id) override;
         void clear() override;
-        size_t size() const override;
+        [[nodiscard]] size_t size() const override;
     };
 
     /// Хрень которая содержит имя
