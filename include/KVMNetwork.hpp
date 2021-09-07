@@ -13,9 +13,13 @@ using namespace DmN::KVM::Error;
 
 namespace DmN::KVM::Network {
     DMN_KVM_E struct NetworkObject {
-    public:
         sockaddr_in addr{};
         int _socket = 0;
+
+        void close() const {
+            shutdown(_socket, 0);
+            ::close(_socket);
+        }
     };
 
     DMN_KVM_E class SocketConnection : public NetworkObject {
@@ -150,9 +154,9 @@ namespace DmN::KVM::Network {
             return (NWR) Error::SUCCESS;
         }
 
-        SocketConnection* acceptConnection(NWR& result, int& error) {
+        SocketConnection* accept(NWR& result, int& error) {
             auto addr_size = sizeof(addr);
-            if ((error = accept(_socket, (sockaddr*) &addr, (socklen_t*) &addr_size)) < 0) [[unlikely]] {
+            if ((error = ::accept(_socket, (sockaddr*) &addr, (socklen_t*) &addr_size)) < 0) [[unlikely]] {
                 result = (NWR) Error::ACCEPT_ERROR;
                 return nullptr;
             }

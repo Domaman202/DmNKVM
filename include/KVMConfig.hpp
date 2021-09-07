@@ -49,6 +49,7 @@ namespace DmN::KVM {
 #include <WinShock.h>
 #else
 #include <sys/socket.h>
+#include <sys/unistd.h>
 #endif /* WIN32 */
 
 #endif /* DMN_KVM_CONFIG_HPP */
