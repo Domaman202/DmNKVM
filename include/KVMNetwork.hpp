@@ -16,6 +16,9 @@ namespace DmN::KVM::Network {
         sockaddr_in addr{};
         int _socket = 0;
 
+        /*!
+         * Закрывает соединение
+         */
         void close() const {
             shutdown(_socket, 0);
             ::close(_socket);
@@ -89,6 +92,11 @@ namespace DmN::KVM::Network {
             error = 0;
         }
 
+        /*!
+         * Пытаемся подключится к серверу
+         * @param error код ошибки (!LOW LEVEL!)
+         * @return Результат выполнения
+         */
         inline NWR tryConnect(int &error) {
             if (connect(_socket, (sockaddr*) &addr, sizeof(addr)) < 0) [[unlikely]]
                 return Error::CONNECT_ERROR;
@@ -148,12 +156,24 @@ namespace DmN::KVM::Network {
             result = (NWR) Error::SUCCESS;
         }
 
+        /*!
+         * Разрешаем подключение для n-го кол-во клиентов
+         * @param i кол-во клиентов которые могут подключиться
+         * @param error кол ошибки (!LOW LEVEL!)
+         * @return Результат
+         */
         NWR listen_(int i, int& error) {
             if ((error = listen(_socket, i)) < 0) [[unlikely]]
                 return (NWR) Error::LISTEN_ERROR;
             return (NWR) Error::SUCCESS;
         }
 
+        /*!
+         * Принимаем соединение
+         * @param result результат
+         * @param error код ошибки (LOW LEVEL)
+         * @return Объект описывающий соединение
+         */
         SocketConnection* accept(NWR& result, int& error) {
             auto addr_size = sizeof(addr);
             if ((error = ::accept(_socket, (sockaddr*) &addr, (socklen_t*) &addr_size)) < 0) [[unlikely]] {
