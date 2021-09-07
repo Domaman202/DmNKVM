@@ -106,6 +106,12 @@ namespace DmN::KVM::Network {
 
             result = (NWR) Error::SUCCESS;
         }
+
+        NWR _listen(int i, int& error) {
+            if ((error = listen(_socket, i)) < 0)
+                return (NWR) Error::UNKNOWN_ERROR;
+            return (NWR) Error::SUCCESS;
+        }
     };
 
     DMN_KVM_E class Client : public NetworkObject {
