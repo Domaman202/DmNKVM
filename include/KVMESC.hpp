@@ -12,10 +12,6 @@ namespace DmN::KVM {
         LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
     };
 
-    DMN_KVM_E struct Instanceble { // TODO: NEED TO REALIZE
-        virtual struct Object *newInstance() = 0;
-    };
-
     /// Универсальная основа для Enum-а
     DMN_KVM_E struct EnumBase : LLTNameble, Modifiable {
         explicit EnumBase(SI_t name,

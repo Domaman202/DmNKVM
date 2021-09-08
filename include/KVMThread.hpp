@@ -4,14 +4,14 @@
 #ifndef DMN_KVM_THREAD_HPP
 #define DMN_KVM_THREAD_HPP
 
-#include "KVMConfig.hpp"
+#include "KVMCall.hpp"
 #include "KVMObj.hpp"
 #include "KVMSR.hpp"
 
 namespace DmN::KVM {
     DMN_KVM_E struct Thread {
         /// Стек вызовов
-//        Stack<>* callStack; TODO: нужно доделать часть с вызовом функции
+        Stack<Call>* callStack;
         /// Стек
         Stack<void*>* stack;
         /// Регистры
