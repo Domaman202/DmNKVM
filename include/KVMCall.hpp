@@ -4,13 +4,17 @@
 #ifndef DMN_KVM_CALL_HPP
 #define DMN_KVM_CALL_HPP
 
-#include "KVMConfig.hpp"
+#include "KVMObj.hpp"
 #include "KVMTypes.hpp"
 
 namespace DmN::KVM {
     DMN_KVM_E struct Call {
-        /// Метод который вызывал код
+        /// Объект который вызывал метод
+        Object* calling_method_obj;
+        /// Метод который вызывал метод
         Method_t* calling_method;
+        /// Объект метод которого был вызван
+        Object* called_method_obj;
         /// Вызываемый метод
         Method_t* called_method;
         /// Аргументы
