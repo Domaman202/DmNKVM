@@ -72,7 +72,7 @@ namespace DmN::KVM::Network {
          * @param error код ошибки (!LOW LEVEL!)
          * @return Результат выполнения
          */
-        inline NWR tryConnect(int &error);
+        NWR tryConnect(int &error);
     };
 
     DMN_KVM_E class Server : public NetworkObject {
@@ -111,6 +111,22 @@ namespace DmN::KVM::Network {
          */
         SocketConnection *accept(NWR &result, int &error);
     };
+}
+
+inline ssize_t DmN::KVM::Network::SocketConnection::sendBuf(void *buf, size_t len) const {
+    return send(_socket, buf, len, 0);
+}
+
+inline ssize_t DmN::KVM::Network::SocketConnection::sendMsg(msghdr *msg) const {
+    return sendmsg(_socket, msg, 0);
+}
+
+inline ssize_t DmN::KVM::Network::SocketConnection::readBuf(void *buf, size_t len) const {
+    return recv(_socket, buf, len, 0);
+}
+
+inline ssize_t DmN::KVM::Network::SocketConnection::readMsg(msghdr *msg) const {
+    return recvmsg(_socket, msg, 0);
 }
 
 #endif //DMN_KVM_NETWORK_HPP

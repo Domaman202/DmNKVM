@@ -10,11 +10,11 @@
 namespace DmN::KVM {
     DMN_KVM_E struct Call {
         /// Объект который вызывал метод
-        Object* calling_method_obj;
+        Object_t* calling_method_obj;
         /// Метод который вызывал метод
         Method_t* calling_method;
         /// Объект метод которого был вызван
-        Object* called_method_obj;
+        Object_t* called_method_obj;
         /// Вызываемый метод
         Method_t* called_method;
         /// Аргументы

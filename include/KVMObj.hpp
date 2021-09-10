@@ -8,10 +8,10 @@
 
 namespace DmN::KVM {
     DMN_KVM_E struct Instanceble { // TODO: NEED TO REALIZE
-        virtual struct Object *newInstance() = 0;
+        virtual struct Object_t *newInstance() = 0;
     };
 
-    DMN_KVM_E struct Object { // TODO: NEED TO REALIZE
+    DMN_KVM_E struct Object_t { // TODO: NEED TO REALIZE
         Instanceble* type;
     };
 }

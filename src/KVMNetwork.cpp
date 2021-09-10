@@ -6,22 +6,6 @@ namespace DmN::KVM::Network {
         ::close(_socket);
     }
 
-    inline ssize_t SocketConnection::sendBuf(void *buf, size_t len) const {
-        return send(_socket, buf, len, 0);
-    }
-
-    inline ssize_t SocketConnection::sendMsg(msghdr *msg) const {
-        return sendmsg(_socket, msg, 0);
-    }
-
-    inline ssize_t SocketConnection::readBuf(void *buf, size_t len) const {
-        return recv(_socket, buf, len, 0);
-    }
-
-    inline ssize_t SocketConnection::readMsg(msghdr *msg) const {
-        return recvmsg(_socket, msg, 0);
-    }
-
     Client::Client(const std::string &address, bool ipv6, uint16_t port, NWR &result, int &error) {
         // Проверка на ipv6
         int ip_protocol = ipv6 ? AF_INET6 : AF_INET;
@@ -46,7 +30,7 @@ namespace DmN::KVM::Network {
         error = 0;
     }
 
-    inline NWR Client::tryConnect(int &error) {
+    NWR Client::tryConnect(int &error) {
         if (connect(_socket, (sockaddr *) &addr, sizeof(addr)) < 0) [[unlikely]]
             return Error::CONNECT_ERROR;
         return (NWR) Error::SUCCESS;
