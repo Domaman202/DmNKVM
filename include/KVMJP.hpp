@@ -11,6 +11,7 @@
 #include <tuple>
 
 using namespace DmN::SDL::Byte;
+using namespace DmN::SDL::Pairs;
 
 namespace DmN::KVM::JP {
     DMN_KVM_E struct ConstantPool {
@@ -36,9 +37,14 @@ namespace DmN::KVM::JP {
         };
     };
 
+    /*!
+     * Читает весь файл в одну строку
+     * @param file файл который нужно считать
+     * @return Итоговая строка
+     */
     char* readString(FILE* file);
-
-    std::tuple<u2, ConstantPool*[], SS*> readConstantPool(FILE* file);
+    
+    Triple<u2, ConstantPool **, SS *> readConstantPool(FILE* file);
 }
 
 #endif /* DMN_KVM_JP_HPP */

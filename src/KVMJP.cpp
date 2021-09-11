@@ -1,26 +1,26 @@
 #include <KVMJP.hpp>
 
 namespace DmN::KVM::JP {
-    char* readString(FILE* file) {
+    char *readString(FILE *file) {
         u2 length = u2Read(file);
-        char* bytes = new char[length];
+        char *bytes = new char[length];
         for (int j = 0; j < length; j++)
-            memcpy(&bytes[j], u1Read(file), sizeof(u1));
+            std::memcpy(&bytes[j], reinterpret_cast<void *>(u1Read(file)), sizeof(u1));
         return bytes;
     }
 
-    std::tuple<u2, ConstantPool*[], SS*> readConstantPool(FILE* file) {
+    Triple<u2, ConstantPool **, SS *> readConstantPool(FILE *file) {
         u2 cpc = u2Read(file);
         //
-        ConstantPool*[cpc] pools;
-        ConstantPool* lp = new ConstantPool;
+        ConstantPool *pools[cpc];
+        auto *lp = new ConstantPool{};
         //
-        SS* strings = DmN::KVM::Alloc::allocDSS(nullptr, 0);
+        SS *strings = DmN::KVM::Alloc::allocDSS(nullptr, 0);
         //
         for (u2 i = 0; i < cpc; i++) {
             lp->tag = u1Read(file);
 
-            switch(lp->tag) {
+            switch (lp->tag) {
                 // Constant Class
                 case 7:
                     lp->SID = (SI_t) u2Read(file);
@@ -38,19 +38,19 @@ namespace DmN::KVM::JP {
                     break;
                     // Constant Int
                 case 3:
-                    std::memcpy(&lp->int32, u4Read(file), sizeof(u4));
+                    std::memcpy(&lp->int32, reinterpret_cast<void *>(u4Read(file)), sizeof(u4));
                     break;
                     // Constant Float
                 case 4:
-                    std::memcpy(&lp->float_, u4Read(file), sizeof(u4));
+                    std::memcpy(&lp->float_, reinterpret_cast<void *>(u4Read(file)), sizeof(u4));
                     break;
                     // Constant Long
                 case 5:
-                    std::memcpy(&lp->int64, u8Read(file), sizeof(u8));
+                    std::memcpy(&lp->int64, reinterpret_cast<void *>(u8Read(file)), sizeof(u8));
                     break;
                     // Constant Double
                 case 6:
-                    std::memcpy(&lp->double_, u8Read(file), sizeof(u8));
+                    std::memcpy(&lp->double_, reinterpret_cast<void *>(u8Read(file)), sizeof(u8));
                     break;
                     // Constant Name
                 case 12:
@@ -63,9 +63,9 @@ namespace DmN::KVM::JP {
             }
 
             pools[i] = lp;
-            lp = new ConstantPool;
+            lp = new ConstantPool{};
         }
         //
-        return std::make_tuple(cpc, pools, strings);
+        return {cpc, pools, strings};
     }
 }
