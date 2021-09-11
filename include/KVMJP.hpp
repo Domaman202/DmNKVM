@@ -75,7 +75,7 @@ namespace DmN::KVM::JP {
                     break;
                 // Constant Float
                 case 4:
-                    std::memcpy(&lp->float_, u4Read(file), sizeof(u4))
+                    std::memcpy(&lp->float_, u4Read(file), sizeof(u4));
                     break;
                 // Constant Long
                 case 5:
