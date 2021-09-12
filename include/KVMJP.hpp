@@ -43,7 +43,7 @@ namespace DmN::KVM::JP {
      * @return Итоговая строка
      */
     char* readString(FILE* file);
-    
+
     Triple<u2, ConstantPool **, SS *> readConstantPool(FILE* file);
 }
 
