@@ -8,19 +8,17 @@
 #include "KVMThread.hpp"
 #include "KVMHeap.hpp"
 
-namespace DmN {
-    namespace KVM {
-        DMN_KVM_E struct Process {
-            /// Массив потоков
-            Thread **threads = nullptr;
-            /// Кол-во потоков
-            uint8_t tc = 0;
-            /// Куча
-            Heap *heap = nullptr;
-            /// Ошибка
-            Throwable *error = nullptr;
-        };
-    }
+namespace DmN::KVM {
+    DMN_KVM_E struct Process {
+        /// Массив потоков
+        Thread **threads = nullptr;
+        /// Кол-во потоков
+        uint8_t tc = 0;
+        /// Куча
+        Heap *heap = nullptr;
+        /// Ошибка
+        Throwable *error = nullptr;
+    };
 }
 
 #endif /* DMN_KVM_PROCESS_H */

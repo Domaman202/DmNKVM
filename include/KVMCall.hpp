@@ -7,23 +7,21 @@
 #include "KVMObj.hpp"
 #include "KVMTypes.hpp"
 
-namespace DmN {
-    namespace KVM {
-        DMN_KVM_E struct Call {
-            /// Объект который вызывал метод
-            Object_t *calling_method_obj;
-            /// Метод который вызывал метод
-            Method_t *calling_method;
-            /// Объект метод которого был вызван
-            Object_t *called_method_obj;
-            /// Вызываемый метод
-            Method_t *called_method;
-            /// Аргументы
-            Value_t *args;
-            /// Кол-во аргументов
-            size_t args_count;
-        };
-    }
+namespace DmN::KVM {
+    DMN_KVM_E struct Call {
+        /// Объект который вызывал метод
+        Object_t *calling_method_obj;
+        /// Метод который вызывал метод
+        Method_t *calling_method;
+        /// Объект метод которого был вызван
+        Object_t *called_method_obj;
+        /// Вызываемый метод
+        Method_t *called_method;
+        /// Аргументы
+        Value_t *args;
+        /// Кол-во аргументов
+        size_t args_count;
+    };
 }
 
 #endif /* DMN_KVM_CALL_HPP */

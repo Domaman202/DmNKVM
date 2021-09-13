@@ -4,12 +4,8 @@
 #ifndef DMN_KVM_VM_HPP
 #define DMN_KVM_VM_HPP
 
-namespace DmN {
-    namespace KVM {
-        namespace VM {
+namespace DmN::KVM::VM {
 
-        }
-    }
 }
 
 #endif /* DMN_KVM_VM_HPP */
