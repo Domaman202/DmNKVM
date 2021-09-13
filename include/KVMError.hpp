@@ -37,7 +37,7 @@ namespace DmN {
                 SOCKET_BIND_ERROR = 5,
                 /// Ошибка принятия соединения
                 CONNECT_ACCEPT_ERROR = 6,
-                /// TODO: написать описание
+                /// Ошибка просмотра соединений
                 LISTEN_ERROR = 7
             };
         }

@@ -12,7 +12,7 @@ namespace DmN {
     namespace KVM {
         DMN_KVM_E struct Thread {
             /// Стек вызовов
-            Stack<Call> *callStack;
+            Stack<Call *> *callStack;
             /// Стек
             Stack<void *> *stack;
             /// Регистры
