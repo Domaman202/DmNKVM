@@ -8,15 +8,17 @@
 #include "KVMObj.hpp"
 #include "KVMSR.hpp"
 
-namespace DmN::KVM {
-    DMN_KVM_E struct Thread {
-        /// Стек вызовов
-        Stack<Call>* callStack;
-        /// Стек
-        Stack<void*>* stack;
-        /// Регистры
-        Resisters* regs;
-    };
+namespace DmN {
+    namespace KVM {
+        DMN_KVM_E struct Thread {
+            /// Стек вызовов
+            Stack<Call> *callStack;
+            /// Стек
+            Stack<void *> *stack;
+            /// Регистры
+            Resisters *regs;
+        };
+    }
 }
 
 #endif /* DMN_KVM_THREAD_HPP */

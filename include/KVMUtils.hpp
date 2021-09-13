@@ -9,19 +9,25 @@
 
 using namespace DmN::KVM::Error;
 
-namespace DmN::KVM::Utils {
-    /*!
-     * Пытается собрать объект
-     * @param obj объект для сборки
-     * @return возвращает значение из DmN::KVM::ERROR::CR
-    */
-    DMN_KVM_EF CR tryCollect(GCObject *obj);
+namespace DmN {
+    namespace KVM {
+        namespace Utils {
+            /*!
+             * Пытается собрать объект
+             * @param obj объект для сборки
+             * @return возвращает значение из DmN::KVM::ERROR::CR
+            */
+            DMN_KVM_EF CR
+            tryCollect(GCObject
+            *obj);
 
-    /*!
-     * Насильно собирает объект
-     * @param obj объект для сборки
-     */
-    DMN_KVM_EF inline void collect(GCObject *obj);
+            /*!
+             * Насильно собирает объект
+             * @param obj объект для сборки
+             */
+            DMN_KVM_EF inline void collect(GCObject * obj);
+        }
+    }
 }
 
 #endif /* DMN_KVM_CONSTRUCTORS_HPP */
