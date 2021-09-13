@@ -45,14 +45,14 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateClass8BS(SI_t
-            name,
-            uint8_t modifier, Field_t
-            **fields,
-            uint32_t fieldsCount, Method_t
-            **methods,
-            uint32_t methodsCount, CI_t
-            *parents,
-            uint8_t parentsCount
+                             name,
+                             uint8_t modifier, Field_t
+                             **fields,
+                             uint32_t fieldsCount, Method_t
+                             **methods,
+                             uint32_t methodsCount, CI_t
+                             *parents,
+                             uint8_t parentsCount
             );
 
             /*!
@@ -70,15 +70,15 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateNSClass8BS(SI_t
-            name,
-            NSI_t ns, uint8_t
-            modifier,
-            Field_t **fields, uint32_t
-            fieldsCount,
-            Method_t **methods, uint32_t
-            methodsCount,
-            CI_t *parents, uint8_t
-            parentsCount);
+                               name,
+                               NSI_t ns, uint8_t
+                               modifier,
+                               Field_t **fields, uint32_t
+                               fieldsCount,
+                               Method_t **methods, uint32_t
+                               methodsCount,
+                               CI_t *parents, uint8_t
+                               parentsCount);
 
             /*!
              * Создаёт 8и битный класс в куче
@@ -94,14 +94,14 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateClass8BH(SI_t
-            name,
-            uint8_t modifier, Field_t
-            **fields,
-            uint32_t fieldsCount, Method_t
-            **methods,
-            uint32_t methodsCount, CI_t
-            *parents,
-            uint8_t parentsCount
+                             name,
+                             uint8_t modifier, Field_t
+                             **fields,
+                             uint32_t fieldsCount, Method_t
+                             **methods,
+                             uint32_t methodsCount, CI_t
+                             *parents,
+                             uint8_t parentsCount
             );
 
             /*!
@@ -119,15 +119,15 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateNSClass8BH(SI_t
-            name,
-            uint8_t modifier, NSI_t
-            ns,
-            Field_t **fields, uint32_t
-            fieldsCount,
-            Method_t **methods, uint32_t
-            methodsCount,
-            CI_t *parents, uint8_t
-            parentsCount);
+                               name,
+                               uint8_t modifier, NSI_t
+                               ns,
+                               Field_t **fields, uint32_t
+                               fieldsCount,
+                               Method_t **methods, uint32_t
+                               methodsCount,
+                               CI_t *parents, uint8_t
+                               parentsCount);
 
             /*!
              * Создаёт 16и битный класс на стеке
@@ -143,14 +143,14 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateClass16BS(SI_t
-            name,
-            uint8_t modifier, Field_t
-            **fields,
-            uint32_t fieldsCount, Method_t
-            **methods,
-            uint32_t methodsCount, CI_t
-            *parents,
-            uint8_t parentsCount
+                              name,
+                              uint8_t modifier, Field_t
+                              **fields,
+                              uint32_t fieldsCount, Method_t
+                              **methods,
+                              uint32_t methodsCount, CI_t
+                              *parents,
+                              uint8_t parentsCount
             );
 
             /*!
@@ -168,15 +168,15 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateNSClass16BS(SI_t
-            name,
-            NSI_t ns, uint8_t
-            modifier,
-            Field_t **fields, uint32_t
-            fieldsCount,
-            Method_t **methods, uint32_t
-            methodsCount,
-            CI_t *parents, uint8_t
-            parentsCount);
+                                name,
+                                NSI_t ns, uint8_t
+                                modifier,
+                                Field_t **fields, uint32_t
+                                fieldsCount,
+                                Method_t **methods, uint32_t
+                                methodsCount,
+                                CI_t *parents, uint8_t
+                                parentsCount);
 
             /*!
              * Создаёт 16и битный класс в куче
@@ -192,14 +192,14 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateClass16BH(SI_t
-            name,
-            uint8_t modifier, Field_t
-            **fields,
-            uint32_t fieldsCount, Method_t
-            **methods,
-            uint32_t methodsCount, CI_t
-            *parents,
-            uint8_t parentsCount
+                              name,
+                              uint8_t modifier, Field_t
+                              **fields,
+                              uint32_t fieldsCount, Method_t
+                              **methods,
+                              uint32_t methodsCount, CI_t
+                              *parents,
+                              uint8_t parentsCount
             );
 
             /*!
@@ -217,15 +217,15 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateNSClass16BH(SI_t
-            name,
-            NSI_t ns, uint8_t
-            modifier,
-            Field_t **fields, uint32_t
-            fieldsCount,
-            Method_t **methods, uint32_t
-            methodsCount,
-            CI_t *parents, uint8_t
-            parentsCount);
+                                name,
+                                NSI_t ns, uint8_t
+                                modifier,
+                                Field_t **fields, uint32_t
+                                fieldsCount,
+                                Method_t **methods, uint32_t
+                                methodsCount,
+                                CI_t *parents, uint8_t
+                                parentsCount);
 
             /*!
              * Создаёт 64х битный класс на стеке
@@ -241,14 +241,14 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateClass64BS(SI_t
-            name,
-            uint8_t modifier, Field_t
-            **fields,
-            uint32_t fieldsCount, Method_t
-            **methods,
-            uint32_t methodsCount, CI_t
-            *parents,
-            uint8_t parentsCount
+                              name,
+                              uint8_t modifier, Field_t
+                              **fields,
+                              uint32_t fieldsCount, Method_t
+                              **methods,
+                              uint32_t methodsCount, CI_t
+                              *parents,
+                              uint8_t parentsCount
             );
 
             /*!
@@ -266,15 +266,15 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateNSClass64BS(SI_t
-            name,
-            uint8_t modifier, NSI_t
-            ns,
-            Field_t **fields, uint32_t
-            fieldsCount,
-            Method_t **methods, uint32_t
-            methodsCount,
-            CI_t *parents, uint8_t
-            parentsCount);
+                                name,
+                                uint8_t modifier, NSI_t
+                                ns,
+                                Field_t **fields, uint32_t
+                                fieldsCount,
+                                Method_t **methods, uint32_t
+                                methodsCount,
+                                CI_t *parents, uint8_t
+                                parentsCount);
 
             /*!
              * Создаёт 64х битный класс в куче
@@ -290,14 +290,14 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateClass64BH(SI_t
-            name,
-            uint8_t modifier, Field_t
-            **fields,
-            uint32_t fieldsCount, Method_t
-            **methods,
-            uint32_t methodsCount, CI_t
-            *parents,
-            uint8_t parentsCount
+                              name,
+                              uint8_t modifier, Field_t
+                              **fields,
+                              uint32_t fieldsCount, Method_t
+                              **methods,
+                              uint32_t methodsCount, CI_t
+                              *parents,
+                              uint8_t parentsCount
             );
 
             /*!
@@ -315,15 +315,15 @@ namespace DmN {
             DMN_KVM_EF ClassBase
             *
             allocateNSClass64BH(SI_t
-            name,
-            NSI_t ns, uint8_t
-            modifier,
-            Field_t **fields, uint32_t
-            fieldsCount,
-            Method_t **methods, uint32_t
-            methodsCount,
-            CI_t *parents, uint8_t
-            parentsCount);
+                                name,
+                                NSI_t ns, uint8_t
+                                modifier,
+                                Field_t **fields, uint32_t
+                                fieldsCount,
+                                Method_t **methods, uint32_t
+                                methodsCount,
+                                CI_t *parents, uint8_t
+                                parentsCount);
         }
     }
 }
