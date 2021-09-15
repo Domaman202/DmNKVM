@@ -7,12 +7,24 @@
 #include "KVMESC.hpp"
 
 namespace DmN::KVM {
-    DMN_KVM_E struct Instanceble { // TODO: NEED TO REALIZE
-        virtual struct Object_t *newInstance() = 0;
+    DMN_KVM_E struct Instanceble_t {
+        virtual struct Object_t *newInstance(Value_t** args, size_t args_c) = 0;
     };
 
-    DMN_KVM_E struct Object_t { // TODO: NEED TO REALIZE
+    DMN_KVM_E struct Object_t
+        /// Тип объекта
         Instanceble *type;
+    };
+
+    DMN_KVM_E struct DynamicObject_t : Object_t {
+        /// Методы объекта
+        Method_t **methods;
+        /// Кол-во методов
+        uint8_t methods_count;
+        /// Поля объекта
+        Field_t **fields;
+        /// Кол-во полей
+        uint8_t fields_count;
     };
 }
 
