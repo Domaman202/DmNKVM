@@ -12,6 +12,11 @@
 using namespace DmN::KVM::Error;
 
 namespace DmN::KVM::Network {
+    DMN_KVM_E class NetworkHandler {
+        /// TODO:
+    };
+
+    /// Простой сетевой объект
     DMN_KVM_E struct NetworkObject {
         sockaddr_in addr{};
         int _socket = 0;
@@ -22,6 +27,7 @@ namespace DmN::KVM::Network {
         void close() const;
     };
 
+    /// Сокетовое соединение
     DMN_KVM_E class SocketConnection : public NetworkObject {
     public:
         /*!
@@ -55,6 +61,7 @@ namespace DmN::KVM::Network {
         inline ssize_t readMsg(msghdr *msg) const;
     };
 
+    /// Клиент
     DMN_KVM_E class Client : public SocketConnection {
     public:
         /*!
@@ -75,6 +82,7 @@ namespace DmN::KVM::Network {
         NWR tryConnect(int &error);
     };
 
+    /// Сервер
     DMN_KVM_E class Server : public NetworkObject {
     public:
         /*!

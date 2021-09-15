@@ -8,6 +8,7 @@
 #include "KVMTypes.hpp"
 
 namespace DmN::KVM {
+    /// Вызов функции
     DMN_KVM_E struct Call {
         /// Объект который вызывал метод
         Object_t *calling_method_obj;

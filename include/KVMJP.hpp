@@ -14,6 +14,7 @@ using namespace DmN::SDL::Byte;
 using namespace DmN::SDL::Pairs;
 
 namespace DmN::KVM::JP {
+    /// Пул констант
     DMN_KVM_E struct ConstantPool {
         u1 tag = 0;
         union {

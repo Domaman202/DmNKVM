@@ -5,6 +5,7 @@
 #define DMN_KVM_PROCESS_H
 
 #include "KVMThrowable.hpp"
+#include "KVMNetwork.hpp"
 #include "KVMThread.hpp"
 #include "KVMHeap.hpp"
 
@@ -16,6 +17,8 @@ namespace DmN::KVM {
         uint8_t tc = 0;
         /// Куча
         Heap *heap = nullptr;
+        /// Хендлер сети
+        Network::NetworkHandler* network = nullptr;
         /// Ошибка
         Throwable *error = nullptr;
     };
