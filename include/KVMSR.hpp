@@ -9,8 +9,7 @@
 
 namespace DmN::KVM {
     template<typename T>
-    DMN_KVM_E
-    struct Stack : public List<T> {
+    DMN_KVM_E struct Stack : public SDL::List<T> {
         /*!
          * Помещает элемент в верх стек
          * @param value элемент для помещения в стек
@@ -35,7 +34,7 @@ namespace DmN::KVM {
         [[nodiscard]] T peek();
     };
 
-    DMN_KVM_E struct Resisters : List<int32_t> {
+    DMN_KVM_E struct Resisters : SDL::List<int32_t> {
         // TODO:
     };
 }

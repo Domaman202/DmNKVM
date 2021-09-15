@@ -48,10 +48,25 @@ namespace DmN::SDL {
         return last_node;
     }
 
+    template<typename T>
+    Node<T>* List<T>::getLastNode() {
+        Node<T> last_node = this->start_node;
+        while (last_node->next != nullptr)
+            last_node = last_node->next;
+        return last_node.value;
+    }
 
     template<typename T>
     T List<T>::get(size_t i) {
         return this->getNode(i)->value;
+    }
+
+    template<typename T>
+    T List<T>::getLast() {
+        Node<T> last_node = this->start_node;
+        while (last_node->next != nullptr)
+            last_node = last_node->next;
+        return last_node.value;
     }
 
     template<typename T>
@@ -76,5 +91,25 @@ namespace DmN::SDL {
     template<typename T>
     inline T List<T>::removeG(size_t i) {
         return removeGN(i)->value;
+    }
+
+    template<typename T>
+    Node<T>* List<T>::removeLGN() {
+        Node<T>* pre_last_node = this->start_node;
+        while (pre_last_node->next->next != nullptr)
+            pre_last_node = pre_last_node->next;
+        Node<T>* node_for_remove = pre_last_node->next;
+        pre_last_node->next = nullptr;
+        return node_for_remove;
+    }
+
+    template<typename T>
+    inline void List<T>::removeLast() {
+        delete removeLGN();
+    }
+
+    template<typename T>
+    inline T List<T>::removeLG() {
+        return removeLGN()->value;
     }
 }
