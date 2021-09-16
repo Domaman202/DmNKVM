@@ -131,7 +131,7 @@ namespace DmN::SDL {
     }
 
     template<typename T>
-    inline T List<T>::operator[] (size_t index) {
+    inline T& List<T>::operator[] (size_t index) {
         return get(index);
     }
 }

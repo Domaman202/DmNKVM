@@ -6,6 +6,8 @@
 
 #include "KVMConfig.hpp"
 #include "SDmNL.hpp"
+#include <type_traits>
+#include <concepts>
 
 namespace DmN::KVM {
     template<typename T>
@@ -34,7 +36,13 @@ namespace DmN::KVM {
         [[nodiscard]] T peek();
     };
 
-    DMN_KVM_E struct Resisters : SDL::List<int32_t> {
+    template <typename T>
+    concept RegisterConcept =
+            requires(T obj, size_t index) {
+                { obj[index] } -> std::convertible_to<void*>;
+            };
+
+    DMN_KVM_E struct Resisters {
         // TODO:
     };
 }

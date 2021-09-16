@@ -167,7 +167,7 @@ namespace DmN::SDL {
          */
         T removeLG();
 
-        T operator[] (size_t index);
+        T& operator[] (size_t index);
 
         /// Первая нода
         Node<T> *start_node;
