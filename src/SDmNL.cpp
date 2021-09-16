@@ -39,6 +39,23 @@ namespace DmN::SDL {
     }
 
     template<typename T>
+    void List<T>::set(size_t index, T value) {
+        Node<T>* last_node = this->start_node;
+        while (index != 0) {
+            if (last_node->next == nullptr)
+                last_node->next = new Node<T>();
+            last_node = last_node->next;
+            index--;
+        }
+        last_node->value = value;
+    }
+
+    template<typename T>
+    void List<T>::setUnsafe(size_t index, T value) {
+        getNode(index)->value = value;
+    }
+
+    template<typename T>
     Node<T>* List<T>::getNode(size_t i) {
         Node<T>* last_node = this->start_node;
         while (i != 0) {
@@ -111,5 +128,10 @@ namespace DmN::SDL {
     template<typename T>
     inline T List<T>::removeLG() {
         return removeLGN()->value;
+    }
+
+    template<typename T>
+    inline T List<T>::operator[] (size_t index) {
+        return get(index);
     }
 }

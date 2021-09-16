@@ -91,6 +91,20 @@ namespace DmN::SDL {
         T addG(T value);
 
         /*!
+         * Устанавливает значение ноды, если ноды под нужным номером нет то добавляет её
+         * @param index индекс ноды
+         * @param value значение
+         */
+        void set(size_t index, T value);
+
+        /*!
+         * Устанавливает значение ноды
+         * @param index индекс ноды
+         * @param value значение
+         */
+        void setUnsafe(size_t index, T value);
+
+        /*!
          * Возвращает ноду по ID
          * @param i ID ноды
          * @return нужная нам нода
@@ -152,6 +166,8 @@ namespace DmN::SDL {
          * @return элемент
          */
         T removeLG();
+
+        T operator[] (size_t index);
 
         /// Первая нода
         Node<T> *start_node;
