@@ -44,6 +44,13 @@ namespace DmN::KVM {
             delete[] this->regStorage;
         }
 
+        /*!
+         * Возвращает значение регистра по индексу
+         * @param index индекс регистра
+         * @return Значение регистра
+         */
+        void*& operator[](size_t index);
+
         /// Массив регистров
         void** regStorage;
         /// Размер

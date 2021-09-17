@@ -20,4 +20,8 @@ namespace DmN::KVM {
     inline T Stack<T>::peek() {
         return this->getLast();
     }
+
+    inline void*& Resisters::operator[](size_t index) {
+        return this->regStorage[index];
+    }
 }
