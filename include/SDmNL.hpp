@@ -9,6 +9,7 @@
 #include <cstdio>
 
 namespace DmN::SDL {
+
     namespace Byte {
         typedef uint8_t u1;
         typedef uint16_t u2;

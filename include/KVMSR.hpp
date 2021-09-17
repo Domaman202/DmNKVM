@@ -6,8 +6,6 @@
 
 #include "KVMConfig.hpp"
 #include "SDmNL.hpp"
-#include <type_traits>
-#include <concepts>
 
 namespace DmN::KVM {
     template<typename T>
@@ -36,14 +34,20 @@ namespace DmN::KVM {
         [[nodiscard]] T peek();
     };
 
-    template <typename T>
-    concept RegisterConcept =
-            requires(T obj, size_t index) {
-                { obj[index] } -> std::convertible_to<void*>;
-            };
-
     DMN_KVM_E struct Resisters {
-        // TODO:
+        explicit Resisters(size_t size) {
+            this->regStorage = new void*[size];
+            this->size = size;
+        }
+
+        ~Resisters() {
+            delete[] this->regStorage;
+        }
+
+        /// Массив регистров
+        void** regStorage;
+        /// Размер
+        size_t size;
     };
 }
 
