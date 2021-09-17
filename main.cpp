@@ -29,7 +29,7 @@ namespace DmN::KVM::testing {
     namespace SR {
         void stackRegisterTest() {
             // !Старт!
-            std::cout << "Старт проверки стека!" << std::endl;
+            std::cout << "Старт проверки стека и регистров!" << std::endl;
             // Создаём стек
             DmN::KVM::Stack<int32_t> stack(nullptr);
             // Проверяем стек
@@ -46,8 +46,16 @@ namespace DmN::KVM::testing {
             assert(stack.peekPop() == 21);
             stack.push(333);
             assert(stack.peekPop() == 333);
+            // Создаём хранилище регистров
+            DmN::KVM::Resisters registers(213);
+            // Пишем регистры
+            for (int i = 0; i < registers.size; i++)
+                registers[i] = new int(i);
+            // Проверяем регистры
+            for (int i = 0; i < registers.size; i++)
+                assert(*(int *) registers[i] == i);
             // !Конец!
-            std::cout << "Успешно выполнена проверка стека!" << std::endl;
+            std::cout << "Успешно выполнена проверка стека и регистров!" << std::endl;
         }
     }
 
