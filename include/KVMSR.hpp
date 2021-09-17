@@ -53,7 +53,7 @@ namespace DmN::KVM {
          * @param index индекс регистра
          * @return Значение регистра
          */
-        inline void *&operator[](size_t index) const;
+        void *&operator[](size_t index) const;
 
         /// Массив регистров
         void **register_storage;
