@@ -9,7 +9,11 @@
 
 namespace DmN::KVM {
     template<typename T>
-    DMN_KVM_E struct Stack : public SDL::List<T> {
+    DMN_KVM_E
+    struct Stack : public SDL::List<T> {
+        explicit Stack(SDL::Node<T>* start_node) : SDL::List<T>(start_node) {
+        }
+
         /*!
          * Помещает элемент в верх стек
          * @param value элемент для помещения в стек
@@ -36,12 +40,12 @@ namespace DmN::KVM {
 
     DMN_KVM_E struct Resisters {
         explicit Resisters(size_t size) {
-            this->regStorage = new void*[size];
+            this->register_storage = new void *[size];
             this->size = size;
         }
 
         ~Resisters() {
-            delete[] this->regStorage;
+            delete[] this->register_storage;
         }
 
         /*!
@@ -49,13 +53,37 @@ namespace DmN::KVM {
          * @param index индекс регистра
          * @return Значение регистра
          */
-        void*& operator[](size_t index);
+        inline void *&operator[](size_t index) const;
 
         /// Массив регистров
-        void** regStorage;
+        void **register_storage;
         /// Размер
         size_t size;
     };
+}
+
+template<typename T>
+inline void DmN::KVM::Stack<T>::push(T value) {
+    this->add(value);
+}
+
+template<typename T>
+inline void DmN::KVM::Stack<T>::pop() {
+    this->removeLast();
+}
+
+template<typename T>
+inline T DmN::KVM::Stack<T>::peekPop() {
+    return this->removeLG();
+}
+
+template<typename T>
+inline T DmN::KVM::Stack<T>::peek() {
+    return this->getLast();
+}
+
+inline void*& DmN::KVM::Resisters::operator[](size_t index) const {
+    return this->register_storage[index];
 }
 
 #endif /* DMN_KVM_SR_HPP */
