@@ -23,7 +23,7 @@ namespace DmN::KVM::Network {
         /*!
          * Закрывает соединение
          */
-        void close() const;
+        NWR close() const;
     };
 
     /// Сокетовое соединение
@@ -113,12 +113,12 @@ namespace DmN::KVM::Network {
         return recv(_socket, DMN_KVM_NETWORK_CAST_TO_BUFFER(buf), len, 0);
     }
 
-    void NetworkObject::close() const {
+    NWR NetworkObject::close() const {
 #ifdef WIN32
-        closesocket(_socket);
+        return closesocket(_socket) == SOCKET_ERROR ? CLOSE_SOCKET_ERROR : (NWR) SUCCESS;
 #else
         shutdown(_socket, 0);
-        ::close(_socket);
+        return ::close(_socket) ? (NWR) SUCCESS : CLOSE_SOCKET_ERROR;
 #endif /* WIN32 */
     }
 

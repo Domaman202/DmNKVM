@@ -36,7 +36,9 @@ namespace DmN::KVM::Error {
         /// Ошибка принятия соединения
         CONNECT_ACCEPT_ERROR = 6,
         /// Ошибка просмотра соединений
-        LISTEN_ERROR = 7
+        LISTEN_ERROR = 7,
+        // Ошибка закрытия сокета
+        CLOSE_SOCKET_ERROR = 8
     };
 }
 
