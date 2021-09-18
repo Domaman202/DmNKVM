@@ -14,6 +14,12 @@ else()
 endif()
 
 add_library(DmNKVMSt STATIC ${HEADER})
+set_target_properties(DmNKVMSt PROPERTIES LINKER_LANGUAGE CXX)
+
 add_library(DmNKVMSh SHARED ${HEADER})
+set_target_properties(DmNKVMSh PROPERTIES LINKER_LANGUAGE CXX)
+
 add_library(DmNKVMMo MODULE ${HEADER})
+set_target_properties(DmNKVMMo PROPERTIES LINKER_LANGUAGE CXX)
+
 add_executable(DmNKVMExe main.cpp ${HEADER})
