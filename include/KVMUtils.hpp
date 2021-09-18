@@ -15,15 +15,13 @@ namespace DmN::KVM::Utils {
      * @param obj объект для сборки
      * @return возвращает значение из DmN::KVM::ERROR::CR
     */
-    DMN_KVM_EF CR
-    tryCollect(GCObject
-               *obj);
+    CR tryCollect(GCObject *obj);
 
     /*!
      * Насильно собирает объект
      * @param obj объект для сборки
      */
-    DMN_KVM_EF inline void collect(GCObject *obj);
+    inline void collect(GCObject *obj);
 }
 
 #endif /* DMN_KVM_CONSTRUCTORS_HPP */

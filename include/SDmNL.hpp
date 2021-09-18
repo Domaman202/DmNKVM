@@ -9,20 +9,27 @@
 #include <cstdio>
 
 namespace DmN::SDL {
-
     namespace Byte {
         typedef uint8_t u1;
         typedef uint16_t u2;
         typedef uint32_t u4;
         typedef uint64_t u8;
 
-        DMN_KVM_EF u1 u1Read(FILE *file);
+        inline u1 u1Read(FILE* file) {
+            return getc(file);
+        }
 
-        DMN_KVM_EF u2 u2Read(FILE *file);
+        inline u2 u2Read(FILE* file) {
+            return (u1Read(file) << 4) | u1Read(file);
+        }
 
-        DMN_KVM_EF u4 u4Read(FILE *file);
+        inline u4 u4Read(FILE* file) {
+            return (u2Read(file) << 8 | u2Read(file));
+        }
 
-        DMN_KVM_EF u8 u8Read(FILE *file);
+        inline u8 u8Read(FILE* file) {
+            return (u4Read(file) << 16 | u4Read(file));
+        }
     }
 
     namespace Pairs {
@@ -53,7 +60,6 @@ namespace DmN::SDL {
 
     /// Нода
     template<typename T>
-    DMN_KVM_E
     struct Node {
         explicit Node(T value) {
             this->value = value;
@@ -73,7 +79,6 @@ namespace DmN::SDL {
 
     /// Лист
     template<typename T>
-    DMN_KVM_E
     struct List {
         explicit List(Node<T> *start_node) {
             this->start_node = start_node;

@@ -6,7 +6,7 @@
 
 namespace DmN::KVM {
     /// (Low Level Type) Некий объект который имеет низкоуровневый тип
-    DMN_KVM_E struct LLT {
+    struct LLT {
         explicit LLT(uint8_t llt) {
             this->llt = llt;
         }
@@ -16,7 +16,7 @@ namespace DmN::KVM {
     };
 
     /// Некий объект который имеет модификаторы
-    DMN_KVM_E struct Modifiable {
+    struct Modifiable {
         explicit Modifiable(uint8_t modifier) {
             this->modifier = modifier;
         }

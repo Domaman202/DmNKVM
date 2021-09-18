@@ -8,7 +8,7 @@
 
 namespace DmN::KVM {
     /// Абстрактный загрузчик объектов
-    DMN_KVM_E struct ClassLoader {
+    struct ClassLoader {
         /* JVM */
         virtual ClassBase *defineJVMClass(int8_t *bytes, size_t off, size_t len) = 0;
         /* .NET */

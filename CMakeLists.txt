@@ -3,7 +3,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(DmNKVM)
 
-file(GLOB_RECURSE SOURCE ./src/*.cpp)
 file(GLOB_RECURSE HEADER ./include/*.hpp)
 
 include_directories(include)
@@ -14,7 +13,7 @@ else()
     include_directories(variants/compiler/other)
 endif()
 
-add_library(DmNKVMSt STATIC ${HEADER} ${SOURCE})
-add_library(DmNKVMSh SHARED ${HEADER} ${SOURCE})
-add_library(DmNKVMMo MODULE ${HEADER} ${SOURCE})
-add_executable(DmNKVMExe main.cpp ${HEADER} ${SOURCE})
+add_library(DmNKVMSt STATIC ${HEADER})
+add_library(DmNKVMSh SHARED ${HEADER})
+add_library(DmNKVMMo MODULE ${HEADER})
+add_executable(DmNKVMExe main.cpp ${HEADER})

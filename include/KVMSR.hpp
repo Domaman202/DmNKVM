@@ -9,7 +9,6 @@
 
 namespace DmN::KVM {
     template<typename T>
-    DMN_KVM_E
     struct Stack : public SDL::List<T> {
         explicit Stack(SDL::Node<T>* start_node) : SDL::List<T>(start_node) {
         }
@@ -38,7 +37,7 @@ namespace DmN::KVM {
         [[nodiscard]] T peek();
     };
 
-    DMN_KVM_E struct Resisters {
+    struct Resisters {
         explicit Resisters(size_t size) {
             this->register_storage = new void *[size];
             this->size = size;

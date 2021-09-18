@@ -9,7 +9,7 @@
 #inlucde "KVMThread.hpp"
 
 namespace DmN::KVM {
-    DMN_KVM_E struct Throwable : Nameble {
+    struct Throwable : Nameble {
         Throwable(Thread *thread, SI_t error) : Nameble(error) {
             this->thread = thread;
         }

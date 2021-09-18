@@ -86,7 +86,7 @@ namespace DmN::KVM::testing {
         void networkTestS() {
             // Переменные ошибки
             NWR nwr;
-            int error;
+            DmN::KVM::Network::socket_t error;
             // Создаём сервер
             auto server = new DmN::KVM::Network::Server(port, nwr, error);
             check(nwr);
@@ -106,7 +106,7 @@ namespace DmN::KVM::testing {
 
         void networkTestC() {
             NWR nwr;
-            int error;
+            DmN::KVM::Network::socket_t error;
             // Создаём клиент
             auto client = new DmN::KVM::Network::Client("0.0.0.0", false, port, nwr, error);
             check(nwr);

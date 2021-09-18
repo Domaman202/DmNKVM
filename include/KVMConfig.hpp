@@ -46,10 +46,22 @@ namespace DmN::KVM {
 #endif /* DMN_KVM_USE_CUSTOM_SIZE_CONFIG */
 
 #ifdef WIN32
-#include <WinShock.h>
+#include <WinSock2.h>
+#include <ws2tcpip.h>
+#define DMN_KVM_NETWORK_CAST_TO_BUFFER(buf) (static_cast<char*>(buf))
+    namespace DmN::KVM::Network {
+        typedef int packet_size_t;
+        typedef SOCKET socket_t;
+    }
 #else
 #include <sys/socket.h>
 #include <sys/unistd.h>
+#include <arpa/inet.h>
+#define DMN_KVM_NETWORK_CAST_TO_BUFFER (buf) static_cast<void*>(buf)
+    namespace DmN::KVM::Network {
+        typedef size_t packet_size_t;
+        typedef int socket_t;
+    }
 #endif /* WIN32 */
 
 #endif /* DMN_KVM_CONFIG_HPP */

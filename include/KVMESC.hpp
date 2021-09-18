@@ -8,12 +8,12 @@
 #include <cstdint>
 
 namespace DmN::KVM {
-    DMN_KVM_E struct LLTNameble : Nameble, LLT {
+    struct LLTNameble : Nameble, LLT {
         LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
     };
 
     /// Универсальная основа для Enum-а
-    DMN_KVM_E struct EnumBase : LLTNameble, Modifiable {
+    struct EnumBase : LLTNameble, Modifiable {
         explicit EnumBase(SI_t name,
                           uint8_t modifier,
                           Value_t **enums,
@@ -28,7 +28,7 @@ namespace DmN::KVM {
         uint32_t enumsCount: 8;
     };
 
-    DMN_KVM_E struct NSEnumBase : EnumBase, NSObject {
+    struct NSEnumBase : EnumBase, NSObject {
         explicit NSEnumBase(SI_t name,
                             NSI_t ns,
                             uint8_t modifier,
@@ -98,7 +98,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для структуры
-    DMN_KVM_E struct StructBase : LLTNameble, Modifiable {
+    struct StructBase : LLTNameble, Modifiable {
         explicit StructBase(SI_t name,
                             uint8_t modifier,
                             Field_t **fields,
@@ -121,7 +121,7 @@ namespace DmN::KVM {
         uint8_t parentsCount: 5;
     };
 
-    DMN_KVM_E struct NSStructBase : StructBase, NSObject {
+    struct NSStructBase : StructBase, NSObject {
         explicit NSStructBase(SI_t name,
                               NSI_t ns,
                               uint8_t modifier,
@@ -212,7 +212,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    DMN_KVM_E struct ClassBase : LLTNameble, Modifiable {
+    struct ClassBase : LLTNameble, Modifiable {
         explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                            uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, 6),
                                                                                          Modifiable(modifier) {
@@ -239,7 +239,7 @@ namespace DmN::KVM {
     };
 
     /// Основа класса со встроенными классами
-    DMN_KVM_E struct InnerStorageClassBase : ClassBase {
+    struct InnerStorageClassBase : ClassBase {
         explicit InnerStorageClassBase(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                        uint32_t fieldsCount,
                                        Method_t **methods,
@@ -258,7 +258,7 @@ namespace DmN::KVM {
         ClassBase *base;
     };
 
-    DMN_KVM_E struct NSClassBase : ClassBase, NSObject {
+    struct NSClassBase : ClassBase, NSObject {
         explicit NSClassBase(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                              Method_t **methods,
                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, modifier,
