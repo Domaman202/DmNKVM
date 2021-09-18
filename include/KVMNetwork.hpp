@@ -176,7 +176,7 @@ namespace DmN::KVM::Network {
 
     Server::Server(const std::string &address, bool ipv6, uint16_t port, NWR &result, socket_t &error) {
         // Проверка на ipv6
-        INT ip_protocol = ipv6 ? AF_INET6 : AF_INET;
+        int ip_protocol = ipv6 ? AF_INET6 : AF_INET;
 
         // Создаём сокет
         if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {

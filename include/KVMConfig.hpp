@@ -57,7 +57,7 @@ namespace DmN::KVM {
 #include <sys/socket.h>
 #include <sys/unistd.h>
 #include <arpa/inet.h>
-#define DMN_KVM_NETWORK_CAST_TO_BUFFER (buf) static_cast<void*>(buf)
+#define DMN_KVM_NETWORK_CAST_TO_BUFFER(buf) buf
     namespace DmN::KVM::Network {
         typedef size_t packet_size_t;
         typedef int socket_t;
