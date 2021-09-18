@@ -100,8 +100,10 @@ namespace DmN::KVM::testing {
             strcpy(chars, "Hello, World!");
             connection->sendBuf(chars, 1024);
             // Закрываем соединения
-            connection->close();
-            server->close();
+            nwr = connection->close();
+            check(nwr);
+            nwr = server->close();
+            check(nwr);
         }
 
         void networkTestC() {

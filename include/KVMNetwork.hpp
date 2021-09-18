@@ -118,7 +118,7 @@ namespace DmN::KVM::Network {
         return closesocket(_socket) == SOCKET_ERROR ? CLOSE_SOCKET_ERROR : (NWR) SUCCESS;
 #else
         shutdown(_socket, 0);
-        return ::close(_socket) ? (NWR) SUCCESS : CLOSE_SOCKET_ERROR;
+        return ::close(_socket) == 0 ? (NWR) SUCCESS : CLOSE_SOCKET_ERROR;
 #endif /* WIN32 */
     }
 
