@@ -48,7 +48,7 @@ namespace DmN::KVM {
     };
 
     /// Лямбда
-    struct Lambda_t : LLT, GCObject {
+    class Lambda_t : LLT, GCObject {
         explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t *code) : LLT(3), GCObject(true) {
             this->descriptor = descriptor;
             this->cs = cs;
@@ -64,7 +64,7 @@ namespace DmN::KVM {
     };
 
     /// Поле
-    struct Field_t : LLT, Nameble {
+    class Field_t : LLT, Nameble {
         explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
             this->value = value;
         }
@@ -74,7 +74,7 @@ namespace DmN::KVM {
     };
 
     /// Метод
-    struct Method_t : LLT, Nameble, NSObject {
+    class Method_t : LLT, Nameble, NSObject {
         explicit Method_t(SI_t descriptor, NSI_t ns) : LLT(2), Nameble(descriptor), NSObject(ns) {
             this->name = descriptor;
         }
@@ -83,7 +83,7 @@ namespace DmN::KVM {
         SI_t name;
     };
 
-    struct BCMethod : Method_t {
+    class BCMethod : Method_t {
         explicit BCMethod(SI_t descriptor, NSI_t ns, uint32_t cs, uint8_t *code) : Method_t(descriptor, ns) {
             this->cs = cs;
             this->code = code;
@@ -95,7 +95,7 @@ namespace DmN::KVM {
         uint8_t *code;
     };
 
-    struct NMethod : Method_t {
+    class NMethod : Method_t {
         explicit NMethod(SI_t descriptor, NSI_t ns) : Method_t(descriptor, ns) {}
 
         virtual Value_t *execute(Value_t **args) = 0;
@@ -105,7 +105,7 @@ namespace DmN::KVM {
 
     typedef Value_t *(KVMMethod)(void *obj, Value_t **args);
 
-    struct NRMethod : NMethod {
+    class NRMethod : NMethod {
         explicit NRMethod(KVMMethod *method, SI_t descriptor, NSI_t ns) : NMethod(descriptor, ns) {
             this->ref = method;
         }

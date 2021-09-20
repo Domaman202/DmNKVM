@@ -10,7 +10,7 @@
 #include "KVMHeap.hpp"
 
 namespace DmN::KVM {
-    struct Process {
+    class Process {
         /// Массив потоков
         Thread **threads = nullptr;
         /// Кол-во потоков
