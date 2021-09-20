@@ -7,7 +7,7 @@
 #include "KVMObj.hpp"
 #include "KVMTypes.hpp"
 
-namespace DmN::KVM {
+namespace DmN::KVM::Call {
     /// Вызов функции
     struct Call {
         /// Объект который вызывал метод
