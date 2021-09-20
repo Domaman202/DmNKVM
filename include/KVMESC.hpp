@@ -212,7 +212,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    struct ClassBase : LLTNameble, Modifiable {
+    class ClassBase : LLTNameble, Modifiable {
         explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                            uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, 6),
                                                                                          Modifiable(modifier) {
@@ -239,7 +239,7 @@ namespace DmN::KVM {
     };
 
     /// Основа класса со встроенными классами
-    struct InnerStorageClassBase : ClassBase {
+    class InnerStorageClassBase : ClassBase {
         explicit InnerStorageClassBase(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                        uint32_t fieldsCount,
                                        Method_t **methods,
@@ -258,7 +258,7 @@ namespace DmN::KVM {
         ClassBase *base;
     };
 
-    struct NSClassBase : ClassBase, NSObject {
+    class NSClassBase : ClassBase, NSObject {
         explicit NSClassBase(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                              Method_t **methods,
                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name, modifier,
@@ -271,7 +271,7 @@ namespace DmN::KVM {
                                                                                            NSObject(ns) {}
     };
 
-    struct Class_8bit_t : ClassBase {
+    class Class_8bit_t : ClassBase {
         explicit Class_8bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                               Method_t **methods,
                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name,
@@ -290,7 +290,7 @@ namespace DmN::KVM {
         uint8_t methodsCount;
     };
 
-    struct Class_16bit_t : Class_8bit_t {
+    class Class_16bit_t : Class_8bit_t {
         explicit Class_16bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                Method_t **methods,
                                uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_8bit_t(name,
@@ -309,7 +309,7 @@ namespace DmN::KVM {
         uint16_t methodsCount;
     };
 
-    struct Class_32bit_t : Class_16bit_t {
+    class Class_32bit_t : Class_16bit_t {
         explicit Class_32bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                Method_t **methods,
                                uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_16bit_t(name,
@@ -328,7 +328,7 @@ namespace DmN::KVM {
         uint32_t methodsCount;
     };
 
-    struct InnerStorageClass_8bit_t : InnerStorageClassBase {
+    class InnerStorageClass_8bit_t : InnerStorageClassBase {
         explicit InnerStorageClass_8bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                           uint32_t fieldsCount,
                                           Method_t **methods,
@@ -350,7 +350,7 @@ namespace DmN::KVM {
         uint8_t methodsCount;
     };
 
-    struct InnerStorageClass_16bit_t : InnerStorageClass_8bit_t {
+    class InnerStorageClass_16bit_t : InnerStorageClass_8bit_t {
         explicit InnerStorageClass_16bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                            uint32_t fieldsCount,
                                            Method_t **methods,
@@ -372,7 +372,7 @@ namespace DmN::KVM {
         uint16_t methodsCount;
     };
 
-    struct InnerStorageClass_32bit_t : InnerStorageClass_16bit_t {
+    class InnerStorageClass_32bit_t : InnerStorageClass_16bit_t {
         explicit InnerStorageClass_32bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                            uint32_t fieldsCount,
                                            Method_t **methods,
@@ -394,7 +394,7 @@ namespace DmN::KVM {
         uint32_t methodsCount;
     };
 
-    struct NSClass_8bit_t : NSClassBase {
+    class NSClass_8bit_t : NSClassBase {
         explicit NSClass_8bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                 Method_t **methods,
                                 uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClassBase(name,
@@ -414,7 +414,7 @@ namespace DmN::KVM {
         uint8_t methodsCount;
     };
 
-    struct NSClass_16bit_t : NSClass_8bit_t {
+    class NSClass_16bit_t : NSClass_8bit_t {
         explicit NSClass_16bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                  Method_t **methods,
                                  uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClass_8bit_t(name,
@@ -434,7 +434,7 @@ namespace DmN::KVM {
         uint16_t methodsCount;
     };
 
-    struct NSClass_32bit_t : NSClass_16bit_t {
+    class NSClass_32bit_t : NSClass_16bit_t {
         explicit NSClass_32bit_t(SI_t name, NSI_t ns, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                  Method_t **methods,
                                  uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : NSClass_16bit_t(name,

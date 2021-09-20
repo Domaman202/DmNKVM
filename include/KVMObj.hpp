@@ -13,13 +13,13 @@ namespace DmN::KVM {
     };
 
     /// Объект
-    struct Object_ {
+    struct Object_t {
         /// Тип объекта
         Instanceble *type;
     };
 
     /// Динамический объект
-    struct DynamicObject_t : Object_t {
+    class DynamicObject_t : Object_t {
         /// Методы объекта
         Method_t **methods;
         /// Кол-во методов

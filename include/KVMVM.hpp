@@ -9,7 +9,7 @@
 
 namespace DmN::KVM::VM {
     /// Контекст выполнения
-    struct ExecuteContext {
+    class ExecuteContext {
         /// Текущий вызов
         Call::Call* lastCall;
         /// Текущий поток

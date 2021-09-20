@@ -9,7 +9,7 @@
 #include "KVMSR.hpp"
 
 namespace DmN::KVM {
-    struct Thread {
+    class Thread {
         /// Стек вызовов
         Stack<Call::Call *> *callStack;
         /// Стек
