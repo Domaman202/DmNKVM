@@ -20,6 +20,7 @@ namespace DmN::KVM {
 
     /// Динамический объект
     class DynamicObject_t : Object_t {
+    public:
         /// Методы объекта
         Method_t **methods;
         /// Кол-во методов

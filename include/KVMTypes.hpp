@@ -65,6 +65,7 @@ namespace DmN::KVM {
 
     /// Поле
     class Field_t : LLT, Nameble {
+    public:
         explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
             this->value = value;
         }
@@ -84,6 +85,7 @@ namespace DmN::KVM {
     };
 
     class BCMethod : Method_t {
+    public:
         explicit BCMethod(SI_t descriptor, NSI_t ns, uint32_t cs, uint8_t *code) : Method_t(descriptor, ns) {
             this->cs = cs;
             this->code = code;
@@ -96,6 +98,7 @@ namespace DmN::KVM {
     };
 
     class NMethod : Method_t {
+    public:
         explicit NMethod(SI_t descriptor, NSI_t ns) : Method_t(descriptor, ns) {}
 
         virtual Value_t *execute(Value_t **args) = 0;
@@ -106,6 +109,7 @@ namespace DmN::KVM {
     typedef Value_t *(KVMMethod)(void *obj, Value_t **args);
 
     class NRMethod : NMethod {
+    public:
         explicit NRMethod(KVMMethod *method, SI_t descriptor, NSI_t ns) : NMethod(descriptor, ns) {
             this->ref = method;
         }

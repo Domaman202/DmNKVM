@@ -9,7 +9,7 @@
 
 namespace DmN::KVM::Call {
     /// Вызов функции
-    class Call {
+    struct Call {
         /// Объект который вызывал метод
         Object_t *calling_method_obj;
         /// Метод который вызывал метод

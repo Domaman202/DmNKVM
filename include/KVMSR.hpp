@@ -10,6 +10,7 @@
 namespace DmN::KVM {
     template<typename T>
     class Stack : public SDL::List<T> {
+    public:
         explicit Stack(SDL::Node<T>* start_node) : SDL::List<T>(start_node) {
         }
 
@@ -38,6 +39,7 @@ namespace DmN::KVM {
     };
 
     class Resisters {
+    public:
         explicit Resisters(size_t size) {
             this->register_storage = new void *[size];
             this->size = size;

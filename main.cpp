@@ -96,9 +96,9 @@ namespace DmN::KVM::testing {
             auto connection = server->accept(nwr, error);
             check(nwr);
             // Отправляем сообщение (с выравниванием до 1024 байт)
-            auto chars = new char[1024];
+            auto chars = new char[14];
             strcpy(chars, "Hello, World!");
-            connection->sendBuf(chars, 1024);
+            connection->sendBuf(chars, 14);
             // Закрываем соединения
             nwr = connection->close();
             check(nwr);
@@ -115,9 +115,9 @@ namespace DmN::KVM::testing {
             // Коннектимся к серверу
             check(client->tryConnect(error));
             // Принимаем сообщение выровненное до 1024 байт и выводим его
-            char *str = new char[1024];
-            client->readBuf(str, 1024);
-            std::cout << str << std::endl;
+            char *str = new char[14];
+            client->readBuf(str, 14);
+            assert(strcmp(str, "Hello, World!") == 0);
             delete[] str;
             // Закрываем соединение
             client->close();
