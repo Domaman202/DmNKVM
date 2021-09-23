@@ -11,9 +11,9 @@
 namespace DmN::KVM {
     struct Thread {
         /// Стек вызовов
-        Stack<Call::Call *> *callStack;
+        Stack<Call*> *cs;
         /// Стек
-        Stack<void *> *stack;
+        Stack<void*> *stack;
         /// Регистры
         Resisters *regs;
     };

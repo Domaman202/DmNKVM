@@ -84,12 +84,6 @@ namespace DmN::KVM {
          * @return Нужный нам класс (nullptr в случае неудачи)
          */
         virtual LLTNameble *get(CI_t id) = 0;
-
-        /*!
-         * Добавляет объекты в текущий хип из другого
-         * @param heap хип из которого мы будет добавлять объекты
-         */
-        virtual void operator+(const Heap *heap, SS *last_heap_strings, const SS *strings) = 0;
     };
 }
 

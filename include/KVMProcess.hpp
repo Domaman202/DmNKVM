@@ -17,6 +17,8 @@ namespace DmN::KVM {
         uint8_t tc = 0;
         /// Куча
         Heap *heap = nullptr;
+        /// Хранилище строк
+        SS* strings = nullptr;
         /// Хендлер сети
         Network::NetworkHandler* network = nullptr;
         /// Ошибка

@@ -5,7 +5,7 @@
 #define DMNKVM_THROWABLE_HPP
 
 #include "KVMNameble.hpp"
-#inlucde "KVMThread.hpp"
+#include "KVMThread.hpp"
 
 namespace DmN::KVM {
     struct Throwable : Nameble {

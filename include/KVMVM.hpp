@@ -4,38 +4,67 @@
 #ifndef DMN_KVM_VM_HPP
 #define DMN_KVM_VM_HPP
 
-#include "KVMThread.hpp"
+#include "KVMProcess.hpp"
 #include "KVMTypes.hpp"
 #include "KVMCall.hpp"
 #include "KVMESC.hpp"
+#include "KVMSR.hpp"
 
 namespace DmN::KVM::VM {
     /// Контекст выполнения
     struct ExecuteContext {
         /// Текущий вызов
-        Call::Call* lastCall;
-        /// Текущий поток
-        Thread* lastThread;
+        Call *lastCall;
+        /// Текущий процесс
+        Process *lastProcess;
         /// Текущий указатель кода
-        uint64_t lastBcPtr;
+        size_t lastBcPtr;
         /// Предыдущий вызов
-        ExecuteContext* prevContext;
+        ExecuteContext *prevContext;
     };
 
     /// Виртуальная машина A класса
     class VMCA {
     public:
-        ExecuteContext* mainContext;
-        BCMethod_t* main;
+        ExecuteContext *mainContext;
+        BCMethod_t *main = (BCMethod_t*) malloc(sizeof(BCMethod_t));;
 
-        VMCA(uint8_t* code, size_t cs) {
-            main = createMain(code, cs);
+        VMCA(uint8_t *code, size_t cs, Value_t** args, size_t argc) {
+            SS* mainSS = new DSS();
+            Heap* mainHeap = nullptr; // TODO: !WIP!
+            mainContext = new ExecuteContext{
+                    .lastCall = nullptr,
+                    .lastProcess = new Process{
+                            .threads = new Thread *[]{
+                                    new Thread{
+                                            .cs = new Stack<Call *>(new SDL::Node(new Call{
+                                                .obj_caller = nullptr,
+                                                .method_caller = nullptr,
+                                                .obj = nullptr,
+                                                .method = main
+                                            })),
+                                            .stack = new Stack<void *>(nullptr),
+                                            .regs = new Resisters(code[0] | (code[1] << 8)),
+                                    }
+                            },
+                            .tc = 1,
+                            .heap = mainHeap,
+                            .strings = mainSS
+                    }
+            };
+            createMain(main, mainSS, code, cs);
+        }
+
+        static void createMain(BCMethod_t *ptr, SS* ss, uint8_t *code, size_t cs) {
+            new (ptr) BCMethod_t(ss->add("$main()V"), code, cs);
         }
     };
-
-    BCMethod_t* createMain(uint8_t* code, size_t cs) {
-        return new BCMethod_t("$main()V", code, cs);
-    }
 }
 
 #endif /* DMN_KVM_VM_HPP */
+
+/*
+    Разметка кода:
+    0x0 - 0x10 Кол-во регистров главного потока
+
+ */

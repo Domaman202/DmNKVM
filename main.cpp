@@ -1,4 +1,5 @@
 #include <KVMNetwork.hpp>
+#include <KVMVM.hpp>
 #include <KVMSR.hpp>
 #include <iostream>
 #include <cstring>

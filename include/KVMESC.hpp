@@ -8,12 +8,12 @@
 #include <cstdint>
 
 namespace DmN::KVM {
-    struct LLTNameble : Nameble, LLT {
+    struct LLTNameble : public Nameble, public LLT {
         LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
     };
 
     /// Универсальная основа для Enum-а
-    struct EnumBase : LLTNameble, Modifiable {
+    struct EnumBase : public LLTNameble, public Modifiable {
         explicit EnumBase(SI_t name,
                           uint8_t modifier,
                           Value_t **enums,
@@ -28,7 +28,7 @@ namespace DmN::KVM {
         uint32_t enumsCount: 8;
     };
 
-    struct NSEnumBase : EnumBase, NSObject {
+    struct NSEnumBase : public EnumBase, public NSObject {
         explicit NSEnumBase(SI_t name,
                             NSI_t ns,
                             uint8_t modifier,
@@ -36,7 +36,7 @@ namespace DmN::KVM {
                             uint32_t enumsCount) : EnumBase(name, modifier, enums, enumsCount), NSObject(ns) {}
     };
 
-    struct Enum_8bit_t : EnumBase {
+    struct Enum_8bit_t : public EnumBase {
         explicit Enum_8bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : EnumBase(name,
                                                                                                            modifier,
                                                                                                            enums,
@@ -47,7 +47,7 @@ namespace DmN::KVM {
         uint8_t enumsCount;
     };
 
-    struct Enum_16bit_t : Enum_8bit_t {
+    struct Enum_16bit_t : public Enum_8bit_t {
         explicit Enum_16bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : Enum_8bit_t(name,
                                                                                                                modifier,
                                                                                                                enums,
@@ -58,7 +58,7 @@ namespace DmN::KVM {
         uint16_t enumsCount;
     };
 
-    struct Enum_32bit_t : Enum_16bit_t {
+    struct Enum_32bit_t : public Enum_16bit_t {
         explicit Enum_32bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : Enum_16bit_t(
                 name,
                 modifier,
@@ -71,7 +71,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для структуры
-    struct StructBase : LLTNameble, Modifiable {
+    struct StructBase : public LLTNameble, public Modifiable {
         explicit StructBase(SI_t name,
                             uint8_t modifier,
                             Field_t **fields,
@@ -95,7 +95,7 @@ namespace DmN::KVM {
     };
 
 
-    struct Struct_8bit_t : StructBase {
+    struct Struct_8bit_t : public StructBase {
         explicit Struct_8bit_t(SI_t name,
                                uint8_t modifier,
                                Field_t **fields,
@@ -109,7 +109,7 @@ namespace DmN::KVM {
         uint8_t fieldsCount;
     };
 
-    struct Struct_16bit_t : Struct_8bit_t {
+    struct Struct_16bit_t : public Struct_8bit_t {
         explicit Struct_16bit_t(SI_t name,
                                 uint8_t modifier,
                                 Field_t **fields,
@@ -123,7 +123,7 @@ namespace DmN::KVM {
         uint16_t fieldsCount;
     };
 
-    struct Struct_32bit_t : Struct_16bit_t {
+    struct Struct_32bit_t : public Struct_16bit_t {
         explicit Struct_32bit_t(SI_t name,
                                 uint8_t modifier,
                                 Field_t **fields,
@@ -138,7 +138,7 @@ namespace DmN::KVM {
     };
 
     /// Универсальная основа для Class-а
-    class ClassBase : LLTNameble, Modifiable {
+    class ClassBase : public LLTNameble, public Modifiable {
     public:
         explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
                            uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, 6),
@@ -166,7 +166,7 @@ namespace DmN::KVM {
     };
 
     /// Основа класса со встроенными классами
-    class InnerStorageClassBase : ClassBase {
+    class InnerStorageClassBase : public ClassBase {
     public:
         explicit InnerStorageClassBase(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                        uint32_t fieldsCount,
@@ -186,7 +186,7 @@ namespace DmN::KVM {
         ClassBase *base;
     };
 
-    class Class_8bit_t : ClassBase {
+    class Class_8bit_t : public ClassBase {
     public:
         explicit Class_8bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                               Method_t **methods,
@@ -206,7 +206,7 @@ namespace DmN::KVM {
         uint8_t methodsCount;
     };
 
-    class Class_16bit_t : Class_8bit_t {
+    class Class_16bit_t : public Class_8bit_t {
     public:
         explicit Class_16bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                Method_t **methods,
@@ -226,7 +226,7 @@ namespace DmN::KVM {
         uint16_t methodsCount;
     };
 
-    class Class_32bit_t : Class_16bit_t {
+    class Class_32bit_t : public Class_16bit_t {
     public:
         explicit Class_32bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
                                Method_t **methods,
@@ -246,7 +246,7 @@ namespace DmN::KVM {
         uint32_t methodsCount;
     };
 
-    class InnerStorageClass_8bit_t : InnerStorageClassBase {
+    class InnerStorageClass_8bit_t : public InnerStorageClassBase {
     public:
         explicit InnerStorageClass_8bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                           uint32_t fieldsCount,
@@ -269,7 +269,7 @@ namespace DmN::KVM {
         uint8_t methodsCount;
     };
 
-    class InnerStorageClass_16bit_t : InnerStorageClass_8bit_t {
+    class InnerStorageClass_16bit_t : public InnerStorageClass_8bit_t {
     public:
         explicit InnerStorageClass_16bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                            uint32_t fieldsCount,
@@ -292,7 +292,7 @@ namespace DmN::KVM {
         uint16_t methodsCount;
     };
 
-    class InnerStorageClass_32bit_t : InnerStorageClass_16bit_t {
+    class InnerStorageClass_32bit_t : public InnerStorageClass_16bit_t {
     public:
         explicit InnerStorageClass_32bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
                                            uint32_t fieldsCount,

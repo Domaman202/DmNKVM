@@ -8,6 +8,7 @@
 #include "SDmNL.hpp"
 #include <cstddef>
 #include <cstdlib>
+#include <cstring>
 #include <utility>
 
 namespace DmN::KVM {

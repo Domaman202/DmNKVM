@@ -7,17 +7,17 @@
 #include "KVMTypes.hpp"
 #include "KVMObj.hpp"
 
-namespace DmN::KVM::Call {
+namespace DmN::KVM {
     /// Вызов функции
     struct Call {
         /// Объект который вызывал метод
-        Object_t *calling_method_obj;
+        Object_t *obj_caller;
         /// Метод который вызывал метод
-        Method_t *calling_method;
+        Method_t *method_caller;
         /// Объект метод которого был вызван
-        Object_t *called_method_obj;
+        Object_t *obj;
         /// Вызываемый метод
-        Method_t *called_method;
+        Method_t *method;
         /// Аргументы
         Value_t *args;
         /// Кол-во аргументов

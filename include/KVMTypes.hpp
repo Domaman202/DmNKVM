@@ -26,7 +26,7 @@ namespace DmN::KVM {
     };
 
     /// Значение
-    struct Value_t : GCObject {
+    struct Value_t : public GCObject {
         explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable) {
             this->type = type;
             this->value = value;
@@ -39,14 +39,14 @@ namespace DmN::KVM {
     };
 
     /// Переменная
-    struct Variable_t : LLT, Value_t, Nameble {
+    struct Variable_t : public LLT, public Value_t, public Nameble {
         Variable_t(SI_t name, void *value, uint8_t type, bool isCollectable) : LLT(0),
                                                                                Value_t(value, type, isCollectable),
                                                                                Nameble(name) {}
     };
 
     /// Лямбда
-    class Lambda_t : LLT, GCObject {
+    class Lambda_t : public LLT, public GCObject {
         explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t *code) : LLT(3), GCObject(true) {
             this->descriptor = descriptor;
             this->cs = cs;
@@ -62,7 +62,7 @@ namespace DmN::KVM {
     };
 
     /// Поле
-    class Field_t : LLT, Nameble {
+    class Field_t : public LLT, public Nameble {
     public:
         explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
             this->value = value;
@@ -73,7 +73,7 @@ namespace DmN::KVM {
     };
 
     /// Метод
-    class Method_t : LLT, Nameble {
+    class Method_t : public LLT, public Nameble {
     public:
         explicit Method_t(SI_t descriptor) : LLT(2), Nameble(descriptor) {
             this->name = descriptor;
@@ -83,7 +83,7 @@ namespace DmN::KVM {
         SI_t name;
     };
 
-    class BCMethod_t : Method_t {
+    class BCMethod_t : public Method_t {
     public:
         BCMethod_t(SI_t descriptor, uint8_t* bc, size_t cs) : Method_t(descriptor) {
             this->bc = bc;
@@ -94,7 +94,7 @@ namespace DmN::KVM {
         size_t cs;
     };
 
-    class NMethod_t : Method_t {
+    class NMethod_t : public Method_t {
     public:
         explicit NMethod_t(SI_t descriptor) : Method_t(descriptor) {
         }
@@ -106,7 +106,7 @@ namespace DmN::KVM {
 
     typedef Value_t *(KVMMethod)(void *obj, Value_t **args);
 
-    class NRMethod_t : NMethod {
+    class NRMethod_t : public NMethod_t {
     public:
         NRMethod_t(KVMMethod *method, SI_t descriptor) : NMethod_t(descriptor) {
             this->ref = method;
