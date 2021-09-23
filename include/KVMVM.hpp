@@ -41,7 +41,9 @@ namespace DmN::KVM::VM {
                                                 .obj_caller = nullptr,
                                                 .method_caller = nullptr,
                                                 .obj = nullptr,
-                                                .method = main
+                                                .method = main,
+                                                .args = args,
+                                                .argc = argc
                                             })),
                                             .stack = new Stack<void *>(nullptr),
                                             .regs = new Resisters(code[0] | (code[1] << 8)),

@@ -19,9 +19,9 @@ namespace DmN::KVM {
         /// Вызываемый метод
         Method_t *method;
         /// Аргументы
-        Value_t *args;
+        Value_t **args;
         /// Кол-во аргументов
-        size_t args_count;
+        size_t argc;
     };
 }
 
