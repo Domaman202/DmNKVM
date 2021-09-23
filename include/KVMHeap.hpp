@@ -4,47 +4,38 @@
 #ifndef DMN_KVM_HEAP_HPP
 #define DMN_KVM_HEAP_HPP
 
+#include "KVMUtils.hpp"
 #include "KVMESC.hpp"
 #include <utility>
+
+#ifdef DMN_KVM_RTTI
+#include <typeinfo.h>
+#endif
 
 namespace DmN::KVM {
     /// Абстрактная куча
     struct Heap {
         /*!
-         * Добавляет новый класс в хип
-         * @param clazz Класс для добавления
-         * @return ID добавленного класса в хипе
+         * Добавляет новый объект в хип
+         * @param obj
+         * @return ID добавленного объекта
          */
-        virtual CI_t addNew(ClassBase *clazz) = 0;
-
-        /*!
-         * Добавляет новую структуру в хип
-         * @param structure Структура для добавления
-         * @return ID добавленной структуры в хипе
-         */
-        virtual CI_t addNew(StructBase *structure) = 0;
-
-        /*!
-         * Добавляет новый enum в хип
-         * @param enum_ Enum для добавления
-         * @return ID добавленного enum-а в хипе
-         */
-        virtual CI_t addNew(EnumBase *enum_) = 0;
+        virtual CI_t addNew(LLTNameble *obj) = 0;
 
         /*!
          * Добавляет новый объект в хип, если объект уже был добавлен то просто возвращает его ID
          * @param obj Объект для добавления
-         * @return ID добавленного класса
+         * @return ID добавленного объекта
          */
-        virtual CI_t add(Nameble *obj) = 0;
+        virtual CI_t add(LLTNameble *obj) = 0;
 
         /*!
          * Заменяет уже существующий объект по ID на новый
-         * @param obj Объект который будет заменять нужный класс
+         * @param obj Объект который будет заменять нужный объект
          * @param id ID объекта который нужно заменить
-         * @return Заменённый (оригинальный) класс
+         * @return Заменённый (оригинальный) объект
          */
-        virtual Nameble *replace(Namespace *obj, CI_t id) = 0;
+        virtual LLTNameble *replace(LLTNameble *obj, CI_t id) = 0;
 
         /*!
          * Удаляет объект из хипа
@@ -88,10 +79,137 @@ namespace DmN::KVM {
 
     using namespace DmN::SDL;
 
+    namespace internal::DHeap {
+        struct OaI : public Node<LLTNameble *> {
+            OaI(LLTNameble *obj, CI_t id, OaI *next) : Node<LLTNameble *>(obj, next) {
+                this->next = next;
+                this->id = id;
+            }
+
+            CI_t id;
+            OaI *next;
+        };
+    }
+
+    using namespace DmN::KVM::internal::DHeap;
+
     class DHeap : public Heap { // TODO:
     public:
-        Node<LLT>* start_node;
+        OaI *start_node = new OaI(nullptr, 0, nullptr);
+
+        DHeap() : Heap() {}
+
+        ~DHeap() {
+            OaI *last_node = this->start_node;
+            while (last_node != nullptr) {
+                OaI *next_node = last_node->next;
+                delete last_node;
+                last_node = next_node;
+            }
+            delete last_node;
+        }
+
+        CI_t addNew(LLTNameble *obj) override;
+
+        CI_t add(LLTNameble *obj) override;
+
+        LLTNameble *replace(LLTNameble *obj, CI_t id) override;
+
+        void remove(LLTNameble *obj) override;
+
+        LLTNameble *remove(CI_t id) override;
+
+        void collect(CI_t id) override;
+
+        void collect(GCObject *obj) override;
+
+        CI_t get(const LLTNameble *obj) override;
+
+        LLTNameble *get(CI_t id) override;
     };
+
+    CI_t DHeap::addNew(LLTNameble *obj) {
+        OaI *last_node = this->start_node;
+        while (last_node->next != nullptr)
+            last_node = last_node->next;
+        last_node->next = new OaI(obj, last_node->id++, nullptr);
+        return last_node->next->id;
+    }
+
+    CI_t DHeap::add(LLTNameble *obj) {
+        OaI *last_node = this->start_node;
+        while (last_node->next != nullptr) {
+            if (last_node->value == obj)
+                return last_node->id;
+            last_node = last_node->next;
+        }
+        last_node->next = new OaI(obj, last_node->id++, nullptr);
+        return last_node->next->id;
+    }
+
+    LLTNameble *DHeap::replace(LLTNameble *obj, CI_t id) {
+        OaI *last_node = this->start_node;
+        while (last_node->id != id)
+            last_node = last_node->next;
+        LLTNameble *old = last_node->value;
+        last_node->value = obj;
+        return old;
+    }
+
+    void DHeap::remove(LLTNameble *obj) {
+        OaI *prev_node = this->start_node;
+        while (prev_node->next->value != obj)
+            prev_node = prev_node->next;
+        prev_node->next = prev_node->next->next;
+    }
+
+    LLTNameble *DHeap::remove(CI_t id) {
+        OaI *prev_node = this->start_node;
+        while (prev_node->id != id)
+            prev_node = prev_node->next;
+        OaI *node = prev_node;
+        prev_node->next = prev_node->next->next;
+        LLTNameble *obj = node->value;
+        delete node;
+        return obj;
+    }
+
+    void DHeap::collect(CI_t id) { // TODO:
+        OaI *last_node = this->start_node;
+        while (last_node->id != id)
+            last_node = last_node->next;
+#ifdef DMN_KVM_RTTI_COLLECT
+        if (typeid(*last_node->value) == typeid(GCObject))
+            Utils::tryCollect((GCObject *) last_node->value);
+#else
+        delete last_node->value;
+#endif /* DMN_KVM_RTTI_COLLECT */
+        delete last_node;
+    }
+
+    void DHeap::collect(GCObject *obj) { // TODO:
+#ifdef DMN_KVM_RTTI_COLLECT
+        if (typeid(*obj) == typeid(LLTNameble))
+        this->remove((LLTNameble*)(obj));
+#endif /* DMN_KVM_RTTI_COLLECT */
+        Utils::tryCollect(obj);
+    }
+
+    CI_t DHeap::get(const LLTNameble *obj) {
+        OaI *last_node = this->start_node;
+        while (true) {
+            if (last_node->value == obj)
+                return last_node->id;
+            last_node = last_node->next;
+        }
+    }
+
+    LLTNameble *DHeap::get(CI_t id) {
+        OaI *last_node = this->start_node;
+        while (last_node->id != id)
+            last_node = last_node->next;
+        return last_node->value;
+    }
 }
 
 #endif /* DMN_KVM_HEAP_HPP */

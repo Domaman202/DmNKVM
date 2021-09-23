@@ -12,19 +12,6 @@
 #include <utility>
 
 namespace DmN::KVM {
-    /// String and ID
-    struct SaI : SDL::Node<char *> {
-        SaI(char *name, SI_t id, SaI *next) : SDL::Node<char *>(name, next) {
-            this->id = id;
-            this->next = next;
-        }
-
-        /// ID
-        SI_t id;
-        /// Следующий объект
-        SaI *next;
-    };
-
     /// Абстрактное хранилище строк
     struct SS {
         /*!
@@ -120,6 +107,10 @@ namespace DmN::KVM {
             this->_size = size;
         }
 
+        ~SSS() {
+            delete[] this->data;
+        }
+
         [[nodiscard]] SI_t addNew(const char *name) override;
 
         [[nodiscard]] SI_t add(const char *name) override;
@@ -141,6 +132,23 @@ namespace DmN::KVM {
         [[nodiscard]] size_t size() const override;
     };
 
+    namespace internal::DSS {
+        /// String and ID
+        struct SaI : public SDL::Node<char *> {
+            SaI(char *name, SI_t id, SaI *next) : SDL::Node<char *>(name, next) {
+                this->id = id;
+                this->next = next;
+            }
+
+            /// ID
+            SI_t id;
+            /// Следующий объект
+            SaI *next;
+        };
+    }
+
+    using namespace internal::DSS;
+
     /// (Dynamic String Storage) Динамическое хранилище строк
     class DSS : public SS {
     public:
@@ -148,6 +156,16 @@ namespace DmN::KVM {
         SaI *start_node = new SaI(nullptr, 0, nullptr);
 
         DSS() : SS() {}
+
+        ~DSS() {
+            SaI* last_node = this->start_node;
+            while (last_node != nullptr) {
+                SaI* next_node = last_node->next;
+                delete last_node;
+                last_node = next_node;
+            }
+            delete last_node;
+        }
 
         [[nodiscard]] SI_t addNew(const char *name) override;
 

@@ -64,4 +64,13 @@ namespace DmN::KVM {
     }
 #endif /* WIN32 */
 
+#ifndef DMN_KVM_NO_RTTI
+#define DMN_KVM_RTTI
+#ifndef DMN_KVM_HEAVY_COLLECT
+#define DMN_KVM_RTTI_COLLECT
+#endif /* DMN_KVM_HEAVY_COLLECT */
+#else
+#define DMN_KVM_HEAVY_COLLECT
+#endif /* DMN_KVM_NO_RTTI */
+
 #endif /* DMN_KVM_CONFIG_HPP */
