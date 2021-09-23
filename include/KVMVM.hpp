@@ -6,6 +6,7 @@
 
 #include "KVMCall.hpp"
 #include "KVMThread.hpp"
+#include "KVMESC.hpp"
 
 namespace DmN::KVM::VM {
     /// Контекст выполнения

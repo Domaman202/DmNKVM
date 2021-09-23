@@ -5,7 +5,6 @@
 #define DMNKVM_THROWABLE_HPP
 
 #include "KVMNameble.hpp"
-#include "KVMConfig.hpp"
 #inlucde "KVMThread.hpp"
 
 namespace DmN::KVM {
