@@ -85,6 +85,13 @@ namespace DmN::KVM {
          */
         virtual LLTNameble *get(CI_t id) = 0;
     };
+
+    using namespace DmN::SDL;
+
+    class DHeap : public Heap { // TODO:
+    public:
+        Node<LLT>* start_node;
+    };
 }
 
 #endif /* DMN_KVM_HEAP_HPP */

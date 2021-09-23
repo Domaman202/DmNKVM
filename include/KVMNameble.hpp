@@ -107,14 +107,14 @@ namespace DmN::KVM {
 
     /// (Static String Storage) Статическое хранилище строк
     class SSS : public SS {
-    protected:
+    public:
         /// Массив ID и строк
         const char **data;
         /// Размер
         size_t _size;
         /// Текущий индекс
         size_t last_index = 0;
-    public:
+
         explicit SSS(size_t size) {
             this->data = static_cast<const char **>(calloc(size, sizeof(char *)));
             this->_size = size;
@@ -143,10 +143,10 @@ namespace DmN::KVM {
 
     /// (Dynamic String Storage) Динамическое хранилище строк
     class DSS : public SS {
-    protected:
+    public:
         /// Первая нода (всегда пуста)
         SaI *start_node = new SaI(nullptr, 0, nullptr);
-    public:
+
         DSS() : SS() {}
 
         [[nodiscard]] SI_t addNew(const char *name) override;
