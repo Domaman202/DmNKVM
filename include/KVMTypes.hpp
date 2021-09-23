@@ -4,8 +4,8 @@
 #ifndef DMN_KVM_TYPES_HPP
 #define DMN_KVM_TYPES_HPP
 
-#include "KVMNM.hpp"
 #include "KVMLLT.hpp"
+#include "KVMNM.hpp"
 #include <cstdlib>
 
 namespace DmN::KVM {

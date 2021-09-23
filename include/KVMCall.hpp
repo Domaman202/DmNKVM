@@ -4,8 +4,8 @@
 #ifndef DMN_KVM_CALL_HPP
 #define DMN_KVM_CALL_HPP
 
-#include "KVMObj.hpp"
 #include "KVMTypes.hpp"
+#include "KVMObj.hpp"
 
 namespace DmN::KVM::Call {
     /// Вызов функции

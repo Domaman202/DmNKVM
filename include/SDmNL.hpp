@@ -4,7 +4,7 @@
 #ifndef DMN_KVM_SDMNL_HPP
 #define DMN_KVM_SDMNL_HPP
 
-#include <KVMConfig.hpp>
+#include "KVMConfig.hpp"
 #include <cstdint>
 #include <cstdio>
 

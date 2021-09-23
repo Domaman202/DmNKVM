@@ -4,8 +4,8 @@
 #ifndef DMN_KVM_VM_HPP
 #define DMN_KVM_VM_HPP
 
-#include "KVMCall.hpp"
 #include "KVMThread.hpp"
+#include "KVMCall.hpp"
 #include "KVMESC.hpp"
 
 namespace DmN::KVM::VM {
