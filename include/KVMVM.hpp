@@ -5,6 +5,7 @@
 #define DMN_KVM_VM_HPP
 
 #include "KVMThread.hpp"
+#include "KVMTypes.hpp"
 #include "KVMCall.hpp"
 #include "KVMESC.hpp"
 
@@ -33,7 +34,7 @@ namespace DmN::KVM::VM {
     };
 
     BCMethod_t* createMain(uint8_t* code, size_t cs) {
-        return new BCMethod_t("$main()V")
+        return new BCMethod_t("$main()V", code, cs);
     }
 }
 

@@ -74,12 +74,24 @@ namespace DmN::KVM {
 
     /// Метод
     class Method_t : LLT, Nameble {
+    public:
         explicit Method_t(SI_t descriptor) : LLT(2), Nameble(descriptor) {
             this->name = descriptor;
         }
 
         /// ID дескриптора
         SI_t name;
+    };
+
+    class BCMethod_t : Method_t {
+    public:
+        BCMethod_t(SI_t descriptor, uint8_t* bc, size_t cs) : Method_t(descriptor) {
+            this->bc = bc;
+            this->cs = cs;
+        }
+
+        uint8_t* bc;
+        size_t cs;
     };
 
     class NMethod_t : Method_t {
@@ -96,7 +108,7 @@ namespace DmN::KVM {
 
     class NRMethod_t : NMethod {
     public:
-        explicit NRMethod_t(KVMMethod *method, SI_t descriptor) : NMethod_t(descriptor) {
+        NRMethod_t(KVMMethod *method, SI_t descriptor) : NMethod_t(descriptor) {
             this->ref = method;
         }
 
