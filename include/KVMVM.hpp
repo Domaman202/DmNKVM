@@ -19,6 +19,21 @@ namespace DmN::KVM::VM {
         /// Предыдущий вызов
         ExecuteContext* prevContext;
     };
+
+    /// Виртуальная машина A класса
+    class VMCA {
+    public:
+        ExecuteContext* mainContext;
+        BCMethod_t* main;
+
+        VMCA(uint8_t* code, size_t cs) {
+            main = createMain(code, cs);
+        }
+    };
+
+    BCMethod_t createMain(uint8_t* code, size_t cs) {
+
+    }
 }
 
 #endif /* DMN_KVM_VM_HPP */
