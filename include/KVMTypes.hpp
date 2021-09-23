@@ -5,9 +5,7 @@
 #define DMN_KVM_TYPES_HPP
 
 #include <KVMNM.hpp>
-#include <KVMNameble.hpp>
 #include <KVMLLT.hpp>
-
 #include <cstdlib>
 
 namespace DmN::KVM {
@@ -84,51 +82,14 @@ namespace DmN::KVM {
         SI_t name;
     };
 
-    /// Метод
-    class NSMethod_t : Method_t, NSObject {
-        explicit NSMethod_t(SI_t descriptor, NSI_t ns) : Method_t(descriptor), NSObject(ns) {
-            this->name = descriptor;
-        }
-
-        /// ID дескриптора
-        SI_t name;
-    };
-
-    class BCMethod_t : Method_t {
-    public:
-        explicit BCMethod_t(SI_t descriptor, uint32_t cs, uint8_t *code) : Method_t(descriptor) {
-            this->cs = cs;
-            this->code = code;
-        }
-
-        /// (Code Size) Размер байт-кода
-        uint32_t cs;
-        /// Байт-код
-        uint8_t *code;
-    };
-
-    class NSBCMethod_t : BCMethod_t, NSMethod_t {
-    public:
-        explicit NSBCMethod_t(SI_t descriptor, uint32_t cs, uint8_t *code) : BCMethod(descriptor, cs, code),
-                                                                             NSMethod_t(descriptor, ns) {
-        }
-    };
-
     class NMethod_t : Method_t {
     public:
-        explicit NMethod(SI_t
-        descriptor) :
-        Method_t(descriptor) {
+        explicit NMethod_t(SI_t descriptor) : Method_t(descriptor) {
         }
 
         virtual Value_t *execute(Value_t **args) = 0;
 
         virtual Value_t *execute(void *obj, Value_t **args) = 0;
-    };
-
-    class NSNMethod_t : NMethod_t, NSMethod_t {
-    public:
-        explicit NSNMethod_t(SI_t descriptor, NSI_t ns) : NMethod_t(descriptor), NSMethod_t(descriptor, ns) {}
     };
 
     typedef Value_t *(KVMMethod)(void *obj, Value_t **args);
@@ -148,13 +109,6 @@ namespace DmN::KVM {
         }
 
         KVMMethod *ref;
-    };
-
-    class NSNRMethod_t : NRMethod_t, NSMethod_t {
-    public:
-        explicit NSNRMethod_t(KVMMethod *method, SI_t descriptor, NSI_t ns) : NRMethod_t(method, descriptor),
-                                                                              NSMethod_t(descriptor, ns) {
-        }
     };
 }
 

@@ -31,8 +31,8 @@ namespace DmN::KVM::VM {
         }
     };
 
-    BCMethod_t createMain(uint8_t* code, size_t cs) {
-
+    BCMethod_t* createMain(uint8_t* code, size_t cs) {
+        return new BCMethod_t("$main()V")
     }
 }
 
