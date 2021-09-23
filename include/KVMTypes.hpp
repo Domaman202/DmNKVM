@@ -13,12 +13,9 @@ namespace DmN::KVM {
     struct GCObject {
         explicit GCObject(bool isCollectable) {
             this->isCollectable = isCollectable;
-            this->isCollected = false;
             this->references = 0;
         }
 
-        /// Собран ли объект?
-        bool isCollected: 1;
         /// Можно ли собирать объект?
         bool isCollectable: 1;
         /// Кол-во ссылок на объект
