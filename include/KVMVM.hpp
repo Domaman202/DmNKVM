@@ -31,7 +31,7 @@ namespace DmN::KVM::VM {
 
         VMCA(uint8_t *code, size_t cs, Value_t** args, size_t argc) {
             SS* mainSS = new DSS();
-            Heap* mainHeap = nullptr; // TODO: !WIP!
+            Heap* mainHeap = new DHeap();
             mainContext = new ExecuteContext{
                     .lastCall = nullptr,
                     .lastProcess = new Process{
