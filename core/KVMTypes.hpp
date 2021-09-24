@@ -4,6 +4,7 @@
 #ifndef DMN_KVM_TYPES_HPP
 #define DMN_KVM_TYPES_HPP
 
+#include "KVMESC.hpp"
 #include "KVMLLT.hpp"
 #include "KVMNM.hpp"
 #include <cstdlib>
@@ -23,8 +24,8 @@ namespace DmN::KVM {
     };
 
     /// Значение
-    struct Value_t : public GCObject {
-        explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable) {
+    struct Value_t : public GCObject, public LLT {
+        explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable), LLT(0) {
             this->type = type;
             this->value = value;
         }
@@ -36,10 +37,9 @@ namespace DmN::KVM {
     };
 
     /// Переменная
-    struct Variable_t : public LLT, public Value_t, public Nameble {
-        Variable_t(SI_t name, void *value, uint8_t type, bool isCollectable) : LLT(0),
-                                                                               Value_t(value, type, isCollectable),
-                                                                               Nameble(name) {}
+    struct Variable_t : public LLTNameble, public Value_t {
+        Variable_t(SI_t name, void *value, uint8_t type, bool isCollectable) : LLTNameble(name, 0),
+                                                                               Value_t(value, type, isCollectable) {}
     };
 
     /// Лямбда

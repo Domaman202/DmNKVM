@@ -102,6 +102,7 @@ namespace DmN::KVM {
             OaI *last_node = this->start_node;
             while (last_node != nullptr) {
                 OaI *next_node = last_node->next;
+                delete last_node->value;
                 delete last_node;
                 last_node = next_node;
             }
@@ -112,22 +113,24 @@ namespace DmN::KVM {
             OaI *last_node = this->start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
-            last_node->next = new OaI(obj, last_node->id++, nullptr);
+            last_node->next = new OaI(obj, last_node->id + 1, nullptr);
             return last_node->next->id;
         }
 
         CI_t add(LLTNameble *obj) override {
             OaI *last_node = this->start_node;
-            while (last_node->next != nullptr) {
+            while (true) {
                 if (last_node->value == obj)
                     return last_node->id;
+                if (last_node->next == nullptr)
+                    break;
                 last_node = last_node->next;
             }
-            last_node->next = new OaI(obj, last_node->id++, nullptr);
+            last_node->next = new OaI(obj, last_node->id + 1, nullptr);
             return last_node->next->id;
         }
 
-        LLTNameble *replace(LLTNameble *obj, CI_t id) override {
+        LLTNameble *replace(LLTNameble *obj, CI_t id) override { // TODO: СУ
             OaI *last_node = this->start_node;
             while (last_node->id != id)
                 last_node = last_node->next;
@@ -144,10 +147,15 @@ namespace DmN::KVM {
         }
 
         LLTNameble *remove(CI_t id) override {
+            if (id == 0) {
+                LLTNameble *val = this->start_node->value;
+                delete this->start_node;
+                return val;
+            }
             OaI *prev_node = this->start_node;
-            while (prev_node->id != id)
+            while (prev_node->next != nullptr && prev_node->next->id != id)
                 prev_node = prev_node->next;
-            OaI *node = prev_node;
+            OaI *node = prev_node->next;
             prev_node->next = prev_node->next->next;
             LLTNameble *obj = node->value;
             delete node;

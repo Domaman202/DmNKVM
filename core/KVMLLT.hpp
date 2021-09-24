@@ -4,6 +4,8 @@
 #ifndef DMN_KVM_LLT_H
 #define DMN_KVM_LLT_H
 
+#include "KVMNameble.hpp"
+
 namespace DmN::KVM {
     /// (Low Level Type) Некий объект который имеет низкоуровневый тип
     struct LLT {
@@ -23,6 +25,10 @@ namespace DmN::KVM {
 
         /// Модификатор (PUBLIC, STATIC, INTERNAL, INTERNAL STATIC)
         uint8_t modifier: 2;
+    };
+
+    struct LLTNameble : public Nameble, public LLT {
+        LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
     };
 }
 

@@ -8,10 +8,6 @@
 #include <cstdint>
 
 namespace DmN::KVM {
-    struct LLTNameble : public Nameble, public LLT {
-        LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
-    };
-
     /// Универсальная основа для Enum-а
     struct EnumBase : public LLTNameble, public Modifiable {
         explicit EnumBase(SI_t name,

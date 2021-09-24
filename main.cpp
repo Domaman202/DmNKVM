@@ -17,18 +17,54 @@ namespace DmN::KVM::testing {
     namespace SS {
         void stringStorageTest();
     }
+
+    namespace Heap {
+        void heapTest();
+    }
 }
 
 int main(int argc, char* argv[]) {
     DmN::KVM::testing::Network::networkTest();
     DmN::KVM::testing::SR::stackRegisterTest();
     DmN::KVM::testing::SS::stringStorageTest();
+    DmN::KVM::testing::Heap::heapTest();
 }
 
 namespace DmN::KVM::testing {
     inline void check(NWR nwr) {
         if (((BaseError) nwr) != SUCCESS)
             throw;
+    }
+
+    namespace Heap {
+        void heapTest() {
+            // !Старт!
+            std::cout << "[3][S] хип" << std::endl;
+            // Создаём хип
+            auto* heap = new DHeap();
+            // Тестим
+            auto var0 = new Variable_t(0, (void*) 228, 3, false);
+            auto var1 = new Variable_t(1, (void*) 202, 3, false);
+            CI_t id0 = heap->addNew(var0);
+            CI_t id1 = heap->add(var0);
+            CI_t id2 = heap->add(var1);
+            // Проверяем
+            assert(id0 == id1);
+            assert(id0 != id2);
+            // Тестим
+            heap->replace(var0, id2);
+            heap->replace(var1, id1);
+            // Проверяем
+            assert(heap->get(id0) == var1);
+            assert(heap->get(id1) == var1);
+            assert(heap->get(id2) == var0);
+            assert(heap->remove(id0) == var1);
+            assert(heap->remove(id2) == var0);
+            // Удаляем хип и прочие объекты
+            delete heap;
+            // !Конец!
+            std::cout << "[3][C]" << std::endl;
+        }
     }
 
     namespace SS {
@@ -61,11 +97,15 @@ namespace DmN::KVM::testing {
             std::cout << "[2][S] хранилище строк" << std::endl;
             // Создаём статическое хранилище строк
             auto* sss = new DmN::KVM::SSS(512);
+            // Тестим
             test(sss);
+            // Удаляем хранилище строк
             delete sss;
-            //
+            // Создаём динамическое хранилище строк
             auto* dss = new DmN::KVM::DSS();
+            // Тестим
             test(dss);
+            // Удаляем хранилище строк
             delete dss;
             // !Конец!
             std::cout << "[2][C]" << std::endl;
