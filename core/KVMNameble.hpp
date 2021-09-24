@@ -201,7 +201,7 @@ namespace DmN::KVM {
 
         ~DSS() {
             SaI* last_node = this->start_node;
-            while (last_node != nullptr) {
+            for (last_node = this->start_node; last_node != nullptr;) {
                 SaI* next_node = last_node->next;
                 delete last_node;
                 last_node = next_node;
@@ -210,8 +210,8 @@ namespace DmN::KVM {
         }
 
         [[nodiscard]] SI_t addNew(const char *name) override {
-            SaI *last_node = this->start_node;
-            while (last_node->next != nullptr)
+            SaI *last_node;
+            for (last_node = this->start_node; last_node->next != nullptr;)
                 last_node = last_node->next;
             last_node->next = new SaI(const_cast<char *>(name), ++last_node->id, nullptr);
             return last_node->next->id;
@@ -241,8 +241,8 @@ namespace DmN::KVM {
         }
 
         [[nodiscard]] SI_t get(const char *name) const override {
-            SaI *last_node = this->start_node;
-            while (last_node != nullptr) {
+            SaI *last_node;
+            for (last_node = this->start_node; last_node != nullptr;) {
                 if (strcmp(last_node->value, name) == 0)
                     return last_node->id;
                 last_node = last_node->next;
@@ -258,8 +258,8 @@ namespace DmN::KVM {
         }
 
         SI_t free(const char *name) override {
-            SaI *last_node = this->start_node;
-            while (last_node != nullptr) {
+            SaI *last_node;
+            for (last_node = this->start_node; last_node != nullptr;) {
                 if (strcmp(last_node->next->value, name) == 0) {
                     SaI *node_for_remove = last_node->next;
                     delete node_for_remove->value;
@@ -282,8 +282,8 @@ namespace DmN::KVM {
         }
 
         SI_t remove(const char *name) override {
-            SaI *last_node = this->start_node;
-            while (last_node != nullptr) {
+            SaI *last_node;
+            for (last_node = this->start_node; last_node != nullptr;) {
                 if (strcmp(last_node->next->value, name) == 0) {
                     SaI *node_for_remove = last_node->next;
                     uint32_t i = node_for_remove->id;
@@ -309,8 +309,8 @@ namespace DmN::KVM {
         }
 
         void clear() override {
-            SaI *last_node = this->start_node;
-            while (last_node != nullptr) {
+            SaI *last_node;
+            for (last_node = this->start_node; last_node != nullptr;) {
                 delete last_node->value;
                 SaI *old_node = last_node;
                 last_node = last_node->next;
@@ -320,8 +320,8 @@ namespace DmN::KVM {
 
         [[nodiscard]] size_t size() const override {
             size_t size = 0;
-            SaI *last_node = this->start_node;
-            while (last_node->next == nullptr) {
+            SaI *last_node;
+            for (last_node = this->start_node; last_node->next == nullptr;) {
                 last_node = last_node->next;
                 size++;
             }
