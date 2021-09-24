@@ -35,34 +35,39 @@ namespace DmN::KVM::testing {
     namespace SS {
         void stringStorageTest() {
             // !Старт!
-            std::cout << "Старт проверка хранилищ строк!" << std::endl;
+            std::cout << "[2][S] хранилище строк" << std::endl;
             // Создаём хранилище строк
-            DmN::KVM::SS* strings = new DmN::KVM::SSS(3);
+            DmN::KVM::SS* strings = new DmN::KVM::SSS(512);
             // Помещаем строки
             SI_t id0 = strings->add("Hello, World!");
             SI_t id1 = strings->addNew("DmN202");
-            strings->addNew("x");
+            SI_t spam_id0 = strings->addNew("x");
             SI_t id2 = strings->add("Hello, World!");
-            strings->addNew("x");
+            SI_t spam_id1 = strings->addNew("x");
             SI_t id3 = strings->add("Hello, World!");
-            strings->addNew("x");
+            SI_t spam_id2 = strings->addNew("x");
             SI_t id4 = strings->add("Hello, World!");
-            strings->addNew("x");
+            SI_t spam_id3 = strings->addNew("x");
             // Проверяем строки
-            assert(strcmp(strings->get(id0), "Hello, World!"));
-            assert(strcmp(strings->remove(id1), "DmN202"));
-            assert(strcmp(strings->get(id2), "Hello, World!"));
-            assert(strcmp(strings->get(id3), "Hello, World!"));
-            assert(strcmp(strings->get(id4), "Hello, World!"));
+            assert(strcmp(strings->get(id0), "Hello, World!") == 0);
+            assert(strcmp(strings->remove(id1), "DmN202") == 0);
+            assert(strcmp(strings->get(id2), "Hello, World!") == 0);
+            assert(strcmp(strings->get(id3), "Hello, World!") == 0);
+            assert(strcmp(strings->get(id4), "Hello, World!") == 0);
+            // Проверяем ID
+            assert(spam_id0 != spam_id1);
+            assert(spam_id1 != spam_id2);
+            assert(spam_id2 != spam_id3);
+            assert(spam_id0 != spam_id3);
             // !Конец!
-            std::cout << "Успешно выполнена проверка хранилищ строк!" << std::endl;
+            std::cout << "[2][C]" << std::endl;
         }
     }
 
     namespace SR {
         void stackRegisterTest() {
             // !Старт!
-            std::cout << "Старт проверки стека и регистров!" << std::endl;
+            std::cout << "[1][S] стек & регистры" << std::endl;
             // Создаём стек
             DmN::KVM::Stack<int32_t> stack(nullptr);
             // Проверяем стек
@@ -88,7 +93,7 @@ namespace DmN::KVM::testing {
             for (int i = 0; i < registers.size; i++)
                 assert(*(int *) registers[i] == i);
             // !Конец!
-            std::cout << "Успешно выполнена проверка стека и регистров!" << std::endl;
+            std::cout << "[1][C]" << std::endl;
         }
     }
 
@@ -100,7 +105,7 @@ namespace DmN::KVM::testing {
 
         void networkTest() {
             // !Старт!
-            std::cout << "Старт проверки сети!" << std::endl;
+            std::cout << "[0][S] сеть" << std::endl;
             // Указываем порт для тестов
             port = 228;
             // Создаём поток сервера
@@ -113,7 +118,7 @@ namespace DmN::KVM::testing {
             server_thread.join();
             // Если мы ещё не сдохли, то всё норм
             // !Конец!
-            std::cout << "Успешно выполнена проверка сети!" << std::endl;
+            std::cout << "[0][C]" << std::endl;
         }
 
         void networkTestS() {
