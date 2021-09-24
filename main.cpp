@@ -32,11 +32,7 @@ namespace DmN::KVM::testing {
     }
 
     namespace SS {
-        void stringStorageTest() {
-            // !Старт!
-            std::cout << "[2][S] хранилище строк" << std::endl;
-            // Создаём хранилище строк
-            DmN::KVM::SS* strings = new DmN::KVM::SSS(512);
+        void test(DmN::KVM::SS* strings) {
             // Помещаем строки
             SI_t id0 = strings->add("Hello, World!");
             SI_t id1 = strings->addNew("DmN202");
@@ -58,6 +54,19 @@ namespace DmN::KVM::testing {
             assert(spam_id1 != spam_id2);
             assert(spam_id2 != spam_id3);
             assert(spam_id0 != spam_id3);
+        }
+
+        void stringStorageTest() {
+            // !Старт!
+            std::cout << "[2][S] хранилище строк" << std::endl;
+            // Создаём статическое хранилище строк
+            auto* sss = new DmN::KVM::SSS(512);
+            test(sss);
+            delete sss;
+            //
+            auto* dss = new DmN::KVM::DSS();
+            test(dss);
+            delete dss;
             // !Конец!
             std::cout << "[2][C]" << std::endl;
         }

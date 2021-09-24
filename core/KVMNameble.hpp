@@ -117,72 +117,49 @@ namespace DmN::KVM {
         }
 
         [[nodiscard]] SI_t addNew(const char *name) override {
-            // Сохраняем имя в массив и инкриминируем текущий индекс
             this->data[this->last_index++] = name;
-            // Возвращаем индекс имени
             return this->last_index - 1;
         }
 
         [[nodiscard]] SI_t add(const char *name) override {
-            // Перебираем имена
             for (size_t i = 1; i < this->last_index; i++)
-                // Сравниваем имена
                 if (strcmp(this->data[i], name) == 0)
-                    // Если имена одинаковы, то возвращаем ID имени
                     return i;
-            // Добавляем новое имя если его нет
             return this->addNew(name);
         }
 
         [[nodiscard]] SI_t get(const char *name) const override {
-            // Перебираем имена
             for (size_t i = 1; i < this->last_index; i++)
-                // Сравниваем имена
                 if (strcmp(this->data[i], name) == 0)
-                    // Если имена одинаковы, то возвращаем ID имени
                     return i;
-            // Если мы нихрена не нашли, то возвращаем -1
             return -1;
         }
 
         [[nodiscard]] const char *get(SI_t id) const override {
-            // Получаем имя по ID
             return this->data[id];
         }
 
         SI_t free(const char *name) override {
-            // Получаем ID
             uint32_t id = this->get(name);
-            // Проверяем можем ли мы высвободить ячейку массива от имени
             if ((this->last_index - 1) == id)
-                // Высвобождаем ячейку массива от имени
                 this->data[--this->last_index] = nullptr;
-            // Возвращаем ID
             return id;
         }
 
         const char *free(SI_t id) override {
-            // Проверяем можем ли мы высвободить ячейку массива от имени
             if ((this->last_index - 1) == id) {
-                // Если да то высвобождаем ячейку массива от имени
-                // Получаем имя
                 const char *name = this->data[id];
-                // Стираем имя из массива
                 this->data[--this->last_index] = nullptr;
-                // Возвращае имя
                 return name;
             }
-            // Иначе просто возвращаем имя
             return this->get(id);
         }
 
         SI_t remove(const char *name) override {
-            // Ссылаемся на функцию free
             return this->free(name);
         }
 
         inline const char *remove(SI_t id) override {
-            // Ссылаемся на функцию free
             return this->free(id);
         }
 
@@ -233,159 +210,110 @@ namespace DmN::KVM {
         }
 
         [[nodiscard]] SI_t addNew(const char *name) override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
-            // Пихаем новую ноду с новой строкой
-            last_node->next = new SaI(const_cast<char *>(name), last_node->id++, nullptr);
-            // Возвращаем ID новой строки
+            last_node->next = new SaI(const_cast<char *>(name), ++last_node->id, nullptr);
             return last_node->next->id;
         }
 
         [[nodiscard]] SI_t add(const char *name) override {
-            // Переменная для пустой ноды
             SaI *free_node = this->start_node;
-            // Перебираем ноды
-            SaI *last_node = this->start_node;
-            while (last_node->next != nullptr) {
-                // Проверяем на существование имени
-                if (strcmp(last_node->value, name) == 0)
-                    // Возвращаем ID этого имени
+            SaI *last_node = this->start_node->next;
+            if (last_node != nullptr) {
+                while (last_node->next != nullptr) {
+                    if (strcmp(last_node->value, name) == 0)
+                        return last_node->id - 1;
+                    last_node = last_node->next;
+                    if (free_node == this->start_node && last_node->value == nullptr)
+                        free_node = last_node;
+                }
+                if (last_node != this->start_node && strcmp(last_node->value, name) == 0)
                     return last_node->id;
-                // Перебираем ноды
-                last_node = last_node->next;
-                // Если нода пуста то сохраняем её
-                if (free_node == this->start_node && last_node->value == nullptr)
-                    free_node = last_node;
-            }
-            // Проверяем на существование строки
-            if (strcmp(last_node->value, name) == 0)
-                // Возвращаем ID этой строки
-                return last_node->id;
-            // Пихаем новую ноду с новой строкой
-            if (free_node == last_node) {
-                // Если у нас нет свободной ноды то создаём новую и пихаем туда значение
-                last_node->next = new SaI(const_cast<char *>(name), last_node->id++, nullptr);
-                // Возвращаем ID новой строки
+            } else
+                last_node = this->start_node;
+            if (last_node == this->start_node || free_node == last_node) {
+                last_node->next = new SaI(const_cast<char *>(name), ++last_node->id, nullptr);
                 return last_node->next->id;
             }
-            // Иначе пихаем значение в свободную ноду
             free_node->value = const_cast<char *>(name);
-            // Возвращаем ID новой строки
             return last_node->next->id;
         }
 
         [[nodiscard]] SI_t get(const char *name) const override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             while (last_node != nullptr) {
-                // Сравниваем имена
                 if (strcmp(last_node->value, name) == 0)
-                    // Если строки совпадают то возвращаем нужный ID
                     return last_node->id;
-                // Перебираем ноды дальше
                 last_node = last_node->next;
             }
-            // Если нихрена не нашли то возвращаем -1
             return -1;
         }
 
         [[nodiscard]] const char *get(SI_t id) const override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             for (; id > 0; --id)
                 last_node = last_node->next;
-            // Возвращаем строку полученную по ID
             return last_node->value;
         }
 
         SI_t free(const char *name) override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             while (last_node != nullptr) {
                 if (strcmp(last_node->next->value, name) == 0) {
-                    // Получаем ноду строки для удаления
                     SaI *node_for_remove = last_node->next;
-                    // Высвобождаем ноду от старых данных
-                    // Высвобождаем указатель на старую строку
                     delete node_for_remove->value;
-                    // Зануляем ссылку на старую строку
                     node_for_remove->value = nullptr;
-                    // Возвращаем ID
                     return node_for_remove->id;
                 }
                 last_node = last_node->next;
             }
-            // Если что-то пошло по одному месту то возвращаем 0
             return 0;
         }
 
         const char *free(SI_t id) override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             for (; id > 0; id--)
                 last_node = last_node->next;
-            // Получаем ноду строки для удаления
             SaI *node_for_remove = last_node->next;
-            // Получаем строку
             char *name = node_for_remove->value;
-            // Высвобождаем ноду от старых данных
             node_for_remove->value = nullptr;
-            // Возвращаем строку
             return name;
         }
 
         SI_t remove(const char *name) override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             while (last_node != nullptr) {
                 if (strcmp(last_node->next->value, name) == 0) {
-                    // Получаем ноду строки для удаления
                     SaI *node_for_remove = last_node->next;
-                    // Получаем ID
                     uint32_t i = node_for_remove->id;
-                    // Выпиливаем ноду из списка
                     last_node->next = node_for_remove->next;
-                    // Высвобождаем память
                     delete node_for_remove->value;
                     delete node_for_remove;
-                    // Возвращаем ID
                     return i;
                 }
                 last_node = last_node->next;
             }
-            // Если что-то пошло по одному месту то возвращаем 0
             return 0;
         }
 
         const char *remove(SI_t id) override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
-            for (; id > 0; id--)
+            for (id--; id > 0; id--)
                 last_node = last_node->next;
-            // Получаем ноду строки для удаления
             SaI *node_for_remove = last_node->next;
-            // Получаем строку
             char *name = node_for_remove->value;
-            // Выпиливаем ноду из списка
             last_node->next = node_for_remove->next;
-            // Высвобождаем память
             delete node_for_remove;
-            // Возвращаем строку
             return name;
         }
 
         void clear() override {
-            // Перебираем ноды
             SaI *last_node = this->start_node;
             while (last_node != nullptr) {
-                // Высвобождаем память из под строки
                 delete last_node->value;
-                // Перебираем ноды
                 SaI *old_node = last_node;
                 last_node = last_node->next;
-                // Высвобождаем память занятую нодой
                 delete old_node;
             }
         }
