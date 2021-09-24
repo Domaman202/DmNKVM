@@ -21,6 +21,10 @@ namespace DmN::KVM::testing {
     namespace Heap {
         void heapTest();
     }
+
+    namespace VM {
+        void helloTest();
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -34,6 +38,15 @@ namespace DmN::KVM::testing {
     inline void check(NWR nwr) {
         if (((BaseError) nwr) != SUCCESS)
             throw;
+    }
+
+    namespace VM {
+        void helloTest() {
+            uint8_t code = {};
+            //
+            auto* vm = new KVM::VM::VMCA(&code, sizeof(code), nullptr, 0);
+            //
+        }
     }
 
     namespace Heap {
