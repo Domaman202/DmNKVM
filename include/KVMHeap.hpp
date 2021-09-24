@@ -109,107 +109,89 @@ namespace DmN::KVM {
             delete last_node;
         }
 
-        CI_t addNew(LLTNameble *obj) override;
-
-        CI_t add(LLTNameble *obj) override;
-
-        LLTNameble *replace(LLTNameble *obj, CI_t id) override;
-
-        void remove(LLTNameble *obj) override;
-
-        LLTNameble *remove(CI_t id) override;
-
-        void collect(CI_t id) override;
-
-        void collect(GCObject *obj) override;
-
-        CI_t get(const LLTNameble *obj) override;
-
-        LLTNameble *get(CI_t id) override;
-    };
-
-    CI_t DHeap::addNew(LLTNameble *obj) {
-        OaI *last_node = this->start_node;
-        while (last_node->next != nullptr)
-            last_node = last_node->next;
-        last_node->next = new OaI(obj, last_node->id++, nullptr);
-        return last_node->next->id;
-    }
-
-    CI_t DHeap::add(LLTNameble *obj) {
-        OaI *last_node = this->start_node;
-        while (last_node->next != nullptr) {
-            if (last_node->value == obj)
-                return last_node->id;
-            last_node = last_node->next;
+        CI_t addNew(LLTNameble *obj) override {
+            OaI *last_node = this->start_node;
+            while (last_node->next != nullptr)
+                last_node = last_node->next;
+            last_node->next = new OaI(obj, last_node->id++, nullptr);
+            return last_node->next->id;
         }
-        last_node->next = new OaI(obj, last_node->id++, nullptr);
-        return last_node->next->id;
-    }
 
-    LLTNameble *DHeap::replace(LLTNameble *obj, CI_t id) {
-        OaI *last_node = this->start_node;
-        while (last_node->id != id)
-            last_node = last_node->next;
-        LLTNameble *old = last_node->value;
-        last_node->value = obj;
-        return old;
-    }
+        CI_t add(LLTNameble *obj) override {
+            OaI *last_node = this->start_node;
+            while (last_node->next != nullptr) {
+                if (last_node->value == obj)
+                    return last_node->id;
+                last_node = last_node->next;
+            }
+            last_node->next = new OaI(obj, last_node->id++, nullptr);
+            return last_node->next->id;
+        }
 
-    void DHeap::remove(LLTNameble *obj) {
-        OaI *prev_node = this->start_node;
-        while (prev_node->next->value != obj)
-            prev_node = prev_node->next;
-        prev_node->next = prev_node->next->next;
-    }
+        LLTNameble *replace(LLTNameble *obj, CI_t id) override {
+            OaI *last_node = this->start_node;
+            while (last_node->id != id)
+                last_node = last_node->next;
+            LLTNameble *old = last_node->value;
+            last_node->value = obj;
+            return old;
+        }
 
-    LLTNameble *DHeap::remove(CI_t id) {
-        OaI *prev_node = this->start_node;
-        while (prev_node->id != id)
-            prev_node = prev_node->next;
-        OaI *node = prev_node;
-        prev_node->next = prev_node->next->next;
-        LLTNameble *obj = node->value;
-        delete node;
-        return obj;
-    }
+        void remove(LLTNameble *obj) override {
+            OaI *prev_node = this->start_node;
+            while (prev_node->next->value != obj)
+                prev_node = prev_node->next;
+            prev_node->next = prev_node->next->next;
+        }
 
-    void DHeap::collect(CI_t id) { // TODO:
-        OaI *last_node = this->start_node;
-        while (last_node->id != id)
-            last_node = last_node->next;
+        LLTNameble *remove(CI_t id) override {
+            OaI *prev_node = this->start_node;
+            while (prev_node->id != id)
+                prev_node = prev_node->next;
+            OaI *node = prev_node;
+            prev_node->next = prev_node->next->next;
+            LLTNameble *obj = node->value;
+            delete node;
+            return obj;
+        }
+
+        void collect(CI_t id) override { // TODO:
+            OaI *last_node = this->start_node;
+            while (last_node->id != id)
+                last_node = last_node->next;
 #ifdef DMN_KVM_RTTI_COLLECT
-        if (typeid(*last_node->value) == typeid(GCObject))
-            Utils::tryCollect((GCObject *) last_node->value);
+            if (typeid(*last_node->value) == typeid(GCObject))
+                Utils::tryCollect((GCObject *) last_node->value);
 #else
-        delete last_node->value;
+            delete last_node->value;
 #endif /* DMN_KVM_RTTI_COLLECT */
-        delete last_node;
-    }
-
-    void DHeap::collect(GCObject *obj) { // TODO:
-#ifdef DMN_KVM_RTTI_COLLECT
-        if (typeid(*obj) == typeid(LLTNameble))
-        this->remove((LLTNameble*)(obj));
-#endif /* DMN_KVM_RTTI_COLLECT */
-        Utils::tryCollect(obj);
-    }
-
-    CI_t DHeap::get(const LLTNameble *obj) {
-        OaI *last_node = this->start_node;
-        while (true) {
-            if (last_node->value == obj)
-                return last_node->id;
-            last_node = last_node->next;
+            delete last_node;
         }
-    }
 
-    LLTNameble *DHeap::get(CI_t id) {
-        OaI *last_node = this->start_node;
-        while (last_node->id != id)
-            last_node = last_node->next;
-        return last_node->value;
-    }
+        void collect(GCObject *obj) override { // TODO:
+#ifdef DMN_KVM_RTTI_COLLECT
+            if (typeid(*obj) == typeid(LLTNameble))
+                this->remove((LLTNameble*)(obj));
+#endif /* DMN_KVM_RTTI_COLLECT */
+            Utils::tryCollect(obj);
+        }
+
+        CI_t get(const LLTNameble *obj) override  {
+            OaI *last_node = this->start_node;
+            while (true) {
+                if (last_node->value == obj)
+                    return last_node->id;
+                last_node = last_node->next;
+            }
+        }
+
+        LLTNameble *get(CI_t id) override {
+            OaI *last_node = this->start_node;
+            while (last_node->id != id)
+                last_node = last_node->next;
+            return last_node->value;
+        }
+    };
 }
 
 #endif /* DMN_KVM_HEAP_HPP */
