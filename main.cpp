@@ -42,9 +42,12 @@ namespace DmN::KVM::testing {
 
     namespace VM {
         void helloTest() {
-            uint8_t code = {};
+            auto* code = new uint8_t[] {
+                    0xFF,
+                    0x00
+            };
             //
-            auto* vm = new KVM::VM::VMCA(&code, sizeof(code), nullptr, 0);
+            auto* vm = new KVM::VM::VMCA(code, sizeof(code), nullptr, 0);
             //
         }
     }
