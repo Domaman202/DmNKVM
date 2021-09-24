@@ -3,9 +3,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(DmNKVM)
 
-file(GLOB_RECURSE HEADER ./include/*.hpp)
+file(GLOB_RECURSE HEADER core/*.hpp)
 
-include_directories(include)
+include_directories(./)
 
 if(MSVC)
     include_directories(variants/compiler/MSVC)

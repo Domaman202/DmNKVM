@@ -4,8 +4,6 @@
 #ifndef DMN_KVM_ERROR_HPP
 #define DMN_KVM_ERROR_HPP
 
-#include "KVMConfig.hpp"
-
 namespace DmN::KVM::Error {
     /// Основа для ошибок
     enum BaseError {

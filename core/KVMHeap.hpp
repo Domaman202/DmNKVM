@@ -5,7 +5,6 @@
 #define DMN_KVM_HEAP_HPP
 
 #include "KVMUtils.hpp"
-#include "KVMESC.hpp"
 #include <utility>
 
 #ifdef DMN_KVM_RTTI

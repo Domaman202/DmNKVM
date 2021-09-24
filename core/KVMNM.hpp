@@ -4,7 +4,6 @@
 #ifndef DMN_KVM_NM_HPP
 #define DMN_KVM_NM_HPP
 
-#include "KVMNameble.hpp"
 #include <cstdint>
 
 namespace DmN::KVM {

@@ -1,6 +1,5 @@
-#include <KVMNetwork.hpp>
-#include <KVMVM.hpp>
-#include <KVMSR.hpp>
+#include <core/KVMNetwork.hpp>
+#include <core/KVMVM.hpp>
 #include <iostream>
 #include <cstring>
 #include <cassert>

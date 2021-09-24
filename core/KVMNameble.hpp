@@ -4,7 +4,6 @@
 #ifndef DMN_KVM_NAMEBLE_HPP
 #define DMN_KVM_NAMEBLE_HPP
 
-#include "KVMConfig.hpp"
 #include "SDmNL.hpp"
 #include <cstddef>
 #include <cstdlib>

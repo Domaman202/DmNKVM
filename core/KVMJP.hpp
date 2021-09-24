@@ -4,11 +4,11 @@
 //#ifndef DMN_KVM_JP_HPP
 //#define DMN_KVM_JP_HPP
 //
-//#include "KVMNameble.hpp"
-//#include "KVMAlloc.hpp"
-//#include "SDmNL.hpp"
-//#include <cstring>
-//#include <tuple>
+//#core "KVMNameble.hpp"
+//#core "KVMAlloc.hpp"
+//#core "SDmNL.hpp"
+//#core <cstring>
+//#core <tuple>
 //
 //using namespace DmN::SDL::Byte;
 //using namespace DmN::SDL::Pairs;
