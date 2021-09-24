@@ -14,17 +14,49 @@ namespace DmN::KVM::testing {
     namespace SR {
         void stackRegisterTest();
     }
+
+    namespace SS {
+        void stringStorageTest();
+    }
 }
 
 int main(int argc, char* argv[]) {
     DmN::KVM::testing::Network::networkTest();
     DmN::KVM::testing::SR::stackRegisterTest();
+    DmN::KVM::testing::SS::stringStorageTest();
 }
 
 namespace DmN::KVM::testing {
     inline void check(NWR nwr) {
         if (((BaseError) nwr) != SUCCESS)
             throw;
+    }
+
+    namespace SS {
+        void stringStorageTest() {
+            // !Старт!
+            std::cout << "Старт проверка хранилищ строк!" << std::endl;
+            // Создаём хранилище строк
+            DmN::KVM::SS* strings = new DmN::KVM::SSS(3);
+            // Помещаем строки
+            SI_t id0 = strings->add("Hello, World!");
+            SI_t id1 = strings->addNew("DmN202");
+            strings->addNew("x");
+            SI_t id2 = strings->add("Hello, World!");
+            strings->addNew("x");
+            SI_t id3 = strings->add("Hello, World!");
+            strings->addNew("x");
+            SI_t id4 = strings->add("Hello, World!");
+            strings->addNew("x");
+            // Проверяем строки
+            assert(strcmp(strings->get(id0), "Hello, World!"));
+            assert(strcmp(strings->remove(id1), "DmN202"));
+            assert(strcmp(strings->get(id2), "Hello, World!"));
+            assert(strcmp(strings->get(id3), "Hello, World!"));
+            assert(strcmp(strings->get(id4), "Hello, World!"));
+            // !Конец!
+            std::cout << "Успешно выполнена проверка хранилищ строк!" << std::endl;
+        }
     }
 
     namespace SR {

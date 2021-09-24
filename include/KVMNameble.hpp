@@ -103,7 +103,7 @@ namespace DmN::KVM {
         size_t last_index = 0;
 
         explicit SSS(size_t size) {
-            this->data = static_cast<const char **>(calloc(size, sizeof(char *)));
+            this->data = new const char*[size];
             this->_size = size;
         }
 
@@ -219,11 +219,11 @@ namespace DmN::KVM {
 
     uint32_t SSS::add(const char *name) {
         // Перебираем имена
-        for (size_t i = 0; i < this->_size; i++)
+        for (size_t i = 0; i < this->last_index; i++)
             // Сравниваем имена
             if (strcmp(this->data[i], name) == 0)
                 // Если имена одинаковы то возвращаем ID имени
-                return i;
+                return i - 1;
         // Добавляем новое имя если его нет
         return this->addNew(name);
     }
@@ -235,7 +235,7 @@ namespace DmN::KVM {
 
     uint32_t SSS::get(const char *name) const {
         // Перебираем имена
-        for (size_t i = 0; i < this->_size; i++)
+        for (size_t i = 0; i < this->last_index; i++)
             // Сравниваем имена
             if (strcmp(this->data[i], name) == 0)
                 // Если имена одинаковы то возвращаем ID имени
@@ -282,7 +282,7 @@ namespace DmN::KVM {
 
     void SSS::clear() {
         this->last_index = 0;
-        for (size_t i = 0; i < this->_size; i++)
+        for (size_t i = 0; i < this->last_index; i++)
             delete this->data[i];
     }
 
