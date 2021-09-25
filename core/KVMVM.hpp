@@ -58,7 +58,7 @@ namespace DmN::KVM::VM {
             createMain(main, mainSS, code, cs);
         }
 
-        void* callFunction(char* name, Value_t **args, uint8_t argc) {
+        void* callMain() {
             // TODO:
         }
 
