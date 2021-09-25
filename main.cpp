@@ -57,7 +57,7 @@ namespace DmN::KVM::testing {
             //
             delete vm;
             //
-            std::cout << "[5][C]" << std::endl;
+            std::cout << "[4][C]" << std::endl;
         }
     }
 
