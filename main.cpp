@@ -53,7 +53,7 @@ namespace DmN::KVM::testing {
             //
             auto* vm = new KVM::VM::VMCA(code, sizeof(code), nullptr, 0);
             //
-            
+
             //
             delete vm;
             //

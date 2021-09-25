@@ -20,7 +20,7 @@ namespace DmN::KVM {
         /// Аргументы
         Value_t **args;
         /// Кол-во аргументов
-        size_t argc;
+        uint8_t argc;
     };
 }
 

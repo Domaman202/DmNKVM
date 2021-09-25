@@ -29,7 +29,7 @@ namespace DmN::KVM::VM {
         ExecuteContext *mainContext;
         BCMethod_t *main = (BCMethod_t*) malloc(sizeof(BCMethod_t));;
 
-        VMCA(uint8_t *code, size_t cs, Value_t** args, size_t argc) {
+        VMCA(uint8_t *code, size_t cs, Value_t** args, uint8_t argc) {
             SS* mainSS = new DSS();
             Heap* mainHeap = new DHeap();
             mainContext = new ExecuteContext{
@@ -52,9 +52,14 @@ namespace DmN::KVM::VM {
                             .tc = 1,
                             .heap = mainHeap,
                             .strings = mainSS
-                    }
+                    },
+                    .lastBcPtr = 2
             };
             createMain(main, mainSS, code, cs);
+        }
+
+        void* callFunction(char* name, Value_t **args, uint8_t argc) {
+            // TODO:
         }
 
         static void createMain(BCMethod_t *ptr, SS* ss, uint8_t *code, size_t cs) {
