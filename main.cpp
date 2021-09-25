@@ -32,6 +32,7 @@ int main(int argc, char* argv[]) {
     DmN::KVM::testing::SR::stackRegisterTest();
     DmN::KVM::testing::SS::stringStorageTest();
     DmN::KVM::testing::Heap::heapTest();
+    DmN::KVM::testing::VM::helloTest();
 }
 
 namespace DmN::KVM::testing {
@@ -42,6 +43,9 @@ namespace DmN::KVM::testing {
 
     namespace VM {
         void helloTest() {
+            // !Старт!
+            std::cout << "[4][S] Hello, VM" << std::endl;
+            //
             auto* code = new uint8_t[] {
                     0xFF,
                     0x00
@@ -49,6 +53,11 @@ namespace DmN::KVM::testing {
             //
             auto* vm = new KVM::VM::VMCA(code, sizeof(code), nullptr, 0);
             //
+            
+            //
+            delete vm;
+            //
+            std::cout << "[5][C]" << std::endl;
         }
     }
 
