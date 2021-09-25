@@ -20,5 +20,5 @@
 |`0xD`|`0x1 (RX)`|CFVADV (RX)|UnConvert Of Value And Delete Value|RX = RX->value|
 |`0xF` - `0x15`|`0x1 (RX)` `0x2 (RY)` `0x3 (RZ)`|MR (RX, RY, RZ)|Math Register|RZ = RX TYPE (TYPE: ADD; SUB; MUL; DIV; POW; SQRT) RY|
 |`0x16`|`0x1 (RX)` `0x2 (BYTE)`|LTR1 (RX, BYTE)|Load To Register|RX = BYTE|
-|`0x17`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)`|LTR2 (RX, BYTE0, BYTE1)|Load To Register|[RX = BYTE0 | (BYTE1 << 8)]|
+|`0x17`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)`|LTR2 (RX, BYTE0, BYTE1)|Load To Register|RX = BYTE0 &#124; (BYTE1 << 8)|
 |`0x18`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)` `0x4 (BYTE2)` `0x5(BYTE3)`|LTR4 (RX, BYTE0, BYTE1, BYTE2, BYTE3)|Load To Register|RX = BYTE0 &#124; (BYTE1 << 8) &#124; BYTE2 << 16) &#124; (BYTE3 << 24)|
