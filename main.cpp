@@ -47,8 +47,8 @@ namespace DmN::KVM::testing {
             std::cout << "[4][S] Hello, VM" << std::endl;
             //
             auto* code = new uint8_t[] {
-                    0xFF,
-                    0x00
+                    0xFF, 0x00,
+
             };
             //
             auto* vm = new KVM::VM::VMCA(code, sizeof(code), nullptr, 0);

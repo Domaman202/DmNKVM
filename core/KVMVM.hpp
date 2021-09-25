@@ -76,7 +76,7 @@ namespace DmN::KVM::VM {
     0x10 - 0xXXX Код
  */
 /*
-    Байткод:
+    Байт код:
     |(0x0| Ox1 (RX), Ox2 (RY))
     MR (RX, RY) [Move Register (RX to RY)]
     |(0x1| 0x1 (TYPE), Ox2 (RX), Ox3 (RY))
@@ -103,4 +103,11 @@ namespace DmN::KVM::VM {
     |(0x11, 0x1 (TYPE), 0x2 (RX), 0x3 (RY), 0x4 (RZ))
     MR (Math Register) [RZ = RX TYPE RY]
     TYPE: ADD; SUB; MUL; DIV; POW; SQRT
+    |(0x12, 0x1 (RX), 0x2 (BYTE))
+    LTR1 (Load To Register) [RX = BYTE]
+    |(0x13, 0x1 (RX), 0x2 (BYTE0), 0x3 (BYTE1))
+    LTR2 (Load To Register) [RX = BYTE0 | (BYTE1 << 8)]
+    |(0x14, 0x1 (RX), 0x2 (BYTE0), 0x3 (BYTE1), 0x4 (BYTE2), 0x5(BYTE3))
+    LTR4 (Load To Register) [RX = BYTE0 | (BYTE1 << 8) | BYTE2 << 16) | (BYTE3 << 24)]
+
  */
