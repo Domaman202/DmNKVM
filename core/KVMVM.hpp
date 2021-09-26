@@ -69,7 +69,7 @@ namespace DmN::KVM::VM {
         void* evalBC(ExecuteContext c, const uint8_t* b, size_t bc) {
             for (size_t* i = &c.lastBcPtr; *i < bc; (*i)++) {
                 switch (b[*i]) {
-                    
+                    // TODO:
                 }
             }
         }

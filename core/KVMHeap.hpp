@@ -92,7 +92,7 @@ namespace DmN::KVM {
 
     using namespace DmN::KVM::internal::DHeap;
 
-    class DHeap : public Heap { // TODO:
+    class DHeap : public Heap {
     public:
         OaI *start_node = new OaI(nullptr, 0, nullptr);
 
