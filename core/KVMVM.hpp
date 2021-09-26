@@ -35,8 +35,8 @@ namespace DmN::KVM {
             SS* mainSS = new DSS();
             Heap* mainHeap = new DHeap();
             mainContext = new ExecuteContext{
-                    .lastCall = nullptr,
-                    .lastProcess = new Process{
+                    .call = nullptr,
+                    .process = new Process{
                             .threads = new Thread *[]{
                                     new Thread{
                                             .cs = new Stack<Call *>(new SDL::Node(new Call{
@@ -55,7 +55,7 @@ namespace DmN::KVM {
                             .heap = mainHeap,
                             .strings = mainSS
                     },
-                    .lastBcPtr = 2
+                    .bcPtr = 2
             };
             createMain(main, mainSS, code, cs);
         }
@@ -64,8 +64,8 @@ namespace DmN::KVM {
             // TODO:
         }
 
-        void* eval(ExecuteContext c, const uint8_t* b, size_t cs) {
-            for (size_t* i = &c.lastBcPtr; *i < cs; (*i)++) {
+        void* eval(ExecuteContext* c, const uint8_t* b, size_t cs) {
+            for (size_t* i = &c->bcPtr; *i < cs; (*i)++) {
                 switch (b[*i]) {
                     // TODO:
                 }
@@ -77,17 +77,17 @@ namespace DmN::KVM {
         }
 
         static void call(VMCA* vm, ExecuteContext* context) {
-            Stack<void*>* stack = thread->stack;
+            Stack<void*>* stack = context->thread->stack;
             stack->push(vm);
             stack->push(context);
 
-            auto* method = context->call->method;
+            auto method = context->call->method;
             if (typeid(*method) == typeid(BCMethod_t)) {
-                auto method = (BCMethod_t*) context->call->method;
-                vm->eval(context, method->bc, method->cs);
+                auto m = (BCMethod_t*) method;
+                vm->eval(context, m->bc, m->cs);
             } else if (typeid(*method) == typeid(NMethod_t)) {
-                auto method = ((NMethod_t*) context->call->method);
-                method->call(new void*[] { c, b, cs }, 3);
+                auto m = ((NMethod_t*) method);
+                m->call(new void*[] { vm, context }, 2);
             }
         }
     };
