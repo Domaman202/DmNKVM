@@ -90,6 +90,22 @@ namespace DmN::KVM {
                     case C::MRT_HH:
                         ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1;
                         break;
+                    case C::PS:
+                        stack->push(regs->rs[++(*i)]);
+                        break;
+                    case C::PP:
+                        regs->rs[++(*i)] = stack->peekPop();
+                        break;
+                    case C::PK:
+                        regs->rs[++(*i)] = stack->peek();
+                        break;
+                    case C::DR:
+                        regs->rs[++(*i)] = *(void**) regs->rs[++(*i)];
+                        break;
+                    case C::RR:
+                        regs->rs[++(*i)] = (void**) regs->rs[++(*i)];
+                        break;
+
                 }
             }
         }
