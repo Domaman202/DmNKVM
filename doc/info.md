@@ -3,8 +3,8 @@
 Байт-код `0x2 - 0x7FFFFFFF`
 
 # Байт-код:
-| Код    | Параметры | Имя | Дескриптор | Описание |
-| ------ | --------- | --- | ---------- | -------- |
+| Код    | Параметры | Дескриптор | Имя | Описание |
+| ------ | --------- | ---------- | --- | -------- |
 |`0x0`|`0x1 (RX)` `0x2 (RY)`|Move Register|MR (RX, RY)|RX to RY|
 |`0x1`<br><=><br>`0x4`| `Ox1 (RX)` `Ox2 (RY)`|MRT (RX, RY)|Move Register with Type|(LL,HH,LH,HL) bytes, RX to RY|
 |`0x5`| `0x1 (RX)`|PhS (RX)|Push to Stack|RX to stack|
