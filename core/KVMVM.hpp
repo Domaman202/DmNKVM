@@ -77,18 +77,17 @@ namespace DmN::KVM {
         }
 
         static void call(VMCA* vm, ExecuteContext* context) {
-            Stack<void*>* stack = context->thread->stack;
-            stack->push(vm);
-            stack->push(context);
-
             auto method = context->call->method;
             if (typeid(*method) == typeid(BCMethod_t)) {
+                Stack<void*>* stack = context->thread->stack;
+                stack->push(vm);
+                stack->push(context);
                 auto m = (BCMethod_t*) method;
                 vm->eval(context, m->bc, m->cs);
             } else if (typeid(*method) == typeid(NMethod_t)) {
-                auto m = ((NMethod_t*) method);
-                m->call(new void*[] { vm, context }, 2);
-            }
+                ((NMethod_t*) method)->call(new void*[] { vm, context }, 2);
+            } else
+                ((NRMethod_t*) method)->ref(new void*[] { vm, context }, 2);
         }
     };
 }
