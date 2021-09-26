@@ -18,35 +18,43 @@ namespace DmN::KVM {
          * Помещает элемент в верх стек
          * @param value элемент для помещения в стек
          */
-        void push(T value);
+        void push(T value) {
+            this->add(value);
+        }
 
         /*!
          * Удаляет элемент сверху стека
          */
-        void pop();
+        void pop() {
+            this->removeLast();
+        }
 
         /*!
          * Удаляет элемент с вершины стека и возвращает его
          * @return Удалённый элемент
          */
-        [[nodiscard]] T peekPop();
+        [[nodiscard]] T peekPop() {
+            return this->removeLG();
+        }
 
         /*!
          * Возвращает элемент с вершины стека
          * @return Элемент с вершины стека
          */
-        [[nodiscard]] T peek();
+        [[nodiscard]] T peek() {
+            return this->getLast();
+        }
     };
 
     class Resisters {
     public:
         explicit Resisters(size_t size) {
-            this->register_storage = new void *[size];
+            this->rs = new void *[size];
             this->size = size;
         }
 
         ~Resisters() {
-            delete[] this->register_storage;
+            delete[] this->rs;
         }
 
         /*!
@@ -54,37 +62,15 @@ namespace DmN::KVM {
          * @param index индекс регистра
          * @return Значение регистра
          */
-        void *&operator[](size_t index) const;
+        void *&operator[](size_t index) const {
+            return this->rs[index];
+        }
 
         /// Массив регистров
-        void **register_storage;
+        void **rs;
         /// Размер
         size_t size;
     };
-}
-
-template<typename T>
-inline void DmN::KVM::Stack<T>::push(T value) {
-    this->add(value);
-}
-
-template<typename T>
-inline void DmN::KVM::Stack<T>::pop() {
-    this->removeLast();
-}
-
-template<typename T>
-inline T DmN::KVM::Stack<T>::peekPop() {
-    return this->removeLG();
-}
-
-template<typename T>
-inline T DmN::KVM::Stack<T>::peek() {
-    return this->getLast();
-}
-
-inline void*& DmN::KVM::Resisters::operator[](size_t index) const {
-    return this->register_storage[index];
 }
 
 #endif /* DMN_KVM_SR_HPP */

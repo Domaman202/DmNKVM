@@ -9,6 +9,7 @@
 #include "KVMCall.hpp"
 #include "KVMESC.hpp"
 #include "KVMSR.hpp"
+#include "KVMBC.hpp"
 
 namespace DmN::KVM {
     /// Контекст выполнения
@@ -65,9 +66,18 @@ namespace DmN::KVM {
         }
 
         void* eval(ExecuteContext* c, const uint8_t* b, size_t cs) {
+            auto thread = c->thread;
+            auto regs = thread->regs;
+            auto stack = thread->stack;
+
             for (size_t* i = &c->bcPtr; *i < cs; (*i)++) {
-                switch (b[*i]) {
-                    // TODO:
+                using C = DmN::KVM::KBC::BC;
+                switch (b[*i]) {// TODO:
+                    case C::NOP:
+                        break;
+                    case C::MR:
+                        regs->rs[++(*i)] = regs->rs[++(*i)];
+                        break;
                 }
             }
         }
