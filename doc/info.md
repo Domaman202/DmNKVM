@@ -15,8 +15,8 @@
 |`0xA`|`0x1 (RX)` `0x2 (RY)`|RR (RX, RY)|Reference Register|REGY = (void&#42;) REGX|
 |`0xB`|`0x1 (RX)` `0x2 (TYPE)`|CTV (RX, TYPE)|Convert To Val|RX = new Value_t(RX, TYPE, false)|
 |`0xC`|`0x1 (RX)` `0x2 (TYPE)`|CTCV (RX, TYPE)|Convert To Collecteble Val|RX = new Value_t(RX, TYPE, false)|
-|`0xD`|`0x1 (RX)`|COV (RX)|UnConvert Of Val|RX = RX->val|
-|`0xE`|`0x1 (RX)`|COVADV (RX)|UnConvert Of Val And Delete Val|RX = RX->value|
+|`0xD`|`0x1 (RX)`|UCOV (RX)|UnConvert Of Val|RX = RX->val|
+|`0xE`|`0x1 (RX)`|UCOVD (RX)|UnConvert Of Val and Delete val|RX = RX->value|
 |`0xF`<br><=><br>`0x15`|`0x1 (RX)` `0x2 (RY)` `0x3 (RZ)`|MR (RX, RY, RZ)|Math Register|RZ = RX TYPE (TYPE: ADD; SUB; MUL; DIV; POW; SQRT) RY|
 |`0x16`|`0x1 (RX)` `0x2 (BYTE)`|LTR1 (RX, BYTE)|Load To Register|RX = BYTE|
 |`0x17`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)`|LTR2 (RX, BYTE0, BYTE1)|Load To Register|RX = BYTE0 &#124; (BYTE1 << 8)|
