@@ -13,7 +13,7 @@ namespace DmN::KVM {
             this->llt = llt;
         }
 
-        /// (Low Level Type) низкоуровневый тип объекта: VARIABLE (0), FIELD (1), METHOD (2), LAMBDA (3), ENUM (4), STRUCT (5), CLASS (6)
+        /// (Low Level Type) низкоуровневый тип объекта: VARIABLE (0), FIELD (1), VIRTUAL METHOD (2), NATIVE METHOD (3), LAMBDA (4), ENUM (5), STRUCT (6), CLASS (7)
         uint8_t llt: 3;
     };
 
