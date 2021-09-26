@@ -62,13 +62,15 @@ namespace DmN::KVM::VM {
             createMain(main, mainSS, code, cs);
         }
 
-        Value_t* callMain() {
+        void* callMain() {
             // TODO:
         }
 
-        Value_t* evalBC(ExecuteContext c, uint8_t* b, size_t bc) {
+        void* evalBC(ExecuteContext c, const uint8_t* b, size_t bc) {
             for (size_t* i = &c.lastBcPtr; *i < bc; (*i)++) {
-
+                switch (b[*i]) {
+                    
+                }
             }
         }
 
