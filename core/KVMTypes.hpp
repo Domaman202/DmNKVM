@@ -93,28 +93,17 @@ namespace DmN::KVM {
 
     class NMethod_t : public Method_t {
     public:
-        explicit NMethod_t(SI_t descriptor) : Method_t(descriptor) {
-        }
+        virtual NMethod(SI_t descriptor) : Method_t(descriptor) {}
 
-        virtual Value_t *execute(Value_t **args) = 0;
-
-        virtual Value_t *execute(void *obj, Value_t **args) = 0;
+        virtual void* call(void **args, size_t argc);
     };
 
-    typedef Value_t *(KVMMethod)(void *obj, Value_t **args);
+    typedef void *(KVMMethod)(void **args, size_t argc);
 
-    class NRMethod_t : public NMethod_t {
+    class NRMethod_t : public Method_t {
     public:
-        NRMethod_t(KVMMethod *method, SI_t descriptor) : NMethod_t(descriptor) {
+        NRMethod_t(KVMMethod *method, SI_t descriptor) : Method_t(descriptor) {
             this->ref = method;
-        }
-
-        Value_t *execute(Value_t **args) override {
-            return ref(nullptr, args);
-        }
-
-        Value_t *execute(void *obj, Value_t **args) override {
-            return ref(obj, args);
         }
 
         KVMMethod *ref;

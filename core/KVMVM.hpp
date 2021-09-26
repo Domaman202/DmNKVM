@@ -10,19 +10,17 @@
 #include "KVMESC.hpp"
 #include "KVMSR.hpp"
 
-namespace DmN::KVM::VM {
-    enum ByteCode {
-
-    };
-
+namespace DmN::KVM {
     /// Контекст выполнения
     struct ExecuteContext {
         /// Текущий вызов
-        Call *lastCall;
+        Call *call;
+        /// Текущий поток
+        Thread* thread;
         /// Текущий процесс
-        Process *lastProcess;
+        Process *process;
         /// Текущий указатель кода
-        size_t lastBcPtr;
+        size_t bcPtr;
         /// Предыдущий вызов
         ExecuteContext *prevContext;
     };
@@ -66,8 +64,8 @@ namespace DmN::KVM::VM {
             // TODO:
         }
 
-        void* evalBC(ExecuteContext c, const uint8_t* b, size_t bc) {
-            for (size_t* i = &c.lastBcPtr; *i < bc; (*i)++) {
+        void* eval(ExecuteContext c, const uint8_t* b, size_t cs) {
+            for (size_t* i = &c.lastBcPtr; *i < cs; (*i)++) {
                 switch (b[*i]) {
                     // TODO:
                 }
@@ -76,6 +74,21 @@ namespace DmN::KVM::VM {
 
         static void createMain(BCMethod_t *ptr, SS* ss, uint8_t *code, size_t cs) {
             new (ptr) BCMethod_t(ss->add("$main()V"), code, cs);
+        }
+
+        static void call(VMCA* vm, ExecuteContext* context) {
+            Stack<void*>* stack = thread->stack;
+            stack->push(vm);
+            stack->push(context);
+
+            auto* method = context->call->method;
+            if (typeid(*method) == typeid(BCMethod_t)) {
+                auto method = (BCMethod_t*) context->call->method;
+                vm->eval(context, method->bc, method->cs);
+            } else if (typeid(*method) == typeid(NMethod_t)) {
+                auto method = ((NMethod_t*) context->call->method);
+                method->call(new void*[] { c, b, cs }, 3);
+            }
         }
     };
 }
