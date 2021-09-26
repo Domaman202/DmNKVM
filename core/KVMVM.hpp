@@ -78,6 +78,18 @@ namespace DmN::KVM {
                     case C::MR:
                         regs->rs[++(*i)] = regs->rs[++(*i)];
                         break;
+                    case C::MRT_LL:
+                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0;
+                        break;
+                    case C::MRT_LH:
+                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1;
+                        break;
+                    case C::MRT_HL:
+                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0;
+                        break;
+                    case C::MRT_HH:
+                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1;
+                        break;
                 }
             }
         }

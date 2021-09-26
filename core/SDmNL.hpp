@@ -32,6 +32,76 @@ namespace DmN::SDL {
         }
     }
 
+    struct bit_map_8bit_1byte {
+        bool b0 : 1;
+        bool b1 : 1;
+        bool b2 : 1;
+        bool b3 : 1;
+        bool b4 : 1;
+        bool b5 : 1;
+        bool b6 : 1;
+        bool b7 : 1;
+    };
+
+    struct bit_map_16bit_2byte {
+        bool b0 : 1;
+        bool b1 : 1;
+        bool b2 : 1;
+        bool b3 : 1;
+        bool b4 : 1;
+        bool b5 : 1;
+        bool b6 : 1;
+        bool b7 : 1;
+        bool b8 : 1;
+        bool b9 : 1;
+        bool b10 : 1;
+        bool b11 : 1;
+        bool b12 : 1;
+        bool b13 : 1;
+        bool b14 : 1;
+        bool b15 : 1;
+    };
+
+    struct bit_map_32bit_4byte {
+        bool b0 : 1;
+        bool b1 : 1;
+        bool b2 : 1;
+        bool b3 : 1;
+        bool b4 : 1;
+        bool b5 : 1;
+        bool b6 : 1;
+        bool b7 : 1;
+        bool b8 : 1;
+        bool b9 : 1;
+        bool b10 : 1;
+        bool b11 : 1;
+        bool b12 : 1;
+        bool b13 : 1;
+        bool b14 : 1;
+        bool b15 : 1;
+        bool b16 : 1;
+        bool b17 : 1;
+        bool b18 : 1;
+        bool b19 : 1;
+        bool b20 : 1;
+        bool b21 : 1;
+        bool b22 : 1;
+        bool b23 : 1;
+        bool b24 : 1;
+        bool b25 : 1;
+        bool b26 : 1;
+        bool b27 : 1;
+        bool b28 : 1;
+        bool b29 : 1;
+        bool b30 : 1;
+        bool b31 : 1;
+    };
+
+    struct byte_map_2b_32b {
+        uint16_t b0;
+        uint16_t b1;
+    };
+
     namespace Pairs {
         template<typename T1, typename T2>
         struct Tuple {
