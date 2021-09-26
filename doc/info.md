@@ -11,7 +11,7 @@
 |`0x6`| `0x1 (RX)`|PS (RX)|Push to Stack|RX to stack|
 |`0x7`|`0x1 (RX)`|PP (RX)|Pop to register|Stack to RX|
 |`0x8`|`0x1 (RX)`|PK (RX)|Peek to register|Stack to RX|
-|`0x9`|`0x1 (RX)` `0x2 (RY)`|DR (RX, RY)|Dereference Register|REGY = &#42;(void&#42;&#42;)REGX|
+|`0x9`|`0x1 (RX)` `0x2 (RY)`|DR (RX, RY)|Dereference Register|REGY = &#42;(void&#42;&#42;) REGX|
 |`0xA`|`0x1 (RX)` `0x2 (RY)`|RR (RX, RY)|Reference Register|REGY = (void&#42;&#42;) REGX|
 |`0xB`|`0x1 (RX)` `0x2 (TYPE)`|CTV (RX, TYPE)|Convert To Val|RX = new Value_t(RX, TYPE, false)|
 |`0xC`|`0x1 (RX)` `0x2 (TYPE)`|CTCV (RX, TYPE)|Convert To Collecteble Val|RX = new Value_t(RX, TYPE, false)|
