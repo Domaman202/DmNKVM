@@ -56,7 +56,29 @@ namespace DmN::KVM::KBC {
         // Load To Register (4B)
         LTR_4B = 0x17,
         // Call
-        C = 0x18
+        C = 0x18,
+        // Call With Context
+        CWC = 0x19,
+        // Return
+        R = 0x1A,
+        // Go To
+        GT = 0x1B,
+        // Create Call
+        CC0 = 0x1C,
+        // Create Call
+        CC1 = 0x1D,
+        // Create Execution Context
+        CEC = 0x1E,
+        // Static Get Argument
+        SGA = 0x1F,
+        // Dynamic Get Argument
+        DGA = 0x20,
+        // Register String
+        RS = 0x21,
+        // Get String
+        GS = 0x22,
+        // Swap Registers
+        SR = 0x23
     };
 }
 
