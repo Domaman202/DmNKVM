@@ -22,3 +22,9 @@
 |`0x16`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)`|LTR2 (RX, BYTE0, BYTE1)|Load To Register|RX = BYTE0 &#124; (BYTE1 << 8)|
 |`0x17`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)` `0x4 (BYTE2)` `0x5(BYTE3)`|LTR4 (RX, BYTE0, BYTE1, BYTE2, BYTE3)|Load To Register|RX = BYTE0 &#124; (BYTE1 << 8) &#124; BYTE2 << 16) &#124; (BYTE3 << 24)|
 |`0x18`|`0x1 (RX)`|C (RX)|Call|RX()|
+|`0x19`|`0x1 (RX)`|CWC (RX)|Call With Context|RX(this (`vm`), RX (`execution context`)) 
+|`0x1A`||R|Return|return
+|`0x1B`|`0x1 (RX)`|GT (RX)|Go To|Setting code ptr to RX|
+|`0x1C`|`0x1 (RX)` `0x2 (RY)`|CC0 (RX, RY)|Create Call|Create a call with RX (object) and RY (method)
+|`0x1D`|`0x1 (RA)` `0x2 (RB)` `0x3 (RC)` `0x4 (RD)` `0x5 (RE)` `0x6 (RF)`|CC1 (RA, RB, RC, RD, RE, RF)|Create call|Creating a full call struct|
+|`0x1E`|`0x1 (RA)` `0x2 (RB)` `0x3 (RC)` `0x4 (RD)` `0x5 (RE)`|CEC (RA, RB, RC, RD, RE)|Create Execution Context|Creating execution context| 
