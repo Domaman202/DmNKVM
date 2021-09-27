@@ -29,7 +29,7 @@
 |`0x1D`|`0x1 (RA)` `0x2 (RB)` `0x3 (RC)` `0x4 (RD)` `0x5 (RE)` `0x6 (RF)`|CC1 (RA, RB, RC, RD, RE, RF)|Create call|Creating a full call struct|
 |`0x1E`|`0x1 (RA)` `0x2 (RB)` `0x3 (RC)` `0x4 (RD)` `0x5 (RE)`|CEC (RA, RB, RC, RD, RE)|Create Execution Context|Creating execution context|
 |`0x1F`|`0x1 (RX)` `0x2 (BYTE0)`|SGA (RX, BYTE0)|Static Get Argument|Getting argument №BYTE0 to RX|
-|`0x20`|`0x1 (RX)` `0x2 (RY)`|SGA (RX, RY)|Dynamic Get Argument|Getting argument №RX to RY|
+|`0x20`|`0x1 (RX)` `0x2 (RY)`|DGA (RX, RY)|Dynamic Get Argument|Getting argument №RX to RY|
 |`0x21`|`0x1 (RX)` `0x2 (RY)`|RS (RX, RY)|Register String|Registring string in string RX storage and setting RY to string id|
 |`0x22`|`0x1 (RX)` `0x2 (RY)`|GS (RX, RY)|Get String|Getting string in string storage with id RX to RY|
 |`0x23`|`0x1 (RX)` `0x2 (RY)`|SR (RX, RY)|Swap Registers|Swapping RX and RY|
