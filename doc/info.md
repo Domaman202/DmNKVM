@@ -14,7 +14,7 @@
 |`0x9`|`0x1 (RX)` `0x2 (RY)`|DR (RX, RY)|Dereference Register|REGY = &#42;(void&#42;&#42;) REGX|
 |`0xA`|`0x1 (RX)` `0x2 (RY)`|RR (RX, RY)|Reference Register|REGY = (void&#42;&#42;) REGX|
 |`0xB`|`0x1 (RX)` `0x2 (TYPE)`|CTV (RX, TYPE)|Convert To Val|RX = new Value_t(RX, TYPE, false)|
-|`0xC`|`0x1 (RX)` `0x2 (TYPE)`|CTCV (RX, TYPE)|Convert To Collecteble Val|RX = new Value_t(RX, TYPE, false)|
+|`0xC`|`0x1 (RX)` `0x2 (TYPE)`|CTCV (RX, TYPE)|Convert To Collecteble Val|RX = new Value_t(RX, TYPE, true)|
 |`0xD`|`0x1 (RX)`|UCOV (RX)|UnConvert Of Val|RX = RX->val|
 |`0xE`|`0x1 (RX)`|UCOVD (RX)|UnConvert Of Val and Delete val|RX = RX->value|
 |`0xF`<br><=><br>`0x14`|`0x1 (RX)` `0x2 (RY)` `0x3 (RZ)`|MTR (RX, RY, RZ)|MaTh Register|RZ = RX TYPE (TYPE: ADD; SUB; MUL; DIV; POW; SQRT) RY|
