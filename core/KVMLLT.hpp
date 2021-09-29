@@ -7,14 +7,25 @@
 #include "KVMNameble.hpp"
 
 namespace DmN::KVM {
+    enum class LLTypes {
+        UNDEFINED = 0,
+        VARIABLE = 1,
+        FIELD = 2,
+        METHOD = 3,
+        LAMBDA = 4,
+        ENUM = 5,
+        STRUCT = 6,
+        CLASS = 7
+    };
+
     /// (Low Level Type) Некий объект который имеет низкоуровневый тип
     struct LLT {
-        explicit LLT(uint8_t llt) {
+        explicit LLT(LLTypes llt) {
             this->llt = llt;
         }
 
-        /// (Low Level Type) низкоуровневый тип объекта: VARIABLE (0), FIELD (1), METHOD (2), LAMBDA (3), ENUM (4), STRUCT (5), CLASS (6)
-        uint8_t llt: 3;
+        /// (Low Level Type) низкоуровневый тип объекта: UNDEFINED (0), VARIABLE (1), FIELD (2), METHOD (3), LAMBDA (4), ENUM (5), STRUCT (6), CLASS (7)
+        LLTypes llt: 3;
     };
 
     /// Некий объект который имеет модификаторы
@@ -28,7 +39,7 @@ namespace DmN::KVM {
     };
 
     struct LLTNameble : public Nameble, public LLT {
-        LLTNameble(SI_t name, uint8_t llt) : Nameble(name), LLT(llt) {}
+        LLTNameble(SI_t name, LLTypes llt) : Nameble(name), LLT(llt) {}
     };
 }
 

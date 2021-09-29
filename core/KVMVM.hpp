@@ -10,6 +10,7 @@
 #include "KVMESC.hpp"
 #include "KVMSR.hpp"
 #include "KVMBC.hpp"
+#include <typeinfo.h>
 
 namespace DmN::KVM {
     /// Контекст выполнения
@@ -76,56 +77,68 @@ namespace DmN::KVM {
                     case C::NOP:
                         break;
                     case C::MR:
-                        regs->rs[++(*i)] = regs->rs[++(*i)];
+                        regs->rs[RNV(i, b)] = regs->rs[RNV(i, b)];
                         break;
                     case C::MRT_LL:
-                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0;
+                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0;
                         break;
                     case C::MRT_LH:
-                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1;
+                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1;
                         break;
                     case C::MRT_HL:
-                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b0;
+                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0;
                         break;
                     case C::MRT_HH:
-                        ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[++(*i)])->b1;
+                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1;
                         break;
                     case C::PS:
-                        stack->push(regs->rs[++(*i)]);
+                        stack->push(regs->rs[RNV(i, b)]);
                         break;
                     case C::PP:
-                        regs->rs[++(*i)] = stack->peekPop();
+                        regs->rs[RNV(i, b)] = stack->peekPop();
                         break;
                     case C::PK:
-                        regs->rs[++(*i)] = stack->peek();
+                        regs->rs[RNV(i, b)] = stack->peek();
                         break;
-                    case C::DR:
-                        regs->rs[++(*i)] = *(void**) regs->rs[++(*i)];
+                    case C::DR: {
+                        auto reg = RNV(i, b);
+                        regs->rs[reg] = *(void **) regs->rs[reg];
                         break;
-                    case C::RR:
-                        regs->rs[++(*i)] = (void**) regs->rs[++(*i)];
+                    }
+                    case C::RR: {
+                        auto reg = RNV(i, b);
+                        regs->rs[reg] = (void **) regs->rs[reg];
                         break;
+                    }
                     case C::CTV: {
-                        uint8_t reg = ++(*i);
-                        regs->rs[reg] = new Value_t(regs->rs[reg], ++(*i), false);
+                        uint8_t reg = RNV(i, b);
+                        regs->rs[reg] = new Value_t(regs->rs[reg], RNV(i, b), false);
                         break;
                     }
                     case C::CTCV: {
-                        uint8_t reg = ++(*i);
-                        regs->rs[reg] = new Value_t(regs->rs[reg], ++(*i), true);
+                        uint8_t reg = RNV(i, b);
+                        regs->rs[reg] = new Value_t(regs->rs[reg], RNV(i, b), true);
                         break;
                     }
                     case C::UCOV: {
-                        uint8_t reg = ++(*i);
+                        uint8_t reg = RNV(i, b);
                         regs->rs[reg] = ((Value_t*) regs->rs[reg])->value;
                         break;
                     }
                     case C::UCOVD: {
-                        uint8_t reg = ++(*i);
+                        uint8_t reg = RNV(i, b);
                         auto* val = ((Value_t*) regs->rs[reg]);
                         regs->rs[reg] = val->value;
                         delete val;
                         break;
+                    }
+                    case C::MTR_ADD: {
+                        auto rX = regs->rs[RNV(i, b)];
+                        auto rY = regs->rs[RNV(i, b)];
+                        auto rZ = regs->rs[RNV(i, b)];
+//                        switch(++(*i)) {
+//                            case VTypes::UNDEFINED:
+//                        }
                     }
                 }
             }
@@ -147,6 +160,10 @@ namespace DmN::KVM {
                 ((NMethod_t*) method)->call(new void*[] { vm, context }, 2);
             } else
                 ((NRMethod_t*) method)->ref(new void*[] { vm, context }, 2);
+        }
+
+        static inline uint8_t RNV(size_t* i, const uint8_t* bytes) {
+            return bytes[++(*i)];
         }
     };
 }

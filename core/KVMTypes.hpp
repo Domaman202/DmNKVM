@@ -23,9 +23,28 @@ namespace DmN::KVM {
         uint16_t references: 10;
     };
 
+    enum class VTypes {
+        UNDEFINED = 0,
+        NaN = 1,
+        INF = 2,
+        INT8 = 3,
+        INT16 = 4,
+        INT32 = 5,
+        INT64 = 6,
+        UINT8 = 7,
+        UINT16 = 8,
+        UINT32 = 9,
+        UINT64 = 10,
+        FLOAT = 11,
+        DOUBLE = 12,
+        CHAR = 13,
+        REFERENCE = 14,
+        OBJECT = 15
+    };
+
     /// Значение
     struct Value_t : public GCObject, public LLT {
-        explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable), LLT(0) {
+        explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable), LLT(LLTypes::VARIABLE) {
             this->type = type;
             this->value = value;
         }
@@ -38,13 +57,13 @@ namespace DmN::KVM {
 
     /// Переменная
     struct Variable_t : public LLTNameble, public Value_t {
-        Variable_t(SI_t name, void *value, uint8_t type, bool isCollectable) : LLTNameble(name, 0),
+        Variable_t(SI_t name, void *value, uint8_t type, bool isCollectable) : LLTNameble(name, LLTypes::VARIABLE),
                                                                                Value_t(value, type, isCollectable) {}
     };
 
     /// Лямбда
     class Lambda_t : public LLT, public GCObject {
-        explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t *code) : LLT(3), GCObject(true) {
+        explicit Lambda_t(SI_t descriptor, uint32_t cs, uint8_t *code) : LLT(LLTypes::LAMBDA), GCObject(true) {
             this->descriptor = descriptor;
             this->cs = cs;
             this->code = code;
@@ -61,7 +80,7 @@ namespace DmN::KVM {
     /// Поле
     class Field_t : public LLT, public Nameble {
     public:
-        explicit Field_t(SI_t name, Value_t *value) : LLT(1), Nameble(name) {
+        explicit Field_t(SI_t name, Value_t *value) : LLT(LLTypes::FIELD), Nameble(name) {
             this->value = value;
         }
 
@@ -72,7 +91,7 @@ namespace DmN::KVM {
     /// Метод
     class Method_t : public LLT, public Nameble {
     public:
-        explicit Method_t(SI_t descriptor) : LLT(2), Nameble(descriptor) {
+        explicit Method_t(SI_t descriptor) : LLT(LLTypes::METHOD), Nameble(descriptor) {
             this->name = descriptor;
         }
 
@@ -93,9 +112,9 @@ namespace DmN::KVM {
 
     class NMethod_t : public Method_t {
     public:
-        NMethod_t(SI_t descriptor) : Method_t(descriptor) {}
+        explicit NMethod_t(SI_t descriptor) : Method_t(descriptor) {}
 
-        virtual void* call(void **args, size_t argc);
+        virtual void* call(void **args, size_t argc) = 0;
     };
 
     typedef void *(KVMMethod)(void **args, size_t argc);

@@ -28,7 +28,7 @@ namespace DmN::KVM::Network {
             return closesocket(_socket) == SOCKET_ERROR ? CLOSE_SOCKET_ERROR : (NWR) SUCCESS;
 #else
             shutdown(_socket, 0);
-            return ::close(_socket) == 0 ? (NWR) SUCCESS : CLOSE_SOCKET_ERROR;
+            return ::close(_socket) == 0 ? NWR::SUCCESS : NWR::CLOSE_SOCKET_ERROR;
 #endif /* WIN32 */
         }
     };
@@ -74,7 +74,7 @@ namespace DmN::KVM::Network {
 
             // Создаём сокет
             if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {
-                result = Error::SOCKET_CREATE_ERROR;
+                result = NWR::SOCKET_CREATE_ERROR;
                 error = _socket;
                 return;
             }
@@ -83,12 +83,12 @@ namespace DmN::KVM::Network {
             addr.sin_family = ip_protocol;
             addr.sin_port = port;
             if ((error = inet_pton(ip_protocol, address.c_str(), &(addr.sin_addr))) != 1) [[unlikely]] {
-                result = Error::IP_CONVERT_ERROR;
+                result = NWR::IP_CONVERT_ERROR;
                 return;
             }
 
             // Если мы ещё не померли, то возвращаем хороший результат
-            result = (NWR) Error::SUCCESS;
+            result = NWR::SUCCESS;
             error = 0;
         }
 
@@ -99,8 +99,8 @@ namespace DmN::KVM::Network {
          */
         NWR tryConnect(socket_t &error) {
             if (connect(_socket, (sockaddr *) &addr, sizeof(addr)) < 0) [[unlikely]]
-                return Error::CONNECT_ERROR;
-            return (NWR) Error::SUCCESS;
+                return NWR::CONNECT_ERROR;
+            return NWR::SUCCESS;
         }
     };
 
@@ -116,7 +116,7 @@ namespace DmN::KVM::Network {
         Server(uint16_t port, NWR &result, socket_t &error) {
             // Создаём сокет
             if ((_socket = socket(AF_INET, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {
-                result = Error::SOCKET_CREATE_ERROR;
+                result = NWR::SOCKET_CREATE_ERROR;
                 error = _socket;
                 return;
             }
@@ -128,11 +128,11 @@ namespace DmN::KVM::Network {
 
             // Биндим сокет
             if ((error = bind(_socket, (sockaddr *) &addr, sizeof(addr))) < 0) [[unlikely]] {
-                result = Error::SOCKET_BIND_ERROR;
+                result = NWR::SOCKET_BIND_ERROR;
                 return;
             }
 
-            result = (NWR) Error::SUCCESS;
+            result = NWR::SUCCESS;
         }
 
         /*!
@@ -149,7 +149,7 @@ namespace DmN::KVM::Network {
 
             // Создаём сокет
             if ((_socket = socket(ip_protocol, SOCK_STREAM, PF_UNSPEC)) < 0) [[unlikely]] {
-                result = Error::SOCKET_CREATE_ERROR;
+                result = NWR::SOCKET_CREATE_ERROR;
                 error = _socket;
                 return;
             }
@@ -158,18 +158,18 @@ namespace DmN::KVM::Network {
             addr.sin_family = ip_protocol;
             addr.sin_port = port;
             if ((error = inet_pton(ip_protocol, address.c_str(), &(addr.sin_addr))) != 1) [[unlikely]] {
-                result = Error::IP_CONVERT_ERROR;
+                result = NWR::IP_CONVERT_ERROR;
                 return;
             }
 
             // Биндим сокет
             if ((error = bind(_socket, (sockaddr *) &addr, sizeof(addr))) < 0) [[unlikely]] {
-                result = Error::SOCKET_BIND_ERROR;
+                result = NWR::SOCKET_BIND_ERROR;
                 return;
             }
 
             // Если всё зашибись, то выставляем соответствующий результат
-            result = (NWR) Error::SUCCESS;
+            result = NWR::SUCCESS;
         }
 
         /*!
@@ -180,8 +180,8 @@ namespace DmN::KVM::Network {
          */
         NWR listen(int i, socket_t &error) {
             if ((error = ::listen(_socket, i)) < 0) [[unlikely]]
-                return (NWR) Error::LISTEN_ERROR;
-            return (NWR) Error::SUCCESS;
+                return NWR::LISTEN_ERROR;
+            return NWR::SUCCESS;
         }
 
         /*!
@@ -199,12 +199,12 @@ namespace DmN::KVM::Network {
         }
 #else
             if ((error = ::accept(_socket, (sockaddr *) &addr, (socklen_t *) &addr_size)) < 0) [[unlikely]] {
-                result = (NWR) Error::CONNECT_ACCEPT_ERROR;
+                result = NWR::CONNECT_ACCEPT_ERROR;
                 return nullptr;
             }
 #endif /* WIN32 */
 
-            result = (NWR) Error::SUCCESS;
+            result = NWR::SUCCESS;
 
             auto connection = new SocketConnection();
             connection->_socket = error;

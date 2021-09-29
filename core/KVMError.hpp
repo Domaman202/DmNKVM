@@ -6,7 +6,7 @@
 
 namespace DmN::KVM::Error {
     /// Основа для ошибок
-    enum BaseError {
+    enum class BaseError {
         /// Операция выполнена успешно
         SUCCESS = 0,
         /// Операция сдохла, но никто не знает почему
@@ -14,7 +14,11 @@ namespace DmN::KVM::Error {
     };
 
     /// (Collect Result) Результат сборки памяти
-    enum CR {
+    enum class CR {
+        /// Операция выполнена успешно
+        SUCCESS = 0,
+        /// Операция сдохла, но никто не знает почему
+        UNKNOWN_ERROR = 1,
         /// Объект нельзя собрать
         OBJECT_NO_COLLECTABLE = 2,
         /// На объект ещё есть ссылки
@@ -22,7 +26,11 @@ namespace DmN::KVM::Error {
     };
 
     /// (Network Work Result) Результат запуска клиента
-    enum NWR {
+    enum class NWR {
+        /// Операция выполнена успешно
+        SUCCESS = 0,
+        /// Операция сдохла, но никто не знает почему
+        UNKNOWN_ERROR = 1,
         /// Что-то пошло по сами знаете чему и объект не смог запустить сокет
         SOCKET_CREATE_ERROR = 2,
         /// Не удалось конвертировать IP
