@@ -5,11 +5,8 @@
 #define DMN_KVM_HEAP_HPP
 
 #include "KVMUtils.hpp"
-#include <utility>
-
-#ifdef DMN_KVM_RTTI
 #include <typeinfo.h>
-#endif
+#include <utility>
 
 namespace DmN::KVM {
     /// Абстрактная куча
