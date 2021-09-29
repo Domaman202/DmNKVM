@@ -105,7 +105,28 @@ namespace DmN::KVM {
                     case C::RR:
                         regs->rs[++(*i)] = (void**) regs->rs[++(*i)];
                         break;
-
+                    case C::CTV: {
+                        uint8_t reg = ++(*i);
+                        regs->rs[reg] = new Value_t(regs->rs[reg], ++(*i), false);
+                        break;
+                    }
+                    case C::CTCV: {
+                        uint8_t reg = ++(*i);
+                        regs->rs[reg] = new Value_t(regs->rs[reg], ++(*i), true);
+                        break;
+                    }
+                    case C::UCOV: {
+                        uint8_t reg = ++(*i);
+                        regs->rs[reg] = ((Value_t*) regs->rs[reg])->value;
+                        break;
+                    }
+                    case C::UCOVD: {
+                        uint8_t reg = ++(*i);
+                        auto* val = ((Value_t*) regs->rs[reg]);
+                        regs->rs[reg] = val->value;
+                        delete val;
+                        break;
+                    }
                 }
             }
         }

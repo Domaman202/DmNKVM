@@ -30,7 +30,7 @@ namespace DmN::KVM {
             this->value = value;
         }
 
-        /// Тип значения: INT8 (1), INT16 (2), INT32 (3), INT64 (4), UINT8 (5), UINT16 (6), UINT32 (7), UINT64 (8), FLOAT (9), DOUBLE (10), CHAR (11), REFERENCE (12), OBJECT (13)
+        /// Тип значения: UNDEFINED (0), NaN (1), INF (2), INT8 (3), INT16 (4), INT32 (5), INT64 (6), UINT8 (7), UINT16 (8), UINT32 (9), UINT64 (10), FLOAT (11), DOUBLE (12), CHAR (13), REFERENCE (14), OBJECT (15)
         uint8_t type: 4;
         /// Значение
         void *value;
@@ -93,7 +93,7 @@ namespace DmN::KVM {
 
     class NMethod_t : public Method_t {
     public:
-        virtual NMethod(SI_t descriptor) : Method_t(descriptor) {}
+        NMethod_t(SI_t descriptor) : Method_t(descriptor) {}
 
         virtual void* call(void **args, size_t argc);
     };

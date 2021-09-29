@@ -78,7 +78,9 @@ namespace DmN::KVM::KBC {
         // Get String
         GS = 0x22,
         // Swap Registers
-        SR = 0x23
+        SR = 0x23,
+        // Load String
+        LS = 0x24
     };
 }
 
