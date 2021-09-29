@@ -32,6 +32,11 @@ namespace DmN::KVM {
     public:
         ExecuteContext *mainContext;
         BCMethod_t *main = (BCMethod_t*) malloc(sizeof(BCMethod_t));;
+        //
+        Value_t* cUndefined = new Value_t(nullptr, (uint8_t) VTypes::UNDEFINED, true);
+        Value_t* cNaN = new Value_t(nullptr, (uint8_t) VTypes::NaN, true);
+        Value_t* cInf = new Value_t(nullptr, (uint8_t) VTypes::INF, true);
+        Value_t* cNInf = new Value_t(this, (uint8_t) VTypes::INF, true);
 
         VMCA(uint8_t *code, size_t cs, Value_t** args, uint8_t argc) {
             SS* mainSS = new DSS();
@@ -71,7 +76,7 @@ namespace DmN::KVM {
             auto regs = thread->regs;
             auto stack = thread->stack;
 
-            for (size_t* i = &c->bcPtr; *i < cs; (*i)++) {
+            for (size_t *i = &c->bcPtr; *i < cs; (*i)++) {
                 using C = DmN::KVM::KBC::BC;
                 switch (b[*i]) {// TODO:
                     case C::NOP:
@@ -80,16 +85,20 @@ namespace DmN::KVM {
                         regs->rs[RNV(i, b)] = regs->rs[RNV(i, b)];
                         break;
                     case C::MRT_LL:
-                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0;
+                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
+                                                                                                                    b)])->b0;
                         break;
                     case C::MRT_LH:
-                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1;
+                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
+                                                                                                                    b)])->b1;
                         break;
                     case C::MRT_HL:
-                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b0;
+                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
+                                                                                                                    b)])->b0;
                         break;
                     case C::MRT_HH:
-                        ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b*) regs->rs[RNV(i, b)])->b1;
+                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
+                                                                                                                    b)])->b1;
                         break;
                     case C::PS:
                         stack->push(regs->rs[RNV(i, b)]);
@@ -122,12 +131,12 @@ namespace DmN::KVM {
                     }
                     case C::UCOV: {
                         uint8_t reg = RNV(i, b);
-                        regs->rs[reg] = ((Value_t*) regs->rs[reg])->value;
+                        regs->rs[reg] = ((Value_t *) regs->rs[reg])->value;
                         break;
                     }
                     case C::UCOVD: {
                         uint8_t reg = RNV(i, b);
-                        auto* val = ((Value_t*) regs->rs[reg]);
+                        auto *val = ((Value_t *) regs->rs[reg]);
                         regs->rs[reg] = val->value;
                         delete val;
                         break;
@@ -135,10 +144,57 @@ namespace DmN::KVM {
                     case C::MTR_ADD: {
                         auto rX = regs->rs[RNV(i, b)];
                         auto rY = regs->rs[RNV(i, b)];
-                        auto rZ = regs->rs[RNV(i, b)];
-//                        switch(++(*i)) {
-//                            case VTypes::UNDEFINED:
-//                        }
+                        auto rZ = RNV(i, b);
+                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                            case VTypes::UNDEFINED:
+                                regs->rs[rZ] = cUndefined;
+                                break;
+                            case VTypes::NaN:
+                                regs->rs[rZ] = cNaN;
+                                break;
+                            case VTypes::INF:
+                                regs->rs[rZ] = cNInf;
+                                break;
+                            case VTypes::INT8:
+                                regs->rs[rZ] = new int8_t(*(int8_t *) rX + *(int8_t *) rY);
+                                break;
+                            case VTypes::INT16:
+                                regs->rs[rZ] = new int16_t(*(int16_t *) rX + *(int16_t *) rY);
+                                break;
+                            case VTypes::INT32:
+                                regs->rs[rZ] = new int32_t(*(int32_t *) rX + *(int32_t *) rY);
+                                break;
+                            case VTypes::INT64:
+                                regs->rs[rZ] = new int64_t(*(int64_t *) rX + *(int64_t *) rY);
+                                break;
+                            case VTypes::UINT8:
+                                regs->rs[rZ] = new uint8_t(*(uint8_t *) rX + *(uint8_t *) rY);
+                                break;
+                            case VTypes::UINT16:
+                                regs->rs[rZ] = new uint16_t(*(uint16_t *) rX + *(uint16_t *) rY);
+                                break;
+                            case VTypes::UINT32:
+                                regs->rs[rZ] = new uint32_t(*(uint32_t *) rX + *(uint32_t *) rY);
+                                break;
+                            case VTypes::UINT64:
+                                regs->rs[rZ] = new uint64_t(*(uint64_t *) rX + *(uint64_t *) rY);
+                                break;
+                            case VTypes::FLOAT:
+                                regs->rs[rZ] = new float(*(float *) rX + *(float *) rY);
+                                break;
+                            case VTypes::DOUBLE:
+                                regs->rs[rZ] = new double(*(double *) rX + *(double *) rY);
+                                break;
+                            case VTypes::CHAR:
+                                regs->rs[rZ] = new char(*(char *) rX + *(char *) rY);
+                                break;
+                            case VTypes::REFERENCE:
+                                regs->rs[rZ] = reinterpret_cast<void*>(reinterpret_cast<intptr_t>(rX) + reinterpret_cast<intptr_t>(rY));
+                                break;
+                            case VTypes::OBJECT:
+                                // TODO:
+                                break;
+                        }
                     }
                 }
             }
