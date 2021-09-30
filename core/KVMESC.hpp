@@ -13,7 +13,7 @@ namespace DmN::KVM {
         explicit EnumBase(SI_t name,
                           uint8_t modifier,
                           Value_t **enums,
-                          uint32_t enumsCount) : LLTNameble(name, 4), Modifiable(modifier) {
+                          uint32_t enumsCount) : LLTNameble(name, LLTypes::ENUM), Modifiable(modifier) {
             this->enums = enums;
             this->enumsCount = enumsCount;
         }
@@ -73,7 +73,7 @@ namespace DmN::KVM {
                             Field_t **fields,
                             uint32_t fieldsCount,
                             CI_t *parents,
-                            uint8_t parentsCount) : LLTNameble(name, 5), Modifiable(modifier) {
+                            uint8_t parentsCount) : LLTNameble(name, LLTypes::STRUCT), Modifiable(modifier) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->parents = parents;
@@ -137,7 +137,7 @@ namespace DmN::KVM {
     class ClassBase : public LLTNameble, public Modifiable {
     public:
         explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, 6),
+                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, LLTypes::CLASS),
                                                                                          Modifiable(modifier) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;

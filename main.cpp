@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
 
 namespace DmN::KVM::testing {
     inline void check(NWR nwr) {
-        if (((BaseError) nwr) != SUCCESS)
+        if (nwr != NWR::SUCCESS)
             throw;
     }
 
@@ -51,7 +51,7 @@ namespace DmN::KVM::testing {
 
             };
             //
-            auto* vm = new KVM::VM::VMCA(code, sizeof(code), nullptr, 0);
+            auto* vm = new VMCA(code, sizeof(code), nullptr, 0);
             //
 
             //
