@@ -128,9 +128,13 @@ namespace DmN::SDL {
         };
     }
 
-    template<typename V>
+    template<typename T>
     struct DmNCollection {
-
+        /*!
+         * Добавляет новый элемент в коллекцию
+         * @param obj
+         */
+        virtual void add(T obj) noexcept(false) = 0;
     };
 
     /// Нода
@@ -154,7 +158,7 @@ namespace DmN::SDL {
 
     /// Лист
     template<typename T>
-    struct List {
+    struct List : public DmNCollection<T> {
         explicit List(Node<T> *start_node) {
             this->start_node = start_node;
         }
@@ -163,213 +167,168 @@ namespace DmN::SDL {
          * Добавляет новый элемент в список
          * @param value элемент для добавления
          */
-        void add(T value);
+        void add(T value) override {
+            if (this->start_node == nullptr) {
+                this->start_node = new Node<T>(value);
+                return;
+            }
+
+            Node<T>* last_node = this->start_node;
+            while (last_node->next != nullptr)
+                last_node = last_node->next;
+            last_node->next = new Node<T>(value);
+        }
 
         /*!
          * Добавляет новый элемент и возвращает его
          * @param value элемент для добавления
          * @return добавленный элемент
          */
-        T addG(T value);
+        inline T addG(T value) {
+            add(value);
+            return value;
+        }
 
         /*!
          * Устанавливает значение ноды, если ноды под нужным номером нет то добавляет её
          * @param index индекс ноды
          * @param value значение
          */
-        void set(size_t index, T value);
+        void set(size_t index, T value) {
+            Node<T>* last_node = this->start_node;
+            while (index != 0) {
+                if (last_node->next == nullptr)
+                    last_node->next = new Node<T>();
+                last_node = last_node->next;
+                index--;
+            }
+            last_node->value = value;
+        }
 
         /*!
          * Устанавливает значение ноды
          * @param index индекс ноды
          * @param value значение
          */
-        void setUnsafe(size_t index, T value);
+        inline void setUnsafe(size_t index, T value) {
+            getNode(index)->value = value;
+        }
 
         /*!
          * Возвращает ноду по ID
          * @param i ID ноды
          * @return нужная нам нода
          */
-        Node<T> *getNode(size_t i);
+        Node<T> *getNode(size_t i) {
+            Node<T>* last_node = this->start_node;
+            while (i != 0) {
+                last_node = last_node->next;
+                i--;
+            }
+            return last_node;
+        }
 
         /*!
          * Возвращает последнюю ноду
          * @return нужная нам нода
          */
-        Node<T> *getLastNode();
+        Node<T> *getLastNode() {
+            Node<T> last_node = this->start_node;
+            while (last_node->next != nullptr)
+                last_node = last_node->next;
+            return last_node.value;
+        }
 
         /*!
          * Получает элемент по ID
          * @param i ID элемента
          * @return нужный нам элемент
          */
-        T get(size_t i);
+        inline T get(size_t i) {
+            return this->getNode(i)->value;
+        }
 
         /*!
          * Получает последний элемент
          * @return нужный нам элемент
          */
-        T getLast();
+        T getLast() {
+            Node<T>* last_node = this->start_node;
+            while (last_node->next != nullptr)
+                last_node = last_node->next;
+            return last_node->value;
+        }
 
         /*!
          * Убирает элемент из списка и возвращает его ноду
          * @param i ID элемента
          * @return нода элемента
          */
-        Node<T> *removeGN(size_t i);
+        Node<T> *removeGN(size_t i) {
+            if (i == 0) {
+                Node<T>* node_for_remove = this->start_node;
+                this->start_node = nullptr;
+                return node_for_remove;
+            }
+
+            Node<T>* prev_node = this->getNode(i - 1);
+            Node<T>* node_for_remove = prev_node->next;
+            prev_node->next = node_for_remove->next;
+            return node_for_remove;
+        }
 
         /*!
          * Удаляет ноду элемента
          * @param i ID элемента
          */
-        void remove(size_t i);
+        inline void remove(size_t i) {
+            delete removeGN(i);
+        }
 
         /*!
          * Удаляет элемент и возвращает его значение
          * @param i ID элемента
          * @return элемент
          */
-        T removeG(size_t i);
+        inline T removeG(size_t i) {
+            return removeGN(i)->value;
+        }
 
         /*!
          * Убирает последний элемент из списка и возвращает его ноду
          * @return нода элемента
          */
-        Node<T> *removeLGN();
+        Node<T> *removeLGN() {
+            Node<T>* pre_last_node = this->start_node;
+            while (pre_last_node->next->next != nullptr)
+                pre_last_node = pre_last_node->next;
+            Node<T>* node_for_remove = pre_last_node->next;
+            pre_last_node->next = nullptr;
+            return node_for_remove;
+        }
 
         /*!
          * Удаляет последнюю ноду элемента
          */
-        void removeLast();
+        inline void removeLast() {
+            delete removeLGN();
+        }
 
         /*!
          * Удаляет последний элемент и возвращает его значение
          * @return элемент
          */
-        T removeLG();
+        inline T removeLG() {
+            return removeLGN()->value;
+        }
 
-        T& operator[] (size_t index);
+        inline T& operator[] (size_t index) {
+            return get(index);
+        }
 
         /// Первая нода
         Node<T> *start_node;
     };
-
-    template<typename T>
-    void List<T>::add(T value) {
-        if (this->start_node == nullptr) {
-            this->start_node = new Node<T>(value);
-            return;
-        }
-
-        Node<T>* last_node = this->start_node;
-        while (last_node->next != nullptr)
-            last_node = last_node->next;
-        last_node->next = new Node<T>(value);
-    }
-
-    template<typename T>
-    inline T List<T>::addG(T value) {
-        add(value);
-        return value;
-    }
-
-    template<typename T>
-    void List<T>::set(size_t index, T value) {
-        Node<T>* last_node = this->start_node;
-        while (index != 0) {
-            if (last_node->next == nullptr)
-                last_node->next = new Node<T>();
-            last_node = last_node->next;
-            index--;
-        }
-        last_node->value = value;
-    }
-
-    template<typename T>
-    void List<T>::setUnsafe(size_t index, T value) {
-        getNode(index)->value = value;
-    }
-
-    template<typename T>
-    Node<T>* List<T>::getNode(size_t i) {
-        Node<T>* last_node = this->start_node;
-        while (i != 0) {
-            last_node = last_node->next;
-            i--;
-        }
-        return last_node;
-    }
-
-    template<typename T>
-    Node<T>* List<T>::getLastNode() {
-        Node<T> last_node = this->start_node;
-        while (last_node->next != nullptr)
-            last_node = last_node->next;
-        return last_node.value;
-    }
-
-    template<typename T>
-    T List<T>::get(size_t i) {
-        return this->getNode(i)->value;
-    }
-
-    template<typename T>
-    T List<T>::getLast() {
-        Node<T>* last_node = this->start_node;
-        while (last_node->next != nullptr)
-            last_node = last_node->next;
-        return last_node->value;
-    }
-
-    template<typename T>
-    Node<T>* List<T>::removeGN(size_t i) {
-        if (i == 0) {
-            Node<T>* node_for_remove = this->start_node;
-            this->start_node = nullptr;
-            return node_for_remove;
-        }
-
-        Node<T>* prev_node = this->getNode(i - 1);
-        Node<T>* node_for_remove = prev_node->next;
-        prev_node->next = node_for_remove->next;
-        return node_for_remove;
-    }
-
-    template<typename T>
-    inline void List<T>::remove(size_t i) {
-        delete removeGN(i);
-    }
-
-    template<typename T>
-    inline T List<T>::removeG(size_t i) {
-        return removeGN(i)->value;
-    }
-
-    template<typename T>
-    Node<T>* List<T>::removeLGN() {
-        Node<T>* pre_last_node = this->start_node;
-        while (pre_last_node->next->next != nullptr)
-            pre_last_node = pre_last_node->next;
-        Node<T>* node_for_remove = pre_last_node->next;
-        pre_last_node->next = nullptr;
-        return node_for_remove;
-    }
-
-    template<typename T>
-    inline void List<T>::removeLast() {
-        delete removeLGN();
-    }
-
-    template<typename T>
-    inline T List<T>::removeLG() {
-        return removeLGN()->value;
-    }
-
-    template<typename T>
-    inline T& List<T>::operator[] (size_t index) {
-        return get(index);
-    }
 }
 
 #endif /* DMN_KVM_SDMNL_HPP */
