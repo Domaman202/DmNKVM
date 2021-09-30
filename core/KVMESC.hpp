@@ -10,7 +10,7 @@
 namespace DmN::KVM {
     /// Объект (нет) который может быть инстансирован
     struct Instanceble_t {
-        virtual struct Object_t *newInstance(Value_t **args, size_t args_c) { return nullptr; };
+        virtual Object_t *newInstance(Value_t **args, size_t args_c) { return nullptr; };
     };
 
     /// Универсальная основа для Enum-а
