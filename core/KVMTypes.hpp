@@ -129,12 +129,12 @@ namespace DmN::KVM {
 
     /// Хранилище полей
     struct FieldStorage_t {
-        virtual SDL::DmNCollection *getFields() = 0;
+        virtual SDL::DmNCollection<Field_t> *getFields() = 0;
     };
 
     /// Хранилище методов
     struct MethodStorage_t {
-        virtual SDL::DmNCollection *getMethods() = 0;
+        virtual SDL::DmNCollection<Method_t> *getMethods() = 0;
     };
 }
 

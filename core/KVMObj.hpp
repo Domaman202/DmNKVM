@@ -22,7 +22,7 @@ namespace DmN::KVM {
         /// Кол-во значений
         uint8_t values_count;
 
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
     };
@@ -36,7 +36,7 @@ namespace DmN::KVM {
         /// Кол-во полей
         uint8_t fields_count;
 
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
     };
@@ -49,7 +49,7 @@ namespace DmN::KVM {
 
     class EnumClassObject : public EnumObject_t, public ClassObject_t {
     public:
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
     };
@@ -62,14 +62,14 @@ namespace DmN::KVM {
         /// Кол-во методов
         uint8_t methods_count;
 
-        SDL::DmNCollection *getMethods() override {
+        SDL::DmNCollection<Method_t> *getMethods() override {
             return nullptr; // TODO:
         }
     };
 
     class DCVObject_t : public DynamicObject_t, public EnumClassObject {
     public:
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
     };

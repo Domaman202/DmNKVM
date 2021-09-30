@@ -25,7 +25,7 @@ namespace DmN::KVM {
             this->enumsCount = enumsCount;
         }
 
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
 
@@ -55,7 +55,7 @@ namespace DmN::KVM {
             this->parentsCount = parentsCount;
         }
 
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
 
@@ -93,11 +93,11 @@ namespace DmN::KVM {
             this->parentsCount = parentsCount;
         }
 
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
 
-        SDL::DmNCollection *getMethods() override {
+        SDL::DmNCollection<Method_t> *getMethods() override {
             return nullptr; // TODO:
         }
 
@@ -141,11 +141,11 @@ namespace DmN::KVM {
     };
 
     class EnumClass_t : public Class_t, public Enum_t {
-        SDL::DmNCollection *getFields() override {
+        SDL::DmNCollection<Field_t> *getFields() override {
             return nullptr; // TODO:
         }
 
-        SDL::DmNCollection *getMethods() override {
+        SDL::DmNCollection<Method_t> *getMethods() override {
             return nullptr; // TODO:
         }
     };

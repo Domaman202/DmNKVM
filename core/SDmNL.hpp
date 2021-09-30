@@ -128,6 +128,7 @@ namespace DmN::SDL {
         };
     }
 
+    template<typename V>
     struct DmNCollection {
 
     };
