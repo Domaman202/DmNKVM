@@ -11,6 +11,7 @@
 #include "KVMSR.hpp"
 #include "KVMBC.hpp"
 #include <typeinfo.h>
+#include <cmath>
 
 namespace DmN::KVM {
     /// Контекст выполнения
@@ -18,7 +19,7 @@ namespace DmN::KVM {
         /// Текущий вызов
         Call *call;
         /// Текущий поток
-        Thread* thread;
+        Thread *thread;
         /// Текущий процесс
         Process *process;
         /// Текущий указатель кода
@@ -31,28 +32,28 @@ namespace DmN::KVM {
     class VMCA {
     public:
         ExecuteContext *mainContext;
-        BCMethod_t *main = (BCMethod_t*) malloc(sizeof(BCMethod_t));;
+        BCMethod_t *main = (BCMethod_t *) malloc(sizeof(BCMethod_t));;
         //
-        Value_t* cUndefined = new Value_t(nullptr, (uint8_t) VTypes::UNDEFINED, true);
-        Value_t* cNaN = new Value_t(nullptr, (uint8_t) VTypes::NaN, true);
-        Value_t* cInf = new Value_t(nullptr, (uint8_t) VTypes::INF, true);
-        Value_t* cNInf = new Value_t(this, (uint8_t) VTypes::INF, true);
+        Value_t *cUndefined = new Value_t(nullptr, (uint8_t) VTypes::UNDEFINED, true);
+        Value_t *cNaN = new Value_t(nullptr, (uint8_t) VTypes::NaN, true);
+        Value_t *cInf = new Value_t(nullptr, (uint8_t) VTypes::INF, true);
+        Value_t *cNInf = new Value_t(this, (uint8_t) VTypes::INF, true);
 
-        VMCA(uint8_t *code, size_t cs, Value_t** args, uint8_t argc) {
-            SS* mainSS = new DSS();
-            Heap* mainHeap = new DHeap();
+        VMCA(uint8_t *code, size_t cs, Value_t **args, uint8_t argc) {
+            SS *mainSS = new DSS();
+            Heap *mainHeap = new DHeap();
             mainContext = new ExecuteContext{
                     .call = nullptr,
                     .process = new Process{
                             .threads = new Thread *[]{
                                     new Thread{
                                             .cs = new Stack<Call *>(new SDL::Node(new Call{
-                                                .obj_caller = nullptr,
-                                                .method_caller = nullptr,
-                                                .obj = nullptr,
-                                                .method = main,
-                                                .args = args,
-                                                .argc = argc
+                                                    .obj_caller = nullptr,
+                                                    .method_caller = nullptr,
+                                                    .obj = nullptr,
+                                                    .method = main,
+                                                    .args = args,
+                                                    .argc = argc
                                             })),
                                             .stack = new Stack<void *>(nullptr),
                                             .regs = new Resisters(code[0] | (code[1] << 8)),
@@ -67,12 +68,12 @@ namespace DmN::KVM {
             createMain(main, mainSS, code, cs);
         }
 
-        void* callMain() {
+        void *callMain() {
             // TODO:
             return nullptr;
         }
 
-        void* eval(ExecuteContext* c, const uint8_t* b, size_t cs) {
+        void *eval(ExecuteContext *c, const uint8_t *b, size_t cs) {
             auto thread = c->thread;
             auto regs = thread->regs;
             auto stack = thread->stack;
@@ -142,7 +143,6 @@ namespace DmN::KVM {
                         delete val;
                         break;
                     }
-#define DMN_KVM_MATH_ADD(rX, rY, rZ, TYPE) regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) + *(TYPE *) (rY))
 #define DMN_KVM_MATH_CASE_ADD(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) + *(TYPE *) (rY)); break;
                     case C::MTR_ADD: {
                         auto rX = regs->rs[RNV(i, b)];
@@ -170,7 +170,8 @@ namespace DmN::KVM {
                             DMN_KVM_MATH_CASE_ADD(VTypes::DOUBLE, rX, rY, rZ, double)
                             DMN_KVM_MATH_CASE_ADD(VTypes::CHAR, rX, rY, rZ, char)
                             case VTypes::REFERENCE:
-                                regs->rs[rZ] = reinterpret_cast<void*>(reinterpret_cast<intptr_t>(rX) + reinterpret_cast<intptr_t>(rY));
+                                regs->rs[rZ] = reinterpret_cast<void *>(reinterpret_cast<intptr_t>(rX) +
+                                                                        reinterpret_cast<intptr_t>(rY));
                                 break;
                             case VTypes::OBJECT:
                                 // TODO:
@@ -178,32 +179,218 @@ namespace DmN::KVM {
                         }
                     }
 #undef DMN_KVM_MATH_CASE_ADD
-#undef DMN_KVM_MATH_ADD
+#define DMN_KVM_MATH_CASE_SUB(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) - *(TYPE *) (rY)); break;
+                    case C::MTR_SUB: {
+                        auto rX = regs->rs[RNV(i, b)];
+                        auto rY = regs->rs[RNV(i, b)];
+                        auto rZ = RNV(i, b);
+                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                            case VTypes::UNDEFINED:
+                                regs->rs[rZ] = cUndefined;
+                                break;
+                            case VTypes::NaN:
+                                regs->rs[rZ] = cNaN;
+                                break;
+                            case VTypes::INF:
+                                regs->rs[rZ] = cNInf;
+                                break;
+                            DMN_KVM_MATH_CASE_SUB(VTypes::INT8, rX, rY, rZ, int8_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::INT16, rX, rY, rZ, int16_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::INT32, rX, rY, rZ, int32_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::INT64, rX, rY, rZ, int64_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::UINT8, rX, rY, rZ, uint8_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::UINT16, rX, rY, rZ, uint16_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::UINT32, rX, rY, rZ, uint32_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::UINT64, rX, rY, rZ, uint64_t)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::FLOAT, rX, rY, rZ, float)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::DOUBLE, rX, rY, rZ, double)
+                            DMN_KVM_MATH_CASE_SUB(VTypes::CHAR, rX, rY, rZ, char)
+                            case VTypes::REFERENCE:
+                                regs->rs[rZ] = reinterpret_cast<void *>(reinterpret_cast<intptr_t>(rX) -
+                                                                        reinterpret_cast<intptr_t>(rY));
+                                break;
+                            case VTypes::OBJECT:
+                                // TODO:
+                                break;
+                        }
+                    }
+#undef DMN_KVM_MATH_CASE_SUB
+#define DMN_KVM_MATH_CASE_MUL(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) * *(TYPE *) (rY)); break;
+                    case C::MTR_MUL: {
+                        auto rX = regs->rs[RNV(i, b)];
+                        auto rY = regs->rs[RNV(i, b)];
+                        auto rZ = RNV(i, b);
+                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                            case VTypes::UNDEFINED:
+                                regs->rs[rZ] = cUndefined;
+                                break;
+                            case VTypes::NaN:
+                                regs->rs[rZ] = cNaN;
+                                break;
+                            case VTypes::INF:
+                                regs->rs[rZ] = cNInf;
+                                break;
+                            DMN_KVM_MATH_CASE_MUL(VTypes::INT8, rX, rY, rZ, int8_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::INT16, rX, rY, rZ, int16_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::INT32, rX, rY, rZ, int32_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::INT64, rX, rY, rZ, int64_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::UINT8, rX, rY, rZ, uint8_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::UINT16, rX, rY, rZ, uint16_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::UINT32, rX, rY, rZ, uint32_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::UINT64, rX, rY, rZ, uint64_t)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::FLOAT, rX, rY, rZ, float)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::DOUBLE, rX, rY, rZ, double)
+                            DMN_KVM_MATH_CASE_MUL(VTypes::CHAR, rX, rY, rZ, char)
+                            case VTypes::REFERENCE:
+                                regs->rs[rZ] = reinterpret_cast<void *>(reinterpret_cast<intptr_t>(rX) *
+                                                                        reinterpret_cast<intptr_t>(rY));
+                                break;
+                            case VTypes::OBJECT:
+                                // TODO:
+                                break;
+                        }
+                    }
+#undef DMN_KVM_MATH_CASE_MUL
+#define DMN_KVM_MATH_CASE_DIV(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) / *(TYPE *) (rY)); break;
+                    case C::MTR_DIV: {
+                        auto rX = regs->rs[RNV(i, b)];
+                        auto rY = regs->rs[RNV(i, b)];
+                        auto rZ = RNV(i, b);
+                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                            case VTypes::UNDEFINED:
+                                regs->rs[rZ] = cUndefined;
+                                break;
+                            case VTypes::NaN:
+                                regs->rs[rZ] = cNaN;
+                                break;
+                            case VTypes::INF:
+                                regs->rs[rZ] = cNInf;
+                                break;
+                            DMN_KVM_MATH_CASE_DIV(VTypes::INT8, rX, rY, rZ, int8_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::INT16, rX, rY, rZ, int16_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::INT32, rX, rY, rZ, int32_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::INT64, rX, rY, rZ, int64_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::UINT8, rX, rY, rZ, uint8_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::UINT16, rX, rY, rZ, uint16_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::UINT32, rX, rY, rZ, uint32_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::UINT64, rX, rY, rZ, uint64_t)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::FLOAT, rX, rY, rZ, float)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::DOUBLE, rX, rY, rZ, double)
+                            DMN_KVM_MATH_CASE_DIV(VTypes::CHAR, rX, rY, rZ, char)
+                            case VTypes::REFERENCE:
+                                regs->rs[rZ] = reinterpret_cast<void *>(reinterpret_cast<intptr_t>(rX) /
+                                                                        reinterpret_cast<intptr_t>(rY));
+                                break;
+                            case VTypes::OBJECT:
+                                // TODO:
+                                break;
+                        }
+                    }
+#undef DMN_KVM_MATH_CASE_DIV
+#define DMN_KVM_MATH_CASE_POW(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) ^ *(TYPE *) (rY)); break;
+                    case C::MTR_POW: {
+                        auto rX = regs->rs[RNV(i, b)];
+                        auto rY = regs->rs[RNV(i, b)];
+                        auto rZ = RNV(i, b);
+                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                            case VTypes::UNDEFINED:
+                                regs->rs[rZ] = cUndefined;
+                                break;
+                            case VTypes::NaN:
+                                regs->rs[rZ] = cNaN;
+                                break;
+                            case VTypes::INF:
+                                regs->rs[rZ] = cNInf;
+                                break;
+                            DMN_KVM_MATH_CASE_POW(VTypes::INT8, rX, rY, rZ, int8_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::INT16, rX, rY, rZ, int16_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::INT32, rX, rY, rZ, int32_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::INT64, rX, rY, rZ, int64_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::UINT8, rX, rY, rZ, uint8_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::UINT16, rX, rY, rZ, uint16_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::UINT32, rX, rY, rZ, uint32_t)
+                            DMN_KVM_MATH_CASE_POW(VTypes::UINT64, rX, rY, rZ, uint64_t)
+                            case VTypes::FLOAT:
+                                regs->rs[(rZ)] = new float(std::pow(*(float *) (rX), *(float *) (rY)));
+                                break;
+                            case VTypes::DOUBLE:
+                                regs->rs[(rZ)] = new double(std::pow(*(double *) (rX), *(double *) (rY)));
+                                break;
+                            DMN_KVM_MATH_CASE_POW(VTypes::CHAR, rX, rY, rZ, char)
+                            case VTypes::REFERENCE:
+                                regs->rs[rZ] = reinterpret_cast<void *>(reinterpret_cast<intptr_t>(rX) ^
+                                                                        reinterpret_cast<intptr_t>(rY));
+                                break;
+                            case VTypes::OBJECT:
+                                // TODO:
+                                break;
+                        }
+                    }
+#undef DMN_KVM_MATH_CASE_POW
+#define DMN_KVM_MATH_CASE_SQRT(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(std::pow(*(TYPE *) (rX), 1 / *(TYPE *) (rY))); break;
+                    case C::MTR_SQRT: {
+                        auto rX = regs->rs[RNV(i, b)];
+                        auto rY = regs->rs[RNV(i, b)];
+                        auto rZ = RNV(i, b);
+                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                            case VTypes::UNDEFINED:
+                                regs->rs[rZ] = cUndefined;
+                                break;
+                            case VTypes::NaN:
+                                regs->rs[rZ] = cNaN;
+                                break;
+                            case VTypes::INF:
+                                regs->rs[rZ] = cNInf;
+                                break;
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::INT8, rX, rY, rZ, int8_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::INT16, rX, rY, rZ, int16_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::INT32, rX, rY, rZ, int32_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::INT64, rX, rY, rZ, int64_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::UINT8, rX, rY, rZ, uint8_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::UINT16, rX, rY, rZ, uint16_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::UINT32, rX, rY, rZ, uint32_t)
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::UINT64, rX, rY, rZ, uint64_t)
+                            case VTypes::FLOAT:
+                                regs->rs[(rZ)] = new float(std::pow(*(float *) (rX), *(float *) (rY)));
+                                break;
+                            case VTypes::DOUBLE:
+                                regs->rs[(rZ)] = new double(std::pow(*(double *) (rX), *(double *) (rY)));
+                                break;
+                            DMN_KVM_MATH_CASE_SQRT(VTypes::CHAR, rX, rY, rZ, char)
+                            case VTypes::REFERENCE:
+                                // TODO:
+                                break;
+                            case VTypes::OBJECT:
+                                // TODO:
+                                break;
+                        }
+                    }
+#undef DMN_KVM_MATH_CASE_SQRT
                 }
             }
             return nullptr;
         }
 
-        static void call(VMCA* vm, ExecuteContext* context) {
+        static void call(VMCA *vm, ExecuteContext *context) {
             auto method = context->call->method;
             if (typeid(*method) == typeid(BCMethod_t)) {
-                Stack<void*>* stack = context->thread->stack;
+                Stack<void *> *stack = context->thread->stack;
                 stack->push(vm);
                 stack->push(context);
-                auto m = (BCMethod_t*) method;
+                auto m = (BCMethod_t *) method;
                 vm->eval(context, m->bc, m->cs);
             } else if (typeid(*method) == typeid(NMethod_t)) {
-                ((NMethod_t*) method)->call(new void*[] { vm, context }, 2);
+                ((NMethod_t *) method)->call(new void *[]{vm, context}, 2);
             } else
-                ((NRMethod_t*) method)->ref(new void*[] { vm, context }, 2);
+                ((NRMethod_t *) method)->ref(new void *[]{vm, context}, 2);
         }
 
-        static inline uint8_t RNV(size_t* i, const uint8_t* bytes) {
+        static inline uint8_t RNV(size_t *i, const uint8_t *bytes) {
             return bytes[++(*i)];
         }
 
-        static void createMain(BCMethod_t *ptr, SS* ss, uint8_t *code, size_t cs) {
-            new (ptr) BCMethod_t(ss->add("$main()V"), code, cs);
+        static void createMain(BCMethod_t *ptr, SS *ss, uint8_t *code, size_t cs) {
+            new(ptr) BCMethod_t(ss->add("$main()V"), code, cs);
         }
     };
 }
