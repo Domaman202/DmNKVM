@@ -4,7 +4,6 @@
 #ifndef DMN_KVM_TYPES_HPP
 #define DMN_KVM_TYPES_HPP
 
-#include "KVMESC.hpp"
 #include "KVMLLT.hpp"
 #include "KVMNM.hpp"
 #include <cstdlib>
@@ -126,6 +125,16 @@ namespace DmN::KVM {
         }
 
         KVMMethod *ref;
+    };
+
+    /// Хранилище полей
+    struct FieldStorage_t {
+        virtual SDL::DmNCollection *getFields() = 0;
+    };
+
+    /// Хранилище методов
+    struct MethodStorage_t {
+        virtual SDL::DmNCollection *getMethods() = 0;
     };
 }
 

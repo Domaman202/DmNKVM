@@ -4,31 +4,74 @@
 #ifndef DMN_KVM_OBJ_HPP
 #define DMN_KVM_OBJ_HPP
 
-#include "KVMESC.hpp"
+#include "KVMTypes.hpp"
 
 namespace DmN::KVM {
-    /// Объект (нет) который может быть инстансирован
-    struct Instanceble_t {
-        virtual struct Object_t *newInstance(Value_t** args, size_t args_c) = 0;
-    };
-
     /// Объект
     struct Object_t {
         /// Тип объекта
-        Instanceble_t *type;
+        struct Instanceble_t *type;
+    };
+
+    class EnumObject_t : public FieldStorage_t {
+    public:
+        /// Тип объекта
+        struct Enum_t *type;
+        /// Значения
+        Value_t **values;
+        /// Кол-во значений
+        uint8_t values_count;
+
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
+    };
+
+    class StructObject_t : public FieldStorage_t {
+    public:
+        /// Тип объекта
+        struct Struct_t *type;
+        /// Поля
+        Field_t **fields;
+        /// Кол-во полей
+        uint8_t fields_count;
+
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
+    };
+
+    class ClassObject_t : public StructObject_t {
+    public:
+        /// Тип объекта
+        struct Class_t *type;
+    };
+
+    class EnumClassObject : public EnumObject_t, public ClassObject_t {
+    public:
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
     };
 
     /// Динамический объект
-    class DynamicObject_t : public Object_t {
+    class DynamicObject_t : public ClassObject_t, public MethodStorage_t {
     public:
         /// Методы объекта
         Method_t **methods;
         /// Кол-во методов
         uint8_t methods_count;
-        /// Поля объекта
-        Field_t **fields;
-        /// Кол-во полей
-        uint8_t fields_count;
+
+        SDL::DmNCollection *getMethods() override {
+            return nullptr; // TODO:
+        }
+    };
+
+    class DCVObject_t : public DynamicObject_t, public EnumClassObject {
+    public:
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
     };
 }
 

@@ -8,137 +8,83 @@
 #include <cstdint>
 
 namespace DmN::KVM {
+    /// Объект (нет) который может быть инстансирован
+    struct Instanceble_t {
+        virtual struct Object_t *newInstance(Value_t **args, size_t args_c) { return nullptr; };
+    };
+
     /// Универсальная основа для Enum-а
-    struct EnumBase : public LLTNameble, public Modifiable {
-        explicit EnumBase(SI_t name,
-                          uint8_t modifier,
-                          Value_t **enums,
-                          uint32_t enumsCount) : LLTNameble(name, LLTypes::ENUM), Modifiable(modifier) {
+    struct Enum_t : public LLTNameble, public Modifiable, public Instanceble_t, public FieldStorage_t {
+        explicit Enum_t(SI_t name,
+                        uint8_t modifier,
+                        Value_t **enums,
+                        SI_t *names,
+                        uint8_t enumsCount) : LLTNameble(name, LLTypes::ENUM), Modifiable(modifier) {
             this->enums = enums;
+            this->names = names;
             this->enumsCount = enumsCount;
+        }
+
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
+
+        struct Object_t *newInstance(Value_t **args, size_t args_c) override {
+            return nullptr; // TODO:
         }
 
         /// Перечисления
         Value_t **enums;
+        /// Имена перечислений
+        SI_t *names;
         /// Кол-во перечислений
-        uint32_t enumsCount: 8;
-    };
-
-    struct NSEnumBase : public EnumBase, public NSObject {
-        explicit NSEnumBase(SI_t name,
-                            NSI_t ns,
-                            uint8_t modifier,
-                            Value_t **enums,
-                            uint32_t enumsCount) : EnumBase(name, modifier, enums, enumsCount), NSObject(ns) {}
-    };
-
-    struct Enum_8bit_t : public EnumBase {
-        explicit Enum_8bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : EnumBase(name,
-                                                                                                           modifier,
-                                                                                                           enums,
-                                                                                                           enumsCount) {
-            this->enumsCount = enumsCount;
-        }
-
         uint8_t enumsCount;
     };
 
-    struct Enum_16bit_t : public Enum_8bit_t {
-        explicit Enum_16bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : Enum_8bit_t(name,
-                                                                                                               modifier,
-                                                                                                               enums,
-                                                                                                               enumsCount) {
-            this->enumsCount = enumsCount;
-        }
-
-        uint16_t enumsCount;
-    };
-
-    struct Enum_32bit_t : public Enum_16bit_t {
-        explicit Enum_32bit_t(SI_t name, uint8_t modifier, Value_t **enums, uint32_t enumsCount) : Enum_16bit_t(
-                name,
-                modifier,
-                enums,
-                enumsCount) {
-            this->enumsCount = enumsCount;
-        }
-
-        uint32_t enumsCount;
-    };
-
     /// Универсальная основа для структуры
-    struct StructBase : public LLTNameble, public Modifiable {
-        explicit StructBase(SI_t name,
-                            uint8_t modifier,
-                            Field_t **fields,
-                            uint32_t fieldsCount,
-                            CI_t *parents,
-                            uint8_t parentsCount) : LLTNameble(name, LLTypes::STRUCT), Modifiable(modifier) {
+    struct Struct_t : public LLTNameble, public Modifiable, public Instanceble_t, public FieldStorage_t {
+        explicit Struct_t(SI_t name,
+                          uint8_t modifier,
+                          Field_t **fields,
+                          uint8_t fieldsCount,
+                          CI_t *parents,
+                          uint8_t parentsCount) : LLTNameble(name, LLTypes::STRUCT), Modifiable(modifier) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->parents = parents;
             this->parentsCount = parentsCount;
         }
 
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
+
+        struct Object_t *newInstance(Value_t **args, size_t args_c) override {
+            return nullptr; // TODO:
+        }
+
         /// Поля
         Field_t **fields;
         /// Кол-во полей
-        uint32_t fieldsCount: 8;
+        uint8_t fieldsCount;
         /// Предки (ID предков)
         CI_t *parents;
         /// Кол-во предков
         uint8_t parentsCount: 5;
     };
 
-
-    struct Struct_8bit_t : public StructBase {
-        explicit Struct_8bit_t(SI_t name,
-                               uint8_t modifier,
-                               Field_t **fields,
-                               uint32_t fieldsCount,
-                               CI_t *parents,
-                               uint8_t parentsCount) : StructBase(name, modifier, fields, fieldsCount, parents,
-                                                                  parentsCount) {
-            this->fieldsCount = fieldsCount;
-        }
-
-        uint8_t fieldsCount;
-    };
-
-    struct Struct_16bit_t : public Struct_8bit_t {
-        explicit Struct_16bit_t(SI_t name,
-                                uint8_t modifier,
-                                Field_t **fields,
-                                uint32_t fieldsCount,
-                                CI_t *parents,
-                                uint8_t parentsCount) : Struct_8bit_t(name, modifier, fields, fieldsCount, parents,
-                                                                      parentsCount) {
-            this->fieldsCount = fieldsCount;
-        }
-
-        uint16_t fieldsCount;
-    };
-
-    struct Struct_32bit_t : public Struct_16bit_t {
-        explicit Struct_32bit_t(SI_t name,
-                                uint8_t modifier,
-                                Field_t **fields,
-                                uint32_t fieldsCount,
-                                CI_t *parents,
-                                uint8_t parentsCount) : Struct_16bit_t(name, modifier, fields, fieldsCount, parents,
-                                                                       parentsCount) {
-            this->fieldsCount = fieldsCount;
-        }
-
-        uint32_t fieldsCount;
-    };
-
     /// Универсальная основа для Class-а
-    class ClassBase : public LLTNameble, public Modifiable {
+    class Class_t
+            : public LLTNameble,
+              public Modifiable,
+              public Instanceble_t,
+              public FieldStorage_t,
+              public MethodStorage_t {
     public:
-        explicit ClassBase(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount, Method_t **methods,
-                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name, LLTypes::CLASS),
-                                                                                         Modifiable(modifier) {
+        explicit Class_t(SI_t name, uint8_t modifier, Field_t **fields, uint8_t fieldsCount, Method_t **methods,
+                         uint8_t methodsCount, CI_t *parents, uint8_t parentsCount) : LLTNameble(name,
+                                                                                                 LLTypes::CLASS),
+                                                                                      Modifiable(modifier) {
             this->fields = fields;
             this->fieldsCount = fieldsCount;
             this->methods = methods;
@@ -147,14 +93,26 @@ namespace DmN::KVM {
             this->parentsCount = parentsCount;
         }
 
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
+        }
+
+        SDL::DmNCollection *getMethods() override {
+            return nullptr; // TODO:
+        }
+
+        struct Object_t *newInstance(Value_t **args, size_t args_c) override {
+            return nullptr; // TODO:
+        }
+
         /// Массив полей
         Field_t **fields;
         /// Кол-во полей
-        uint32_t fieldsCount: 8;
+        uint8_t fieldsCount;
         /// Массив методов
         Method_t **methods;
         /// Кол-во методов
-        uint32_t methodsCount: 8;
+        uint8_t methodsCount;
         /// Предки (ID предков)
         CI_t *parents;
         /// Кол-во предков
@@ -162,153 +120,34 @@ namespace DmN::KVM {
     };
 
     /// Основа класса со встроенными классами
-    class InnerStorageClassBase : public ClassBase {
+    class ISClass_t : public Class_t {
     public:
-        explicit InnerStorageClassBase(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
-                                       uint32_t fieldsCount,
-                                       Method_t **methods,
-                                       uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name,
-                                                                                                               modifier,
-                                                                                                               fields,
-                                                                                                               fieldsCount,
-                                                                                                               methods,
-                                                                                                               methodsCount,
-                                                                                                               parents,
-                                                                                                               parentsCount) {
+        explicit ISClass_t(Class_t *base, SI_t name, uint8_t modifier, Field_t **fields,
+                           uint32_t fieldsCount,
+                           Method_t **methods,
+                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_t(name,
+                                                                                                 modifier,
+                                                                                                 fields,
+                                                                                                 fieldsCount,
+                                                                                                 methods,
+                                                                                                 methodsCount,
+                                                                                                 parents,
+                                                                                                 parentsCount) {
             this->base = base;
         }
 
         /// Основной класс
-        ClassBase *base;
+        Class_t *base;
     };
 
-    class Class_8bit_t : public ClassBase {
-    public:
-        explicit Class_8bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
-                              Method_t **methods,
-                              uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : ClassBase(name,
-                                                                                                      modifier,
-                                                                                                      fields,
-                                                                                                      fieldsCount,
-                                                                                                      methods,
-                                                                                                      methodsCount,
-                                                                                                      parents,
-                                                                                                      parentsCount) {
-            this->fieldsCount = fieldsCount;
-            this->methodsCount = methodsCount;
+    class EnumClass_t : public Class_t, public Enum_t {
+        SDL::DmNCollection *getFields() override {
+            return nullptr; // TODO:
         }
 
-        uint8_t fieldsCount;
-        uint8_t methodsCount;
-    };
-
-    class Class_16bit_t : public Class_8bit_t {
-    public:
-        explicit Class_16bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
-                               Method_t **methods,
-                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_8bit_t(name,
-                                                                                                          modifier,
-                                                                                                          fields,
-                                                                                                          fieldsCount,
-                                                                                                          methods,
-                                                                                                          methodsCount,
-                                                                                                          parents,
-                                                                                                          parentsCount) {
-            this->fieldsCount = fieldsCount;
-            this->methodsCount = methodsCount;
+        SDL::DmNCollection *getMethods() override {
+            return nullptr; // TODO:
         }
-
-        uint16_t fieldsCount;
-        uint16_t methodsCount;
-    };
-
-    class Class_32bit_t : public Class_16bit_t {
-    public:
-        explicit Class_32bit_t(SI_t name, uint8_t modifier, Field_t **fields, uint32_t fieldsCount,
-                               Method_t **methods,
-                               uint32_t methodsCount, CI_t *parents, uint8_t parentsCount) : Class_16bit_t(name,
-                                                                                                           modifier,
-                                                                                                           fields,
-                                                                                                           fieldsCount,
-                                                                                                           methods,
-                                                                                                           methodsCount,
-                                                                                                           parents,
-                                                                                                           parentsCount) {
-            this->fieldsCount = fieldsCount;
-            this->methodsCount = methodsCount;
-        }
-
-        uint32_t fieldsCount;
-        uint32_t methodsCount;
-    };
-
-    class InnerStorageClass_8bit_t : public InnerStorageClassBase {
-    public:
-        explicit InnerStorageClass_8bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
-                                          uint32_t fieldsCount,
-                                          Method_t **methods,
-                                          uint32_t methodsCount, CI_t *parents, uint8_t parentsCount)
-                : InnerStorageClassBase(base,
-                                        name,
-                                        modifier,
-                                        fields,
-                                        fieldsCount,
-                                        methods,
-                                        methodsCount,
-                                        parents,
-                                        parentsCount) {
-            this->fieldsCount = fieldsCount;
-            this->methodsCount = methodsCount;
-        }
-
-        uint8_t fieldsCount;
-        uint8_t methodsCount;
-    };
-
-    class InnerStorageClass_16bit_t : public InnerStorageClass_8bit_t {
-    public:
-        explicit InnerStorageClass_16bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
-                                           uint32_t fieldsCount,
-                                           Method_t **methods,
-                                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount)
-                : InnerStorageClass_8bit_t(base,
-                                           name,
-                                           modifier,
-                                           fields,
-                                           fieldsCount,
-                                           methods,
-                                           methodsCount,
-                                           parents,
-                                           parentsCount) {
-            this->fieldsCount = fieldsCount;
-            this->methodsCount = methodsCount;
-        }
-
-        uint16_t fieldsCount;
-        uint16_t methodsCount;
-    };
-
-    class InnerStorageClass_32bit_t : public InnerStorageClass_16bit_t {
-    public:
-        explicit InnerStorageClass_32bit_t(ClassBase *base, SI_t name, uint8_t modifier, Field_t **fields,
-                                           uint32_t fieldsCount,
-                                           Method_t **methods,
-                                           uint32_t methodsCount, CI_t *parents, uint8_t parentsCount)
-                : InnerStorageClass_16bit_t(base,
-                                            name,
-                                            modifier,
-                                            fields,
-                                            fieldsCount,
-                                            methods,
-                                            methodsCount,
-                                            parents,
-                                            parentsCount) {
-            this->fieldsCount = fieldsCount;
-            this->methodsCount = methodsCount;
-        }
-
-        uint32_t fieldsCount;
-        uint32_t methodsCount;
     };
 }
 

@@ -128,6 +128,10 @@ namespace DmN::SDL {
         };
     }
 
+    struct DmNCollection {
+
+    };
+
     /// Нода
     template<typename T>
     struct Node {
