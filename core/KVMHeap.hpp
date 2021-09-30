@@ -5,7 +5,6 @@
 #define DMN_KVM_HEAP_HPP
 
 #include "KVMUtils.hpp"
-#include <typeinfo.h>
 #include <utility>
 
 namespace DmN::KVM {

@@ -32,7 +32,7 @@ namespace DmN::SDL {
         }
     }
 
-    struct bit_map_8bit_1byte {
+    struct bit_map_8b_1b {
         bool b0 : 1;
         bool b1 : 1;
         bool b2 : 1;
@@ -43,7 +43,7 @@ namespace DmN::SDL {
         bool b7 : 1;
     };
 
-    struct bit_map_16bit_2byte {
+    struct bit_map_16b_2b {
         bool b0 : 1;
         bool b1 : 1;
         bool b2 : 1;
@@ -62,7 +62,7 @@ namespace DmN::SDL {
         bool b15 : 1;
     };
 
-    struct bit_map_32bit_4byte {
+    struct bit_map_32b_4b {
         bool b0 : 1;
         bool b1 : 1;
         bool b2 : 1;

@@ -10,7 +10,6 @@
 #include "KVMESC.hpp"
 #include "KVMSR.hpp"
 #include "KVMBC.hpp"
-#include <typeinfo.h>
 #include <cmath>
 
 namespace DmN::KVM {

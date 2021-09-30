@@ -25,7 +25,7 @@ namespace DmN::KVM::Network {
          */
         NWR close() const {
 #ifdef WIN32
-            return closesocket(_socket) == SOCKET_ERROR ? CLOSE_SOCKET_ERROR : (NWR) SUCCESS;
+            return closesocket(_socket) == SOCKET_ERROR ? NWR::CLOSE_SOCKET_ERROR : NWR::SUCCESS;
 #else
             shutdown(_socket, 0);
             return ::close(_socket) == 0 ? NWR::SUCCESS : NWR::CLOSE_SOCKET_ERROR;
@@ -194,7 +194,7 @@ namespace DmN::KVM::Network {
             auto addr_size = sizeof(addr);
 #ifdef WIN32
             if ((error = ::accept(_socket, (sockaddr *) &addr, (int *) &addr_size)) < 0) [[unlikely]] {
-            result = (NWR) Error::CONNECT_ACCEPT_ERROR;
+            result = NWR::CONNECT_ACCEPT_ERROR;
             return nullptr;
         }
 #else
