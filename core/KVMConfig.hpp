@@ -4,7 +4,7 @@
 #ifndef DMN_KVM_CONFIG_HPP
 #define DMN_KVM_CONFIG_HPP
 
-#include <DmNPlatformConfig.h>
+#include <DmNPlatformConfig.hpp>
 #include <cstdint>
 
 #ifdef DMN_KVM_UNSAFE

@@ -83,23 +83,19 @@ namespace DmN::KVM {
                     case C::NOP:
                         break;
                     case C::MR:
-                        regs->rs[RNV(i, b)] = regs->rs[RNV(i, b)];
+                        regs->rs[RNV(i, b)] = GR(regs, i, b);
                         break;
                     case C::MRT_LL:
-                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
-                                                                                                                    b)])->b0;
+                        ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b0 = ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b0;
                         break;
                     case C::MRT_LH:
-                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b0 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
-                                                                                                                    b)])->b1;
+                        ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b0 = ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b1;
                         break;
                     case C::MRT_HL:
-                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
-                                                                                                                    b)])->b0;
+                        ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b1 = ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b0;
                         break;
                     case C::MRT_HH:
-                        ((SDL::byte_map_2b_32b *) regs->rs[RNV(i, b)])->b1 = ((SDL::byte_map_2b_32b *) regs->rs[RNV(i,
-                                                                                                                    b)])->b1;
+                        ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b1 = ((SDL::byte_map_2b_32b *) GR(regs, i, b))->b1;
                         break;
                     case C::PS:
                         stack->push(regs->rs[RNV(i, b)]);
@@ -127,12 +123,15 @@ namespace DmN::KVM {
                     }
                     case C::CTCV: {
                         uint8_t reg = RNV(i, b);
-                        regs->rs[reg] = new Value_t(regs->rs[reg], RNV(i, b), true);
+                        auto val = new Value_t(regs->rs[reg], RNV(i, b), true);
+                        regs->rs[reg] = val;
+                        val->references = 1;
                         break;
                     }
                     case C::UCOV: {
                         uint8_t reg = RNV(i, b);
-                        regs->rs[reg] = ((Value_t *) regs->rs[reg])->value;
+                        auto val = ((Value_t *) regs->rs[reg])->value;
+                        regs->rs[reg] = val;
                         break;
                     }
                     case C::UCOVD: {
@@ -144,10 +143,10 @@ namespace DmN::KVM {
                     }
 #define DMN_KVM_MATH_CASE_ADD(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) + *(TYPE *) (rY)); break;
                     case C::MTR_ADD: {
-                        auto rX = regs->rs[RNV(i, b)];
-                        auto rY = regs->rs[RNV(i, b)];
+                        auto rX = GR(regs, i, b);
+                        auto rY = GR(regs, i, b);
                         auto rZ = RNV(i, b);
-                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                        switch (*(VTypes *) GR(regs, i, b)) {
                             case VTypes::UNDEFINED:
                                 regs->rs[rZ] = cUndefined;
                                 break;
@@ -180,10 +179,10 @@ namespace DmN::KVM {
 #undef DMN_KVM_MATH_CASE_ADD
 #define DMN_KVM_MATH_CASE_SUB(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) - *(TYPE *) (rY)); break;
                     case C::MTR_SUB: {
-                        auto rX = regs->rs[RNV(i, b)];
-                        auto rY = regs->rs[RNV(i, b)];
+                        auto rX = GR(regs, i, b);
+                        auto rY = GR(regs, i, b);
                         auto rZ = RNV(i, b);
-                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                        switch (*(VTypes *) GR(regs, i, b)) {
                             case VTypes::UNDEFINED:
                                 regs->rs[rZ] = cUndefined;
                                 break;
@@ -216,10 +215,10 @@ namespace DmN::KVM {
 #undef DMN_KVM_MATH_CASE_SUB
 #define DMN_KVM_MATH_CASE_MUL(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) * *(TYPE *) (rY)); break;
                     case C::MTR_MUL: {
-                        auto rX = regs->rs[RNV(i, b)];
-                        auto rY = regs->rs[RNV(i, b)];
+                        auto rX = GR(regs, i, b);
+                        auto rY = GR(regs, i, b);
                         auto rZ = RNV(i, b);
-                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                        switch (*(VTypes *) GR(regs, i, b)) {
                             case VTypes::UNDEFINED:
                                 regs->rs[rZ] = cUndefined;
                                 break;
@@ -252,10 +251,10 @@ namespace DmN::KVM {
 #undef DMN_KVM_MATH_CASE_MUL
 #define DMN_KVM_MATH_CASE_DIV(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) / *(TYPE *) (rY)); break;
                     case C::MTR_DIV: {
-                        auto rX = regs->rs[RNV(i, b)];
-                        auto rY = regs->rs[RNV(i, b)];
+                        auto rX = GR(regs, i, b);
+                        auto rY = GR(regs, i, b);
                         auto rZ = RNV(i, b);
-                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                        switch (*(VTypes *) GR(regs, i, b)) {
                             case VTypes::UNDEFINED:
                                 regs->rs[rZ] = cUndefined;
                                 break;
@@ -288,10 +287,10 @@ namespace DmN::KVM {
 #undef DMN_KVM_MATH_CASE_DIV
 #define DMN_KVM_MATH_CASE_POW(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(*(TYPE *) (rX) ^ *(TYPE *) (rY)); break;
                     case C::MTR_POW: {
-                        auto rX = regs->rs[RNV(i, b)];
-                        auto rY = regs->rs[RNV(i, b)];
+                        auto rX = GR(regs, i, b);
+                        auto rY = GR(regs, i, b);
                         auto rZ = RNV(i, b);
-                        switch (*(VTypes *) regs->rs[RNV(i, b)]) {
+                        switch (*(VTypes *) GR(regs, RNV(i, b))) {
                             case VTypes::UNDEFINED:
                                 regs->rs[rZ] = cUndefined;
                                 break;
@@ -326,20 +325,20 @@ namespace DmN::KVM {
                         }
                     }
 #undef DMN_KVM_MATH_CASE_POW
-#define DMN_KVM_MATH_CASE_SQRT(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[(rZ)] = new TYPE(std::pow(*(TYPE *) (rX), 1 / *(TYPE *) (rY))); break;
+#define DMN_KVM_MATH_CASE_SQRT(VAL, rX, rY, rZ, TYPE) case VAL: regs->rs[rZ] = new TYPE(std::pow(*(TYPE *) (rX), 1 / *(TYPE *) (rY))); break;
                     case C::MTR_SQRT: {
-                        auto rX = regs->rs[RNV(i, b)];
-                        auto rY = regs->rs[RNV(i, b)];
+                        auto rX = GR(regs, i, b);
+                        auto rY = GR(regs, i, b);
                         auto rZ = RNV(i, b);
                         switch (*(VTypes *) regs->rs[RNV(i, b)]) {
                             case VTypes::UNDEFINED:
-                                regs->rs[rZ] = cUndefined;
+                                GR(regs, rZ) = cUndefined;
                                 break;
                             case VTypes::NaN:
-                                regs->rs[rZ] = cNaN;
+                                GR(regs, rZ) = cNaN;
                                 break;
                             case VTypes::INF:
-                                regs->rs[rZ] = cNInf;
+                                GR(regs, rZ) = cNInf;
                                 break;
                             DMN_KVM_MATH_CASE_SQRT(VTypes::INT8, rX, rY, rZ, int8_t)
                             DMN_KVM_MATH_CASE_SQRT(VTypes::INT16, rX, rY, rZ, int16_t)
@@ -350,10 +349,10 @@ namespace DmN::KVM {
                             DMN_KVM_MATH_CASE_SQRT(VTypes::UINT32, rX, rY, rZ, uint32_t)
                             DMN_KVM_MATH_CASE_SQRT(VTypes::UINT64, rX, rY, rZ, uint64_t)
                             case VTypes::FLOAT:
-                                regs->rs[(rZ)] = new float(std::pow(*(float *) (rX), *(float *) (rY)));
+                                GR(regs, rZ) = new float(std::pow(*(float *) (rX), *(float *) (rY)));
                                 break;
                             case VTypes::DOUBLE:
-                                regs->rs[(rZ)] = new double(std::pow(*(double *) (rX), *(double *) (rY)));
+                                GR(regs, rZ) = new double(std::pow(*(double *) (rX), *(double *) (rY)));
                                 break;
                             DMN_KVM_MATH_CASE_SQRT(VTypes::CHAR, rX, rY, rZ, char)
                             case VTypes::REFERENCE:
@@ -365,6 +364,14 @@ namespace DmN::KVM {
                         }
                     }
 #undef DMN_KVM_MATH_CASE_SQRT
+                    case C::IRC: {
+                        ((Value_t *) GR(regs, i, b))->references++;
+                        break;
+                    }
+                    case C::DRC: {
+                        ((Value_t *) GR(regs, i, b))->references--;
+                        break;
+                    }
                 }
             }
             return nullptr;
@@ -386,6 +393,14 @@ namespace DmN::KVM {
 
         static inline uint8_t RNV(size_t *i, const uint8_t *bytes) {
             return bytes[++(*i)];
+        }
+
+        static inline void*& GR(Resisters *regs, uint8_t i) {
+            return regs->rs[i];
+        }
+
+        static inline void*& GR(Resisters *regs, size_t *i, const uint8_t *bytes) {
+            return regs->rs[RNV(i, bytes)];
         }
 
         static void createMain(BCMethod_t *ptr, SS *ss, uint8_t *code, size_t cs) {

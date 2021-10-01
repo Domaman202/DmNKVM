@@ -80,7 +80,11 @@ namespace DmN::KVM::KBC {
         // Swap Registers
         SR = 0x23,
         // Load String
-        LS = 0x24
+        LS = 0x24,
+        // Increment References Count
+        IRC = 0x25,
+        // Decrement References Count
+        DRC = 0x26
     };
 }
 
