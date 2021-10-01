@@ -34,3 +34,5 @@
 |`0x22`|`0x1 (RX)` `0x2 (RY)`|GS (RX, RY)|Get String|Getting string in string storage with id RX to RY|
 |`0x23`|`0x1 (RX)` `0x2 (RY)`|SR (RX, RY)|Swap Registers|Swapping RX and RY|
 |`0x24`|`0x1 (RX)` `0x3 (BYTES)`|LS (RX), (BYTES)|Load String|Loading string with BYTES to RX|
+|`0x25`|`0x1 (RX)`|IRC (RX)|Increment References|Inc refs of val|
+|`0x26`|`0x1 (RX)`|DRC (RX)|Decrement References|Dec refs of val|
