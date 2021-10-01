@@ -84,7 +84,25 @@ namespace DmN::KVM::KBC {
         // Increment References Count
         IRC = 0x25,
         // Decrement References Count
-        DRC = 0x26
+        DRC = 0x26,
+        // Convert To
+        CT = 0x27,
+        // Convert Val To
+        CVT = 0x28
+    };
+
+    enum class Primitive {
+        INT8 = 0,
+        UINT8 = 1,
+        INT16 = 2,
+        UINT16 = 3,
+        INT32 = 4,
+        UINT32 = 5,
+        INT64 = 6,
+        UINT64 = 7,
+        FLOAT = 8,
+        DOUBLE = 9,
+        REFERENCE = 10
     };
 }
 
