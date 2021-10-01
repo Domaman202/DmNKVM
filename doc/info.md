@@ -37,4 +37,4 @@
 |`0x25`|`0x1 (RX)`|IRC (RX)|Increment References|Inc refs of val|
 |`0x26`|`0x1 (RX)`|DRC (RX)|Decrement References|Dec refs of val|
 |`0x27`|`0x1 (RX)` `0x2 (BYTE0)` `0x3 (BYTE1)`|CT (RX, BYTE)|Convert To|RX = (BYTE) RX|
-|`0x28`|`0x1 (RX)` `0x2 (BYTE)` `0x3 (BYTE1)`|CVT (RX, BYTE)|Convert Val To|RX = (BYTE) RX|
+|`0x28`|`0x1 (RX)` `0x2 (BYTE)` `0x3 (BYTE1)`|CVT (RX, BYTE)|Convert Val To|RX = (BYTE) RX->value|
