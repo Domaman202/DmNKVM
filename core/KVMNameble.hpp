@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <utility>
+#include <iostream>
 
 namespace DmN::KVM {
     /// Абстрактное хранилище строк
@@ -213,31 +214,25 @@ namespace DmN::KVM {
             SaI *last_node;
             for (last_node = this->start_node; last_node->next != nullptr;)
                 last_node = last_node->next;
-            last_node->next = new SaI(const_cast<char *>(name), ++last_node->id, nullptr);
+            last_node->next = new SaI(const_cast<char *>(name), last_node->id + 1, nullptr);
             return last_node->next->id;
         }
 
-        [[nodiscard]] SI_t add(const char *name) override {
-            SaI *free_node = this->start_node;
+        [[nodiscard]] SI_t add(const char *name) override { // TODO: перекодить
             SaI *last_node = this->start_node->next;
-            if (last_node != nullptr) {
-                while (last_node->next != nullptr) {
-                    if (strcmp(last_node->value, name) == 0)
-                        return last_node->id - 1;
-                    last_node = last_node->next;
-                    if (free_node == this->start_node && last_node->value == nullptr)
-                        free_node = last_node;
-                }
-                if (last_node != this->start_node && strcmp(last_node->value, name) == 0)
+            if (last_node == nullptr)
+                return (this->start_node->next = new SaI(const_cast<char *>(name), 1, nullptr))->id;
+            while (last_node->next != nullptr) {
+                if (strcmp(name, last_node->value) == 0)
                     return last_node->id;
-            } else
-                last_node = this->start_node;
-            if (last_node == this->start_node || free_node == last_node) {
-                last_node->next = new SaI(const_cast<char *>(name), ++last_node->id, nullptr);
-                return last_node->next->id;
+                if (last_node->next == nullptr)
+                    return (last_node->next = new SaI(const_cast<char *>(name), last_node->id + 1, nullptr))->id;
+                last_node = last_node->next;
             }
-            free_node->value = const_cast<char *>(name);
-            return last_node->next->id;
+            if (strcmp(name, last_node->value) == 0)
+                return last_node->id;
+            if (last_node->next == nullptr)
+                return (last_node->next = new SaI(const_cast<char *>(name), last_node->id + 1, nullptr))->id;
         }
 
         [[nodiscard]] SI_t get(const char *name) const override {

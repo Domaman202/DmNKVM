@@ -88,19 +88,22 @@ namespace DmN::KVM {
     };
 
     /// Метод
-    class Method_t : public LLT, public Nameble {
+    class Method_t : public LLTNameble {
     public:
-        explicit Method_t(SI_t descriptor) : LLT(LLTypes::METHOD), Nameble(descriptor) {
+        explicit Method_t(bool isNative, SI_t descriptor) : LLTNameble(descriptor, LLTypes::METHOD) {
             this->name = descriptor;
+            this->isNative = isNative;
         }
 
         /// ID дескриптора
         SI_t name;
+        /// Тип метода
+        bool isNative : 1;
     };
 
     class BCMethod_t : public Method_t {
     public:
-        BCMethod_t(SI_t descriptor, uint8_t* bc, size_t cs) : Method_t(descriptor) {
+        BCMethod_t(SI_t descriptor, uint8_t* bc, size_t cs) : Method_t(false, descriptor) {
             this->bc = bc;
             this->cs = cs;
         }
@@ -111,17 +114,21 @@ namespace DmN::KVM {
 
     class NMethod_t : public Method_t {
     public:
-        explicit NMethod_t(SI_t descriptor) : Method_t(descriptor) {}
+        explicit NMethod_t(SI_t descriptor) : Method_t(true, descriptor) {}
 
         virtual void* call(void **args, size_t argc) = 0;
     };
 
     typedef void *(KVMMethod)(void **args, size_t argc);
 
-    class NRMethod_t : public Method_t {
+    class NRMethod_t : public NMethod_t {
     public:
-        NRMethod_t(KVMMethod *method, SI_t descriptor) : Method_t(descriptor) {
+        NRMethod_t(KVMMethod *method, SI_t descriptor) : NMethod_t(descriptor) {
             this->ref = method;
+        }
+
+        void * call(void **args, size_t argc) override {
+            ref(args, argc);
         }
 
         KVMMethod *ref;

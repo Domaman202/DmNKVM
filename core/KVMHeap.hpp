@@ -60,16 +60,23 @@ namespace DmN::KVM {
         /*!
          * Получает ID объекта в хипе
          * @param Obj Объект ID которого нужно получить
-         * @return ID класса (0 в случае неудачи)
+         * @return ID объекта (0 в случае неудачи)
          */
         virtual CI_t get(const LLTNameble *obj) = 0;
 
         /*!
-         * Получает класс из хипа по его ID
+         * Получает объект из хипа по его ID
          * @param id ID класса для получения
-         * @return Нужный нам класс (nullptr в случае неудачи)
+         * @return Нужный нам объект (nullptr в случае неудачи)
          */
         virtual LLTNameble *get(CI_t id) = 0;
+
+        /*!
+         * Получает объект из хипа по его имени
+         * @param id id строки имени объекта
+         * @return Нужный нам объект (nullptr в случае неудачи)
+         */
+        virtual LLTNameble *getWN(SI_t id) = 0;
     };
 
     using namespace DmN::SDL;
@@ -187,6 +194,15 @@ namespace DmN::KVM {
         LLTNameble *get(CI_t id) override {
             OaI *last_node;
             for (last_node = this->start_node; last_node->id != id; last_node = last_node->next);
+            return last_node->value;
+        }
+
+        LLTNameble *getWN(SI_t id) override {
+            OaI *last_node;
+            for (last_node = this->start_node->next; last_node->value->name != id; last_node = last_node->next) {
+                if (last_node->next == nullptr)
+                    return nullptr;
+            }
             return last_node->value;
         }
     };

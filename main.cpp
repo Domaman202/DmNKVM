@@ -6,58 +6,52 @@
 #include <thread>
 
 namespace DmN::KVM::testing {
-    namespace Network {
-        void networkTest();
-    }
-
-    namespace SR {
-        void stackRegisterTest();
-    }
-
-    namespace SS {
-        void stringStorageTest();
-    }
-
-    namespace Heap {
-        void heapTest();
-    }
-
-    namespace VM {
-        void helloTest();
-    }
-}
-
-int main(int argc, char* argv[]) {
-    DmN::KVM::testing::Network::networkTest();
-    DmN::KVM::testing::SR::stackRegisterTest();
-    DmN::KVM::testing::SS::stringStorageTest();
-    DmN::KVM::testing::Heap::heapTest();
-    DmN::KVM::testing::VM::helloTest();
-}
-
-namespace DmN::KVM::testing {
     inline void check(NWR nwr) {
         if (nwr != NWR::SUCCESS)
             throw;
     }
 
     namespace VM {
+        void *print(void **args, size_t argc);
+
         void helloTest() {
             // !Старт!
             std::cout << "[4][S] Hello, VM" << std::endl;
             //
+            using C = DmN::KVM::KBC::BC;
+            //
             auto* code = new uint8_t[] {
-                    0xFF, 0x00,
-
+                    0xFF,
+                    C::CNS,
+                    'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0',
+                    C::CNS,
+                    'p', 'r', 'i', 'n', 't', '(', 'R', ')', 'V', '\0',
+                    C::LFS,
+                    0,
+                    C::CGH,
+                    0,
+                    C::PCV,
+                    4,
+                    0x0, 0x0, 0x0, 0xCA,
+                    C::STOP_CODE
             };
             //
-            auto* vm = new VMCA(code, sizeof(code), nullptr, 0);
+            auto* vm = new VMCA(code, 0, nullptr, 0);
             //
-
+            SI_t printId = vm->mainContext->process->strings->add("print(R)V");
+            vm->mainContext->process->heap->add(new NRMethod_t(print, printId));
+            //
+            void* result = vm->callMain();
+            std::cout << "Call main result " << *(int32_t*) result << std::endl;
             //
             delete vm;
             //
             std::cout << "[4][C]" << std::endl;
+        }
+
+        void *print(void **args, size_t argc) {
+            auto context = ((ExecuteContext*) args[1]);
+            std::cout << "[OutputStream] " << context->process->strings->get(*(SI_t*) context->thread->stack->peekPop())  << std::endl;
         }
     }
 
@@ -234,4 +228,12 @@ namespace DmN::KVM::testing {
             client->close();
         }
     }
+}
+
+int main(int argc, char* argv[]) {
+    DmN::KVM::testing::Network::networkTest();
+    DmN::KVM::testing::SR::stackRegisterTest();
+    DmN::KVM::testing::SS::stringStorageTest();
+    DmN::KVM::testing::Heap::heapTest();
+    DmN::KVM::testing::VM::helloTest();
 }

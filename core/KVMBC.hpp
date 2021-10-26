@@ -7,91 +7,151 @@
 /// Kawaii Byte Code
 namespace DmN::KVM::KBC {
     enum BC {// TODO:
-        // No Operation
+        /// No Operation
         NOP = 0x0,
-        // Move Register
-        MR = 0x1,
-        // Move Register with Type (Low -> Low)
-        MRT_LL = 0x2,
-        // Move Register with Type (Low -> High)
-        MRT_LH = 0x3,
-        // Move Register with Type (High -> Low)
-        MRT_HL = 0x4,
-        // Move Register with Type (High -> High)
-        MRT_HH = 0x5,
-        // Push to Stack
-        PS = 0x6,
-        // Pop to register
-        PP = 0x7,
-        // Peek to register
-        PK = 0x8,
-        // Dereference Register
-        DR = 0x9,
-        // Reference Register
-        RR = 0xA,
-        // Convert To Val
-        CTV = 0xB,
-        // Convert To Collecteble Val
-        CTCV = 0xC,
-        // UnConvert Of Val
-        UCOV = 0xD,
-        // UnConvert Of Val and Delete val
-        UCOVD = 0xE,
-        // Math Register (ADD)
-        MTR_ADD = 0xF,
-        // Math Register (SUB)
-        MTR_SUB = 0x10,
-        // Math Register (MUL)
-        MTR_MUL = 0x11,
-        // Math Register (DIV)
-        MTR_DIV = 0x12,
-        // Math Register (POW)
-        MTR_POW = 0x13,
-        // Math Register (SQRT)
-        MTR_SQRT = 0x14,
-        // Load To Register (1B)
-        LTR_1B = 0x15,
-        // Load To Register (2B)
-        LTR_2B = 0x16,
-        // Load To Register (4B)
-        LTR_4B = 0x17,
-        // Call
-        C = 0x18,
-        // Call With Context
-        CWC = 0x19,
-        // Return
-        R = 0x1A,
-        // Go To
-        GT = 0x1B,
-        // Create Call
-        CC0 = 0x1C,
-        // Create Call
-        CC1 = 0x1D,
-        // Create Execution Context
-        CEC = 0x1E,
-        // Static Get Argument
-        SGA = 0x1F,
-        // Dynamic Get Argument
-        DGA = 0x20,
-        // Register String
-        RS = 0x21,
-        // Get String
-        GS = 0x22,
-        // Swap Registers
-        SR = 0x23,
-        // Load String
-        LS = 0x24,
-        // Increment References Count
-        IRC = 0x25,
-        // Decrement References Count
-        DRC = 0x26,
-        // Convert To
-        CT = 0x27,
-        // Convert Val To
-        CVT = 0x28
+
+        /* REGISTER */
+
+        /*!
+         * Move Register
+         * Копирует указатель регистра RA в регистр RB
+         * (RA,RB)
+         * [RA & RB - номера регистров]
+         */
+        MR,
+
+        /*!
+         * Move Register with Type ((A + X) -> (B + Y), (S)) [ X & Y - Offset, A & B - Regs, S - Size ]
+         * Перемещает S байт из регистра RA в регистр RB  со смещением указателя для RA в X и смещением указателя для RB в Y
+         * (RA, X, RB, Y, S)
+         * [RA & RB - номера регистров ; X & Y - смещение; S - кол-во байт для перемещения]
+         */
+        MRT,
+
+        /*!
+         * Swap Register
+         * Меняет указатели RA и RB местами
+         * [RA & RB - номера регистров]
+         */
+        SR,
+
+        /*!
+         * Load Clean Value
+         * Загружает сырое значение в регистр
+         * (T, B..)
+         * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты)
+         */
+        LCV,
+
+        /// Load Parser Value (T -> stack) [ T - #Primitive ]
+        LPV,
+
+        /*!
+         * Clear Register
+         * Обнуляет указатель регистра
+         * (R)
+         * [R - регистр]
+         */
+        CR,
+
+        /* STACK */
+
+        /*!
+         * Copy Stack Value
+         */
+        CSV,
+
+        /*!
+         * Swap Stack
+         * Меняет местами 2 верхних элемента стека
+         */
+        SS,
+
+        /*!
+         * Push Clean Value
+         * Загружает сырое значение в регистр
+         * (T, B..)
+         * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты)
+         */
+        PCV,
+
+        /// Push Parsed Value
+        PPV,
+
+        /*!
+         * Pop Value
+         * Удаляет верхний элемент стека
+         */
+        PV,
+
+        /*!
+         * Clear Stack
+         * Чистит стек
+         */
+        CS,
+
+        /* STACK / REGISTER */
+
+        /*!
+         * Load To Stack
+         * Загружает указатель регистра R в стек
+         * (R)
+         * [R - регистр]
+         */
+        LTS,
+
+        /*!
+         * Load From Stack
+         * Загружает указатель значения из стека в регистр R
+         * (R)
+         * [R - регистр]
+         */
+        LFS,
+
+        /* MATH REGISTER */
+
+        /// Add (T + T) [ T - #Primitive ]
+        ADD,
+
+        /// Subtract (T - T) [ T - #Primitive ]
+        SUB,
+
+        /// Multiply (T * T) [ T - #Primitive ]
+        MUL,
+
+        /// Divide (T / T) [ T - #Primitive ]
+        DIV,
+
+        /* Call */
+
+        /*!
+         * Call Global Heap
+         * Получает функцию по дескриптору (SI_t) который он получает из регистра R и вызывает её
+         * (R)
+         * [R - регистр]
+         */
+        CGH,
+
+        /* Struct Utils */
+
+        /*!
+         * Push New String
+         * Получает последний элемент стека (нашу строку) и создаёт ей id-шник (SI_t) который помещает в стак
+         */
+        PNS,
+
+        /*!
+         * Create New String
+         * Собирает строку из стека возвращает её id-шник (SI_t) который помещает в стак
+         */
+         CNS,
+
+         /* SPECIFIC */
+
+         STOP_CODE
     };
 
-    enum class Primitive {
+    enum Primitive {
         INT8 = 0,
         UINT8 = 1,
         INT16 = 2,

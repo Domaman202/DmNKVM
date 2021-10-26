@@ -14,93 +14,7 @@ namespace DmN::SDL {
         typedef uint16_t u2;
         typedef uint32_t u4;
         typedef uint64_t u8;
-
-        inline u1 u1Read(FILE* file) {
-            return getc(file);
-        }
-
-        inline u2 u2Read(FILE* file) {
-            return (u1Read(file) << 4) | u1Read(file);
-        }
-
-        inline u4 u4Read(FILE* file) {
-            return (u2Read(file) << 8 | u2Read(file));
-        }
-
-        inline u8 u8Read(FILE* file) {
-            return (u4Read(file) << 16 | u4Read(file));
-        }
     }
-
-    struct bit_map_8b_1b {
-        bool b0 : 1;
-        bool b1 : 1;
-        bool b2 : 1;
-        bool b3 : 1;
-        bool b4 : 1;
-        bool b5 : 1;
-        bool b6 : 1;
-        bool b7 : 1;
-    };
-
-    struct bit_map_16b_2b {
-        bool b0 : 1;
-        bool b1 : 1;
-        bool b2 : 1;
-        bool b3 : 1;
-        bool b4 : 1;
-        bool b5 : 1;
-        bool b6 : 1;
-        bool b7 : 1;
-        bool b8 : 1;
-        bool b9 : 1;
-        bool b10 : 1;
-        bool b11 : 1;
-        bool b12 : 1;
-        bool b13 : 1;
-        bool b14 : 1;
-        bool b15 : 1;
-    };
-
-    struct bit_map_32b_4b {
-        bool b0 : 1;
-        bool b1 : 1;
-        bool b2 : 1;
-        bool b3 : 1;
-        bool b4 : 1;
-        bool b5 : 1;
-        bool b6 : 1;
-        bool b7 : 1;
-        bool b8 : 1;
-        bool b9 : 1;
-        bool b10 : 1;
-        bool b11 : 1;
-        bool b12 : 1;
-        bool b13 : 1;
-        bool b14 : 1;
-        bool b15 : 1;
-        bool b16 : 1;
-        bool b17 : 1;
-        bool b18 : 1;
-        bool b19 : 1;
-        bool b20 : 1;
-        bool b21 : 1;
-        bool b22 : 1;
-        bool b23 : 1;
-        bool b24 : 1;
-        bool b25 : 1;
-        bool b26 : 1;
-        bool b27 : 1;
-        bool b28 : 1;
-        bool b29 : 1;
-        bool b30 : 1;
-        bool b31 : 1;
-    };
-
-    struct byte_map_2b_32b {
-        uint16_t b0;
-        uint16_t b1;
-    };
 
     namespace Pairs {
         template<typename T1, typename T2>
@@ -159,6 +73,10 @@ namespace DmN::SDL {
     /// Лист
     template<typename T>
     struct List : public DmNCollection<T> {
+        explicit List() {
+            this->start_node = nullptr;
+        }
+
         explicit List(Node<T> *start_node) {
             this->start_node = start_node;
         }
@@ -233,10 +151,12 @@ namespace DmN::SDL {
          * @return нужная нам нода
          */
         Node<T> *getLastNode() {
-            Node<T> last_node = this->start_node;
+            if (this->start_node == nullptr)
+                return nullptr;
+            Node<T>* last_node = this->start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
-            return last_node.value;
+            return last_node;
         }
 
         /*!
@@ -265,12 +185,8 @@ namespace DmN::SDL {
          * @return нода элемента
          */
         Node<T> *removeGN(size_t i) {
-            if (i == 0) {
-                Node<T>* node_for_remove = this->start_node;
-                this->start_node = nullptr;
-                return node_for_remove;
-            }
-
+            if (i == 0)
+                return this->start_node;
             Node<T>* prev_node = this->getNode(i - 1);
             Node<T>* node_for_remove = prev_node->next;
             prev_node->next = node_for_remove->next;
@@ -291,7 +207,10 @@ namespace DmN::SDL {
          * @return элемент
          */
         inline T removeG(size_t i) {
-            return removeGN(i)->value;
+            Node<T>* node_for_remove = removeGN(i);
+            T value = node_for_remove->value;
+            delete node_for_remove;
+            return value;
         }
 
         /*!
@@ -300,6 +219,10 @@ namespace DmN::SDL {
          */
         Node<T> *removeLGN() {
             Node<T>* pre_last_node = this->start_node;
+            if (pre_last_node->next == nullptr) {
+                this->start_node = nullptr;
+                return pre_last_node;
+            }
             while (pre_last_node->next->next != nullptr)
                 pre_last_node = pre_last_node->next;
             Node<T>* node_for_remove = pre_last_node->next;
@@ -319,11 +242,70 @@ namespace DmN::SDL {
          * @return элемент
          */
         inline T removeLG() {
-            return removeLGN()->value;
+            Node<T>* node_for_remove = removeLGN();
+            T value = node_for_remove->value;
+            delete node_for_remove;
+            return value;
         }
 
+        /*!
+         * Чистит список
+         */
+        void clear() {
+            while (this->start_node != nullptr) {
+                Node<T>* next_node = this->start_node->next;
+                delete this->start_node;
+                this->start_node = next_node;
+            }
+        }
+
+        /*!
+         * Возвращает размер
+         * @return размер списка
+         */
+        size_t size() {
+            size_t size = 0;
+            Node<T>* last_node = this->start_node;
+            while (last_node != nullptr) {
+                size++;
+                last_node = last_node->next;
+            }
+            return size;
+        }
+
+        /**
+         * Оператор доступа массивного типа
+         * @param index индекс элемента
+         * @return элемент
+         */
         inline T& operator[] (size_t index) {
             return get(index);
+        }
+
+        inline void dealloc(Node<T>* prev_node, Node<T>* next_node) {
+            delete prev_node->next;
+            prev_node->next = next_node;
+        }
+
+        inline void dealloc(Node<T>* prev_node) {
+            delete prev_node->next;
+            prev_node->next = nullptr;
+        }
+
+        inline T deallocG(Node<T>* prev_node, Node<T>* next_node) {
+            Node<T>* node_for_remove = prev_node->next;
+            T value = node_for_remove->value;
+            delete node_for_remove;
+            prev_node->next = next_node;
+            return value;
+        }
+
+        inline T deallocG(Node<T>* prev_node) {
+            Node<T>* node_for_remove = prev_node->next;
+            T value = node_for_remove;
+            delete node_for_remove;
+            prev_node->next = nullptr;
+            return value;
         }
 
         /// Первая нода
