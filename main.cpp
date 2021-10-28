@@ -20,7 +20,7 @@ namespace DmN::KVM::testing {
             //
             using C = DmN::KVM::KBC::BC;
             //
-            auto* code = new uint8_t[] {
+            uint8_t code[] {
                     0xFF,
                     C::CNS,
                     'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0',
@@ -32,11 +32,10 @@ namespace DmN::KVM::testing {
                     0,
                     C::PCV,
                     4,
-                    0x0, 0x0, 0x0, 0xCA,
-                    C::STOP_CODE
+                    0x0, 0x0, 0x0, 0xCA
             };
             //
-            auto* vm = new VMCA(code, 0, nullptr, 0);
+            auto* vm = new VMCA(code, sizeof(code), nullptr, 0);
             //
             SI_t printId = vm->mainContext->process->strings->add("print(R)V");
             vm->mainContext->process->heap->add(new NRMethod_t(print, printId));

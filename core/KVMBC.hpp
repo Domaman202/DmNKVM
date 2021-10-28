@@ -37,13 +37,18 @@ namespace DmN::KVM::KBC {
 
         /*!
          * Load Clean Value
-         * Загружает сырое значение в регистр
-         * (T, B..)
-         * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты)
+         * Загружает сырое значение в регистр R
+         * (T, B.., R)
+         * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты ; R -регистр)
          */
         LCV,
 
-        /// Load Parser Value (T -> stack) [ T - #Primitive ]
+        /*!
+         * Load Parsed Value
+         * Загружает обработанное значение в регистр R
+         * (T, B.., R)
+         * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты ; R -регистр)
+         */
         LPV,
 
         /*!
@@ -69,13 +74,18 @@ namespace DmN::KVM::KBC {
 
         /*!
          * Push Clean Value
-         * Загружает сырое значение в регистр
+         * Загружает сырое значение в стек
          * (T, B..)
          * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты)
          */
         PCV,
 
-        /// Push Parsed Value
+        /*!
+         * Push Parsed Value
+         * Загружает обработанное значение в стек
+         * (T, B..)
+         * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты)
+         */
         PPV,
 
         /*!
@@ -146,9 +156,39 @@ namespace DmN::KVM::KBC {
          */
          CNS,
 
-         /* SPECIFIC */
+         /* PTR UTILS */
 
-         STOP_CODE
+         /// Alloc Ref
+         AR,
+
+         // Free Ref
+         FR,
+
+         /// Box Ref
+         BR,
+
+         /// UnBox Ref
+         UBR,
+
+         /// Get Array Element
+         GAE,
+
+         /// Set Element To Array
+         SETA,
+
+         /// Get Ptr Of Array Element
+         GPOAE,
+
+         /* CODE COUNTER FEATURES */
+
+         /// Set Code Counter
+         SCC,
+
+         /// Get Code Counter
+         GCC,
+
+         /// Jump With Offset
+         JWO
     };
 
     enum Primitive {

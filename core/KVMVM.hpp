@@ -79,9 +79,6 @@ namespace DmN::KVM {
             auto stack = thread->stack;
             auto call = c->call;
 
-            if (cs == 0)
-                for (cs = 0; b[cs] != DmN::KVM::KBC::STOP_CODE; cs++);
-
             for (size_t *i = &c->bcPtr; *i < cs; (*i)++) {
                 using C = DmN::KVM::KBC::BC;
                 using Primitive = DmN::KVM::KBC::Primitive;
@@ -101,6 +98,37 @@ namespace DmN::KVM {
                         auto regB = GR<void>(regs, regBI);
                         regs->rs[regAI] = regB;
                         regs->rs[regBI] = regA;
+                        break;
+                    }
+                    case C::LCV:
+                        switch (RNV(i, b)) {
+                            case Primitive::INT8:
+                            case Primitive::UINT8:
+                                regs->rs[RNV(i, b)] = new uint8_t(RNV(i, b));
+                                break;
+                            case Primitive::INT16:
+                            case Primitive::UINT16:
+                                regs->rs[RNV(i, b)] = new uint16_t((RNV(i, b) << 8) | RNV(i, b));
+                                break;
+                            case Primitive::INT32:
+                            case Primitive::UINT32:
+                                regs->rs[RNV(i, b)] = new uint32_t(
+                                        (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
+                                break;
+                            case Primitive::INT64:
+                            case Primitive::UINT64:
+                                regs->rs[RNV(i, b)] = new uint64_t(
+                                        (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
+                                         ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
+                                         ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
+                                         ((uint64_t) RNV(i, b) << 48) +
+                                         ((uint64_t) RNV(i, b) << 56)));
+                                break;
+                        }
+                        break;
+                    case C::LPV: {
+                        regs->rs[RNV(i, b)] = parseValue(i, b, false);
+                        //
                         break;
                     }
                     case C::PCV:
@@ -127,6 +155,9 @@ namespace DmN::KVM {
                                                           ((uint64_t) RNV(i, b) << 56))));
                                 break;
                         }
+                        break;
+                    case C::PPV:
+                        stack->push(parseValue(i, b, false));
                         break;
                     case C::CR:
                         regs->rs[RNV(i, b)] = nullptr;
@@ -225,6 +256,60 @@ namespace DmN::KVM {
 
         static void createMain(BCMethod_t *ptr, SS *ss, uint8_t *code, size_t cs) {
             new(ptr) BCMethod_t(ss->add("$main()V"), code, cs);
+        }
+
+        static inline Value_t *parseValue(size_t *i, const uint8_t *b, bool isCollectable) {
+            int8_t type = -1;
+            void *value;
+            //
+            switch (RNV(i, b)) {
+                case KBC::Primitive::INT8:
+                    type = 3;
+                    value = new uint8_t(RNV(i, b));
+                    break;
+                case KBC::Primitive::UINT8:
+                    type = 7;
+                    value = new uint8_t(RNV(i, b));
+                    break;
+                case KBC::Primitive::INT16:
+                    type = 4;
+                    value = new uint16_t((RNV(i, b) << 8) | RNV(i, b));
+                    break;
+                case KBC::Primitive::UINT16:
+                    type = 8;
+                    value = new uint16_t((RNV(i, b) << 8) | RNV(i, b));
+                    break;
+                case KBC::Primitive::INT32:
+                    type = 5;
+                    value = new uint32_t(
+                            (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
+                    break;
+                case KBC::Primitive::UINT32:
+                    type = 9;
+                    value = new uint32_t(
+                            (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
+                    break;
+                case KBC::Primitive::INT64:
+                    type = 6;
+                    value = new uint64_t(
+                            (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
+                             ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
+                             ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
+                             ((uint64_t) RNV(i, b) << 48) +
+                             ((uint64_t) RNV(i, b) << 56)));
+                    break;
+                case KBC::Primitive::UINT64:
+                    type = 10;
+                    value = new uint64_t(
+                            (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
+                             ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
+                             ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
+                             ((uint64_t) RNV(i, b) << 48) +
+                             ((uint64_t) RNV(i, b) << 56)));
+                    break;
+            }
+            //
+            return new Value_t(value, type, isCollectable);
         }
     };
 }
