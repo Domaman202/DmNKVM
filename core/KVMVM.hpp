@@ -148,7 +148,7 @@ namespace DmN::KVM {
                                 break;
                             case Primitive::INT64:
                             case Primitive::UINT64:
-                                stack->push(new uint64_t((((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
+                                stack->push(new uint64_t(((uint64_t) RNV(i, b) + ((uint64_t) RNV(i, b) << 8) +
                                                           ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
                                                           ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
                                                           ((uint64_t) RNV(i, b) << 48) +
@@ -207,9 +207,9 @@ namespace DmN::KVM {
                             eval(context, ((BCMethod_t *) method)->bc, ((BCMethod_t *) method)->cs);
                         break;
                     }
-                    case C::CNS:
+                    case C::CNS: {
                         auto bytes = new List<char>();
-                        char byte = RNV(i, b);
+                        auto byte = RNV(i, b);
                         while (byte != '\0') {
                             bytes->add(byte);
                             byte = RNV(i, b);
@@ -220,6 +220,19 @@ namespace DmN::KVM {
                             str[j] = bytes->get(j);
                         stack->push(new SI_t(process->strings->add(str)));
                         break;
+                    }
+                    case C::AR:
+                        regs->rs[RNV(i, b)] = malloc(*GR<uint16_t>(regs, i, b));
+                        break;
+                    case C::ACR:
+                        regs->rs[RNV(i, b)] = malloc((RNV(i, b) << 8) | RNV(i, b));
+                        break;
+                    case C::FR: {
+                        auto r = RNV(i, b);
+                        free(regs->rs[r]);
+                        regs->rs[r] = nullptr;
+                        break;
+                    }
                 }
             }
 
