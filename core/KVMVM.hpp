@@ -233,6 +233,12 @@ namespace DmN::KVM {
                         regs->rs[r] = nullptr;
                         break;
                     }
+                    case C::ASR:
+                        regs->rs[RNV(i, b)] = alloca(*GR<uint16_t>(regs, i, b));
+                        break;
+                    case C::ASCR:
+                        regs->rs[RNV(i, b)] = alloca((RNV(i, b) << 8) | RNV(i, b));
+                        break;
                 }
             }
 
