@@ -154,33 +154,33 @@ namespace DmN::KVM::KBC {
          * Create New String
          * Собирает строку из стека возвращает её id-шник (SI_t) который помещает в стак
          */
-         CNS,
+        CNS,
 
-         /* PTR UTILS */
+        /* PTR UTILS */
 
-         /*!
-          * Alloc Ref
-          * Выделяет память в регистр RA с размером заданным в регистре RB
-          * (RA, RB)
-          * [RA - регистр для хранения указателя ; RB - регистр с кол-вом байт для выделения]
-          */
-         AR,
+        /*!
+         * Alloc Ref
+         * Выделяет память в регистр RA с размером заданным в регистре RB
+         * (RA, RB)
+         * [RA - регистр для хранения указателя ; RB - регистр с кол-вом байт для выделения]
+         */
+        AR,
 
-         /*!
-          * Alloc Const Ref
-          * Выделяет память заданную размером в 2х байтах константы BYTES в регистр R
-          * (R, BYTES)
-          * [R - регистр хранящий указатель ; BYTES (2) - кол-во байт для выделения)
-          */
-         ACR,
+        /*!
+         * Alloc Const Ref
+         * Выделяет память заданную размером в 2х байтах константы BYTES в регистр R
+         * (R, BYTES)
+         * [R - регистр хранящий указатель ; BYTES (2) - кол-во байт для выделения)
+         */
+        ACR,
 
-         /*!
-          * Free Ref
-          * Высвобождает память из регистра R и зануляет его указатель
-          * (R)
-          * [R - регистр с указателем]
-          */
-         FR,
+        /*!
+         * Free Ref
+         * Высвобождает память из регистра R и зануляет его указатель
+         * (R)
+         * [R - регистр с указателем]
+         */
+        FR,
 
         /*!
          * Alloc Stack Ref
@@ -198,31 +198,31 @@ namespace DmN::KVM::KBC {
          */
         ASCR,
 
-         /// Box Ref
-         BR,
+        /// Box Ref
+        BR,
 
-         /// UnBox Ref
-         UBR,
+        /// UnBox Ref
+        UBR,
 
-         /// Get Array Element
-         GAE,
+        /// Get Array Element
+        GAE,
 
-         /// Set Element To Array
-         SETA,
+        /// Set Element To Array
+        SETA,
 
-         /// Get Ptr Of Array Element
-         GPOAE,
+        /// Get Ptr Of Array Element
+        GPOAE,
 
-         /* CODE COUNTER FEATURES */
+        /* CODE COUNTER FEATURES */
 
-         /// Set Code Counter
-         SCC,
+        /// Set Code Counter
+        SCC,
 
-         /// Get Code Counter
-         GCC,
+        /// Get Code Counter
+        GCC,
 
-         /// Jump With Offset
-         JWO
+        /// Jump With Offset
+        JWO
     };
 
     enum Primitive {
