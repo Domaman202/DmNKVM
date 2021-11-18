@@ -42,6 +42,7 @@ namespace DmN::KVM::testing {
             //
             void* result = vm->callMain();
             std::cout << "Call main result " << *(int32_t*) result << std::endl;
+            free(result);
             //
             delete vm;
             //
