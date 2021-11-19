@@ -52,6 +52,14 @@ namespace DmN::KVM::KBC {
         LPV,
 
         /*!
+         * Load UnParsed Value
+         * Загружает распаршенное значение
+         * (RA, RB)
+         * [RA - регистр с исходным значением ; RB - регистр с распаршенным значением]
+         */
+        LUPV,
+
+        /*!
          * Clear Register
          * Обнуляет указатель регистра
          * (R)
@@ -87,6 +95,9 @@ namespace DmN::KVM::KBC {
          * [T - тип значения (#Primitive) (INT8, INT16, INT32, INT64) ; B.. - байты)
          */
         PPV,
+
+        /// Push UnParsed Value
+        PUPV,
 
         /*!
          * Pop Value
@@ -198,13 +209,25 @@ namespace DmN::KVM::KBC {
          */
         ASCR,
 
-        /// Box Ref
+        /*!
+         * Box Ref
+         * Упаковывает ссылку RA и помещает её в RB
+         * (RA, RB)
+         * [RA - регистр регистр исходной ссылки ; RB - (выход) с запакованной ссылкой]
+         */
         BR,
 
-        /// UnBox Ref
+        /*!
+         * UnBox Ref
+         * Распаковывает ссылку RA и помещает её в RB
+         * (RA, RB)
+         * [RA - регистр с запакованной ссылкой ; RB - (выход) регистр исходной ссылки]
+         */
         UBR,
 
-        /// Get Array Element
+        /*!
+         * Get Array Element
+         */
         GAE,
 
         /// Set Element To Array

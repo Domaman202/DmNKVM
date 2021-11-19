@@ -20,7 +20,7 @@ namespace DmN::KVM::testing {
             //
             using C = DmN::KVM::KBC::BC;
             //
-            uint8_t code[] {
+            uint8_t code[]{
                     0xFF,
                     C::CNS,
                     'H', 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0',
@@ -30,9 +30,20 @@ namespace DmN::KVM::testing {
                     0,
                     C::CGH,
                     0,
-                    C::PCV,
+                    C::LPV,
                     4,
-                    0x0, 0x0, 0x0, 0xCA
+                    0x0, 0x0, 0x0, 0xC8,
+                    0,
+                    C::LPV,
+                    4,
+                    0x0, 0x0, 0x0, 0x2,
+                    1,
+                    C::ADD,
+                    0, 1, 0,
+                    C::LUPV,
+                    0, 0,
+                    C::LTS,
+                    0
             };
             //
             auto* vm = new VMCA(code, sizeof(code), nullptr, 0);

@@ -126,11 +126,12 @@ namespace DmN::KVM {
                                 break;
                         }
                         break;
-                    case C::LPV: {
+                    case C::LPV:
                         regs->rs[RNV(i, b)] = parseValue(i, b, false);
-                        //
                         break;
-                    }
+                    case C::LUPV:
+                        regs->rs[RNV(i, b)] = GR<Value_t>(regs, i, b)->value;
+                        break;
                     case C::PCV:
                         switch (RNV(i, b)) {
                             case Primitive::INT8:
@@ -184,6 +185,60 @@ namespace DmN::KVM {
                     case C::LFS:
                         regs->rs[RNV(i, b)] = stack->peekPop();
                         break;
+                    case C::ADD: { // TODO: TEST
+                        auto reg0 = GR<Value_t>(regs, i, b);
+                        auto reg1 = GR<Value_t>(regs, i, b);
+                        //
+                        auto reg2 = checkAdd(reg0, reg1, cInf, cNInf);
+                        if (reg2 == nullptr)
+                            reg2 = checkAdd(reg0, reg1, cNInf, cInf);
+                        if (reg2 == nullptr)
+                            reg2 = checkNanAdd(reg0, reg1, cNaN);
+                        if (reg2 == nullptr) {
+                            int32_t* x0 = nullptr;
+                            int64_t* x1 = nullptr;
+                            double* x2 = nullptr;
+                            int32_t* y0 = nullptr;
+                            int64_t* y1 = nullptr;
+                            double* y2 = nullptr;
+
+                            parseValue(reg0, x0, x1, x2);
+                            parseValue(reg1, y0, y1, y2);
+
+                            if (x0 == nullptr) {
+                                if (x1 == nullptr) {
+                                    if (y0 == nullptr) {
+                                        if (y1 == nullptr)
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                        else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y1), (uint8_t) VTypes::DOUBLE, true);
+                                    } else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y2), (uint8_t) VTypes::DOUBLE, true);
+                                } else {
+                                    if (y0 == nullptr) {
+                                        if (y1 == nullptr)
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x1 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                        else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y1), (uint8_t) VTypes::INT64, true);
+                                    } else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y2), (uint8_t) VTypes::INT64, true);
+                                }
+                            } else {
+                                if (y0 == nullptr) {
+                                    if (y1 == nullptr)
+                                        regs->rs[RNV(i, b)] = new Value_t(new double(*x0 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                    else {
+                                        int64_t res = *x0 + *y1;
+                                        if (res > INT32_MAX)
+                                            regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64, true);
+                                        else regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32, true);
+                                    }
+                                } else {
+                                    int64_t res = *x0 + *y0;
+                                    if (res > INT32_MAX)
+                                        regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64, true);
+                                    else regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32, true);
+                                }
+                            }
+                        }
+                        break;
+                    }
                     case C::CGH: {
                         auto method = (Method_t *) process->heap->getWN(*GR<SI_t>(regs, i, b));
                         auto context = new ExecuteContext{
@@ -239,6 +294,13 @@ namespace DmN::KVM {
                     case C::ASCR:
                         regs->rs[RNV(i, b)] = alloca((RNV(i, b) << 8) | RNV(i, b));
                         break;
+                    case C::BR:
+                        regs->rs[RNV(i, b)] = new void **(GR<void *>(regs, i, b));
+                        break;
+                    case C::UBR:
+                        void **reg = GR<void *>(regs, i, b);
+                        regs->rs[RNV(i, b)] = *reg;
+                        delete reg;
                 }
             }
 
@@ -329,6 +391,40 @@ namespace DmN::KVM {
             }
             //
             return new Value_t(value, type, isCollectable);
+        }
+
+        static Value_t *checkAdd(Value_t *v0, Value_t *v1, Value_t *value0, Value_t *value1) {
+            if (value0 == v0) {
+                if (value1 == v1)
+                    return new Value_t(new uint32_t(0), 5, true);
+                else return value0;
+            }
+            return nullptr;
+        }
+
+        static Value_t *checkNanAdd(Value_t *v0, Value_t *v1, Value_t *nan) {
+            if (v0 == nan || v1 == nan)
+                return nan;
+            return nullptr;
+        }
+
+        static void parseValue(Value_t *reg, int32_t*& x, int64_t*& y, double*& z) {
+            if (reg->type == (uint8_t) VTypes::INT8 || reg->type == (uint8_t) VTypes::UINT8) {
+                x = new int32_t;
+                memcpy(x, reg->value, 8);
+            } else if (reg->type == (uint8_t) VTypes::INT16 || reg->type == (uint8_t) VTypes::UINT16) {
+                x = new int32_t;
+                memcpy(x, reg->value, 16);
+            } else if (reg->type == (uint8_t) VTypes::INT32 || reg->type == (uint8_t) VTypes::UINT32)
+                x = (int32_t*) reg->value;
+            else if (reg->type == (uint8_t) VTypes::INT64 || reg->type == (uint8_t) VTypes::UINT64)
+                y = (int64_t*) reg->value;
+            else if (reg->type == (uint8_t) VTypes::FLOAT) {
+                z = new double;
+                memcpy(z, reg->value, sizeof(float));
+            } else if (reg->type == (uint8_t) VTypes::DOUBLE)
+                z = (double*) reg->value;
+            else throw "!Add Opcode : Unknown Type!";
         }
     };
 }
