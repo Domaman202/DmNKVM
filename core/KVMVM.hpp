@@ -209,15 +209,15 @@ namespace DmN::KVM {
                                 if (x1 == nullptr) {
                                     if (y0 == nullptr) {
                                         if (y1 == nullptr)
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y2), (uint8_t) VTypes::DOUBLE, true);
                                         else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y1), (uint8_t) VTypes::DOUBLE, true);
-                                    } else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y2), (uint8_t) VTypes::DOUBLE, true);
+                                    } else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y0), (uint8_t) VTypes::DOUBLE, true);
                                 } else {
                                     if (y0 == nullptr) {
                                         if (y1 == nullptr)
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x1 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x1 + *y2), (uint8_t) VTypes::DOUBLE, true);
                                         else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y1), (uint8_t) VTypes::INT64, true);
-                                    } else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y2), (uint8_t) VTypes::INT64, true);
+                                    } else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y0), (uint8_t) VTypes::INT64, true);
                                 }
                             } else {
                                 if (y0 == nullptr) {
@@ -345,33 +345,33 @@ namespace DmN::KVM {
             //
             switch (RNV(i, b)) {
                 case KBC::Primitive::INT8:
-                    type = 3;
+                    type = (uint8_t) VTypes::INT8;
                     value = new uint8_t(RNV(i, b));
                     break;
                 case KBC::Primitive::UINT8:
-                    type = 7;
+                    type = (uint8_t) VTypes::UINT8;
                     value = new uint8_t(RNV(i, b));
                     break;
                 case KBC::Primitive::INT16:
-                    type = 4;
+                    type = (uint8_t) VTypes::INT16;
                     value = new uint16_t((RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::UINT16:
-                    type = 8;
+                    type = (uint8_t) VTypes::UINT16;
                     value = new uint16_t((RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::INT32:
-                    type = 5;
+                    type = (uint8_t) VTypes::INT32;
                     value = new uint32_t(
                             (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::UINT32:
-                    type = 9;
+                    type = (uint8_t) VTypes::UINT32;
                     value = new uint32_t(
                             (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::INT64:
-                    type = 6;
+                    type = (uint8_t) VTypes::INT64;;
                     value = new uint64_t(
                             (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
                              ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
@@ -380,7 +380,7 @@ namespace DmN::KVM {
                              ((uint64_t) RNV(i, b) << 56)));
                     break;
                 case KBC::Primitive::UINT64:
-                    type = 10;
+                    type = (uint8_t) VTypes::UINT64;
                     value = new uint64_t(
                             (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
                              ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
@@ -388,6 +388,20 @@ namespace DmN::KVM {
                              ((uint64_t) RNV(i, b) << 48) +
                              ((uint64_t) RNV(i, b) << 56)));
                     break;
+                case KBC::Primitive::FLOAT: {
+                    // TODO:
+                    break;
+                }
+                case KBC::Primitive::DOUBLE: {// TODO:
+                    type = (uint8_t) VTypes::DOUBLE;
+                    value = new uint64_t(
+                            (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
+                             ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
+                             ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
+                             ((uint64_t) RNV(i, b) << 48) +
+                             ((uint64_t) RNV(i, b) << 56)));
+                    break;
+                }
             }
             //
             return new Value_t(value, type, isCollectable);
