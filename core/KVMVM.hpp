@@ -371,22 +371,12 @@ namespace DmN::KVM {
                             (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::INT64:
-                    type = (uint8_t) VTypes::INT64;;
-                    value = new uint64_t(
-                            (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
-                             ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
-                             ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
-                             ((uint64_t) RNV(i, b) << 48) +
-                             ((uint64_t) RNV(i, b) << 56)));
+                    type = (uint8_t) VTypes::INT64;
+                    value = new int64_t(((int64_t) RNV(i, b) << 56) | ((int64_t) RNV(i, b) << 48) | ((int64_t) RNV(i, b) << 40) | ((int64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::UINT64:
                     type = (uint8_t) VTypes::UINT64;
-                    value = new uint64_t(
-                            (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
-                             ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
-                             ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
-                             ((uint64_t) RNV(i, b) << 48) +
-                             ((uint64_t) RNV(i, b) << 56)));
+                    value = new uint64_t(((uint64_t) RNV(i, b) << 56) | ((uint64_t) RNV(i, b) << 48) | ((uint64_t) RNV(i, b) << 40) | ((uint64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
                     break;
                 case KBC::Primitive::FLOAT: {
                     // TODO:
