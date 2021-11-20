@@ -384,12 +384,7 @@ namespace DmN::KVM {
                 }
                 case KBC::Primitive::DOUBLE: {// TODO:
                     type = (uint8_t) VTypes::DOUBLE;
-                    value = new uint64_t(
-                            (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
-                             ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
-                             ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
-                             ((uint64_t) RNV(i, b) << 48) +
-                             ((uint64_t) RNV(i, b) << 56)));
+                    value = new double(((uint64_t) RNV(i, b) << 56) | ((uint64_t) RNV(i, b) << 48) | ((uint64_t) RNV(i, b) << 40) | ((uint64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
                     break;
                 }
             }

@@ -31,7 +31,7 @@ namespace DmN::KVM::testing {
                     C::CGH,
                     0,
                     C::LPV,
-                    (int8_t) KBC::Primitive::INT64,
+                    (int8_t) KBC::Primitive::DOUBLE,
                     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xC8,
                     0,
                     C::LPV,
@@ -52,7 +52,7 @@ namespace DmN::KVM::testing {
             vm->mainContext->process->heap->add(new NRMethod_t(print, printId));
             //
             void* result = vm->callMain();
-            std::cout << "Call main result " << *(int64_t*) result << std::endl;
+            std::cout << "Call main result " << *(double*) result << std::endl;
             free(result);
             //
             delete vm;
