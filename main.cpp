@@ -32,7 +32,7 @@ namespace DmN::KVM::testing {
                     0,
                     C::LPV,
                     (int8_t) KBC::Primitive::DOUBLE,
-                    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xC8,
+                    0x89, 0x41, 0x60, 0xE5, 0xD0, 0x6, 0x69, 0x40,
                     0,
                     C::LPV,
                     (int8_t) KBC::Primitive::INT32,
