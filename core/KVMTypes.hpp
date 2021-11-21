@@ -43,7 +43,8 @@ namespace DmN::KVM {
 
     /// Значение
     struct Value_t : public GCObject, public LLT {
-        explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable), LLT(LLTypes::VARIABLE) {
+        explicit Value_t(void *value, uint8_t type, bool isCollectable) : GCObject(isCollectable),
+                                                                          LLT(LLTypes::VARIABLE) {
             this->type = type;
             this->value = value;
         }
@@ -98,17 +99,17 @@ namespace DmN::KVM {
         /// ID дескриптора
         SI_t name;
         /// Тип метода
-        bool isNative : 1;
+        bool isNative: 1;
     };
 
     class BCMethod_t : public Method_t {
     public:
-        BCMethod_t(SI_t descriptor, uint8_t* bc, size_t cs) : Method_t(false, descriptor) {
+        BCMethod_t(SI_t descriptor, uint8_t *bc, size_t cs) : Method_t(false, descriptor) {
             this->bc = bc;
             this->cs = cs;
         }
 
-        uint8_t* bc;
+        uint8_t *bc;
         size_t cs;
     };
 
@@ -116,7 +117,7 @@ namespace DmN::KVM {
     public:
         explicit NMethod_t(SI_t descriptor) : Method_t(true, descriptor) {}
 
-        virtual void* call(void **args, size_t argc) = 0;
+        virtual void *call(void **args, size_t argc) = 0;
     };
 
     typedef void *(KVMMethod)(void **args, size_t argc);
@@ -127,7 +128,7 @@ namespace DmN::KVM {
             this->ref = method;
         }
 
-        void * call(void **args, size_t argc) override {
+        void *call(void **args, size_t argc) override {
             ref(args, argc);
         }
 

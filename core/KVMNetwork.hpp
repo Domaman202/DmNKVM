@@ -221,7 +221,7 @@ namespace DmN::KVM::Network {
             // Выставляет сетевые параметры
             addr.sin_family = ip_protocol;
             addr.sin_port = port;
-            if ((error = inet_pton(ip_protocol, address.c_str(), (char*) &(addr.sin_addr))) != 1) [[unlikely]] {
+            if ((error = inet_pton(ip_protocol, address.c_str(), (char *) &(addr.sin_addr))) != 1) [[unlikely]] {
                 result = NWR::IP_CONVERT_ERROR;
                 return;
             }
@@ -296,7 +296,7 @@ namespace DmN::KVM::Network {
             // Выставляет сетевые параметры
             addr.sin_family = ip_protocol;
             addr.sin_port = port;
-            if ((error = inet_pton(ip_protocol, address.c_str(), (char*) &(addr.sin_addr))) != 1) [[unlikely]] {
+            if ((error = inet_pton(ip_protocol, address.c_str(), (char *) &(addr.sin_addr))) != 1) [[unlikely]] {
                 result = NWR::IP_CONVERT_ERROR;
                 return;
             }

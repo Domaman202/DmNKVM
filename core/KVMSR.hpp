@@ -11,7 +11,7 @@ namespace DmN::KVM {
     template<typename T>
     class Stack : public SDL::List<T> {
     public:
-        explicit Stack(SDL::Node<T>* start_node) : SDL::List<T>(start_node) {
+        explicit Stack(SDL::Node<T> *start_node) : SDL::List<T>(start_node) {
         }
 
         /*!

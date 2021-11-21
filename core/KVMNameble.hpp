@@ -109,7 +109,7 @@ namespace DmN::KVM {
         size_t last_index = 1;
 
         explicit SSS(size_t size) {
-            this->data = new const char*[size] { "" };
+            this->data = new const char *[size]{""};
             this->_size = size;
         }
 
@@ -201,9 +201,9 @@ namespace DmN::KVM {
         DSS() : SS() {}
 
         ~DSS() {
-            SaI* last_node = this->start_node;
+            SaI *last_node = this->start_node;
             for (last_node = this->start_node; last_node != nullptr;) {
-                SaI* next_node = last_node->next;
+                SaI *next_node = last_node->next;
                 delete last_node;
                 last_node = next_node;
             }

@@ -91,7 +91,7 @@ namespace DmN::SDL {
                 return;
             }
 
-            Node<T>* last_node = this->start_node;
+            Node<T> *last_node = this->start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
             last_node->next = new Node<T>(value);
@@ -113,7 +113,7 @@ namespace DmN::SDL {
          * @param value значение
          */
         void set(size_t index, T value) {
-            Node<T>* last_node = this->start_node;
+            Node<T> *last_node = this->start_node;
             while (index != 0) {
                 if (last_node->next == nullptr)
                     last_node->next = new Node<T>();
@@ -138,7 +138,7 @@ namespace DmN::SDL {
          * @return нужная нам нода
          */
         Node<T> *getNode(size_t i) {
-            Node<T>* last_node = this->start_node;
+            Node<T> *last_node = this->start_node;
             while (i != 0) {
                 last_node = last_node->next;
                 i--;
@@ -153,7 +153,7 @@ namespace DmN::SDL {
         Node<T> *getLastNode() {
             if (this->start_node == nullptr)
                 return nullptr;
-            Node<T>* last_node = this->start_node;
+            Node<T> *last_node = this->start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
             return last_node;
@@ -173,7 +173,7 @@ namespace DmN::SDL {
          * @return нужный нам элемент
          */
         T getLast() {
-            Node<T>* last_node = this->start_node;
+            Node<T> *last_node = this->start_node;
             while (last_node->next != nullptr)
                 last_node = last_node->next;
             return last_node->value;
@@ -187,8 +187,8 @@ namespace DmN::SDL {
         Node<T> *removeGN(size_t i) {
             if (i == 0)
                 return this->start_node;
-            Node<T>* prev_node = this->getNode(i - 1);
-            Node<T>* node_for_remove = prev_node->next;
+            Node<T> *prev_node = this->getNode(i - 1);
+            Node<T> *node_for_remove = prev_node->next;
             prev_node->next = node_for_remove->next;
             return node_for_remove;
         }
@@ -207,7 +207,7 @@ namespace DmN::SDL {
          * @return элемент
          */
         inline T removeG(size_t i) {
-            Node<T>* node_for_remove = removeGN(i);
+            Node<T> *node_for_remove = removeGN(i);
             T value = node_for_remove->value;
             delete node_for_remove;
             return value;
@@ -218,14 +218,14 @@ namespace DmN::SDL {
          * @return нода элемента
          */
         Node<T> *removeLGN() {
-            Node<T>* pre_last_node = this->start_node;
+            Node<T> *pre_last_node = this->start_node;
             if (pre_last_node->next == nullptr) {
                 this->start_node = nullptr;
                 return pre_last_node;
             }
             while (pre_last_node->next->next != nullptr)
                 pre_last_node = pre_last_node->next;
-            Node<T>* node_for_remove = pre_last_node->next;
+            Node<T> *node_for_remove = pre_last_node->next;
             pre_last_node->next = nullptr;
             return node_for_remove;
         }
@@ -242,7 +242,7 @@ namespace DmN::SDL {
          * @return элемент
          */
         inline T removeLG() {
-            Node<T>* node_for_remove = removeLGN();
+            Node<T> *node_for_remove = removeLGN();
             T value = node_for_remove->value;
             delete node_for_remove;
             return value;
@@ -253,7 +253,7 @@ namespace DmN::SDL {
          */
         void clear() {
             while (this->start_node != nullptr) {
-                Node<T>* next_node = this->start_node->next;
+                Node<T> *next_node = this->start_node->next;
                 delete this->start_node;
                 this->start_node = next_node;
             }
@@ -265,7 +265,7 @@ namespace DmN::SDL {
          */
         size_t size() {
             size_t size = 0;
-            Node<T>* last_node = this->start_node;
+            Node<T> *last_node = this->start_node;
             while (last_node != nullptr) {
                 size++;
                 last_node = last_node->next;
@@ -278,30 +278,30 @@ namespace DmN::SDL {
          * @param index индекс элемента
          * @return элемент
          */
-        inline T& operator[] (size_t index) {
+        inline T &operator[](size_t index) {
             return get(index);
         }
 
-        inline void dealloc(Node<T>* prev_node, Node<T>* next_node) {
+        inline void dealloc(Node<T> *prev_node, Node<T> *next_node) {
             delete prev_node->next;
             prev_node->next = next_node;
         }
 
-        inline void dealloc(Node<T>* prev_node) {
+        inline void dealloc(Node<T> *prev_node) {
             delete prev_node->next;
             prev_node->next = nullptr;
         }
 
-        inline T deallocG(Node<T>* prev_node, Node<T>* next_node) {
-            Node<T>* node_for_remove = prev_node->next;
+        inline T deallocG(Node<T> *prev_node, Node<T> *next_node) {
+            Node<T> *node_for_remove = prev_node->next;
             T value = node_for_remove->value;
             delete node_for_remove;
             prev_node->next = next_node;
             return value;
         }
 
-        inline T deallocG(Node<T>* prev_node) {
-            Node<T>* node_for_remove = prev_node->next;
+        inline T deallocG(Node<T> *prev_node) {
+            Node<T> *node_for_remove = prev_node->next;
             T value = node_for_remove;
             delete node_for_remove;
             prev_node->next = nullptr;

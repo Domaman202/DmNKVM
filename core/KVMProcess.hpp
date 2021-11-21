@@ -18,9 +18,9 @@ namespace DmN::KVM {
         /// Куча
         Heap *heap = nullptr;
         /// Хранилище строк
-        SS* strings = nullptr;
+        SS *strings = nullptr;
         /// Хендлер сети
-        Network::NetworkHandler* network = nullptr;
+        Network::NetworkHandler *network = nullptr;
         /// Ошибка
         Throwable *error = nullptr;
     };

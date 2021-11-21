@@ -195,12 +195,12 @@ namespace DmN::KVM {
                         if (reg2 == nullptr)
                             reg2 = checkNanAdd(reg0, reg1, cNaN);
                         if (reg2 == nullptr) {
-                            int32_t* x0 = nullptr;
-                            int64_t* x1 = nullptr;
-                            double* x2 = nullptr;
-                            int32_t* y0 = nullptr;
-                            int64_t* y1 = nullptr;
-                            double* y2 = nullptr;
+                            int32_t *x0 = nullptr;
+                            int64_t *x1 = nullptr;
+                            double *x2 = nullptr;
+                            int32_t *y0 = nullptr;
+                            int64_t *y1 = nullptr;
+                            double *y2 = nullptr;
 
                             parseValue(reg0, x0, x1, x2);
                             parseValue(reg1, y0, y1, y2);
@@ -209,31 +209,48 @@ namespace DmN::KVM {
                                 if (x1 == nullptr) {
                                     if (y0 == nullptr) {
                                         if (y1 == nullptr)
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y2), (uint8_t) VTypes::DOUBLE, true);
-                                        else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y1), (uint8_t) VTypes::DOUBLE, true);
-                                    } else regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y2),
+                                                                              (uint8_t) VTypes::DOUBLE, true);
+                                        else
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y1),
+                                                                              (uint8_t) VTypes::DOUBLE, true);
+                                    } else
+                                        regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y0),
+                                                                          (uint8_t) VTypes::DOUBLE, true);
                                 } else {
                                     if (y0 == nullptr) {
                                         if (y1 == nullptr)
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x1 + *y2), (uint8_t) VTypes::DOUBLE, true);
-                                        else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y1), (uint8_t) VTypes::INT64, true);
-                                    } else regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y0), (uint8_t) VTypes::INT64, true);
+                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x1 + *y2),
+                                                                              (uint8_t) VTypes::DOUBLE, true);
+                                        else
+                                            regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y1),
+                                                                              (uint8_t) VTypes::INT64, true);
+                                    } else
+                                        regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y0),
+                                                                          (uint8_t) VTypes::INT64, true);
                                 }
                             } else {
                                 if (y0 == nullptr) {
                                     if (y1 == nullptr)
-                                        regs->rs[RNV(i, b)] = new Value_t(new double(*x0 + *y0), (uint8_t) VTypes::DOUBLE, true);
+                                        regs->rs[RNV(i, b)] = new Value_t(new double(*x0 + *y0),
+                                                                          (uint8_t) VTypes::DOUBLE, true);
                                     else {
                                         int64_t res = *x0 + *y1;
                                         if (res > INT32_MAX)
-                                            regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64, true);
-                                        else regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32, true);
+                                            regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64,
+                                                                              true);
+                                        else
+                                            regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32,
+                                                                              true);
                                     }
                                 } else {
                                     int64_t res = *x0 + *y0;
                                     if (res > INT32_MAX)
-                                        regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64, true);
-                                    else regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32, true);
+                                        regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64,
+                                                                          true);
+                                    else
+                                        regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32,
+                                                                          true);
                                 }
                             }
                         }
@@ -372,11 +389,17 @@ namespace DmN::KVM {
                     break;
                 case KBC::Primitive::INT64:
                     type = (uint8_t) VTypes::INT64;
-                    value = new int64_t(((int64_t) RNV(i, b) << 56) | ((int64_t) RNV(i, b) << 48) | ((int64_t) RNV(i, b) << 40) | ((int64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
+                    value = new int64_t(
+                            ((int64_t) RNV(i, b) << 56) | ((int64_t) RNV(i, b) << 48) | ((int64_t) RNV(i, b) << 40) |
+                            ((int64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) |
+                            RNV(i, b));
                     break;
                 case KBC::Primitive::UINT64:
                     type = (uint8_t) VTypes::UINT64;
-                    value = new uint64_t(((uint64_t) RNV(i, b) << 56) | ((uint64_t) RNV(i, b) << 48) | ((uint64_t) RNV(i, b) << 40) | ((uint64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
+                    value = new uint64_t(
+                            ((uint64_t) RNV(i, b) << 56) | ((uint64_t) RNV(i, b) << 48) | ((uint64_t) RNV(i, b) << 40) |
+                            ((uint64_t) RNV(i, b) << 32) | (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) |
+                            RNV(i, b));
                     break;
                 case KBC::Primitive::FLOAT: {
                     // TODO:
@@ -385,7 +408,8 @@ namespace DmN::KVM {
                 case KBC::Primitive::DOUBLE: {// TODO:
                     type = (uint8_t) VTypes::DOUBLE;
                     value = new double;
-                    uint8_t bytes[8] = { RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b) };
+                    uint8_t bytes[8] = {RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b),
+                                        RNV(i, b)};
                     memcpy(value, bytes, 8);
                     break;
                 }
@@ -409,7 +433,7 @@ namespace DmN::KVM {
             return nullptr;
         }
 
-        static void parseValue(Value_t *reg, int32_t*& x, int64_t*& y, double*& z) {
+        static void parseValue(Value_t *reg, int32_t *&x, int64_t *&y, double *&z) {
             if (reg->type == (uint8_t) VTypes::INT8 || reg->type == (uint8_t) VTypes::UINT8) {
                 x = new int32_t;
                 memcpy(x, reg->value, 8);
@@ -417,14 +441,14 @@ namespace DmN::KVM {
                 x = new int32_t;
                 memcpy(x, reg->value, 16);
             } else if (reg->type == (uint8_t) VTypes::INT32 || reg->type == (uint8_t) VTypes::UINT32)
-                x = (int32_t*) reg->value;
+                x = (int32_t *) reg->value;
             else if (reg->type == (uint8_t) VTypes::INT64 || reg->type == (uint8_t) VTypes::UINT64)
-                y = (int64_t*) reg->value;
+                y = (int64_t *) reg->value;
             else if (reg->type == (uint8_t) VTypes::FLOAT) {
                 z = new double;
                 memcpy(z, reg->value, sizeof(float));
             } else if (reg->type == (uint8_t) VTypes::DOUBLE)
-                z = (double*) reg->value;
+                z = (double *) reg->value;
             else throw "!Add Opcode : Unknown Type!";
         }
     };

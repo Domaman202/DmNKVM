@@ -46,13 +46,13 @@ namespace DmN::KVM::testing {
                     0
             };
             //
-            auto* vm = new VMCA(code, sizeof(code), nullptr, 0);
+            auto *vm = new VMCA(code, sizeof(code), nullptr, 0);
             //
             SI_t printId = vm->mainContext->process->strings->add("print(R)V");
             vm->mainContext->process->heap->add(new NRMethod_t(print, printId));
             //
-            void* result = vm->callMain();
-            std::cout << "Call main result " << *(double*) result << std::endl;
+            void *result = vm->callMain();
+            std::cout << "Call main result " << *(double *) result << std::endl;
             free(result);
             //
             delete vm;
@@ -61,8 +61,9 @@ namespace DmN::KVM::testing {
         }
 
         void *print(void **args, size_t argc) {
-            auto context = ((ExecuteContext*) args[1]);
-            std::cout << "[OutputStream] " << context->process->strings->get(*(SI_t*) context->thread->stack->peekPop())  << std::endl;
+            auto context = ((ExecuteContext *) args[1]);
+            std::cout << "[OutputStream] "
+                      << context->process->strings->get(*(SI_t *) context->thread->stack->peekPop()) << std::endl;
         }
     }
 
@@ -71,10 +72,10 @@ namespace DmN::KVM::testing {
             // !Старт!
             std::cout << "[3][S] хип" << std::endl;
             // Создаём хип
-            auto* heap = new DHeap();
+            auto *heap = new DHeap();
             // Тестим
-            auto var0 = new Variable_t(0, (void*) 228, 3, false);
-            auto var1 = new Variable_t(1, (void*) 202, 3, false);
+            auto var0 = new Variable_t(0, (void *) 228, 3, false);
+            auto var1 = new Variable_t(1, (void *) 202, 3, false);
             CI_t id0 = heap->addNew(var0);
             CI_t id1 = heap->add(var0);
             CI_t id2 = heap->add(var1);
@@ -98,7 +99,7 @@ namespace DmN::KVM::testing {
     }
 
     namespace SS {
-        void test(DmN::KVM::SS* strings) {
+        void test(DmN::KVM::SS *strings) {
             // Помещаем строки
             SI_t id0 = strings->add("Hello, World!");
             SI_t id1 = strings->addNew("DmN202");
@@ -126,13 +127,13 @@ namespace DmN::KVM::testing {
             // !Старт!
             std::cout << "[2][S] хранилище строк" << std::endl;
             // Создаём статическое хранилище строк
-            auto* sss = new DmN::KVM::SSS(512);
+            auto *sss = new DmN::KVM::SSS(512);
             // Тестим
             test(sss);
             // Удаляем хранилище строк
             delete sss;
             // Создаём динамическое хранилище строк
-            auto* dss = new DmN::KVM::DSS();
+            auto *dss = new DmN::KVM::DSS();
             // Тестим
             test(dss);
             // Удаляем хранилище строк
@@ -177,6 +178,7 @@ namespace DmN::KVM::testing {
 
     namespace Network {
         void networkTestS();
+
         void networkTestC();
 
         uint16_t port;

@@ -48,5 +48,4 @@ namespace DmN::KVM::Error {
     };
 }
 
-
 #endif /* DMN_KVM_ERROR_HPP */
