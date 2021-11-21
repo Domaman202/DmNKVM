@@ -194,6 +194,8 @@ namespace DmN::KVM {
                             reg2 = checkAdd(reg0, reg1, cNInf, cInf);
                         if (reg2 == nullptr)
                             reg2 = checkNanAdd(reg0, reg1, cNaN);
+                        if (reg2 == nullptr)
+                            reg2 = checkNanAdd(reg0, reg1, cUndefined);
                         if (reg2 == nullptr) {
                             int32_t *x0 = nullptr;
                             int64_t *x1 = nullptr;
