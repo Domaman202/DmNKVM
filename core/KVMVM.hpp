@@ -42,28 +42,28 @@ namespace DmN::KVM {
             auto *mainSS = new DSS();
             auto *mainHeap = new DHeap();
             auto mainCall = new Call{
-                    .obj_caller = nullptr,
-                    .method_caller = nullptr,
-                    .obj = nullptr,
-                    .method = main,
-                    .args = args,
-                    .argc = argc
+                    nullptr,
+                    nullptr,
+                    nullptr,
+                    main,
+                    args,
+                    argc
             };
             auto mainThread = new Thread{
-                    .cs = new Stack<Call *>(new SDL::Node(mainCall)),
-                    .stack = new Stack<void *>(nullptr),
-                    .regs = new Resisters(code[0]),
+                    new Stack<Call *>(new SDL::Node<Call*>(mainCall)),
+                    new Stack<void *>(nullptr),
+                    new Resisters(code[0]),
             };
             mainContext = new ExecuteContext{
-                    .call = mainCall,
-                    .thread = mainThread,
-                    .process = new Process{
-                            .threads = new Thread *[]{mainThread},
-                            .tc = 1,
-                            .heap = mainHeap,
-                            .strings = mainSS
+                    mainCall,
+                    mainThread,
+                    new Process{
+                            new Thread *[2]{mainThread},
+                            1,
+                            mainHeap,
+                            mainSS
                     },
-                    .bcPtr = 1
+                    1
             };
             createMain(main, mainSS, code, cs);
         }
@@ -276,7 +276,7 @@ namespace DmN::KVM {
                         };
 
                         if (method->isNative)
-                            ((NMethod_t *) method)->call(new void *[]{this, context}, 2);
+                            ((NMethod_t *) method)->call(new void *[2]{this, context}, 2);
                         else
                             eval(context, ((BCMethod_t *) method)->bc, ((BCMethod_t *) method)->cs);
                         break;
@@ -307,12 +307,12 @@ namespace DmN::KVM {
                         regs->rs[r] = nullptr;
                         break;
                     }
-                    case C::ASR:
-                        regs->rs[RNV(i, b)] = alloca(*GR<uint16_t>(regs, i, b));
-                        break;
-                    case C::ASCR:
-                        regs->rs[RNV(i, b)] = alloca((RNV(i, b) << 8) | RNV(i, b));
-                        break;
+//                    case C::ASR:
+//                        regs->rs[RNV(i, b)] = alloca(*GR<uint16_t>(regs, i, b));
+//                        break;
+//                    case C::ASCR:
+//                        regs->rs[RNV(i, b)] = alloca((RNV(i, b) << 8) | RNV(i, b));
+//                        break;
                     case C::BR:
                         regs->rs[RNV(i, b)] = new void **(GR<void *>(regs, i, b));
                         break;
@@ -335,9 +335,9 @@ namespace DmN::KVM {
                 auto m = (BCMethod_t *) method;
                 vm->eval(context, m->bc, m->cs);
             } else if (typeid(*method) == typeid(NMethod_t)) {
-                ((NMethod_t *) method)->call(new void *[]{vm, context}, 2);
+                ((NMethod_t *) method)->call(new void *[2]{vm, context}, 2);
             } else
-                ((NRMethod_t *) method)->ref(new void *[]{vm, context}, 2);
+                ((NRMethod_t *) method)->ref(new void *[2]{vm, context}, 2);
         }
 
         static inline uint8_t RNV(size_t *i, const uint8_t *bytes) {
