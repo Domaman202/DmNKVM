@@ -25,7 +25,7 @@ namespace DmN::KVM::Error {
         OBJECT_REFERENCE_NOT_NULL = 3
     };
 
-    /// (Network Work Result) Результат запуска клиента
+    /// (Network Work Result) Результат сетевой
     enum class NWR {
         /// Операция выполнена успешно
         SUCCESS = 0,

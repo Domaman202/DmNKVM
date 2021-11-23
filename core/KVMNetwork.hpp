@@ -161,6 +161,7 @@ namespace DmN::KVM::Network {
 
         /*!
          * Закрывает соединение
+         * @return результат закрытия
          */
         NWR close() const {
 #ifdef WIN32
