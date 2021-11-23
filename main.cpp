@@ -244,7 +244,7 @@ namespace DmN::KVM::testing {
 }
 
 int main(int argc, char* argv[]) {
-    DmN::KVM::testing::Network::networkTest();
+    DmN::KVM::testing::Network::networkTest(); // TODO: MINGW FIX
     DmN::KVM::testing::SR::stackRegisterTest();
     DmN::KVM::testing::SS::stringStorageTest();
     DmN::KVM::testing::Heap::heapTest();

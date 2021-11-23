@@ -85,9 +85,10 @@ namespace DmN::KVM {
                 switch (b[*i]) {// TODO:
                     case C::NOP:
                         break;
-                    case C::MR:
-                        regs->rs[RNV(i, b)] = GR<void>(regs, i, b);
+                    case C::MR: {
+                        DMN_KVM_RS(i, b, GR<void>(regs, i, b));
                         break;
+                    }
                     case C::MRT:
                         memcpy(GR<uint64_t>(regs, i, b) + RNV(i, b), GR<uint64_t>(regs, i, b) + RNV(i, b), RNV(i, b));
                         break;
@@ -103,35 +104,41 @@ namespace DmN::KVM {
                     case C::LCV:
                         switch (RNV(i, b)) {
                             case Primitive::INT8:
-                            case Primitive::UINT8:
-                                regs->rs[RNV(i, b)] = new uint8_t(RNV(i, b));
+                            case Primitive::UINT8: {
+                                DMN_KVM_RS(i, b, new uint8_t(RNV(i, b)));
                                 break;
+                            }
                             case Primitive::INT16:
-                            case Primitive::UINT16:
-                                regs->rs[RNV(i, b)] = new uint16_t((RNV(i, b) << 8) | RNV(i, b));
+                            case Primitive::UINT16: {
+                                DMN_KVM_RS(i, b, new uint16_t((RNV(i, b) << 8) | RNV(i, b)));
                                 break;
+                            }
                             case Primitive::INT32:
-                            case Primitive::UINT32:
-                                regs->rs[RNV(i, b)] = new uint32_t(
-                                        (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b));
+                            case Primitive::UINT32: {
+                                DMN_KVM_RS(i, b, new uint32_t(
+                                        (RNV(i, b) << 24) | (RNV(i, b) << 16) | (RNV(i, b) << 8) | RNV(i, b)));
                                 break;
+                            }
                             case Primitive::INT64:
-                            case Primitive::UINT64:
-                                regs->rs[RNV(i, b)] = new uint64_t(
+                            case Primitive::UINT64: {
+                                DMN_KVM_RS(i, b, new uint64_t(
                                         (((uint64_t) RNV(i, b) << 0) + ((uint64_t) RNV(i, b) << 8) +
                                          ((uint64_t) RNV(i, b) << 16) + ((uint64_t) RNV(i, b) << 24) +
                                          ((uint64_t) RNV(i, b) << 32) + ((uint64_t) RNV(i, b) << 40) +
                                          ((uint64_t) RNV(i, b) << 48) +
-                                         ((uint64_t) RNV(i, b) << 56)));
+                                         ((uint64_t) RNV(i, b) << 56))));
                                 break;
+                            }
                         }
                         break;
-                    case C::LPV:
-                        regs->rs[RNV(i, b)] = parseValue(i, b, false);
+                    case C::LPV: {
+                        DMN_KVM_RS(i, b, parseValue(i, b, false));
                         break;
-                    case C::LUPV:
-                        regs->rs[RNV(i, b)] = GR<Value_t>(regs, i, b)->value;
+                    }
+                    case C::LUPV: {
+                        DMN_KVM_RS(i, b, GR<Value_t>(regs, i, b)->value);
                         break;
+                    }
                     case C::PCV:
                         switch (RNV(i, b)) {
                             case Primitive::INT8:
@@ -295,27 +302,32 @@ namespace DmN::KVM {
                         stack->push(new SI_t(process->strings->add(str)));
                         break;
                     }
-                    case C::AR:
-                        regs->rs[RNV(i, b)] = malloc(*GR<uint16_t>(regs, i, b));
+                    case C::AR: {
+                        DMN_KVM_RS(i, b, malloc(*GR<uint16_t>(regs, i, b)));
                         break;
-                    case C::ACR:
-                        regs->rs[RNV(i, b)] = malloc((RNV(i, b) << 8) | RNV(i, b));
+                    }
+                    case C::ACR: {
+                        DMN_KVM_RS(i, b, malloc((RNV(i, b) << 8) | RNV(i, b)));
                         break;
+                    }
                     case C::FR: {
                         auto r = RNV(i, b);
                         free(regs->rs[r]);
                         regs->rs[r] = nullptr;
                         break;
                     }
-//                    case C::ASR:
-//                        regs->rs[RNV(i, b)] = alloca(*GR<uint16_t>(regs, i, b));
-//                        break;
-//                    case C::ASCR:
-//                        regs->rs[RNV(i, b)] = alloca((RNV(i, b) << 8) | RNV(i, b));
-//                        break;
-                    case C::BR:
-                        regs->rs[RNV(i, b)] = new void **(GR<void *>(regs, i, b));
+#ifdef DMN_KVM_PLATFORM_CYGWIN
+                    case C::ASR:
+                        regs->rs[RNV(i, b)] = alloca(*GR<uint16_t>(regs, i, b));
                         break;
+                    case C::ASCR:
+                        regs->rs[RNV(i, b)] = alloca((RNV(i, b) << 8) | RNV(i, b));
+                        break;
+#endif /* DMN_KVM_PLATFORM_CYGWIN */
+                    case C::BR: {
+                        DMN_KVM_RS(i, b, new void **(GR<void *>(regs, i, b)));
+                        break;
+                    }
                     case C::UBR:
                         void **reg = GR<void *>(regs, i, b);
                         regs->rs[RNV(i, b)] = *reg;
@@ -407,7 +419,7 @@ namespace DmN::KVM {
                     // TODO:
                     break;
                 }
-                case KBC::Primitive::DOUBLE: {// TODO:
+                case KBC::Primitive::DOUBLE: {
                     type = (uint8_t) VTypes::DOUBLE;
                     value = new double;
                     uint8_t bytes[8] = {RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b), RNV(i, b),
