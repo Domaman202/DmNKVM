@@ -12,7 +12,6 @@ using namespace DmN::KVM::Error;
 
 namespace DmN::KVM::Network {
 #ifdef DMN_KVM_PLATFORM_MINGW
-
     int inet_pton4(const char *src, char *dst) {
         uint8_t tmp[4], *tp;
 
@@ -147,7 +146,6 @@ namespace DmN::KVM::Network {
                 return -1;
         }
     }
-
 #endif /* DMN_KVM_PLATFORM_MINGW */
 
     class NetworkHandler {
