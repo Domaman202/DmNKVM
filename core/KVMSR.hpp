@@ -62,7 +62,7 @@ namespace DmN::KVM {
          * @param index индекс регистра
          * @return Значение регистра
          */
-        void *&operator[](size_t index) const {
+        inline void *&operator[](size_t index) {
             return this->rs[index];
         }
 

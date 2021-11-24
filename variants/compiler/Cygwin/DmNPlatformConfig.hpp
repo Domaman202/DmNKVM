@@ -6,6 +6,6 @@
 
 #define DMN_KVM_PLATFORM_CYGWIN
 
-#define DMN_KVM_RS(a,b,c) regs->rs[RNV(a, b)] = c
+#define DMN_KVM_RS(a,b,c) (*regs)[RNV(a, b)] = c
 
 #endif /* DMN_KVM_PLATFORM_CONFIG_H */

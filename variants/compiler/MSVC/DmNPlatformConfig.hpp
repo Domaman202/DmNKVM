@@ -4,6 +4,6 @@
 
 #include <typeinfo>
 
-#define DMN_KVM_RS(a,b,c) auto x = c; regs->rs[RNV(a, b)] = x
+#define DMN_KVM_RS(a,b,c) auto x = c; (*regs)[RNV(a, b)] = x
 
 #endif /* DMN_KVM_PLATFORM_CONFIG_H */

@@ -97,8 +97,8 @@ namespace DmN::KVM {
                         auto regBI = RNV(i, b);
                         auto regA = GR<void>(regs, regAI);
                         auto regB = GR<void>(regs, regBI);
-                        regs->rs[regAI] = regB;
-                        regs->rs[regBI] = regA;
+                        (*regs)[regAI] = regB;
+                        (*regs)[regBI] = regA;
                         break;
                     }
                     case C::LCV:
@@ -168,7 +168,7 @@ namespace DmN::KVM {
                         stack->push(parseValue(i, b, false));
                         break;
                     case C::CR:
-                        regs->rs[RNV(i, b)] = nullptr;
+                        (*regs)[RNV(i, b)] = nullptr;
                         break;
                     case C::CSV:
                         stack->push(stack->peek());
@@ -190,7 +190,7 @@ namespace DmN::KVM {
                         stack->push(GR<void>(regs, i, b));
                         break;
                     case C::LFS:
-                        regs->rs[RNV(i, b)] = stack->peekPop();
+                        (*regs)[RNV(i, b)] = stack->peekPop();
                         break;
                     case C::ADD: { // TODO: TEST
                         auto reg0 = GR<Value_t>(regs, i, b);
@@ -218,47 +218,47 @@ namespace DmN::KVM {
                                 if (x1 == nullptr) {
                                     if (y0 == nullptr) {
                                         if (y1 == nullptr)
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y2),
+                                            (*regs)[RNV(i, b)] = new Value_t(new double(*x2 + *y2),
                                                                               (uint8_t) VTypes::DOUBLE, true);
                                         else
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y1),
+                                            (*regs)[RNV(i, b)] = new Value_t(new double(*x2 + *y1),
                                                                               (uint8_t) VTypes::DOUBLE, true);
                                     } else
-                                        regs->rs[RNV(i, b)] = new Value_t(new double(*x2 + *y0),
+                                        (*regs)[RNV(i, b)] = new Value_t(new double(*x2 + *y0),
                                                                           (uint8_t) VTypes::DOUBLE, true);
                                 } else {
                                     if (y0 == nullptr) {
                                         if (y1 == nullptr)
-                                            regs->rs[RNV(i, b)] = new Value_t(new double(*x1 + *y2),
+                                            (*regs)[RNV(i, b)] = new Value_t(new double(*x1 + *y2),
                                                                               (uint8_t) VTypes::DOUBLE, true);
                                         else
-                                            regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y1),
+                                            (*regs)[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y1),
                                                                               (uint8_t) VTypes::INT64, true);
                                     } else
-                                        regs->rs[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y0),
+                                        (*regs)[RNV(i, b)] = new Value_t(new int64_t(*x1 + *y0),
                                                                           (uint8_t) VTypes::INT64, true);
                                 }
                             } else {
                                 if (y0 == nullptr) {
                                     if (y1 == nullptr)
-                                        regs->rs[RNV(i, b)] = new Value_t(new double(*x0 + *y0),
+                                        (*regs)[RNV(i, b)] = new Value_t(new double(*x0 + *y0),
                                                                           (uint8_t) VTypes::DOUBLE, true);
                                     else {
                                         int64_t res = *x0 + *y1;
                                         if (res > INT32_MAX)
-                                            regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64,
+                                            (*regs)[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64,
                                                                               true);
                                         else
-                                            regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32,
+                                            (*regs)[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32,
                                                                               true);
                                     }
                                 } else {
                                     int64_t res = *x0 + *y0;
                                     if (res > INT32_MAX)
-                                        regs->rs[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64,
+                                        (*regs)[RNV(i, b)] = new Value_t(new int64_t(res), (uint8_t) VTypes::INT64,
                                                                           true);
                                     else
-                                        regs->rs[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32,
+                                        (*regs)[RNV(i, b)] = new Value_t(new int32_t(res), (uint8_t) VTypes::INT32,
                                                                           true);
                                 }
                             }
