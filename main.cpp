@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include <cassert>
-#include <thread>
+#include <pthread.h>
 
 namespace DmN::KVM::testing {
     inline void check(NWR nwr) {
@@ -178,9 +178,9 @@ namespace DmN::KVM::testing {
     }
 
     namespace Network {
-        void networkTestS();
+        void* networkTestS(void*);
 
-        void networkTestC();
+        void* networkTestC(void*);
 
         uint16_t port;
 
@@ -190,19 +190,21 @@ namespace DmN::KVM::testing {
             // Указываем порт для тестов
             port = 228;
             // Создаём поток сервера
-            std::thread server_thread(networkTestS);
+            pthread_t server_thread;
+            pthread_create(&server_thread, nullptr, (void *(*)(void *))networkTestS, nullptr);
             // Создаём поток клиента
-            std::thread client_thread(networkTestC);
+            pthread_t client_thread;
+            pthread_create(&client_thread, nullptr, (void *(*)(void *))networkTestC, nullptr);
             // Подключаемся к потоку клиента
-            client_thread.join();
+            pthread_join(client_thread, nullptr);
             // Подключаемся к потоку сервера
-            server_thread.join();
+            pthread_join(server_thread, nullptr);
             // Если мы ещё не сдохли, то всё норм
             // !Конец!
             std::cout << "[0][C]" << std::endl;
         }
 
-        void networkTestS() {
+        void *networkTestS(void*) {
             // Переменные ошибки
             NWR nwr;
             DmN::KVM::Network::socket_t error;
@@ -223,9 +225,11 @@ namespace DmN::KVM::testing {
             check(nwr);
             nwr = server->close();
             check(nwr);
+            //
+            return nullptr;
         }
 
-        void networkTestC() {
+        void* networkTestC(void*) {
             NWR nwr;
             DmN::KVM::Network::socket_t error;
             // Создаём клиент
@@ -240,6 +244,8 @@ namespace DmN::KVM::testing {
             delete[] str;
             // Закрываем соединение
             client->close();
+            //
+            return nullptr;
         }
     }
 }

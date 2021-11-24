@@ -1,1 +1,0 @@
-https://github.com/meganz/mingw-std-threads
