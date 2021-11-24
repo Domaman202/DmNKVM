@@ -129,7 +129,7 @@ namespace DmN::KVM {
         }
 
         void *call(void **args, size_t argc) override {
-            ref(args, argc);
+            return ref(args, argc);
         }
 
         KVMMethod *ref;

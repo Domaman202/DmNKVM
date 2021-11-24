@@ -64,6 +64,7 @@ namespace DmN::KVM::testing {
             auto context = ((ExecuteContext *) args[1]);
             std::cout << "[OutputStream] "
                       << context->process->strings->get(*(SI_t *) context->thread->stack->peekPop()) << std::endl;
+            return nullptr;
         }
     }
 
